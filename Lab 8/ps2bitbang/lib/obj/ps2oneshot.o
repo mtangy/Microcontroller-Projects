@@ -1,0 +1,57 @@
+XH
+H 2 areas 14 global symbols
+M ps2oneshot.asm
+A text size 0 flags 0
+dbfile lib/ps2oneshot.asm
+dbfunc 0 ? 0 I
+dbfile PS2OneShot.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PS2OneShot.inc
+dbfunc 0 ? 0 I
+dbfile lib/ps2oneshot.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/ps2oneshot.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 14 flags 0
+dbfile lib/ps2oneshot.asm
+dbfunc 0 ? 0 I
+dbline 47 0
+dbline 49 3
+dbline 64 4
+dbline 66 7
+dbline 2 8
+dbline 84 B
+dbline 2 C
+dbline A0 F
+dbline 2 10
+dbline BB 13
+S PS2OneShot_Start Def0000
+S PS2OneShot_ClearInt Def0010
+S $sb$PS2OneShot_Start Def0000
+S $se$PS2OneShot_Start Def0004
+S $sb$PS2OneShot_ClearInt Def0010
+S $se$PS2OneShot_ClearInt Def0014
+S _PS2OneShot_DisableInt Def000C
+S _PS2OneShot_Start Def0000
+S _PS2OneShot_ClearInt Def0010
+S PS2OneShot_EnableInt Def0008
+S $sb$PS2OneShot_EnableInt Def0008
+S $se$PS2OneShot_EnableInt Def000C
+S PS2OneShot_Stop Def0004
+S $sb$PS2OneShot_Stop Def0004
+S $se$PS2OneShot_Stop Def0008
+S _PS2OneShot_EnableInt Def0008
+S PS2OneShot_DisableInt Def000C
+S $sb$PS2OneShot_DisableInt Def000C
+S $se$PS2OneShot_DisableInt Def0010
+S _PS2OneShot_Stop Def0004
+T 00 00 43 37 01 7F 41 37 FE 7F 43 E1 20 7F 41 E1
+R 00 00 00 01
+T 00 0E DF 7F 62 DB DF 7F
+R 00 00 00 01

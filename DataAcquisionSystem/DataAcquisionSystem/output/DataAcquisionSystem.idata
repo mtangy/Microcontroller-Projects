@@ -1,0 +1,10 @@
+flash 1B73 SRAM    C:
+ 00 65 bytes
+flash 1B77 SRAM   4D:
+ <size at next line>  95  0 7C  0 63  0 4A  0 3B  0 31  0 1D  0 18  0 13
+  [size:] 17 bytes
+flash 1B8B SRAM   62:
+ 00 30 bytes
+flash 1B8F SRAM   80:
+ <size at next line>   1  0  0  0  1  0  0  0
+  [size:] 8 bytes

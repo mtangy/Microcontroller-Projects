@@ -1,0 +1,36 @@
+XH
+H 1 areas 1 global symbols
+M main.c
+A text size 41 flags 0
+dbfile ./main.c
+dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\BLINK_~1\BLINK_~1\main.c
+dbfunc e main 0 fV
+dbsym l i 0 I
+dbline FFFFFFFF 0
+dbline 9 4
+dbline B 6
+dbline D 6
+dbline F 9
+dbline F F
+dbline F F
+dbline F 14
+dbline 11 20
+dbline 13 23
+dbline 13 29
+dbline 13 29
+dbline 13 2E
+dbline 15 3A
+dbline B 3A
+dbline FFFFFFFE 3C
+dbline 0 3F
+S _main Def0000
+T 00 00 10 4F 38 02 80 35 43 04 01 56 01 00 56 00
+R 00 00 00 00
+T 00 0E 00 77 01 0F 00 00 52 01 11 10 52 00 31 80
+R 00 00 00 00
+T 00 1C 19 A7 CF F0 41 04 FE 56 01 00 56 00 00 77
+R 00 00 00 00
+T 00 2A 01 0F 00 00 52 01 11 10 52 00 31 80 19 A7
+R 00 00 00 00
+T 00 38 CF F0 8F CB 38 FE 20 8F FF
+R 00 00 00 00

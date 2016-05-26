@@ -1,0 +1,119 @@
+XH
+H 3 areas B global symbols
+M adcincint.asm
+A text size 0 flags 0
+dbfile lib/adcincint.asm
+dbfunc 0 ? 0 I
+dbfile ADCINC.inc
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ADCINC.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/ADCINC.inc
+dbfunc 0 ? 0 I
+dbfile lib/adcincint.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/adcincint.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 8 flags 20
+S _ADCINC_iResult Def0000
+S _ADCINC_fStatus Def0004
+S _ADCINC_fMode Def0006
+S ADCINC_bState Def0005
+S ADCINC_bNumSamples Def0007
+S _ADCINC_bState Def0005
+S _ADCINC_bNumSamples Def0007
+S ADCINC_iResult Def0000
+S ADCINC_fStatus Def0004
+S ADCINC_fMode Def0006
+A UserModules size 80 flags 0
+dbfile lib/adcincint.asm
+dbfunc 0 ? 0 I
+dbline 5D 0
+dbline 5F 2
+dbline 60 4
+dbline 62 5
+dbline 64 8
+dbline 65 A
+dbline 66 B
+dbline 67 D
+dbline 68 F
+dbline 69 11
+dbline 6A 13
+dbline 6B 14
+dbline 6C 17
+dbline 6D 1A
+dbline 2 1B
+dbline 3 1E
+dbline 4 21
+dbline 5 24
+dbline 71 27
+dbline 72 28
+dbline 73 2A
+dbline 74 2C
+dbline 75 2E
+dbline 76 30
+dbline 7A 32
+dbline 7C 34
+dbline 7D 36
+dbline 7E 37
+dbline 8F 3A
+dbline 90 3D
+dbline 91 3F
+dbline A2 42
+dbline A3 43
+dbline A5 46
+dbline A6 48
+dbline A7 4B
+dbline 2 4E
+dbline 3 51
+dbline 4 54
+dbline 5 57
+dbline A9 5A
+dbline AB 5B
+dbline AD 5D
+dbline AE 5F
+dbline AF 62
+dbline 2 65
+dbline 3 68
+dbline 4 6B
+dbline 5 6E
+dbline B1 71
+dbline 2 72
+dbline B6 74
+dbline B7 77
+dbline 2 7A
+dbline 3 7C
+dbline BB 7F
+S _ADCINC_ADConversion_ISR Def0000
+T 00 00 7A 00 05 C0 02 7E 3C 00 06 00 B0 12 08 5D
+R 00 00 00 02 01 03 00 01 01 09 00 01
+T 00 0C E5 53 00 03 5D E4 53 00 02 18 55 00 06 01
+R 00 00 00 02 01 04 00 01 01 09 00 01 01 0D 00 01
+T 00 17 55 00 05 FF 7E 43 82 20 43 83 10 43 92 20
+R 00 00 00 02 01 03 00 01
+T 00 24 43 93 10 08 5D E5 12 00 03 53 00 03 5D E4
+R 00 00 00 02 01 09 00 01 01 0C 00 01
+T 00 30 1A 00 02 39 40 B0 05 78 55 00 03 FF 5F
+R 00 00 00 02 01 03 00 01 01 0B 00 01
+T 00 3B 00 01 00 03 53 00 00 55
+R 00 00 00 02 01 02 00 01 01 04 00 01 01 07 00 01
+T 00 40 00 04 01 18 3C 00 07 00 B0 14 55 00 06 00
+R 00 00 00 02 01 02 00 01 01 07 00 01 01 0D 00 01
+T 00 4B 55 00 05 00 41 83 EF 41 82 DF 41 93 EF 41
+R 00 00 00 02 01 03 00 01
+T 00 58 92 DF 7E 7A 00 07 A0 14 55 00 06 00 55
+R 00 00 00 02 01 06 00 01 01 0B 00 01
+T 00 63 00 05 00 41 83 EF 41 82 DF 41 93 EF 41 92
+R 00 00 00 02 01 02 00 01
+T 00 70 DF 7E 71 10 41 E7 3F 43 E7 80 70 EF 41 E1
+R 00 00 00 02
+T 00 7E FE 7E
+R 00 00 00 02

@@ -1,0 +1,420 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _count::
+ 0000 0000              .word 0
+ 0002                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+ 0002                   .dbsym e count _count i
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+ 0000           _inc::
+ 0000 496E6372656D656E7400      .byte 'I,'n,'c,'r,'e,'m,'e,'n,'t,0
+ 000A                   .dbsym e inc _inc A[10:10]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+ 0000           _dec::
+ 0000 44656372656D656E7400      .byte 'D,'e,'c,'r,'e,'m,'e,'n,'t,0
+ 000A                   .dbsym e dec _dec A[10:10]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+                        .area lit(rom, con, rel, lit)
+ 0000           _clear::
+ 0000 20202020202020202020202020202020  .byte 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32
+ 0010                   .dbsym e clear _clear A[16:16]kc
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;         action -> X+2
+ 0000           ;         countd -> X+0
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3804              add SP,4
+ 0004                   .dbline 21
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // C main line
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "PSoCGPIOINT.h" 
+ 0004           ; #include <stdio.h>
+ 0004           ; #include <string.h>
+ 0004           ; #include <stdlib.h>
+ 0004           ; 
+ 0004           ; unsigned int count=0;
+ 0004           ; char *action;
+ 0004           ; char *countd;
+ 0004           ; char inc[10] = "Increment";   
+ 0004           ; char dec[10] = "Decrement";   
+ 0004           ; const char clear[16] = "                ";
+ 0004           ; 
+ 0004           ; 
+ 0004           ; void main(void)
+ 0004           ; {
+ 0004                   .dbline 31
+ 0004           ; char *action;
+ 0004           ; char *countd;
+ 0004           ; 
+ 0004           ;  
+ 0004           ; //void  LCD_Position(BYTE bRow, BYTE bCol);
+ 0004           ; //void  LCD_PrString(CHAR * sRamString);
+ 0004           ; //void  LCD_PrHexInt(INT iValue);
+ 0004           ;       
+ 0004           ;       
+ 0004           ; LCD_Start(); 
+ 0004 10                push X
+ 0005 7C0000            xcall _LCD_Start
+ 0008                   .dbline 32
+ 0008           ; LCD_Position(0,0);
+ 0008 5000              mov A,0
+ 000A 5700              mov X,0
+ 000C 7C0000            xcall _LCD_Position
+ 000F                   .dbline 33
+ 000F           ; LCD_PrCString(clear); 
+ 000F 5000              mov A,>_clear
+ 0011 08                push A
+ 0012 5000              mov A,<_clear
+ 0014 5C                mov X,A
+ 0015 18                pop A
+ 0016 7C0000            xcall _LCD_PrCString
+ 0019                   .dbline 34
+ 0019           ; LCD_Position(1,0);
+ 0019 5700              mov X,0
+ 001B 5001              mov A,1
+ 001D 7C0000            xcall _LCD_Position
+ 0020                   .dbline 35
+ 0020           ; LCD_PrCString(clear); 
+ 0020 5000              mov A,>_clear
+ 0022 08                push A
+ 0023 5000              mov A,<_clear
+ 0025 5C                mov X,A
+ 0026 18                pop A
+ 0027 7C0000            xcall _LCD_PrCString
+ 002A 20                pop X
+ 002B                   .dbline 36
+ 002B           ; utoa(countd,count,10);
+ 002B 5000              mov A,0
+ 002D 08                push A
+ 002E 500A              mov A,10
+ 0030 08                push A
+ 0031 62D000            mov REG[0xd0],>_count
+ 0034 5100              mov A,[_count]
+ 0036 08                push A
+ 0037 5101              mov A,[_count+1]
+ 0039 08                push A
+ 003A 5200              mov A,[X+0]
+ 003C 08                push A
+ 003D 5201              mov A,[X+1]
+ 003F 08                push A
+ 0040 7C0000            xcall _utoa
+ 0043 38FA              add SP,-6
+ 0045                   .dbline 37
+ 0045           ; LCD_Position(1,6);
+ 0045 10                push X
+ 0046 5706              mov X,6
+ 0048 5001              mov A,1
+ 004A 7C0000            xcall _LCD_Position
+ 004D 20                pop X
+ 004E                   .dbline 38
+ 004E           ; LCD_PrString(countd);
+ 004E 10                push X
+ 004F 5200              mov A,[X+0]
+ 0051 08                push A
+ 0052 5201              mov A,[X+1]
+ 0054 5C                mov X,A
+ 0055 18                pop A
+ 0056 7C0000            xcall _LCD_PrString
+ 0059 20                pop X
+ 005A 8146              xjmp L3
+ 005C           L2:
+ 005C                   .dbline 41
+ 005C           ;       
+ 005C           ;       
+ 005C           ; while(1){
+ 005C                   .dbline 43
+ 005C           ;       
+ 005C           ;       if (SW1_Data_ADDR & SW1_MASK){   
+ 005C 5D04              mov A,REG[0x4]
+ 005E 62D000            mov REG[0xd0],>__r0
+ 0061 5300              mov [__r0],A
+ 0063 470010            tst [__r0],16
+ 0066 A09B              jz L5
+ 0068                   .dbline 44
+ 0068           ;               count++;
+ 0068                   .dbline 44
+ 0068 62D000            mov REG[0xd0],>_count
+ 006B 7601              inc [_count+1]
+ 006D 0E0000            adc [_count],0
+ 0070                   .dbline 45
+ 0070           ;               action = inc;
+ 0070 560300            mov [X+3],<_inc
+ 0073 560200            mov [X+2],>_inc
+ 0076                   .dbline 46
+ 0076           ;               LCD_Position(0,0);
+ 0076 10                push X
+ 0077 5000              mov A,0
+ 0079 5700              mov X,0
+ 007B 7C0000            xcall _LCD_Position
+ 007E                   .dbline 47
+ 007E           ;               LCD_PrCString(clear);   
+ 007E 5000              mov A,>_clear
+ 0080 08                push A
+ 0081 5000              mov A,<_clear
+ 0083 5C                mov X,A
+ 0084 18                pop A
+ 0085 7C0000            xcall _LCD_PrCString
+ 0088                   .dbline 48
+ 0088           ;               LCD_Position(1,0);
+ 0088 5700              mov X,0
+ 008A 5001              mov A,1
+ 008C 7C0000            xcall _LCD_Position
+ 008F                   .dbline 49
+ 008F           ;               LCD_PrCString(clear);   
+ 008F 5000              mov A,>_clear
+ 0091 08                push A
+ 0092 5000              mov A,<_clear
+ 0094 5C                mov X,A
+ 0095 18                pop A
+ 0096 7C0000            xcall _LCD_PrCString
+ 0099                   .dbline 50
+ 0099           ;               LCD_Position(0,0);          
+ 0099 5000              mov A,0
+ 009B 5700              mov X,0
+ 009D 7C0000            xcall _LCD_Position
+ 00A0 20                pop X
+ 00A1                   .dbline 51
+ 00A1           ;               LCD_PrString(action);
+ 00A1 10                push X
+ 00A2 5202              mov A,[X+2]
+ 00A4 08                push A
+ 00A5 5203              mov A,[X+3]
+ 00A7 5C                mov X,A
+ 00A8 18                pop A
+ 00A9 7C0000            xcall _LCD_PrString
+ 00AC                   .dbline 52
+ 00AC           ;               LCD_Position(1,0);
+ 00AC 5700              mov X,0
+ 00AE 5001              mov A,1
+ 00B0 7C0000            xcall _LCD_Position
+ 00B3                   .dbline 53
+ 00B3           ;               LCD_PrHexInt(count);
+ 00B3 62D000            mov REG[0xd0],>_count
+ 00B6 5100              mov A,[_count]
+ 00B8 08                push A
+ 00B9 5101              mov A,[_count+1]
+ 00BB 20                pop X
+ 00BC 7C0000            xcall _LCD_PrHexInt
+ 00BF                   .dbline 54
+ 00BF           ;               LCD_Position(1,5);
+ 00BF 5705              mov X,5
+ 00C1 5001              mov A,1
+ 00C3 7C0000            xcall _LCD_Position
+ 00C6 20                pop X
+ 00C7                   .dbline 55
+ 00C7           ;               utoa(countd,count,10);
+ 00C7 5000              mov A,0
+ 00C9 08                push A
+ 00CA 500A              mov A,10
+ 00CC 08                push A
+ 00CD 62D000            mov REG[0xd0],>_count
+ 00D0 5100              mov A,[_count]
+ 00D2 08                push A
+ 00D3 5101              mov A,[_count+1]
+ 00D5 08                push A
+ 00D6 5200              mov A,[X+0]
+ 00D8 08                push A
+ 00D9 5201              mov A,[X+1]
+ 00DB 08                push A
+ 00DC 7C0000            xcall _utoa
+ 00DF 38FA              add SP,-6
+ 00E1                   .dbline 56
+ 00E1           ;               LCD_Position(1,6);
+ 00E1 10                push X
+ 00E2 5706              mov X,6
+ 00E4 5001              mov A,1
+ 00E6 7C0000            xcall _LCD_Position
+ 00E9 20                pop X
+ 00EA                   .dbline 57
+ 00EA           ;               LCD_PrString(countd);
+ 00EA 10                push X
+ 00EB 5200              mov A,[X+0]
+ 00ED 08                push A
+ 00EE 5201              mov A,[X+1]
+ 00F0 5C                mov X,A
+ 00F1 18                pop A
+ 00F2 7C0000            xcall _LCD_PrString
+ 00F5 20                pop X
+ 00F6           L7:
+ 00F6                   .dbline 58
+ 00F6           ;               while(SW1_Data_ADDR & SW1_MASK);
+ 00F6           L8:
+ 00F6                   .dbline 58
+ 00F6 5D04              mov A,REG[0x4]
+ 00F8 62D000            mov REG[0xd0],>__r0
+ 00FB 5300              mov [__r0],A
+ 00FD 470010            tst [__r0],16
+ 0100 BFF5              jnz L7
+ 0102                   .dbline 60
+ 0102           ;       
+ 0102           ;       }
+ 0102           L5:
+ 0102                   .dbline 62
+ 0102           ;               
+ 0102           ;       if (SW2_Data_ADDR & SW2_MASK){  
+ 0102 5D04              mov A,REG[0x4]
+ 0104 62D000            mov REG[0xd0],>__r0
+ 0107 5300              mov [__r0],A
+ 0109 470020            tst [__r0],32
+ 010C A094              jz L10
+ 010E                   .dbline 63
+ 010E           ;               count--;
+ 010E                   .dbline 63
+ 010E 62D000            mov REG[0xd0],>_count
+ 0111 7A01              dec [_count+1]
+ 0113 1E0000            sbb [_count],0
+ 0116                   .dbline 64
+ 0116           ;               action = dec;
+ 0116 560300            mov [X+3],<_dec
+ 0119 560200            mov [X+2],>_dec
+ 011C                   .dbline 65
+ 011C           ;               LCD_Position(0,0);
+ 011C 10                push X
+ 011D 5000              mov A,0
+ 011F 5700              mov X,0
+ 0121 7C0000            xcall _LCD_Position
+ 0124                   .dbline 66
+ 0124           ;               LCD_PrCString(clear);   
+ 0124 5000              mov A,>_clear
+ 0126 08                push A
+ 0127 5000              mov A,<_clear
+ 0129 5C                mov X,A
+ 012A 18                pop A
+ 012B 7C0000            xcall _LCD_PrCString
+ 012E                   .dbline 67
+ 012E           ;               LCD_Position(1,0);
+ 012E 5700              mov X,0
+ 0130 5001              mov A,1
+ 0132 7C0000            xcall _LCD_Position
+ 0135                   .dbline 68
+ 0135           ;               LCD_PrCString(clear);   
+ 0135 5000              mov A,>_clear
+ 0137 08                push A
+ 0138 5000              mov A,<_clear
+ 013A 5C                mov X,A
+ 013B 18                pop A
+ 013C 7C0000            xcall _LCD_PrCString
+ 013F                   .dbline 69
+ 013F           ;               LCD_Position(0,3);          
+ 013F 5703              mov X,3
+ 0141 5000              mov A,0
+ 0143 7C0000            xcall _LCD_Position
+ 0146 20                pop X
+ 0147                   .dbline 70
+ 0147           ;       LCD_PrString(action);
+ 0147 10                push X
+ 0148 5202              mov A,[X+2]
+ 014A 08                push A
+ 014B 5203              mov A,[X+3]
+ 014D 5C                mov X,A
+ 014E 18                pop A
+ 014F 7C0000            xcall _LCD_PrString
+ 0152                   .dbline 71
+ 0152           ;               LCD_Position(1,0);
+ 0152 5700              mov X,0
+ 0154 5001              mov A,1
+ 0156 7C0000            xcall _LCD_Position
+ 0159                   .dbline 72
+ 0159           ;               LCD_PrHexInt(count);
+ 0159 62D000            mov REG[0xd0],>_count
+ 015C 5100              mov A,[_count]
+ 015E 08                push A
+ 015F 5101              mov A,[_count+1]
+ 0161 20                pop X
+ 0162 7C0000            xcall _LCD_PrHexInt
+ 0165 20                pop X
+ 0166                   .dbline 73
+ 0166           ;               utoa(countd,count,10);
+ 0166 5000              mov A,0
+ 0168 08                push A
+ 0169 500A              mov A,10
+ 016B 08                push A
+ 016C 62D000            mov REG[0xd0],>_count
+ 016F 5100              mov A,[_count]
+ 0171 08                push A
+ 0172 5101              mov A,[_count+1]
+ 0174 08                push A
+ 0175 5200              mov A,[X+0]
+ 0177 08                push A
+ 0178 5201              mov A,[X+1]
+ 017A 08                push A
+ 017B 7C0000            xcall _utoa
+ 017E 38FA              add SP,-6
+ 0180                   .dbline 74
+ 0180           ;               LCD_Position(1,6);
+ 0180 10                push X
+ 0181 5706              mov X,6
+ 0183 5001              mov A,1
+ 0185 7C0000            xcall _LCD_Position
+ 0188 20                pop X
+ 0189                   .dbline 75
+ 0189           ;               LCD_PrString(countd);
+ 0189 10                push X
+ 018A 5200              mov A,[X+0]
+ 018C 08                push A
+ 018D 5201              mov A,[X+1]
+ 018F 5C                mov X,A
+ 0190 18                pop A
+ 0191 7C0000            xcall _LCD_PrString
+ 0194 20                pop X
+ 0195           L12:
+ 0195                   .dbline 76
+ 0195           ;               while(SW2_Data_ADDR & SW2_MASK);
+ 0195           L13:
+ 0195                   .dbline 76
+ 0195 5D04              mov A,REG[0x4]
+ 0197 62D000            mov REG[0xd0],>__r0
+ 019A 5300              mov [__r0],A
+ 019C 470020            tst [__r0],32
+ 019F BFF5              jnz L12
+ 01A1                   .dbline 77
+ 01A1           ;       }
+ 01A1           L10:
+ 01A1                   .dbline 83
+ 01A1           ; 
+ 01A1           ; 
+ 01A1           ;       
+ 01A1           ;       
+ 01A1           ;       
+ 01A1           ; }
+ 01A1           L3:
+ 01A1                   .dbline 41
+ 01A1 8EBA              xjmp L2
+ 01A3           X0:
+ 01A3                   .dbline -2
+ 01A3           L1:
+ 01A3 38FC              add SP,-4
+ 01A5 20                pop X
+ 01A6                   .dbline 0 ; func end
+ 01A6 8FFF              jmp .
+ 01A8                   .dbsym l action 2 pc
+ 01A8                   .dbsym l countd 0 pc
+ 01A8                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+ 0000           _countd::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e countd _countd pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\lab2_2\lab2_2\main.c
+ 0000           _action::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e action _action pc

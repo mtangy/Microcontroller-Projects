@@ -1,0 +1,2729 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _DACUpdateDone::
+ 0000 00                .byte 0
+ 0001                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0001                   .dbsym e DACUpdateDone _DACUpdateDone c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _done::
+ 0000 00                .byte 0
+ 0001                   .dbsym e done _done c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _inA::
+ 0000 01                .byte 1
+ 0001                   .dbsym e inA _inA c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _error::
+ 0000 00                .byte 0
+ 0001                   .dbsym e error _error c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _validMode::
+ 0000 01                .byte 1
+ 0001                   .dbsym e validMode _validMode c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _sampleRateS::
+ 0000 0095              .word 149
+ 0002 007C              .word 124
+ 0004 0063              .word 99
+ 0006 004A              .word 74
+ 0008 003B              .word 59
+ 000A 0031              .word 49
+ 000C 001D              .word 29
+ 000E 0018              .word 24
+ 0010 0013              .word 19
+ 0012                   .dbsym e sampleRateS _sampleRateS A[18:9]I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;          count -> X+0
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3802              add SP,2
+ 0004                   .dbline 161
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // SPI SRAM Test Program
+ 0004           ; //
+ 0004           ; // PSoC Global Resources:
+ 0004           ; //   Power Setting     5.0V/24MHz
+ 0004           ; //   CPU_Clock         SysClk/1
+ 0004           ; //   32K_Select        Internal
+ 0004           ; //   PLL_Mode          Off
+ 0004           ; //   Sleep_Timer       8_Hz
+ 0004           ; //   VC1=SysClk/N     *4
+ 0004           ; //   VC2=VC1/N        *2
+ 0004           ; //                    *VC1 makes 6MHz SPIM Clock; VC2 makes 3MHz DAC Clock
+ 0004           ; //   VC3_Source        SysClk/1
+ 0004           ; //   VC3 Divider      *52
+ 0004           ; //                    *Used to set UART baud rate to 57600
+ 0004           ; //   SysClk Source     Internal
+ 0004           ; //   SysClk*2 Disable  { Any }
+ 0004           ; //   Analog Power      { Any }
+ 0004           ; //   Ref Mux           { Any }
+ 0004           ; //   AGndBypass        { Any }
+ 0004           ; //   Op-Amp Bias       { Any }
+ 0004           ; //   A_Buff_Power      { Any }
+ 0004           ; //   SwitchModePump    OFF
+ 0004           ; //   Trip Voltage      { Any }
+ 0004           ; //   LVD ThrottleBack *Disable
+ 0004           ; //                    *When enabled, an LVD event forces the CPU Clock to SysClk/8.
+ 0004           ; //   Watchdog Enable  *{ Any }
+ 0004           ; //                    *Incautious use of the Watchdog may adversely affect timing
+ 0004           ; //
+ 0004           ; // SPIM Parameters
+ 0004           ; //   Name              SPIM
+ 0004           ; //   Clock            *VC1
+ 0004           ; //                    *6MHz = 3Mbps SPI bit rate.
+ 0004           ; //   MISO              Row_2_Input_1
+ 0004           ; //   MOSI              Row_2_Output_0
+ 0004           ; //   SClk              Row_2_Output_3
+ 0004           ; //   Interrupt Mode    TXRegEmpty
+ 0004           ; //   ClockSync         Sync to SysClk
+ 0004           ; //   InvertMISO        Normal
+ 0004           ; //
+ 0004           ; // SPIM Module Notes
+ 0004           ; //  -The 23K256 SPI SRAM has a maximum clock speed of 20MHz
+ 0004           ; //   SPIM Clock must be set to two times the desired bit rate.
+ 0004           ; //  -This uses VC1 = SysClk/4 = 6MHz, yielding a bit rate of 3Mbps.
+ 0004           ; //  -Per SPIM Module datasheet, for SPI clocks greater than 1MHz,
+ 0004           ; //   the Row Input synchronization for the MISO signal should be
+ 0004           ; //   set to Async.
+ 0004           ; //  -PSoC 5V to 23K256 3.3V translation is accomplished by setting
+ 0004           ; //   all PSoC SPIM outputs to Open Drain Low drive mode and then
+ 0004           ; //   using 470ohm pull-up resistors. For 3MHz signals, a smaller
+ 0004           ; //   value resistor must be used to allow sufficient rise-time.
+ 0004           ; //  -Pinout:
+ 0004           ; //   CS   = P12 (StdCPU:    Open Drain Low)
+ 0004           ; //   SCLK = P13 (GlobalOut: Open Drain Low)
+ 0004           ; //   MOSI = P14 (GlobalOut: Open Drain Low)
+ 0004           ; //   MISO = P15 (GlobalIn:  High Z)
+ 0004           ; //
+ 0004           ; // DAC Module Notes
+ 0004           ; //  -To maximize the output sample rate, this example operates the
+ 0004           ; //   DACs at their maximum practical speed of 3MHz which is provided
+ 0004           ; //   by VC2. The Analog Column Clock MUXs for both DAC must have
+ 0004           ; //   VC2 selected manually in the [Chip] view.
+ 0004           ; //  -DAC8_WriteStall() should be used and not DAC8_WriteBlind in
+ 0004           ; //   order to prevent output glitches during the DAC update.
+ 0004           ; //
+ 0004           ; // bnoble@siue.edu 20140320
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "stdlib.h"
+ 0004           ; #include "spi_sram.h"
+ 0004           ; #include "math.h"
+ 0004           ; 
+ 0004           ; 
+ 0004           ; #define ARRAY_SIZE 64
+ 0004           ; 
+ 0004           ; 
+ 0004           ; /// testing 
+ 0004           ; /// 
+ 0004           ; // GPIO Defines
+ 0004           ; #define TRIGGER_HIGH  {TRIGGER_Data_ADDR |=  TRIGGER_MASK;}
+ 0004           ; #define TRIGGER_LOW           {TRIGGER_Data_ADDR &= ~TRIGGER_MASK;}
+ 0004           ; 
+ 0004           ; // Define Sampling Rates
+ 0004           ; #define SAMPLING_RATE_1250 149 // (150-1)
+ 0004           ; #define SAMPLING_RATE_1500 124 // (125-1)
+ 0004           ; #define SAMPLING_RATE_1875  99 // (100-1)
+ 0004           ; #define SAMPLING_RATE_2500  74 //  (75-1)
+ 0004           ; #define SAMPLING_RATE_3125  59 //  (60-1)
+ 0004           ; #define SAMPLING_RATE_3750  49 //  (50-1)
+ 0004           ; #define SAMPLING_RATE_6250  29 //  (30-1)
+ 0004           ; #define SAMPLING_RATE_7500  24 //  (25-1)
+ 0004           ; #define SAMPLING_RATE_9375  19 //  (20-1)
+ 0004           ; 
+ 0004           ; int i;
+ 0004           ; 
+ 0004           ; // DACUpdate Period = 4*DelSig_DecimationRate = 128 for DS232
+ 0004           ; #define DACUPDATE_PERIOD   127 // (128 - 1)
+ 0004           ; 
+ 0004           ; // Globals
+ 0004           ; BYTE DACUpdateDone = 0;
+ 0004           ; // add your globals here
+ 0004           ; 
+ 0004           ; float fScaleFactor;
+ 0004           ; 
+ 0004           ; int trigAdr;
+ 0004           ; 
+ 0004           ; char *pResult;
+ 0004           ; float voltage; 
+ 0004           ; char sampleRead;
+ 0004           ; 
+ 0004           ; char Svalue;
+ 0004           ; int j;
+ 0004           ; int k;
+ 0004           ; int blockNum2;
+ 0004           ; int iStatus;
+ 0004           ; char rawString[64];  
+ 0004           ; char charIn;
+ 0004           ; BOOL finishFlag;
+ 0004           ; int parseNum;
+ 0004           ; int blockNum;
+ 0004           ; BOOL displayOrcapture;
+ 0004           ; BOOL done = FALSE;
+ 0004           ; BOOL inA = TRUE;
+ 0004           ; BOOL error = FALSE;
+ 0004           ; BOOL validMode = TRUE;
+ 0004           ; void readFunction (void);
+ 0004           ; void stringParser(int parseNum);
+ 0004           ; void instruction1(void);
+ 0004           ; void instruction2(void);
+ 0004           ; void instruction3(void);
+ 0004           ; void instruction4(void);
+ 0004           ; void instruction5(void);
+ 0004           ; void instruction6(void);
+ 0004           ; void instruction7(void);
+ 0004           ; char toLower(char k);
+ 0004           ; unsigned int hexToDec(char c1, char c2, char c3, char c4);
+ 0004           ; 
+ 0004           ; unsigned char ascii_to_hex(unsigned char*  addressString);
+ 0004           ; WORD SPIRAM_ByteModeTest(void);
+ 0004           ; WORD SPIRAM_SequentialModeTest(void);
+ 0004           ; 
+ 0004           ; int sampleRateS[9]= {
+ 0004           ; SAMPLING_RATE_1250,
+ 0004           ; SAMPLING_RATE_1500,
+ 0004           ; SAMPLING_RATE_1875,
+ 0004           ; SAMPLING_RATE_2500, 
+ 0004           ; SAMPLING_RATE_3125, 
+ 0004           ; SAMPLING_RATE_3750,
+ 0004           ; SAMPLING_RATE_6250,
+ 0004           ; SAMPLING_RATE_7500,
+ 0004           ; SAMPLING_RATE_9375
+ 0004           ; };
+ 0004           ; 
+ 0004           ; int sampleRate; 
+ 0004           ; 
+ 0004           ; 
+ 0004           ; 
+ 0004           ; void main(void)
+ 0004           ; {
+ 0004                   .dbline 162
+ 0004           ;       int count=0;
+ 0004 560100            mov [X+1],0
+ 0007 560000            mov [X+0],0
+ 000A                   .dbline 163
+ 000A           ;       fScaleFactor = (float)5/(float)64;
+ 000A 62D000            mov REG[0xd0],>_fScaleFactor
+ 000D 55003D            mov [_fScaleFactor],61
+ 0010 5501A0            mov [_fScaleFactor+1],-96
+ 0013 550200            mov [_fScaleFactor+2],0
+ 0016 550300            mov [_fScaleFactor+3],0
+ 0019                   .dbline 165
+ 0019           ;       // Make sure nCS is high before doing anything
+ 0019           ;       nCS_HIGH;
+ 0019                   .dbline 165
+ 0019 430404            or REG[0x4],4
+ 001C                   .dbline 165
+ 001C                   .dbline 165
+ 001C                   .dbline 171
+ 001C           ;       // Make the oscilloscope external trigger signal low. Trigger must be quickly
+ 001C           ;       // brough high-then-low when you want the oscilloscope to draw the signals
+ 001C           ;       // on DACA and DACB. Trigger (P1[1]) must be connected to the EXT TRIG input
+ 001C           ;       // on the back of the oscilloscope and the Trigger Source must be set to
+ 001C           ;       // External. The oscilloscope should also be set for Normal Mode Triggering.
+ 001C           ;       TRIGGER_LOW;
+ 001C                   .dbline 171
+ 001C 4104FD            and REG[0x4],-3
+ 001F                   .dbline 171
+ 001F                   .dbline 171
+ 001F                   .dbline 173
+ 001F           ;       // Enable global interrutps
+ 001F           ;       M8C_EnableGInt;
+ 001F 7101                      or  F, 01h
+ 0021           
+ 0021                   .dbline 179
+ 0021           ;       
+ 0021           ; //    SleepTimer_Start();
+ 0021           ; //    
+ 0021           ; //    SleepTimer_EnableInt();
+ 0021           ; //    SleepTimer_Start();
+ 0021           ;       LCD_Start();
+ 0021 10                push X
+ 0022 7C0000            xcall _LCD_Start
+ 0025                   .dbline 182
+ 0025           ; 
+ 0025           ;       // Start the UART
+ 0025           ;       UART_Start(UART_PARITY_NONE);
+ 0025 5000              mov A,0
+ 0027 7C0000            xcall _UART_Start
+ 002A                   .dbline 183
+ 002A           ;       UART_PutCRLF();
+ 002A 7C0000            xcall _UART_PutCRLF
+ 002D                   .dbline 186
+ 002D           ; 
+ 002D           ;       // Start the SPIM Module
+ 002D           ;       SPIM_Start(SPIM_SPIM_MODE_0 | SPIM_SPIM_MSB_FIRST);
+ 002D 5000              mov A,0
+ 002F 7C0000            xcall _SPIM_Start
+ 0032                   .dbline 190
+ 0032           ; 
+ 0032           ;       // Start the DelSig custom clock source at the default sampling rate
+ 0032           ;       //DelSigClock_WritePeriod(SAMPLING_RATE_1250); //SAMPLING_RATE_1250
+ 0032           ;       DelSigClock_WritePeriod(SAMPLING_RATE_3125);
+ 0032 503B              mov A,59
+ 0034 7C0000            xcall _DelSigClock_WritePeriod
+ 0037                   .dbline 191
+ 0037           ;       DelSigClock_WriteCompareValue(SAMPLING_RATE_3125>>1);
+ 0037 501D              mov A,29
+ 0039 7C0000            xcall _DelSigClock_WriteCompareValue
+ 003C                   .dbline 193
+ 003C           ;       //DelSigClock_WriteCompareValue(SAMPLING_RATE_1250>>1); //SAMPLING_RATE_1250>>1
+ 003C           ;       DelSigClock_Start();
+ 003C 7C0000            xcall _DelSigClock_Start
+ 003F                   .dbline 197
+ 003F           ; 
+ 003F           ;       
+ 003F           ;       // Start the analog mux and select P0[1] (Channel A) as default
+ 003F           ;       AMUX4_Start();
+ 003F 7C0000            xcall _AMUX4_Start
+ 0042                   .dbline 198
+ 0042           ;       AMUX4_InputSelect(AMUX4_PORT0_1);
+ 0042 5000              mov A,0
+ 0044 7C0000            xcall _AMUX4_InputSelect
+ 0047                   .dbline 201
+ 0047           ; 
+ 0047           ;       // Start the PGA
+ 0047           ;       PGA_Start(PGA_HIGHPOWER);
+ 0047 5003              mov A,3
+ 0049 7C0000            xcall _PGA_Start
+ 004C                   .dbline 206
+ 004C           ; 
+ 004C           ;       // Start the DelSig but do not start taking samples yet.
+ 004C           ;       // Note: The DelSig PWM block output can be monitored on P1[0]. This
+ 004C           ;       // can be used to verify the sampling rate.
+ 004C           ;       DelSig_Start(DelSig_HIGHPOWER);
+ 004C 5003              mov A,3
+ 004E 7C0000            xcall _DelSig_Start
+ 0051                   .dbline 216
+ 0051           ;       
+ 0051           ;       
+ 0051           ; 
+ 0051           ;       // Enable interrupts on the counter that sets the DAC output rate.
+ 0051           ;       // Start the module only when actually outputting samples and
+ 0051           ;       // stop it when done. Don't forget to write the period after stoping
+ 0051           ;       // to reset the count register.
+ 0051           ;       // NOTE: You can watch this counter on P1[7] to compare desired
+ 0051           ;       // output rate with your actual output rate.
+ 0051           ;       DACUpdate_WritePeriod(DACUPDATE_PERIOD);
+ 0051 507F              mov A,127
+ 0053 7C0000            xcall _DACUpdate_WritePeriod
+ 0056                   .dbline 217
+ 0056           ;       DACUpdate_EnableInt();
+ 0056 7C0000            xcall _DACUpdate_EnableInt
+ 0059                   .dbline 222
+ 0059           ; 
+ 0059           ;       
+ 0059           ;       
+ 0059           ;       // Start the DACs
+ 0059           ;       DAC8A_Start(DAC8A_HIGHPOWER);
+ 0059 5003              mov A,3
+ 005B 7C0000            xcall _DAC8A_Start
+ 005E                   .dbline 223
+ 005E           ;       DAC8B_Start(DAC8B_HIGHPOWER);
+ 005E 5003              mov A,3
+ 0060 7C0000            xcall _DAC8B_Start
+ 0063                   .dbline 224
+ 0063           ;       UART_PutCRLF();
+ 0063 7C0000            xcall _UART_PutCRLF
+ 0066                   .dbline 225
+ 0066           ;       UART_CPutString("Lab 11 Data Acquisition System\r\n");
+ 0066 5015              mov A,>L2
+ 0068 08                push A
+ 0069 5015              mov A,<L2
+ 006B 5C                mov X,A
+ 006C 18                pop A
+ 006D 7C0000            xcall _UART_CPutString
+ 0070                   .dbline 226
+ 0070           ;       UART_CPutString("This is a project template. You fill in the details.\r\n");
+ 0070 50DE              mov A,>L3
+ 0072 08                push A
+ 0073 50DE              mov A,<L3
+ 0075 5C                mov X,A
+ 0076 18                pop A
+ 0077 7C0000            xcall _UART_CPutString
+ 007A                   .dbline 227
+ 007A           ;       UART_CPutString("Don't forget to place your lab 10 SPI SRAM code in spi_sram.c!\r\n");
+ 007A 509D              mov A,>L4
+ 007C 08                push A
+ 007D 509D              mov A,<L4
+ 007F 5C                mov X,A
+ 0080 18                pop A
+ 0081 7C0000            xcall _UART_CPutString
+ 0084                   .dbline 228
+ 0084           ;       UART_PutCRLF();
+ 0084 7C0000            xcall _UART_PutCRLF
+ 0087 20                pop X
+ 0088 8319              xjmp L6
+ 008A           L5:
+ 008A                   .dbline 232
+ 008A           ;       
+ 008A           ;       // Enter the main loop
+ 008A           ; 
+ 008A           ;       while(1) {
+ 008A                   .dbline 259
+ 008A           ;               
+ 008A           ; //                    instruction5(); 
+ 008A           ; //                readFunction();
+ 008A           ; //                    UART_PutSHexInt(ascii_to_hex(rawString));
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //                    UART_CPutString("HB T: ");
+ 008A           ; //                    UART_PutSHexByte((int)rawString[0]);
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //                    UART_CPutString("HB: ");
+ 008A           ; //                    UART_PutSHexByte(rawString[0]);
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //                    UART_CPutString("HI T: ");
+ 008A           ; //                    UART_PutSHexInt((int)rawString[0]);
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //                    UART_CPutString("HC T: ");
+ 008A           ; //                    UART_PutChar((int)rawString[0]);
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //                    UART_CPutString("HC: ");
+ 008A           ; //                    UART_PutChar(rawString[0]);
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //                    UART_PutChar(hexToDec(rawString[3], rawString[2], rawString[1], rawString[0]));
+ 008A           ; //                    UART_PutCRLF();
+ 008A           ; //            UART_PutCRLF();
+ 008A           ;                       
+ 008A           ;               
+ 008A           ;               validMode = TRUE;
+ 008A 62D000            mov REG[0xd0],>_validMode
+ 008D 550001            mov [_validMode],1
+ 0090                   .dbline 260
+ 0090           ;               UART_PutCRLF();
+ 0090 10                push X
+ 0091 7C0000            xcall _UART_PutCRLF
+ 0094                   .dbline 261
+ 0094           ;               UART_PutCRLF();
+ 0094 7C0000            xcall _UART_PutCRLF
+ 0097 20                pop X
+ 0098                   .dbline 262
+ 0098           ;               instruction1(); 
+ 0098 9734              xcall _instruction1
+ 009A                   .dbline 263
+ 009A           ;               readFunction();
+ 009A 931E              xcall _readFunction
+ 009C                   .dbline 264
+ 009C           ;               stringParser(1);
+ 009C 5000              mov A,0
+ 009E 08                push A
+ 009F 5001              mov A,1
+ 00A1 08                push A
+ 00A2 9410              xcall _stringParser
+ 00A4 38FE              add SP,-2
+ 00A6                   .dbline 266
+ 00A6           ;               
+ 00A6           ;               if (validMode){
+ 00A6 62D000            mov REG[0xd0],>_validMode
+ 00A9 3C0000            cmp [_validMode],0
+ 00AC A2F5              jz L8
+ 00AE                   .dbline 268
+ 00AE           ;                       
+ 00AE           ;               if(displayOrcapture){
+ 00AE                   .dbline 268
+ 00AE 62D000            mov REG[0xd0],>_displayOrcapture
+ 00B1 3C0000            cmp [_displayOrcapture],0
+ 00B4 A19D              jz L10
+ 00B6                   .dbline 270
+ 00B6           ;                       
+ 00B6           ;                           error = FALSE;
+ 00B6                   .dbline 270
+ 00B6 62D000            mov REG[0xd0],>_error
+ 00B9 550000            mov [_error],0
+ 00BC                   .dbline 271
+ 00BC           ;                               instruction3(); 
+ 00BC 9744              xcall _instruction3
+ 00BE                   .dbline 272
+ 00BE           ;                           readFunction();
+ 00BE 92FA              xcall _readFunction
+ 00C0                   .dbline 273
+ 00C0           ;                           stringParser(2);
+ 00C0 5000              mov A,0
+ 00C2 08                push A
+ 00C3 5002              mov A,2
+ 00C5 08                push A
+ 00C6 93EC              xcall _stringParser
+ 00C8 38FE              add SP,-2
+ 00CA                   .dbline 275
+ 00CA           ;                       
+ 00CA           ;                       if(!error){
+ 00CA 62D000            mov REG[0xd0],>_error
+ 00CD 3C0000            cmp [_error],0
+ 00D0 B00F              jnz L12
+ 00D2                   .dbline 277
+ 00D2           ;               
+ 00D2           ;                       instruction7(); //block num 
+ 00D2                   .dbline 277
+ 00D2 97B0              xcall _instruction7
+ 00D4                   .dbline 278
+ 00D4           ;                   readFunction();
+ 00D4 92E4              xcall _readFunction
+ 00D6                   .dbline 279
+ 00D6           ;                   stringParser(5);
+ 00D6 5000              mov A,0
+ 00D8 08                push A
+ 00D9 5005              mov A,5
+ 00DB 08                push A
+ 00DC 93D6              xcall _stringParser
+ 00DE 38FE              add SP,-2
+ 00E0                   .dbline 280
+ 00E0           ;                       }
+ 00E0           L12:
+ 00E0                   .dbline 283
+ 00E0           ;                       
+ 00E0           ;                       
+ 00E0           ;               if(!error){
+ 00E0 62D000            mov REG[0xd0],>_error
+ 00E3 3C0000            cmp [_error],0
+ 00E6 B2BB              jnz L11
+ 00E8                   .dbline 285
+ 00E8           ;                                       
+ 00E8           ;                        UART_PutCRLF();
+ 00E8                   .dbline 285
+ 00E8 10                push X
+ 00E9 7C0000            xcall _UART_PutCRLF
+ 00EC                   .dbline 286
+ 00EC           ;                                UART_CPutString("Displaying waveform (press any key to exit)");        
+ 00EC 5071              mov A,>L16
+ 00EE 08                push A
+ 00EF 5071              mov A,<L16
+ 00F1 5C                mov X,A
+ 00F2 18                pop A
+ 00F3 7C0000            xcall _UART_CPutString
+ 00F6                   .dbline 287
+ 00F6           ;                            UART_PutCRLF();
+ 00F6 7C0000            xcall _UART_PutCRLF
+ 00F9                   .dbline 288
+ 00F9           ;                                UART_PutCRLF();
+ 00F9 7C0000            xcall _UART_PutCRLF
+ 00FC 20                pop X
+ 00FD                   .dbline 290
+ 00FD           ;                       
+ 00FD           ;                       done = FALSE;
+ 00FD 62D000            mov REG[0xd0],>_done
+ 0100 550000            mov [_done],0
+ 0103 8144              xjmp L18
+ 0105           L17:
+ 0105                   .dbline 291
+ 0105           ;                       while (!done){
+ 0105                   .dbline 292
+ 0105           ;                               j=(8192*(blockNum-1));
+ 0105 62D000            mov REG[0xd0],>_blockNum
+ 0108 5101              mov A,[_blockNum+1]
+ 010A 1101              sub A,1
+ 010C 62D000            mov REG[0xd0],>__r0
+ 010F 5300              mov [__r0],A
+ 0111 550000            mov [__r1],0
+ 0114 6500              asl [__r0]
+ 0116 6500              asl [__r1]
+ 0118 6B00              rlc [__r0]
+ 011A 6500              asl [__r1]
+ 011C 6B00              rlc [__r0]
+ 011E 6500              asl [__r1]
+ 0120 6B00              rlc [__r0]
+ 0122 6500              asl [__r1]
+ 0124 6B00              rlc [__r0]
+ 0126 5100              mov A,[__r1]
+ 0128 08                push A
+ 0129 5100              mov A,[__r0]
+ 012B 62D000            mov REG[0xd0],>_j
+ 012E 5300              mov [_j],A
+ 0130 18                pop A
+ 0131 5301              mov [_j+1],A
+ 0133                   .dbline 293
+ 0133           ;                               k=(8192*(blockNum2-1));
+ 0133 62D000            mov REG[0xd0],>_blockNum2
+ 0136 5101              mov A,[_blockNum2+1]
+ 0138 1101              sub A,1
+ 013A 62D000            mov REG[0xd0],>__r0
+ 013D 5300              mov [__r0],A
+ 013F 550000            mov [__r1],0
+ 0142 6500              asl [__r0]
+ 0144 6500              asl [__r1]
+ 0146 6B00              rlc [__r0]
+ 0148 6500              asl [__r1]
+ 014A 6B00              rlc [__r0]
+ 014C 6500              asl [__r1]
+ 014E 6B00              rlc [__r0]
+ 0150 6500              asl [__r1]
+ 0152 6B00              rlc [__r0]
+ 0154 5100              mov A,[__r1]
+ 0156 08                push A
+ 0157 5100              mov A,[__r0]
+ 0159 62D000            mov REG[0xd0],>_k
+ 015C 5300              mov [_k],A
+ 015E 18                pop A
+ 015F 5301              mov [_k+1],A
+ 0161 8059              xjmp L21
+ 0163           L20:
+ 0163                   .dbline 294
+ 0163           ;                               while (j<(blockNum*8192) &&  k<(blockNum2*8192)){
+ 0163                   .dbline 296
+ 0163           ;                                       
+ 0163           ;                               k++;
+ 0163 62D000            mov REG[0xd0],>_k
+ 0166 7601              inc [_k+1]
+ 0168 0E0000            adc [_k],0
+ 016B                   .dbline 297
+ 016B           ;                               j++; 
+ 016B 62D000            mov REG[0xd0],>_j
+ 016E 7601              inc [_j+1]
+ 0170 0E0000            adc [_j],0
+ 0173                   .dbline 299
+ 0173           ; 
+ 0173           ;                               if (UART_cReadChar()){done = TRUE;}
+ 0173 10                push X
+ 0174 7C0000            xcall _UART_cReadChar
+ 0177 20                pop X
+ 0178 3900              cmp A,0
+ 017A A007              jz L23
+ 017C                   .dbline 299
+ 017C                   .dbline 299
+ 017C 62D000            mov REG[0xd0],>_done
+ 017F 550001            mov [_done],1
+ 0182                   .dbline 299
+ 0182           L23:
+ 0182                   .dbline 308
+ 0182           ;                                       
+ 0182           ; //                            if (j = trigAdr){
+ 0182           ; //                                    TRIGGER_Data_ADDR |= TRIGGER_MASK;
+ 0182           ; //                                    for(i=0 ; i<10000 ; i++);
+ 0182           ; //                                    TRIGGER_Data_ADDR &= ~TRIGGER_MASK;     
+ 0182           ; //                            }
+ 0182           ;                       
+ 0182           ;                       
+ 0182           ;                                   DAC8A_WriteStall(SPIRAM_ReadByte(j));
+ 0182 62D000            mov REG[0xd0],>_j
+ 0185 5100              mov A,[_j]
+ 0187 08                push A
+ 0188 5101              mov A,[_j+1]
+ 018A 08                push A
+ 018B 7C0000            xcall _SPIRAM_ReadByte
+ 018E 38FE              add SP,-2
+ 0190 62D000            mov REG[0xd0],>__r0
+ 0193 10                push X
+ 0194 7C0000            xcall _DAC8A_WriteStall
+ 0197 20                pop X
+ 0198                   .dbline 309
+ 0198           ;                                       DAC8B_WriteStall(SPIRAM_ReadByte(k));
+ 0198 62D000            mov REG[0xd0],>_k
+ 019B 5100              mov A,[_k]
+ 019D 08                push A
+ 019E 5101              mov A,[_k+1]
+ 01A0 08                push A
+ 01A1 7C0000            xcall _SPIRAM_ReadByte
+ 01A4 38FE              add SP,-2
+ 01A6 62D000            mov REG[0xd0],>__r0
+ 01A9 10                push X
+ 01AA 7C0000            xcall _DAC8B_WriteStall
+ 01AD                   .dbline 312
+ 01AD           ;               
+ 01AD           ;                       
+ 01AD           ;                               if (UART_cReadChar()){done = TRUE;}
+ 01AD 7C0000            xcall _UART_cReadChar
+ 01B0 20                pop X
+ 01B1 3900              cmp A,0
+ 01B3 A007              jz L25
+ 01B5                   .dbline 312
+ 01B5                   .dbline 312
+ 01B5 62D000            mov REG[0xd0],>_done
+ 01B8 550001            mov [_done],1
+ 01BB                   .dbline 312
+ 01BB           L25:
+ 01BB                   .dbline 314
+ 01BB           ;                               
+ 01BB           ;                   }//end DAC1 while
+ 01BB           L21:
+ 01BB                   .dbline 294
+ 01BB 62D000            mov REG[0xd0],>_blockNum
+ 01BE 5101              mov A,[_blockNum+1]
+ 01C0 08                push A
+ 01C1 62D000            mov REG[0xd0],>__r0
+ 01C4 18                pop A
+ 01C5 5300              mov [__r0],A
+ 01C7 550000            mov [__r1],0
+ 01CA 6500              asl [__r0]
+ 01CC 6500              asl [__r1]
+ 01CE 6B00              rlc [__r0]
+ 01D0 6500              asl [__r1]
+ 01D2 6B00              rlc [__r0]
+ 01D4 6500              asl [__r1]
+ 01D6 6B00              rlc [__r0]
+ 01D8 6500              asl [__r1]
+ 01DA 6B00              rlc [__r0]
+ 01DC 62D000            mov REG[0xd0],>_j
+ 01DF 5101              mov A,[_j+1]
+ 01E1 62D000            mov REG[0xd0],>__r0
+ 01E4 1200              sub A,[__r1]
+ 01E6 5100              mov A,[__r0]
+ 01E8 3180              xor A,-128
+ 01EA 5300              mov [__rX],A
+ 01EC 62D000            mov REG[0xd0],>_j
+ 01EF 5100              mov A,[_j]
+ 01F1 3180              xor A,-128
+ 01F3 62D000            mov REG[0xd0],>__r0
+ 01F6 1A00              sbb A,[__rX]
+ 01F8 D040              jnc L27
+ 01FA           X1:
+ 01FA 62D000            mov REG[0xd0],>_blockNum2
+ 01FD 5101              mov A,[_blockNum2+1]
+ 01FF 08                push A
+ 0200 62D000            mov REG[0xd0],>__r0
+ 0203 18                pop A
+ 0204 5300              mov [__r0],A
+ 0206 550000            mov [__r1],0
+ 0209 6500              asl [__r0]
+ 020B 6500              asl [__r1]
+ 020D 6B00              rlc [__r0]
+ 020F 6500              asl [__r1]
+ 0211 6B00              rlc [__r0]
+ 0213 6500              asl [__r1]
+ 0215 6B00              rlc [__r0]
+ 0217 6500              asl [__r1]
+ 0219 6B00              rlc [__r0]
+ 021B 62D000            mov REG[0xd0],>_k
+ 021E 5101              mov A,[_k+1]
+ 0220 62D000            mov REG[0xd0],>__r0
+ 0223 1200              sub A,[__r1]
+ 0225 5100              mov A,[__r0]
+ 0227 3180              xor A,-128
+ 0229 5300              mov [__rX],A
+ 022B 62D000            mov REG[0xd0],>_k
+ 022E 5100              mov A,[_k]
+ 0230 3180              xor A,-128
+ 0232 62D000            mov REG[0xd0],>__r0
+ 0235 1A00              sbb A,[__rX]
+ 0237 CF2B              jc L20
+ 0239           X2:
+ 0239           L27:
+ 0239                   .dbline 316
+ 0239           ;                               
+ 0239           ;                               if (UART_cReadChar()){done = TRUE;}
+ 0239 10                push X
+ 023A 7C0000            xcall _UART_cReadChar
+ 023D 20                pop X
+ 023E 3900              cmp A,0
+ 0240 A007              jz L28
+ 0242                   .dbline 316
+ 0242                   .dbline 316
+ 0242 62D000            mov REG[0xd0],>_done
+ 0245 550001            mov [_done],1
+ 0248                   .dbline 316
+ 0248           L28:
+ 0248                   .dbline 318
+ 0248           ;                               
+ 0248           ;                       }//end DAC while
+ 0248           L18:
+ 0248                   .dbline 291
+ 0248 62D000            mov REG[0xd0],>_done
+ 024B 3C0000            cmp [_done],0
+ 024E AEB6              jz L17
+ 0250                   .dbline 320
+ 0250           ;               
+ 0250           ;               }//end error-if 
+ 0250                   .dbline 322
+ 0250           ;               
+ 0250           ;               }else {
+ 0250 8151              xjmp L11
+ 0252           L10:
+ 0252                   .dbline 322
+ 0252                   .dbline 324
+ 0252           ;               
+ 0252           ;                       error = FALSE;
+ 0252 62D000            mov REG[0xd0],>_error
+ 0255 550000            mov [_error],0
+ 0258                   .dbline 326
+ 0258           ;                       
+ 0258           ;                       if(!error){
+ 0258 3C0000            cmp [_error],0
+ 025B B00F              jnz L30
+ 025D                   .dbline 327
+ 025D           ;                       instruction6(); //input
+ 025D                   .dbline 327
+ 025D 960B              xcall _instruction6
+ 025F                   .dbline 328
+ 025F           ;                   readFunction();
+ 025F 9159              xcall _readFunction
+ 0261                   .dbline 329
+ 0261           ;                   stringParser(3);
+ 0261 5000              mov A,0
+ 0263 08                push A
+ 0264 5003              mov A,3
+ 0266 08                push A
+ 0267 924B              xcall _stringParser
+ 0269 38FE              add SP,-2
+ 026B                   .dbline 330
+ 026B           ;                       }
+ 026B           L30:
+ 026B                   .dbline 331
+ 026B           ;                       if(!error){
+ 026B 62D000            mov REG[0xd0],>_error
+ 026E 3C0000            cmp [_error],0
+ 0271 B00F              jnz L32
+ 0273                   .dbline 332
+ 0273           ;                       instruction2(); //block num 
+ 0273                   .dbline 332
+ 0273 9573              xcall _instruction2
+ 0275                   .dbline 333
+ 0275           ;                   readFunction();
+ 0275 9143              xcall _readFunction
+ 0277                   .dbline 334
+ 0277           ;                   stringParser(2);
+ 0277 5000              mov A,0
+ 0279 08                push A
+ 027A 5002              mov A,2
+ 027C 08                push A
+ 027D 9235              xcall _stringParser
+ 027F 38FE              add SP,-2
+ 0281                   .dbline 335
+ 0281           ;                       }
+ 0281           L32:
+ 0281                   .dbline 337
+ 0281           ;                       
+ 0281           ;                       if(!error){
+ 0281 62D000            mov REG[0xd0],>_error
+ 0284 3C0000            cmp [_error],0
+ 0287 B00F              jnz L34
+ 0289                   .dbline 338
+ 0289           ;                       instruction4(); //sample rate 
+ 0289                   .dbline 338
+ 0289 9591              xcall _instruction4
+ 028B                   .dbline 339
+ 028B           ;                   readFunction();
+ 028B 912D              xcall _readFunction
+ 028D                   .dbline 340
+ 028D           ;                   stringParser(4);
+ 028D 5000              mov A,0
+ 028F 08                push A
+ 0290 5004              mov A,4
+ 0292 08                push A
+ 0293 921F              xcall _stringParser
+ 0295 38FE              add SP,-2
+ 0297                   .dbline 341
+ 0297           ;                       }
+ 0297           L34:
+ 0297                   .dbline 343
+ 0297           ;                       
+ 0297           ;                       if(!error){
+ 0297 62D000            mov REG[0xd0],>_error
+ 029A 3C0000            cmp [_error],0
+ 029D B029              jnz L36
+ 029F                   .dbline 344
+ 029F           ;                       DelSigClock_WritePeriod(sampleRate);
+ 029F                   .dbline 344
+ 029F 62D000            mov REG[0xd0],>_sampleRate
+ 02A2 5101              mov A,[_sampleRate+1]
+ 02A4 62D000            mov REG[0xd0],>__r0
+ 02A7 10                push X
+ 02A8 7C0000            xcall _DelSigClock_WritePeriod
+ 02AB 20                pop X
+ 02AC                   .dbline 345
+ 02AC           ;                       DelSigClock_WriteCompareValue(sampleRate>>1);
+ 02AC 62D000            mov REG[0xd0],>_sampleRate
+ 02AF 5101              mov A,[_sampleRate+1]
+ 02B1 08                push A
+ 02B2 5100              mov A,[_sampleRate]
+ 02B4 62D000            mov REG[0xd0],>__r0
+ 02B7 5300              mov [__r0],A
+ 02B9 18                pop A
+ 02BA 5300              mov [__r1],A
+ 02BC 6800              asr [__r0]
+ 02BE 6E00              rrc [__r1]
+ 02C0 5100              mov A,[__r1]
+ 02C2 10                push X
+ 02C3 7C0000            xcall _DelSigClock_WriteCompareValue
+ 02C6 20                pop X
+ 02C7                   .dbline 346
+ 02C7           ;                       }
+ 02C7           L36:
+ 02C7                   .dbline 348
+ 02C7           ;                       
+ 02C7           ;                       if(!error){
+ 02C7 62D000            mov REG[0xd0],>_error
+ 02CA 3C0000            cmp [_error],0
+ 02CD B00F              jnz L38
+ 02CF                   .dbline 349
+ 02CF           ;                       instruction5(); 
+ 02CF                   .dbline 349
+ 02CF 957F              xcall _instruction5
+ 02D1                   .dbline 350
+ 02D1           ;                   readFunction();
+ 02D1 90E7              xcall _readFunction
+ 02D3                   .dbline 351
+ 02D3           ;                   stringParser(4);
+ 02D3 5000              mov A,0
+ 02D5 08                push A
+ 02D6 5004              mov A,4
+ 02D8 08                push A
+ 02D9 91D9              xcall _stringParser
+ 02DB 38FE              add SP,-2
+ 02DD                   .dbline 352
+ 02DD           ;                       }
+ 02DD           L38:
+ 02DD                   .dbline 354
+ 02DD           ;                       
+ 02DD           ;                       if (!error){
+ 02DD 62D000            mov REG[0xd0],>_error
+ 02E0 3C0000            cmp [_error],0
+ 02E3 B0BE              jnz L40
+ 02E5                   .dbline 355
+ 02E5           ;                       UART_CPutString("Saving waveform");     
+ 02E5                   .dbline 355
+ 02E5 10                push X
+ 02E6 5061              mov A,>L42
+ 02E8 08                push A
+ 02E9 5061              mov A,<L42
+ 02EB 5C                mov X,A
+ 02EC 18                pop A
+ 02ED 7C0000            xcall _UART_CPutString
+ 02F0                   .dbline 356
+ 02F0           ;                        UART_PutCRLF();
+ 02F0 7C0000            xcall _UART_PutCRLF
+ 02F3                   .dbline 357
+ 02F3           ;                        UART_PutCRLF();
+ 02F3 7C0000            xcall _UART_PutCRLF
+ 02F6                   .dbline 359
+ 02F6           ;                               
+ 02F6           ;                       DelSig_StartAD();
+ 02F6 7C0000            xcall _DelSig_StartAD
+ 02F9 20                pop X
+ 02FA                   .dbline 360
+ 02FA           ;                       for (j=(8192*(blockNum-1)); j<(blockNum*8192); j++){
+ 02FA 62D000            mov REG[0xd0],>_blockNum
+ 02FD 5101              mov A,[_blockNum+1]
+ 02FF 1101              sub A,1
+ 0301 62D000            mov REG[0xd0],>__r0
+ 0304 5300              mov [__r0],A
+ 0306 550000            mov [__r1],0
+ 0309 6500              asl [__r0]
+ 030B 6500              asl [__r1]
+ 030D 6B00              rlc [__r0]
+ 030F 6500              asl [__r1]
+ 0311 6B00              rlc [__r0]
+ 0313 6500              asl [__r1]
+ 0315 6B00              rlc [__r0]
+ 0317 6500              asl [__r1]
+ 0319 6B00              rlc [__r0]
+ 031B 5100              mov A,[__r1]
+ 031D 08                push A
+ 031E 5100              mov A,[__r0]
+ 0320 62D000            mov REG[0xd0],>_j
+ 0323 5300              mov [_j],A
+ 0325 18                pop A
+ 0326 5301              mov [_j+1],A
+ 0328 8035              xjmp L46
+ 032A           L47:
+ 032A                   .dbline 362
+ 032A           ;                       
+ 032A           ;                       while (!DelSig_fIsDataAvailable()){}
+ 032A                   .dbline 362
+ 032A           L48:
+ 032A                   .dbline 362
+ 032A 10                push X
+ 032B 7C0000            xcall _DelSig_fIsDataAvailable
+ 032E 20                pop X
+ 032F 62D000            mov REG[0xd0],>__r0
+ 0332 3900              cmp A,0
+ 0334 AFF5              jz L47
+ 0336                   .dbline 364
+ 0336           ;                       
+ 0336           ;                       Svalue = DelSig_bGetData();
+ 0336 10                push X
+ 0337 7C0000            xcall _DelSig_bGetData
+ 033A 20                pop X
+ 033B 62D000            mov REG[0xd0],>_Svalue
+ 033E 5300              mov [_Svalue],A
+ 0340                   .dbline 365
+ 0340           ;                       SPIRAM_WriteByte(j,Svalue);
+ 0340 5100              mov A,[_Svalue]
+ 0342 08                push A
+ 0343 62D000            mov REG[0xd0],>_j
+ 0346 5100              mov A,[_j]
+ 0348 08                push A
+ 0349 5101              mov A,[_j+1]
+ 034B 08                push A
+ 034C 7C0000            xcall _SPIRAM_WriteByte
+ 034F 38FD              add SP,-3
+ 0351                   .dbline 366
+ 0351           ;                       DelSig_ClearFlag();     
+ 0351 10                push X
+ 0352 7C0000            xcall _DelSig_ClearFlag
+ 0355 20                pop X
+ 0356                   .dbline 368
+ 0356           ;                       
+ 0356           ;                       }//end save for
+ 0356           L44:
+ 0356                   .dbline 360
+ 0356 62D000            mov REG[0xd0],>_j
+ 0359 7601              inc [_j+1]
+ 035B 0E0000            adc [_j],0
+ 035E           L46:
+ 035E                   .dbline 360
+ 035E 62D000            mov REG[0xd0],>_blockNum
+ 0361 5101              mov A,[_blockNum+1]
+ 0363 08                push A
+ 0364 62D000            mov REG[0xd0],>__r0
+ 0367 18                pop A
+ 0368 5300              mov [__r0],A
+ 036A 550000            mov [__r1],0
+ 036D 6500              asl [__r0]
+ 036F 6500              asl [__r1]
+ 0371 6B00              rlc [__r0]
+ 0373 6500              asl [__r1]
+ 0375 6B00              rlc [__r0]
+ 0377 6500              asl [__r1]
+ 0379 6B00              rlc [__r0]
+ 037B 6500              asl [__r1]
+ 037D 6B00              rlc [__r0]
+ 037F 62D000            mov REG[0xd0],>_j
+ 0382 5101              mov A,[_j+1]
+ 0384 62D000            mov REG[0xd0],>__r0
+ 0387 1200              sub A,[__r1]
+ 0389 5100              mov A,[__r0]
+ 038B 3180              xor A,-128
+ 038D 5300              mov [__rX],A
+ 038F 62D000            mov REG[0xd0],>_j
+ 0392 5100              mov A,[_j]
+ 0394 3180              xor A,-128
+ 0396 62D000            mov REG[0xd0],>__r0
+ 0399 1A00              sbb A,[__rX]
+ 039B CF8E              jc L48
+ 039D           X3:
+ 039D                   .dbline 369
+ 039D           ;                       DelSig_StopAD();
+ 039D 10                push X
+ 039E 7C0000            xcall _DelSig_StopAD
+ 03A1 20                pop X
+ 03A2                   .dbline 370
+ 03A2           ;                       }//end final if not error
+ 03A2           L40:
+ 03A2                   .dbline 371
+ 03A2           ;               }//endSaveElse  
+ 03A2           L11:
+ 03A2                   .dbline 374
+ 03A2           ;                       
+ 03A2           ;               /////////////////////////////// 
+ 03A2           ;               }//end ifValidMode
+ 03A2           L8:
+ 03A2                   .dbline 375
+ 03A2           ;       }//end_While1   
+ 03A2           L6:
+ 03A2                   .dbline 232
+ 03A2 8CE7              xjmp L5
+ 03A4           X0:
+ 03A4                   .dbline -2
+ 03A4           L1:
+ 03A4 38FE              add SP,-2
+ 03A6 20                pop X
+ 03A7                   .dbline 0 ; func end
+ 03A7 8FFF              jmp .
+ 03A9                   .dbsym l count 0 I
+ 03A9                   .dbend
+ 03A9                   .dbfunc e DACUpdate_ISR _DACUpdate_ISR fV
+ 03A9           _DACUpdate_ISR::
+ 03A9                   .dbline -1
+ 03A9 71C0              or F,-64
+ 03AB 08                push A
+ 03AC 5DD0              mov A,REG[0xd0]
+ 03AE 08                push A
+ 03AF                   .dbline 391
+ 03AF           ; 
+ 03AF           ; } //endmain
+ 03AF           ; 
+ 03AF           ; /*****************************************************************************/
+ 03AF           ; /********************* Interrupt Service Routines Below **********************/
+ 03AF           ; /*****************************************************************************/
+ 03AF           ; #pragma interrupt_handler DACUpdate_ISR
+ 03AF           ; 
+ 03AF           ; // DACUpdate_ISR is called at the terminal count of the DACUpdate user module.
+ 03AF           ; // Since it's clock source is the same as DelSig, setting its period to
+ 03AF           ; // match the DelSig PWM (4*DecimationRate) will cause it to interrupt at the
+ 03AF           ; // same rate as the DelSig's sampling rate. If the samples are only sent to
+ 03AF           ; // the DACs when the variable DACUpdateDone is one, the output sampling rate
+ 03AF           ; // can be controlled.
+ 03AF           ; void DACUpdate_ISR(void)
+ 03AF           ; {
+ 03AF                   .dbline 398
+ 03AF           ;       
+ 03AF           ;       // Updating the DACs inside the ISR takes more clock cycles
+ 03AF           ;       // than simply setting a flag and exiting. This is because
+ 03AF           ;       // the C-compiler does a full preserve and restore of the
+ 03AF           ;       // CPU context which takes 190+185 CPU cycles.
+ 03AF           ;       
+ 03AF           ;       DACUpdateDone = 1;
+ 03AF 62D000            mov REG[0xd0],>_DACUpdateDone
+ 03B2 550001            mov [_DACUpdateDone],1
+ 03B5                   .dbline -2
+ 03B5           L50:
+ 03B5 18                pop A
+ 03B6 60D0              mov REG[208],A
+ 03B8 18                pop A
+ 03B9                   .dbline 0 ; func end
+ 03B9 7E                reti
+ 03BA                   .dbend
+ 03BA                   .dbfunc e readFunction _readFunction fV
+ 03BA           ;   placeCounter -> X+0
+ 03BA           _readFunction::
+ 03BA                   .dbline -1
+ 03BA 10                push X
+ 03BB 4F                mov X,SP
+ 03BC 3802              add SP,2
+ 03BE                   .dbline 403
+ 03BE           ; }
+ 03BE           ; 
+ 03BE           ; 
+ 03BE           ; void readFunction (void)
+ 03BE           ; {
+ 03BE                   .dbline 404
+ 03BE           ;         int placeCounter = 0;
+ 03BE 560100            mov [X+1],0
+ 03C1 560000            mov [X+0],0
+ 03C4                   .dbline 405
+ 03C4           ;         finishFlag= FALSE;
+ 03C4 62D000            mov REG[0xd0],>_finishFlag
+ 03C7 550000            mov [_finishFlag],0
+ 03CA                   .dbline 407
+ 03CA           ;               
+ 03CA           ;               UART_CPutString(">");
+ 03CA 10                push X
+ 03CB 505F              mov A,>L52
+ 03CD 08                push A
+ 03CE 505F              mov A,<L52
+ 03D0 5C                mov X,A
+ 03D1 18                pop A
+ 03D2 7C0000            xcall _UART_CPutString
+ 03D5 20                pop X
+ 03D6 80CE              xjmp L54
+ 03D8           L53:
+ 03D8                   .dbline 409
+ 03D8           ;       
+ 03D8           ;         while (!finishFlag) {
+ 03D8                   .dbline 411
+ 03D8           ; 
+ 03D8           ;                               charIn = UART_cReadChar();
+ 03D8 10                push X
+ 03D9 7C0000            xcall _UART_cReadChar
+ 03DC 20                pop X
+ 03DD 62D000            mov REG[0xd0],>_charIn
+ 03E0 5300              mov [_charIn],A
+ 03E2 800B              xjmp L57
+ 03E4           L56:
+ 03E4                   .dbline 412
+ 03E4           ;                         while (charIn == 0x00){charIn = UART_cReadChar();}
+ 03E4                   .dbline 412
+ 03E4 10                push X
+ 03E5 7C0000            xcall _UART_cReadChar
+ 03E8 20                pop X
+ 03E9 62D000            mov REG[0xd0],>_charIn
+ 03EC 5300              mov [_charIn],A
+ 03EE                   .dbline 412
+ 03EE           L57:
+ 03EE                   .dbline 412
+ 03EE 62D000            mov REG[0xd0],>_charIn
+ 03F1 3C0000            cmp [_charIn],0
+ 03F4 AFEF              jz L56
+ 03F6                   .dbline 413
+ 03F6           ;                                 if (placeCounter<7){
+ 03F6 5201              mov A,[X+1]
+ 03F8 1107              sub A,7
+ 03FA 5200              mov A,[X+0]
+ 03FC 3180              xor A,-128
+ 03FE 1980              sbb A,(0 ^ 0x80)
+ 0400 D08D              jnc L59
+ 0402           X4:
+ 0402                   .dbline 415
+ 0402           ; 
+ 0402           ;                             if (charIn == 0x0d){ //if carriage return
+ 0402                   .dbline 415
+ 0402 62D000            mov REG[0xd0],>_charIn
+ 0405 3C000D            cmp [_charIn],13
+ 0408 B01F              jnz L61
+ 040A                   .dbline 416
+ 040A           ;                                                 UART_CPutString("\r\n");
+ 040A                   .dbline 416
+ 040A 10                push X
+ 040B 505C              mov A,>L63
+ 040D 08                push A
+ 040E 505C              mov A,<L63
+ 0410 5C                mov X,A
+ 0411 18                pop A
+ 0412 7C0000            xcall _UART_CPutString
+ 0415                   .dbline 417
+ 0415           ;                                                 UART_CPutString("\r\n");
+ 0415 505C              mov A,>L63
+ 0417 08                push A
+ 0418 505C              mov A,<L63
+ 041A 5C                mov X,A
+ 041B 18                pop A
+ 041C 7C0000            xcall _UART_CPutString
+ 041F 20                pop X
+ 0420                   .dbline 418
+ 0420           ;                                             finishFlag = TRUE;
+ 0420 62D000            mov REG[0xd0],>_finishFlag
+ 0423 550001            mov [_finishFlag],1
+ 0426                   .dbline 419
+ 0426           ;                                     } //end if CR
+ 0426 807E              xjmp L60
+ 0428           L61:
+ 0428                   .dbline 421
+ 0428           ;                                                                       //backspace
+ 0428           ;                                 else if ((charIn == 0x08 || charIn ==0x7f) && placeCounter > 0 ){ //if backspace
+ 0428 62D000            mov REG[0xd0],>_charIn
+ 042B 3C0008            cmp [_charIn],8
+ 042E A006              jz L66
+ 0430 3C007F            cmp [_charIn],127
+ 0433 B027              jnz L64
+ 0435           L66:
+ 0435 5000              mov A,0
+ 0437 1301              sub A,[X+1]
+ 0439 5200              mov A,[X+0]
+ 043B 3180              xor A,-128
+ 043D 62D000            mov REG[0xd0],>__r0
+ 0440 5300              mov [__rX],A
+ 0442 5080              mov A,(0 ^ 0x80)
+ 0444 1A00              sbb A,[__rX]
+ 0446 D014              jnc L64
+ 0448           X5:
+ 0448                   .dbline 422
+ 0448           ;                                         placeCounter--;
+ 0448                   .dbline 422
+ 0448 7B01              dec [X+1]
+ 044A 1F0000            sbb [X+0],0
+ 044D                   .dbline 423
+ 044D           ;                                         UART_CPutString("\x8\x20\x8");
+ 044D 10                push X
+ 044E 5058              mov A,>L67
+ 0450 08                push A
+ 0451 5058              mov A,<L67
+ 0453 5C                mov X,A
+ 0454 18                pop A
+ 0455 7C0000            xcall _UART_CPutString
+ 0458 20                pop X
+ 0459                   .dbline 424
+ 0459           ;                                 } //end if backspace
+ 0459 804B              xjmp L60
+ 045B           L64:
+ 045B                   .dbline 425
+ 045B           ;                                 else {
+ 045B                   .dbline 426
+ 045B           ;                                                 rawString[placeCounter] = charIn;
+ 045B 62D000            mov REG[0xd0],>__r0
+ 045E 5201              mov A,[X+1]
+ 0460 0100              add A,<_rawString
+ 0462 5300              mov [__r1],A
+ 0464 5200              mov A,[X+0]
+ 0466 0900              adc A,>_rawString
+ 0468 60D5              mov REG[0xd5],A
+ 046A 62D000            mov REG[0xd0],>_charIn
+ 046D 5100              mov A,[_charIn]
+ 046F 62D000            mov REG[0xd0],>__r0
+ 0472 3F00              mvi [__r1],A
+ 0474                   .dbline 427
+ 0474           ;                                                 UART_PutChar(rawString[placeCounter]);
+ 0474 5201              mov A,[X+1]
+ 0476 0100              add A,<_rawString
+ 0478 5300              mov [__r1],A
+ 047A 5200              mov A,[X+0]
+ 047C 0900              adc A,>_rawString
+ 047E 60D4              mov REG[0xd4],A
+ 0480 3E00              mvi A,[__r1]
+ 0482 10                push X
+ 0483 7C0000            xcall _UART_PutChar
+ 0486 20                pop X
+ 0487                   .dbline 428
+ 0487           ;                                                 placeCounter++;
+ 0487 7701              inc [X+1]
+ 0489 0F0000            adc [X+0],0
+ 048C                   .dbline 429
+ 048C           ;                                         }// end else write into string
+ 048C                   .dbline 431
+ 048C           ; 
+ 048C           ;                                 } // end placeCounter if
+ 048C 8018              xjmp L60
+ 048E           L59:
+ 048E                   .dbline 433
+ 048E           ;                         else
+ 048E           ;                                 {
+ 048E                   .dbline 435
+ 048E           ; 
+ 048E           ;                                                UART_CPutString("Too many characters.");
+ 048E 10                push X
+ 048F 5043              mov A,>L68
+ 0491 08                push A
+ 0492 5043              mov A,<L68
+ 0494 5C                mov X,A
+ 0495 18                pop A
+ 0496 7C0000            xcall _UART_CPutString
+ 0499                   .dbline 436
+ 0499           ;                                                                                UART_PutChar(0x07);
+ 0499 5007              mov A,7
+ 049B 7C0000            xcall _UART_PutChar
+ 049E 20                pop X
+ 049F                   .dbline 437
+ 049F           ;                                          finishFlag = TRUE;
+ 049F 62D000            mov REG[0xd0],>_finishFlag
+ 04A2 550001            mov [_finishFlag],1
+ 04A5                   .dbline 439
+ 04A5           ;                                                                          //addbell
+ 04A5           ;                                 }
+ 04A5           L60:
+ 04A5                   .dbline 441
+ 04A5           ; 
+ 04A5           ;         }//end while (~finsihFlag)
+ 04A5           L54:
+ 04A5                   .dbline 409
+ 04A5 62D000            mov REG[0xd0],>_finishFlag
+ 04A8 3C0000            cmp [_finishFlag],0
+ 04AB AF2C              jz L53
+ 04AD                   .dbline 443
+ 04AD           ; 
+ 04AD           ;         finishFlag= FALSE ;
+ 04AD 550000            mov [_finishFlag],0
+ 04B0                   .dbline -2
+ 04B0           L51:
+ 04B0 38FE              add SP,-2
+ 04B2 20                pop X
+ 04B3                   .dbline 0 ; func end
+ 04B3 7F                ret
+ 04B4                   .dbsym l placeCounter 0 I
+ 04B4                   .dbend
+ 04B4                   .dbfunc e stringParser _stringParser fV
+ 04B4           ;       parseNum -> X-5
+ 04B4           _stringParser::
+ 04B4                   .dbline -1
+ 04B4 10                push X
+ 04B5 4F                mov X,SP
+ 04B6 380A              add SP,10
+ 04B8                   .dbline 446
+ 04B8           ; 
+ 04B8           ; }//end readFunction
+ 04B8           ; void stringParser(int parseNum){
+ 04B8                   .dbline 448
+ 04B8           ; 
+ 04B8           ;       switch (parseNum) {
+ 04B8 3DFB00            cmp [X-5],0
+ 04BB B006              jnz X6
+ 04BD 3DFC01            cmp [X-4],1
+ 04C0 A02B              jz L72
+ 04C2           X6:
+ 04C2 3DFB00            cmp [X-5],0
+ 04C5 B006              jnz X7
+ 04C7 3DFC02            cmp [X-4],2
+ 04CA A072              jz L79
+ 04CC           X7:
+ 04CC 3DFB00            cmp [X-5],0
+ 04CF B006              jnz X8
+ 04D1 3DFC03            cmp [X-4],3
+ 04D4 A0E9              jz L88
+ 04D6           X8:
+ 04D6 3DFB00            cmp [X-5],0
+ 04D9 B006              jnz X9
+ 04DB 3DFC04            cmp [X-4],4
+ 04DE A13E              jz L95
+ 04E0           X9:
+ 04E0 3DFB00            cmp [X-5],0
+ 04E3 B006              jnz X10
+ 04E5 3DFC05            cmp [X-4],5
+ 04E8 A25D              jz L117
+ 04EA           X10:
+ 04EA 82DC              xjmp L70
+ 04EC           L72:
+ 04EC                   .dbline 451
+ 04EC           ;                       
+ 04EC           ;       case 1:  
+ 04EC           ;                               switch (rawString[0]){
+ 04EC 62D000            mov REG[0xd0],>_rawString
+ 04EF 5100              mov A,[_rawString]
+ 04F1 5401              mov [X+1],A
+ 04F3 560000            mov [X+0],0
+ 04F6 3D0000            cmp [X+0],0
+ 04F9 B006              jnz X11
+ 04FB 3D0163            cmp [X+1],99
+ 04FE A015              jz L77
+ 0500           X11:
+ 0500 3D0000            cmp [X+0],0
+ 0503 B006              jnz X12
+ 0505 3D0164            cmp [X+1],100
+ 0508 A003              jz L76
+ 050A           X12:
+ 050A 8011              xjmp L73
+ 050C           L76:
+ 050C                   .dbline 452
+ 050C           ;                                               case 'd':  displayOrcapture = TRUE; 
+ 050C 62D000            mov REG[0xd0],>_displayOrcapture
+ 050F 550001            mov [_displayOrcapture],1
+ 0512                   .dbline 453
+ 0512           ;                                               break;
+ 0512 82B7              xjmp L71
+ 0514           L77:
+ 0514                   .dbline 454
+ 0514           ;                                               case 'c':  displayOrcapture = FALSE;
+ 0514 62D000            mov REG[0xd0],>_displayOrcapture
+ 0517 550000            mov [_displayOrcapture],0
+ 051A                   .dbline 455
+ 051A           ;                                               break;                          
+ 051A 82AF              xjmp L71
+ 051C           L73:
+ 051C                   .dbline 457
+ 051C           ;                                               default: 
+ 051C           ;                                                       UART_CPutString("Invalid Mode");
+ 051C 10                push X
+ 051D 5036              mov A,>L78
+ 051F 08                push A
+ 0520 5036              mov A,<L78
+ 0522 5C                mov X,A
+ 0523 18                pop A
+ 0524 7C0000            xcall _UART_CPutString
+ 0527                   .dbline 458
+ 0527           ;                                                       UART_PutChar(0x07);
+ 0527 5007              mov A,7
+ 0529 7C0000            xcall _UART_PutChar
+ 052C 20                pop X
+ 052D                   .dbline 459
+ 052D           ;                                                       validMode = FALSE;
+ 052D 62D000            mov REG[0xd0],>_validMode
+ 0530 550000            mov [_validMode],0
+ 0533                   .dbline 460
+ 0533           ;                                                       UART_PutCRLF();
+ 0533 10                push X
+ 0534 7C0000            xcall _UART_PutCRLF
+ 0537                   .dbline 461
+ 0537           ;                                                       UART_PutCRLF();
+ 0537 7C0000            xcall _UART_PutCRLF
+ 053A 20                pop X
+ 053B                   .dbline 462
+ 053B           ;                                               break;
+ 053B                   .dbline 464
+ 053B           ;                                       }
+ 053B           ;       break;
+ 053B 828E              xjmp L71
+ 053D           L79:
+ 053D                   .dbline 467
+ 053D           ;                               
+ 053D           ;       case 2: 
+ 053D           ;               switch (rawString[0]){
+ 053D 62D000            mov REG[0xd0],>_rawString
+ 0540 5100              mov A,[_rawString]
+ 0542 5403              mov [X+3],A
+ 0544 560200            mov [X+2],0
+ 0547 3D0200            cmp [X+2],0
+ 054A B006              jnz X13
+ 054C 3D0331            cmp [X+3],49
+ 054F A021              jz L83
+ 0551           X13:
+ 0551 3D0200            cmp [X+2],0
+ 0554 B006              jnz X14
+ 0556 3D0332            cmp [X+3],50
+ 0559 A022              jz L84
+ 055B           X14:
+ 055B 3D0200            cmp [X+2],0
+ 055E B006              jnz X15
+ 0560 3D0333            cmp [X+3],51
+ 0563 A023              jz L85
+ 0565           X15:
+ 0565 3D0200            cmp [X+2],0
+ 0568 B006              jnz X16
+ 056A 3D0334            cmp [X+3],52
+ 056D A024              jz L86
+ 056F           X16:
+ 056F 802D              xjmp L80
+ 0571           L83:
+ 0571                   .dbline 468
+ 0571           ;                                       case '1': blockNum = 1;
+ 0571 62D000            mov REG[0xd0],>_blockNum
+ 0574 550101            mov [_blockNum+1],1
+ 0577 550000            mov [_blockNum],0
+ 057A                   .dbline 469
+ 057A           ;                                       break;
+ 057A 824F              xjmp L71
+ 057C           L84:
+ 057C                   .dbline 470
+ 057C           ;                                       case '2': blockNum = 2;
+ 057C 62D000            mov REG[0xd0],>_blockNum
+ 057F 550102            mov [_blockNum+1],2
+ 0582 550000            mov [_blockNum],0
+ 0585                   .dbline 471
+ 0585           ;                                       break;
+ 0585 8244              xjmp L71
+ 0587           L85:
+ 0587                   .dbline 472
+ 0587           ;                                       case '3': blockNum = 3;
+ 0587 62D000            mov REG[0xd0],>_blockNum
+ 058A 550103            mov [_blockNum+1],3
+ 058D 550000            mov [_blockNum],0
+ 0590                   .dbline 473
+ 0590           ;                                       break;
+ 0590 8239              xjmp L71
+ 0592           L86:
+ 0592                   .dbline 474
+ 0592           ;                                       case '4': blockNum = 4;
+ 0592 62D000            mov REG[0xd0],>_blockNum
+ 0595 550104            mov [_blockNum+1],4
+ 0598 550000            mov [_blockNum],0
+ 059B                   .dbline 475
+ 059B           ;                                       break;
+ 059B 822E              xjmp L71
+ 059D           L80:
+ 059D                   .dbline 477
+ 059D           ;                                       default: 
+ 059D           ;                                               UART_CPutString("Invalid block #");
+ 059D 10                push X
+ 059E 5026              mov A,>L87
+ 05A0 08                push A
+ 05A1 5026              mov A,<L87
+ 05A3 5C                mov X,A
+ 05A4 18                pop A
+ 05A5 7C0000            xcall _UART_CPutString
+ 05A8                   .dbline 478
+ 05A8           ;                                               UART_PutChar(0x07);
+ 05A8 5007              mov A,7
+ 05AA 7C0000            xcall _UART_PutChar
+ 05AD 20                pop X
+ 05AE                   .dbline 479
+ 05AE           ;                                               error = TRUE;
+ 05AE 62D000            mov REG[0xd0],>_error
+ 05B1 550001            mov [_error],1
+ 05B4                   .dbline 480
+ 05B4           ;                                       UART_PutCRLF();
+ 05B4 10                push X
+ 05B5 7C0000            xcall _UART_PutCRLF
+ 05B8                   .dbline 481
+ 05B8           ;                                               UART_PutCRLF();
+ 05B8 7C0000            xcall _UART_PutCRLF
+ 05BB 20                pop X
+ 05BC                   .dbline 483
+ 05BC           ;                                               //M8C_Reset;
+ 05BC           ;                                       break;
+ 05BC                   .dbline 485
+ 05BC           ;                               }                                       
+ 05BC           ;       break;
+ 05BC 820D              xjmp L71
+ 05BE           L88:
+ 05BE                   .dbline 488
+ 05BE           ;                       
+ 05BE           ;       case 3:  
+ 05BE           ;                               switch (rawString[0]){
+ 05BE 62D000            mov REG[0xd0],>_rawString
+ 05C1 5100              mov A,[_rawString]
+ 05C3 5405              mov [X+5],A
+ 05C5 560400            mov [X+4],0
+ 05C8 3D0400            cmp [X+4],0
+ 05CB B006              jnz X17
+ 05CD 3D0561            cmp [X+5],97
+ 05D0 A00D              jz L92
+ 05D2           X17:
+ 05D2 3D0400            cmp [X+4],0
+ 05D5 B006              jnz X18
+ 05D7 3D0562            cmp [X+5],98
+ 05DA A012              jz L93
+ 05DC           X18:
+ 05DC 801F              xjmp L89
+ 05DE           L92:
+ 05DE                   .dbline 490
+ 05DE           ;                                       case 'a':  
+ 05DE           ;                                                      AMUX4_InputSelect(AMUX4_PORT0_1);
+ 05DE 10                push X
+ 05DF 5000              mov A,0
+ 05E1 7C0000            xcall _AMUX4_InputSelect
+ 05E4 20                pop X
+ 05E5                   .dbline 491
+ 05E5           ;                                                               inA = TRUE;
+ 05E5 62D000            mov REG[0xd0],>_inA
+ 05E8 550001            mov [_inA],1
+ 05EB                   .dbline 492
+ 05EB           ;                                       break;
+ 05EB 81DE              xjmp L71
+ 05ED           L93:
+ 05ED                   .dbline 493
+ 05ED           ;                                       case 'b':  AMUX4_InputSelect(AMUX4_PORT0_7);
+ 05ED 10                push X
+ 05EE 5003              mov A,3
+ 05F0 7C0000            xcall _AMUX4_InputSelect
+ 05F3 20                pop X
+ 05F4                   .dbline 494
+ 05F4           ;                                                               inA = FALSE;
+ 05F4 62D000            mov REG[0xd0],>_inA
+ 05F7 550000            mov [_inA],0
+ 05FA                   .dbline 495
+ 05FA           ;                                       break;
+ 05FA 81CF              xjmp L71
+ 05FC           L89:
+ 05FC                   .dbline 497
+ 05FC           ;                                       default: 
+ 05FC           ;                                               UART_CPutString("Invalid input");
+ 05FC 10                push X
+ 05FD 5018              mov A,>L94
+ 05FF 08                push A
+ 0600 5018              mov A,<L94
+ 0602 5C                mov X,A
+ 0603 18                pop A
+ 0604 7C0000            xcall _UART_CPutString
+ 0607                   .dbline 498
+ 0607           ;                                               UART_PutChar(0x07);
+ 0607 5007              mov A,7
+ 0609 7C0000            xcall _UART_PutChar
+ 060C 20                pop X
+ 060D                   .dbline 499
+ 060D           ;                                               error = TRUE;
+ 060D 62D000            mov REG[0xd0],>_error
+ 0610 550001            mov [_error],1
+ 0613                   .dbline 500
+ 0613           ;                                               UART_PutCRLF(); 
+ 0613 10                push X
+ 0614 7C0000            xcall _UART_PutCRLF
+ 0617                   .dbline 501
+ 0617           ;                                               UART_PutCRLF();
+ 0617 7C0000            xcall _UART_PutCRLF
+ 061A 20                pop X
+ 061B                   .dbline 503
+ 061B           ;                                               //M8C_Reset;
+ 061B           ;                                       break;
+ 061B                   .dbline 505
+ 061B           ;                               }                                                                       
+ 061B           ;       break;
+ 061B 81AE              xjmp L71
+ 061D           L95:
+ 061D                   .dbline 509
+ 061D           ;               
+ 061D           ;       case 4:  
+ 061D           ;               
+ 061D           ;                       switch (rawString[0]){
+ 061D 62D000            mov REG[0xd0],>_rawString
+ 0620 5100              mov A,[_rawString]
+ 0622 5407              mov [X+7],A
+ 0624 560600            mov [X+6],0
+ 0627 3D0600            cmp [X+6],0
+ 062A B006              jnz X19
+ 062C 3D0731            cmp [X+7],49
+ 062F A053              jz L99
+ 0631           X19:
+ 0631 3D0600            cmp [X+6],0
+ 0634 B006              jnz X20
+ 0636 3D0732            cmp [X+7],50
+ 0639 A05B              jz L100
+ 063B           X20:
+ 063B 3D0600            cmp [X+6],0
+ 063E B006              jnz X21
+ 0640 3D0733            cmp [X+7],51
+ 0643 A063              jz L102
+ 0645           X21:
+ 0645 3D0600            cmp [X+6],0
+ 0648 B006              jnz X22
+ 064A 3D0734            cmp [X+7],52
+ 064D A06B              jz L104
+ 064F           X22:
+ 064F 3D0600            cmp [X+6],0
+ 0652 B006              jnz X23
+ 0654 3D0735            cmp [X+7],53
+ 0657 A073              jz L106
+ 0659           X23:
+ 0659 3D0600            cmp [X+6],0
+ 065C B006              jnz X24
+ 065E 3D0736            cmp [X+7],54
+ 0661 A07B              jz L108
+ 0663           X24:
+ 0663 3D0600            cmp [X+6],0
+ 0666 B006              jnz X25
+ 0668 3D0737            cmp [X+7],55
+ 066B A083              jz L110
+ 066D           X25:
+ 066D 3D0600            cmp [X+6],0
+ 0670 B006              jnz X26
+ 0672 3D0738            cmp [X+7],56
+ 0675 A08B              jz L112
+ 0677           X26:
+ 0677 3D0600            cmp [X+6],0
+ 067A B006              jnz X27
+ 067C 3D0739            cmp [X+7],57
+ 067F A093              jz L114
+ 0681           X27:
+ 0681 80A3              xjmp L96
+ 0683           L99:
+ 0683                   .dbline 510
+ 0683           ;                                   case '1': sampleRate = sampleRateS[0];
+ 0683 62D000            mov REG[0xd0],>_sampleRateS
+ 0686 5101              mov A,[_sampleRateS+1]
+ 0688 08                push A
+ 0689 5100              mov A,[_sampleRateS]
+ 068B 62D000            mov REG[0xd0],>_sampleRate
+ 068E 5300              mov [_sampleRate],A
+ 0690 18                pop A
+ 0691 5301              mov [_sampleRate+1],A
+ 0693                   .dbline 511
+ 0693           ;                                       break;
+ 0693 8136              xjmp L71
+ 0695           L100:
+ 0695                   .dbline 512
+ 0695           ;                                       case '2':sampleRate = sampleRateS[1];
+ 0695 62D000            mov REG[0xd0],>_sampleRateS
+ 0698 5103              mov A,[_sampleRateS+2+1]
+ 069A 08                push A
+ 069B 5102              mov A,[_sampleRateS+2]
+ 069D 62D000            mov REG[0xd0],>_sampleRate
+ 06A0 5300              mov [_sampleRate],A
+ 06A2 18                pop A
+ 06A3 5301              mov [_sampleRate+1],A
+ 06A5                   .dbline 513
+ 06A5           ;                                       break;
+ 06A5 8124              xjmp L71
+ 06A7           L102:
+ 06A7                   .dbline 514
+ 06A7           ;                                       case '3': sampleRate = sampleRateS[2];
+ 06A7 62D000            mov REG[0xd0],>_sampleRateS
+ 06AA 5105              mov A,[_sampleRateS+4+1]
+ 06AC 08                push A
+ 06AD 5104              mov A,[_sampleRateS+4]
+ 06AF 62D000            mov REG[0xd0],>_sampleRate
+ 06B2 5300              mov [_sampleRate],A
+ 06B4 18                pop A
+ 06B5 5301              mov [_sampleRate+1],A
+ 06B7                   .dbline 515
+ 06B7           ;                                       break;
+ 06B7 8112              xjmp L71
+ 06B9           L104:
+ 06B9                   .dbline 516
+ 06B9           ;                                       case '4': sampleRate = sampleRateS[3];
+ 06B9 62D000            mov REG[0xd0],>_sampleRateS
+ 06BC 5107              mov A,[_sampleRateS+6+1]
+ 06BE 08                push A
+ 06BF 5106              mov A,[_sampleRateS+6]
+ 06C1 62D000            mov REG[0xd0],>_sampleRate
+ 06C4 5300              mov [_sampleRate],A
+ 06C6 18                pop A
+ 06C7 5301              mov [_sampleRate+1],A
+ 06C9                   .dbline 517
+ 06C9           ;                                       break;
+ 06C9 8100              xjmp L71
+ 06CB           L106:
+ 06CB                   .dbline 518
+ 06CB           ;                                       case '5': sampleRate = sampleRateS[4];
+ 06CB 62D000            mov REG[0xd0],>_sampleRateS
+ 06CE 5109              mov A,[_sampleRateS+8+1]
+ 06D0 08                push A
+ 06D1 5108              mov A,[_sampleRateS+8]
+ 06D3 62D000            mov REG[0xd0],>_sampleRate
+ 06D6 5300              mov [_sampleRate],A
+ 06D8 18                pop A
+ 06D9 5301              mov [_sampleRate+1],A
+ 06DB                   .dbline 519
+ 06DB           ;                                       break;
+ 06DB 80EE              xjmp L71
+ 06DD           L108:
+ 06DD                   .dbline 520
+ 06DD           ;                                       case '6': sampleRate = sampleRateS[5];
+ 06DD 62D000            mov REG[0xd0],>_sampleRateS
+ 06E0 510B              mov A,[_sampleRateS+10+1]
+ 06E2 08                push A
+ 06E3 510A              mov A,[_sampleRateS+10]
+ 06E5 62D000            mov REG[0xd0],>_sampleRate
+ 06E8 5300              mov [_sampleRate],A
+ 06EA 18                pop A
+ 06EB 5301              mov [_sampleRate+1],A
+ 06ED                   .dbline 521
+ 06ED           ;                                       break;
+ 06ED 80DC              xjmp L71
+ 06EF           L110:
+ 06EF                   .dbline 522
+ 06EF           ;                                       case '7': sampleRate = sampleRateS[6];
+ 06EF 62D000            mov REG[0xd0],>_sampleRateS
+ 06F2 510D              mov A,[_sampleRateS+12+1]
+ 06F4 08                push A
+ 06F5 510C              mov A,[_sampleRateS+12]
+ 06F7 62D000            mov REG[0xd0],>_sampleRate
+ 06FA 5300              mov [_sampleRate],A
+ 06FC 18                pop A
+ 06FD 5301              mov [_sampleRate+1],A
+ 06FF                   .dbline 523
+ 06FF           ;                                       break;
+ 06FF 80CA              xjmp L71
+ 0701           L112:
+ 0701                   .dbline 524
+ 0701           ;                                       case '8': sampleRate = sampleRateS[7];
+ 0701 62D000            mov REG[0xd0],>_sampleRateS
+ 0704 510F              mov A,[_sampleRateS+14+1]
+ 0706 08                push A
+ 0707 510E              mov A,[_sampleRateS+14]
+ 0709 62D000            mov REG[0xd0],>_sampleRate
+ 070C 5300              mov [_sampleRate],A
+ 070E 18                pop A
+ 070F 5301              mov [_sampleRate+1],A
+ 0711                   .dbline 525
+ 0711           ;                                       break;
+ 0711 80B8              xjmp L71
+ 0713           L114:
+ 0713                   .dbline 526
+ 0713           ;                                       case '9': sampleRate = sampleRateS[8];
+ 0713 62D000            mov REG[0xd0],>_sampleRateS
+ 0716 5111              mov A,[_sampleRateS+16+1]
+ 0718 08                push A
+ 0719 5110              mov A,[_sampleRateS+16]
+ 071B 62D000            mov REG[0xd0],>_sampleRate
+ 071E 5300              mov [_sampleRate],A
+ 0720 18                pop A
+ 0721 5301              mov [_sampleRate+1],A
+ 0723                   .dbline 527
+ 0723           ;                                       break;
+ 0723 80A6              xjmp L71
+ 0725           L96:
+ 0725                   .dbline 529
+ 0725           ;                                       default: 
+ 0725           ;                                               UART_CPutString("Invalid sample rate #");
+ 0725 10                push X
+ 0726 5002              mov A,>L116
+ 0728 08                push A
+ 0729 5002              mov A,<L116
+ 072B 5C                mov X,A
+ 072C 18                pop A
+ 072D 7C0000            xcall _UART_CPutString
+ 0730                   .dbline 530
+ 0730           ;                                               UART_PutChar(0x07);
+ 0730 5007              mov A,7
+ 0732 7C0000            xcall _UART_PutChar
+ 0735 20                pop X
+ 0736                   .dbline 531
+ 0736           ;                                               error = TRUE;
+ 0736 62D000            mov REG[0xd0],>_error
+ 0739 550001            mov [_error],1
+ 073C                   .dbline 532
+ 073C           ;                                               UART_PutCRLF();
+ 073C 10                push X
+ 073D 7C0000            xcall _UART_PutCRLF
+ 0740                   .dbline 533
+ 0740           ;                                               UART_PutCRLF();
+ 0740 7C0000            xcall _UART_PutCRLF
+ 0743 20                pop X
+ 0744                   .dbline 535
+ 0744           ;                                               //M8C_Reset;
+ 0744           ;                                       break;
+ 0744                   .dbline 537
+ 0744           ;                               }                               
+ 0744           ;       break;  
+ 0744 8085              xjmp L71
+ 0746           L117:
+ 0746                   .dbline 540
+ 0746           ;                       
+ 0746           ;       case 5:                 
+ 0746           ;               switch (rawString[0]){
+ 0746 62D000            mov REG[0xd0],>_rawString
+ 0749 5100              mov A,[_rawString]
+ 074B 5409              mov [X+9],A
+ 074D 560800            mov [X+8],0
+ 0750 3D0800            cmp [X+8],0
+ 0753 B006              jnz X28
+ 0755 3D0931            cmp [X+9],49
+ 0758 A021              jz L121
+ 075A           X28:
+ 075A 3D0800            cmp [X+8],0
+ 075D B006              jnz X29
+ 075F 3D0932            cmp [X+9],50
+ 0762 A022              jz L122
+ 0764           X29:
+ 0764 3D0800            cmp [X+8],0
+ 0767 B006              jnz X30
+ 0769 3D0933            cmp [X+9],51
+ 076C A023              jz L123
+ 076E           X30:
+ 076E 3D0800            cmp [X+8],0
+ 0771 B006              jnz X31
+ 0773 3D0934            cmp [X+9],52
+ 0776 A024              jz L124
+ 0778           X31:
+ 0778 802D              xjmp L118
+ 077A           L121:
+ 077A                   .dbline 541
+ 077A           ;                                       case '1': blockNum2 = 1;
+ 077A 62D000            mov REG[0xd0],>_blockNum2
+ 077D 550101            mov [_blockNum2+1],1
+ 0780 550000            mov [_blockNum2],0
+ 0783                   .dbline 542
+ 0783           ;                                       break;
+ 0783 8046              xjmp L71
+ 0785           L122:
+ 0785                   .dbline 543
+ 0785           ;                                       case '2': blockNum2 = 2;
+ 0785 62D000            mov REG[0xd0],>_blockNum2
+ 0788 550102            mov [_blockNum2+1],2
+ 078B 550000            mov [_blockNum2],0
+ 078E                   .dbline 544
+ 078E           ;                                       break;
+ 078E 803B              xjmp L71
+ 0790           L123:
+ 0790                   .dbline 545
+ 0790           ;                                       case '3': blockNum2 = 3;
+ 0790 62D000            mov REG[0xd0],>_blockNum2
+ 0793 550103            mov [_blockNum2+1],3
+ 0796 550000            mov [_blockNum2],0
+ 0799                   .dbline 546
+ 0799           ;                                       break;
+ 0799 8030              xjmp L71
+ 079B           L124:
+ 079B                   .dbline 547
+ 079B           ;                                       case '4': blockNum2 = 4;
+ 079B 62D000            mov REG[0xd0],>_blockNum2
+ 079E 550104            mov [_blockNum2+1],4
+ 07A1 550000            mov [_blockNum2],0
+ 07A4                   .dbline 548
+ 07A4           ;                                       break;
+ 07A4 8025              xjmp L71
+ 07A6           L118:
+ 07A6                   .dbline 550
+ 07A6           ;                                       default: 
+ 07A6           ;                                               UART_CPutString("Invalid block #");
+ 07A6 10                push X
+ 07A7 5026              mov A,>L87
+ 07A9 08                push A
+ 07AA 5026              mov A,<L87
+ 07AC 5C                mov X,A
+ 07AD 18                pop A
+ 07AE 7C0000            xcall _UART_CPutString
+ 07B1                   .dbline 551
+ 07B1           ;                                               UART_PutChar(0x07);
+ 07B1 5007              mov A,7
+ 07B3 7C0000            xcall _UART_PutChar
+ 07B6 20                pop X
+ 07B7                   .dbline 552
+ 07B7           ;                                               error = TRUE;
+ 07B7 62D000            mov REG[0xd0],>_error
+ 07BA 550001            mov [_error],1
+ 07BD                   .dbline 553
+ 07BD           ;                                       UART_PutCRLF();
+ 07BD 10                push X
+ 07BE 7C0000            xcall _UART_PutCRLF
+ 07C1                   .dbline 554
+ 07C1           ;                                               UART_PutCRLF();
+ 07C1 7C0000            xcall _UART_PutCRLF
+ 07C4 20                pop X
+ 07C5                   .dbline 556
+ 07C5           ;                                               //M8C_Reset;
+ 07C5           ;                                       break;
+ 07C5                   .dbline 558
+ 07C5           ;                               }                                                               
+ 07C5           ;       break;
+ 07C5 8004              xjmp L71
+ 07C7           L70:
+ 07C7                   .dbline 561
+ 07C7           ;                                       
+ 07C7           ;       default:        
+ 07C7           ;                       M8C_Reset;
+ 07C7 5000                      mov A, 0
+ 07C9 00                SSC
+ 07CA           
+ 07CA                   .dbline 561
+ 07CA                   .dbline 562
+ 07CA           ;                       break;
+ 07CA           L71:
+ 07CA                   .dbline -2
+ 07CA           L69:
+ 07CA 38F6              add SP,-10
+ 07CC 20                pop X
+ 07CD                   .dbline 0 ; func end
+ 07CD 7F                ret
+ 07CE                   .dbsym l parseNum -5 I
+ 07CE                   .dbend
+ 07CE                   .dbfunc e instruction1 _instruction1 fV
+ 07CE           _instruction1::
+ 07CE                   .dbline -1
+ 07CE                   .dbline 567
+ 07CE           ;       }
+ 07CE           ; 
+ 07CE           ; } 
+ 07CE           ; void instruction1(void)
+ 07CE           ; {
+ 07CE                   .dbline 568
+ 07CE           ;               UART_CPutString("Would you like to (d)isplay waveform or (c)apture waveform?  ");
+ 07CE 10                push X
+ 07CF 50C4              mov A,>L126
+ 07D1 08                push A
+ 07D2 50C4              mov A,<L126
+ 07D4 5C                mov X,A
+ 07D5 18                pop A
+ 07D6 7C0000            xcall _UART_CPutString
+ 07D9                   .dbline 569
+ 07D9           ;               UART_PutCRLF();
+ 07D9 7C0000            xcall _UART_PutCRLF
+ 07DC                   .dbline 570
+ 07DC           ;               UART_CPutString(">");
+ 07DC 505F              mov A,>L52
+ 07DE 08                push A
+ 07DF 505F              mov A,<L52
+ 07E1 5C                mov X,A
+ 07E2 18                pop A
+ 07E3 7C0000            xcall _UART_CPutString
+ 07E6 20                pop X
+ 07E7                   .dbline -2
+ 07E7           L125:
+ 07E7                   .dbline 0 ; func end
+ 07E7 7F                ret
+ 07E8                   .dbend
+ 07E8                   .dbfunc e instruction2 _instruction2 fV
+ 07E8           _instruction2::
+ 07E8                   .dbline -1
+ 07E8                   .dbline 575
+ 07E8           ;       
+ 07E8           ; }
+ 07E8           ; 
+ 07E8           ; void instruction2(void)
+ 07E8           ; {
+ 07E8                   .dbline 576
+ 07E8           ;               UART_CPutString("Which block to save to? (Choose 1, 2, 3, or 4) ");
+ 07E8 10                push X
+ 07E9 5094              mov A,>L128
+ 07EB 08                push A
+ 07EC 5094              mov A,<L128
+ 07EE 5C                mov X,A
+ 07EF 18                pop A
+ 07F0 7C0000            xcall _UART_CPutString
+ 07F3                   .dbline 577
+ 07F3           ;               UART_PutCRLF();
+ 07F3 7C0000            xcall _UART_PutCRLF
+ 07F6                   .dbline 578
+ 07F6           ;               UART_CPutString(">");
+ 07F6 505F              mov A,>L52
+ 07F8 08                push A
+ 07F9 505F              mov A,<L52
+ 07FB 5C                mov X,A
+ 07FC 18                pop A
+ 07FD 7C0000            xcall _UART_CPutString
+ 0800 20                pop X
+ 0801                   .dbline -2
+ 0801           L127:
+ 0801                   .dbline 0 ; func end
+ 0801 7F                ret
+ 0802                   .dbend
+ 0802                   .dbfunc e instruction3 _instruction3 fV
+ 0802           _instruction3::
+ 0802                   .dbline -1
+ 0802                   .dbline 583
+ 0802           ;       
+ 0802           ; }
+ 0802           ; 
+ 0802           ; void instruction3(void)
+ 0802           ; {
+ 0802                   .dbline 584
+ 0802           ;               UART_CPutString("Which block to read from DAC A? (Choose 1, 2, 3, or 4) ");
+ 0802 10                push X
+ 0803 505C              mov A,>L130
+ 0805 08                push A
+ 0806 505C              mov A,<L130
+ 0808 5C                mov X,A
+ 0809 18                pop A
+ 080A 7C0000            xcall _UART_CPutString
+ 080D                   .dbline 585
+ 080D           ;               UART_PutCRLF();
+ 080D 7C0000            xcall _UART_PutCRLF
+ 0810                   .dbline 586
+ 0810           ;               UART_CPutString(">");   
+ 0810 505F              mov A,>L52
+ 0812 08                push A
+ 0813 505F              mov A,<L52
+ 0815 5C                mov X,A
+ 0816 18                pop A
+ 0817 7C0000            xcall _UART_CPutString
+ 081A 20                pop X
+ 081B                   .dbline -2
+ 081B           L129:
+ 081B                   .dbline 0 ; func end
+ 081B 7F                ret
+ 081C                   .dbend
+ 081C                   .dbfunc e instruction4 _instruction4 fV
+ 081C           _instruction4::
+ 081C                   .dbline -1
+ 081C                   .dbline 590
+ 081C           ; }
+ 081C           ; 
+ 081C           ; void instruction4(void)
+ 081C           ; {
+ 081C                   .dbline 591
+ 081C           ;               UART_CPutString("Choose sample rate");
+ 081C 10                push X
+ 081D 5049              mov A,>L132
+ 081F 08                push A
+ 0820 5049              mov A,<L132
+ 0822 5C                mov X,A
+ 0823 18                pop A
+ 0824 7C0000            xcall _UART_CPutString
+ 0827                   .dbline 592
+ 0827           ;               UART_PutCRLF();
+ 0827 7C0000            xcall _UART_PutCRLF
+ 082A                   .dbline 593
+ 082A           ;               UART_CPutString("1 for 1.25ksps, 2 for 1.5ksps, 3 for 1.87ksps, 4 for 2.5ksps");
+ 082A 500C              mov A,>L133
+ 082C 08                push A
+ 082D 500C              mov A,<L133
+ 082F 5C                mov X,A
+ 0830 18                pop A
+ 0831 7C0000            xcall _UART_CPutString
+ 0834                   .dbline 594
+ 0834           ;               UART_PutCRLF();
+ 0834 7C0000            xcall _UART_PutCRLF
+ 0837                   .dbline 595
+ 0837           ;               UART_CPutString("5 for 3.125ksps, 6 for 3.75ksps, 7 for 6.25ksps, 8 for 7.5ksps, 9 for 9.375ksps");
+ 0837 50BC              mov A,>L134
+ 0839 08                push A
+ 083A 50BC              mov A,<L134
+ 083C 5C                mov X,A
+ 083D 18                pop A
+ 083E 7C0000            xcall _UART_CPutString
+ 0841                   .dbline 596
+ 0841           ;               UART_PutCRLF();
+ 0841 7C0000            xcall _UART_PutCRLF
+ 0844                   .dbline 597
+ 0844           ;               UART_CPutString(">");
+ 0844 505F              mov A,>L52
+ 0846 08                push A
+ 0847 505F              mov A,<L52
+ 0849 5C                mov X,A
+ 084A 18                pop A
+ 084B 7C0000            xcall _UART_CPutString
+ 084E 20                pop X
+ 084F                   .dbline -2
+ 084F           L131:
+ 084F                   .dbline 0 ; func end
+ 084F 7F                ret
+ 0850                   .dbend
+ 0850                   .dbfunc e instruction5 _instruction5 fV
+ 0850           _instruction5::
+ 0850                   .dbline -1
+ 0850                   .dbline 601
+ 0850           ; }
+ 0850           ; 
+ 0850           ; void instruction5(void)
+ 0850           ; {
+ 0850                   .dbline 602
+ 0850           ;               UART_CPutString("Enter address to set trigger on within block in decimal or hex (Perferably decimal)");
+ 0850 10                push X
+ 0851 5068              mov A,>L136
+ 0853 08                push A
+ 0854 5068              mov A,<L136
+ 0856 5C                mov X,A
+ 0857 18                pop A
+ 0858 7C0000            xcall _UART_CPutString
+ 085B                   .dbline 603
+ 085B           ;               UART_PutCRLF();
+ 085B 7C0000            xcall _UART_PutCRLF
+ 085E                   .dbline 604
+ 085E           ;               UART_CPutString(">");
+ 085E 505F              mov A,>L52
+ 0860 08                push A
+ 0861 505F              mov A,<L52
+ 0863 5C                mov X,A
+ 0864 18                pop A
+ 0865 7C0000            xcall _UART_CPutString
+ 0868 20                pop X
+ 0869                   .dbline -2
+ 0869           L135:
+ 0869                   .dbline 0 ; func end
+ 0869 7F                ret
+ 086A                   .dbend
+ 086A                   .dbfunc e instruction6 _instruction6 fV
+ 086A           _instruction6::
+ 086A                   .dbline -1
+ 086A                   .dbline 608
+ 086A           ;       
+ 086A           ; }
+ 086A           ; void instruction6(void)
+ 086A           ; {
+ 086A                   .dbline 609
+ 086A           ;               UART_CPutString("Which Input would you like to save 'a' or 'b' ?");
+ 086A 10                push X
+ 086B 5038              mov A,>L138
+ 086D 08                push A
+ 086E 5038              mov A,<L138
+ 0870 5C                mov X,A
+ 0871 18                pop A
+ 0872 7C0000            xcall _UART_CPutString
+ 0875                   .dbline 610
+ 0875           ;               UART_PutCRLF();
+ 0875 7C0000            xcall _UART_PutCRLF
+ 0878                   .dbline 611
+ 0878           ;               UART_CPutString(">");
+ 0878 505F              mov A,>L52
+ 087A 08                push A
+ 087B 505F              mov A,<L52
+ 087D 5C                mov X,A
+ 087E 18                pop A
+ 087F 7C0000            xcall _UART_CPutString
+ 0882 20                pop X
+ 0883                   .dbline -2
+ 0883           L137:
+ 0883                   .dbline 0 ; func end
+ 0883 7F                ret
+ 0884                   .dbend
+ 0884                   .dbfunc e instruction7 _instruction7 fV
+ 0884           _instruction7::
+ 0884                   .dbline -1
+ 0884                   .dbline 615
+ 0884           ;       
+ 0884           ; }
+ 0884           ; void instruction7(void)
+ 0884           ; {
+ 0884                   .dbline 616
+ 0884           ;               UART_CPutString("Which block to read from DAC B? (Choose 1, 2, 3, or 4) ");
+ 0884 10                push X
+ 0885 5000              mov A,>L140
+ 0887 08                push A
+ 0888 5000              mov A,<L140
+ 088A 5C                mov X,A
+ 088B 18                pop A
+ 088C 7C0000            xcall _UART_CPutString
+ 088F                   .dbline 617
+ 088F           ;               UART_PutCRLF();
+ 088F 7C0000            xcall _UART_PutCRLF
+ 0892                   .dbline 618
+ 0892           ;               UART_CPutString(">");   
+ 0892 505F              mov A,>L52
+ 0894 08                push A
+ 0895 505F              mov A,<L52
+ 0897 5C                mov X,A
+ 0898 18                pop A
+ 0899 7C0000            xcall _UART_CPutString
+ 089C 20                pop X
+ 089D                   .dbline -2
+ 089D           L139:
+ 089D                   .dbline 0 ; func end
+ 089D 7F                ret
+ 089E                   .dbend
+ 089E                   .dbfunc e ascii_to_hex _ascii_to_hex fc
+ 089E           ;          value -> X+3
+ 089E           ;           unit -> X+2
+ 089E           ;            ten -> X+1
+ 089E           ;        hundred -> X+0
+ 089E           ;  addressString -> X-5
+ 089E           _ascii_to_hex::
+ 089E                   .dbline -1
+ 089E 10                push X
+ 089F 4F                mov X,SP
+ 08A0 3804              add SP,4
+ 08A2                   .dbline 657
+ 08A2           ; }
+ 08A2           ; //char asciiToHex(char addressByte)
+ 08A2           ; //{
+ 08A2           ; //        char output;
+ 08A2           ; //        BOOL lowerCase = FALSE;
+ 08A2           ; 
+ 08A2           ; //            if(addressByte>= 0x41 && addressByte<= 0x5a)
+ 08A2           ; //            {
+ 08A2           ; //                    addressByte -= 0x37;
+ 08A2           ; //                    
+ 08A2           ; //            }  
+ 08A2           ; //
+ 08A2           ; //        if (addressByte >= 0x30  && addressByte <= 0x39){   
+ 08A2           ; //                                            
+ 08A2           ; //                                            UART_CPutString("integer");
+ 08A2           ; //                                            UART_PutCRLF();
+ 08A2           ; //                      output = addressByte - 0x30;
+ 08A2           ; //            }
+ 08A2           ; //             if (addressByte >= 0x61  && addressByte <= 0x66){      
+ 08A2           ; //                                            
+ 08A2           ; //                                            /// Add conditional if 
+ 08A2           ; //                                            UART_CPutString("Upper case");
+ 08A2           ; //                                            UART_PutCRLF();
+ 08A2           ; //                        output = addressByte - 0x51;
+ 08A2           ; //            } 
+ 08A2           ; //
+ 08A2           ; //            if (!(addressByte >= 0x30  && addressByte <= 0x39)&& !(addressByte >= 0x61  && addressByte <= 0x7a))
+ 08A2           ; ////          {
+ 08A2           ; ////                          
+ 08A2           ; //////                                invaildFlag=TRUE;
+ 08A2           ; //////                UART_CPutString("Not valid Hex address");
+ 08A2           ; //////                                UART_PutChar(0x07);
+ 08A2           ; ////          }
+ 08A2           ; //        return output;
+ 08A2           ; //
+ 08A2           ; //}//end asciiToHex
+ 08A2           ; 
+ 08A2           ; unsigned char ascii_to_hex(unsigned char*  addressString)
+ 08A2           ; {
+ 08A2                   .dbline 660
+ 08A2           ;    unsigned char hundred, ten, unit, value;
+ 08A2           ; 
+ 08A2           ;    hundred = (*addressString-0x30)*100;
+ 08A2 62D000            mov REG[0xd0],>__r0
+ 08A5 52FC              mov A,[X-4]
+ 08A7 5300              mov [__r1],A
+ 08A9 52FB              mov A,[X-5]
+ 08AB 60D4              mov REG[0xd4],A
+ 08AD 3E00              mvi A,[__r1]
+ 08AF 60E8              mov REG[0xe8],A
+ 08B1 62E964            mov REG[0xe9],100
+ 08B4 40                nop
+ 08B5 5DEB              mov A,REG[0xeb]
+ 08B7 5300              mov [__r0],A
+ 08B9 1600C0            sub [__r0],-64
+ 08BC 5100              mov A,[__r0]
+ 08BE 5400              mov [X+0],A
+ 08C0                   .dbline 661
+ 08C0           ;    ten = (*(addressString + 1)-0x30)*10;
+ 08C0 52FC              mov A,[X-4]
+ 08C2 0101              add A,1
+ 08C4 5300              mov [__r1],A
+ 08C6 52FB              mov A,[X-5]
+ 08C8 0900              adc A,0
+ 08CA 60D4              mov REG[0xd4],A
+ 08CC 3E00              mvi A,[__r1]
+ 08CE 60E8              mov REG[0xe8],A
+ 08D0 62E90A            mov REG[0xe9],10
+ 08D3 40                nop
+ 08D4 5DEB              mov A,REG[0xeb]
+ 08D6 5300              mov [__r0],A
+ 08D8 1600E0            sub [__r0],-32
+ 08DB 5100              mov A,[__r0]
+ 08DD 5401              mov [X+1],A
+ 08DF                   .dbline 662
+ 08DF           ;    unit = *(addressString+2)-0x30;     
+ 08DF 52FC              mov A,[X-4]
+ 08E1 0102              add A,2
+ 08E3 5300              mov [__r1],A
+ 08E5 52FB              mov A,[X-5]
+ 08E7 0900              adc A,0
+ 08E9 60D4              mov REG[0xd4],A
+ 08EB 3E00              mvi A,[__r1]
+ 08ED 5300              mov [__r0],A
+ 08EF 160030            sub [__r0],48
+ 08F2 5100              mov A,[__r0]
+ 08F4 5402              mov [X+2],A
+ 08F6                   .dbline 664
+ 08F6           ; 
+ 08F6           ;    value = (hundred + ten + unit);
+ 08F6 5200              mov A,[X+0]
+ 08F8 0301              add A,[X+1]
+ 08FA 0302              add A,[X+2]
+ 08FC 5403              mov [X+3],A
+ 08FE                   .dbline 667
+ 08FE           ;    //printf("\nValue: %#04x \n", value);
+ 08FE           ; 
+ 08FE           ;    return value; 
+ 08FE 5203              mov A,[X+3]
+ 0900                   .dbline -2
+ 0900           L141:
+ 0900 38FC              add SP,-4
+ 0902 20                pop X
+ 0903                   .dbline 0 ; func end
+ 0903 7F                ret
+ 0904                   .dbsym l value 3 c
+ 0904                   .dbsym l unit 2 c
+ 0904                   .dbsym l ten 1 c
+ 0904                   .dbsym l hundred 0 c
+ 0904                   .dbsym l addressString -5 pc
+ 0904                   .dbend
+ 0904                   .dbfunc e toLower _toLower fc
+ 0904           ;              k -> X-4
+ 0904           _toLower::
+ 0904                   .dbline -1
+ 0904 10                push X
+ 0905 4F                mov X,SP
+ 0906                   .dbline 670
+ 0906           ; }
+ 0906           ; 
+ 0906           ; char toLower(char k) {
+ 0906                   .dbline 671
+ 0906           ;       if (k >= 'A' && k <= 'Z') {
+ 0906 3DFC41            cmp [X-4],65
+ 0909 C010              jc L143
+ 090B           X32:
+ 090B 505A              mov A,90
+ 090D 3BFC              cmp A,[X-4]
+ 090F C00A              jc L143
+ 0911           X33:
+ 0911                   .dbline 672
+ 0911           ;               return k + 0x20;        
+ 0911                   .dbline 672
+ 0911 62D000            mov REG[0xd0],>__r0
+ 0914 52FC              mov A,[X-4]
+ 0916 0120              add A,32
+ 0918 8006              xjmp L142
+ 091A           L143:
+ 091A                   .dbline 673
+ 091A           ;       } else {        
+ 091A                   .dbline 674
+ 091A           ;               return k;
+ 091A 52FC              mov A,[X-4]
+ 091C 62D000            mov REG[0xd0],>__r0
+ 091F                   .dbline -2
+ 091F           L142:
+ 091F 20                pop X
+ 0920                   .dbline 0 ; func end
+ 0920 7F                ret
+ 0921                   .dbsym l k -4 c
+ 0921                   .dbend
+ 0921                   .dbfunc e hexToDec _hexToDec fi
+ 0921           ;          total -> X+0
+ 0921           ;             c4 -> X-7
+ 0921           ;             c3 -> X-6
+ 0921           ;             c2 -> X-5
+ 0921           ;             c1 -> X-4
+ 0921           _hexToDec::
+ 0921                   .dbline -1
+ 0921 10                push X
+ 0922 4F                mov X,SP
+ 0923 3802              add SP,2
+ 0925                   .dbline 678
+ 0925           ;       }
+ 0925           ; }
+ 0925           ; 
+ 0925           ; unsigned int hexToDec(char c1, char c2, char c3, char c4) {
+ 0925                   .dbline 679
+ 0925           ;       int total = 0;
+ 0925 560100            mov [X+1],0
+ 0928 560000            mov [X+0],0
+ 092B                   .dbline 681
+ 092B           ;       
+ 092B           ;       if (c1 >= 'a' && c1 <= 'z') c1 -= 0x57;
+ 092B 3DFC61            cmp [X-4],97
+ 092E C012              jc L146
+ 0930           X34:
+ 0930 507A              mov A,122
+ 0932 3BFC              cmp A,[X-4]
+ 0934 C00C              jc L146
+ 0936           X35:
+ 0936                   .dbline 681
+ 0936 62D000            mov REG[0xd0],>__r0
+ 0939 52FC              mov A,[X-4]
+ 093B 1157              sub A,87
+ 093D 54FC              mov [X-4],A
+ 093F 800A              xjmp L147
+ 0941           L146:
+ 0941                   .dbline 682
+ 0941           ;       else c1 -= 0x30;
+ 0941 62D000            mov REG[0xd0],>__r0
+ 0944 52FC              mov A,[X-4]
+ 0946 1130              sub A,48
+ 0948 54FC              mov [X-4],A
+ 094A           L147:
+ 094A                   .dbline 683
+ 094A           ;       if (c2 >= 'a' && c2 <= 'z') c2 -= 0x57;
+ 094A 3DFB61            cmp [X-5],97
+ 094D C012              jc L148
+ 094F           X36:
+ 094F 507A              mov A,122
+ 0951 3BFB              cmp A,[X-5]
+ 0953 C00C              jc L148
+ 0955           X37:
+ 0955                   .dbline 683
+ 0955 62D000            mov REG[0xd0],>__r0
+ 0958 52FB              mov A,[X-5]
+ 095A 1157              sub A,87
+ 095C 54FB              mov [X-5],A
+ 095E 800A              xjmp L149
+ 0960           L148:
+ 0960                   .dbline 684
+ 0960           ;       else c2 -= 0x30;
+ 0960 62D000            mov REG[0xd0],>__r0
+ 0963 52FB              mov A,[X-5]
+ 0965 1130              sub A,48
+ 0967 54FB              mov [X-5],A
+ 0969           L149:
+ 0969                   .dbline 685
+ 0969           ;       if (c3 >= 'a' && c3 <= 'z') c3 -= 0x57;
+ 0969 3DFA61            cmp [X-6],97
+ 096C C012              jc L150
+ 096E           X38:
+ 096E 507A              mov A,122
+ 0970 3BFA              cmp A,[X-6]
+ 0972 C00C              jc L150
+ 0974           X39:
+ 0974                   .dbline 685
+ 0974 62D000            mov REG[0xd0],>__r0
+ 0977 52FA              mov A,[X-6]
+ 0979 1157              sub A,87
+ 097B 54FA              mov [X-6],A
+ 097D 800A              xjmp L151
+ 097F           L150:
+ 097F                   .dbline 686
+ 097F           ;       else c3 -= 0x30;
+ 097F 62D000            mov REG[0xd0],>__r0
+ 0982 52FA              mov A,[X-6]
+ 0984 1130              sub A,48
+ 0986 54FA              mov [X-6],A
+ 0988           L151:
+ 0988                   .dbline 687
+ 0988           ;       if (c4 >= 'a' && c4 <= 'z') c4 -= 0x57;
+ 0988 3DF961            cmp [X-7],97
+ 098B C012              jc L152
+ 098D           X40:
+ 098D 507A              mov A,122
+ 098F 3BF9              cmp A,[X-7]
+ 0991 C00C              jc L152
+ 0993           X41:
+ 0993                   .dbline 687
+ 0993 62D000            mov REG[0xd0],>__r0
+ 0996 52F9              mov A,[X-7]
+ 0998 1157              sub A,87
+ 099A 54F9              mov [X-7],A
+ 099C 800A              xjmp L153
+ 099E           L152:
+ 099E                   .dbline 688
+ 099E           ;       else c4 -= 0x30;
+ 099E 62D000            mov REG[0xd0],>__r0
+ 09A1 52F9              mov A,[X-7]
+ 09A3 1130              sub A,48
+ 09A5 54F9              mov [X-7],A
+ 09A7           L153:
+ 09A7                   .dbline 690
+ 09A7           ;       
+ 09A7           ;       total += c1*4096;
+ 09A7 62D000            mov REG[0xd0],>__r0
+ 09AA 52FC              mov A,[X-4]
+ 09AC 5300              mov [__r0],A
+ 09AE 550000            mov [__r1],0
+ 09B1 6500              asl [__r0]
+ 09B3 6500              asl [__r1]
+ 09B5 6B00              rlc [__r0]
+ 09B7 6500              asl [__r1]
+ 09B9 6B00              rlc [__r0]
+ 09BB 6500              asl [__r1]
+ 09BD 6B00              rlc [__r0]
+ 09BF 5100              mov A,[__r1]
+ 09C1 0501              add [X+1],A
+ 09C3 5100              mov A,[__r0]
+ 09C5 0D00              adc [X+0],A
+ 09C7                   .dbline 691
+ 09C7           ;       total += c2*256;
+ 09C7 52FB              mov A,[X-5]
+ 09C9 070100            add [X+1],0
+ 09CC 0D00              adc [X+0],A
+ 09CE                   .dbline 692
+ 09CE           ;       total += c3*16;
+ 09CE 52FA              mov A,[X-6]
+ 09D0 5300              mov [__r1],A
+ 09D2 550000            mov [__r0],0
+ 09D5 6500              asl [__r1]
+ 09D7 6B00              rlc [__r0]
+ 09D9 6500              asl [__r1]
+ 09DB 6B00              rlc [__r0]
+ 09DD 6500              asl [__r1]
+ 09DF 6B00              rlc [__r0]
+ 09E1 6500              asl [__r1]
+ 09E3 6B00              rlc [__r0]
+ 09E5 5100              mov A,[__r1]
+ 09E7 0501              add [X+1],A
+ 09E9 5100              mov A,[__r0]
+ 09EB 0D00              adc [X+0],A
+ 09ED                   .dbline 693
+ 09ED           ;       total += c4;
+ 09ED 52F9              mov A,[X-7]
+ 09EF 0501              add [X+1],A
+ 09F1 5000              mov A,0
+ 09F3 0F0000            adc [X+0],0
+ 09F6                   .dbline 695
+ 09F6           ;       
+ 09F6           ;       return total;
+ 09F6 5201              mov A,[X+1]
+ 09F8 5300              mov [__r1],A
+ 09FA 5200              mov A,[X+0]
+ 09FC 5300              mov [__r0],A
+ 09FE                   .dbline -2
+ 09FE           L145:
+ 09FE 38FE              add SP,-2
+ 0A00 20                pop X
+ 0A01                   .dbline 0 ; func end
+ 0A01 7F                ret
+ 0A02                   .dbsym l total 0 I
+ 0A02                   .dbsym l c4 -7 c
+ 0A02                   .dbsym l c3 -6 c
+ 0A02                   .dbsym l c2 -5 c
+ 0A02                   .dbsym l c1 -4 c
+ 0A02                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _sampleRate::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e sampleRate _sampleRate I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _displayOrcapture::
+ 0000 00                .byte 0
+ 0001                   .dbsym e displayOrcapture _displayOrcapture c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _blockNum::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e blockNum _blockNum I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _parseNum::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e parseNum _parseNum I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _finishFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e finishFlag _finishFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _charIn::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn _charIn c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _rawString::
+ 0000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 003C 00000000          .byte 0,0,0,0
+ 0040                   .dbsym e rawString _rawString A[64:64]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _iStatus::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e iStatus _iStatus I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _blockNum2::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e blockNum2 _blockNum2 I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _k::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e k _k I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _j::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e j _j I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _Svalue::
+ 0000 00                .byte 0
+ 0001                   .dbsym e Svalue _Svalue c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _sampleRead::
+ 0000 00                .byte 0
+ 0001                   .dbsym e sampleRead _sampleRead c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _voltage::
+ 0000 00000000          .byte 0,0,0,0
+ 0004                   .dbsym e voltage _voltage D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _pResult::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e pResult _pResult pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _trigAdr::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e trigAdr _trigAdr I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _fScaleFactor::
+ 0000 00000000          .byte 0,0,0,0
+ 0004                   .dbsym e fScaleFactor _fScaleFactor D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\main.c
+ 0000           _i::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e i _i I
+                        .area lit(rom, con, rel, lit)
+ 0000           L140:
+ 0000 576869636820626C6F636B20746F2072  .byte 'W,'h,'i,'c,'h,32,'b,'l,'o,'c,'k,32,'t,'o,32,'r
+ 0010 6561642066726F6D2044414320423F20  .byte 'e,'a,'d,32,'f,'r,'o,'m,32,'D,'A,'C,32,'B,63,32
+ 0020 2843686F6F736520312C20322C20332C  .byte 40,'C,'h,'o,'o,'s,'e,32,49,44,32,50,44,32,51,44
+ 0030 206F722034292000  .byte 32,'o,'r,32,52,41,32,0
+ 0038           L138:
+ 0038 576869636820496E70757420776F756C  .byte 'W,'h,'i,'c,'h,32,'I,'n,'p,'u,'t,32,'w,'o,'u,'l
+ 0048 6420796F75206C696B6520746F207361  .byte 'd,32,'y,'o,'u,32,'l,'i,'k,'e,32,'t,'o,32,'s,'a
+ 0058 766520276127206F7220276227203F00  .byte 'v,'e,32,39,'a,39,32,'o,'r,32,39,'b,39,32,63,0
+ 0068           L136:
+ 0068 456E746572206164647265737320746F  .byte 'E,'n,'t,'e,'r,32,'a,'d,'d,'r,'e,'s,'s,32,'t,'o
+ 0078 207365742074726967676572206F6E20  .byte 32,'s,'e,'t,32,'t,'r,'i,'g,'g,'e,'r,32,'o,'n,32
+ 0088 77697468696E20626C6F636B20696E20  .byte 'w,'i,'t,'h,'i,'n,32,'b,'l,'o,'c,'k,32,'i,'n,32
+ 0098 646563696D616C206F72206865782028  .byte 'd,'e,'c,'i,'m,'a,'l,32,'o,'r,32,'h,'e,'x,32,40
+ 00A8 50657266657261626C7920646563696D  .byte 'P,'e,'r,'f,'e,'r,'a,'b,'l,'y,32,'d,'e,'c,'i,'m
+ 00B8 616C2900          .byte 'a,'l,41,0
+ 00BC           L134:
+ 00BC 3520666F7220332E3132356B7370732C  .byte 53,32,'f,'o,'r,32,51,46,49,50,53,'k,'s,'p,'s,44
+ 00CC 203620666F7220332E37356B7370732C  .byte 32,54,32,'f,'o,'r,32,51,46,55,53,'k,'s,'p,'s,44
+ 00DC 203720666F7220362E32356B7370732C  .byte 32,55,32,'f,'o,'r,32,54,46,50,53,'k,'s,'p,'s,44
+ 00EC 203820666F7220372E356B7370732C20  .byte 32,56,32,'f,'o,'r,32,55,46,53,'k,'s,'p,'s,44,32
+ 00FC 3920666F7220392E3337356B73707300  .byte 57,32,'f,'o,'r,32,57,46,51,55,53,'k,'s,'p,'s,0
+ 010C           L133:
+ 010C 3120666F7220312E32356B7370732C20  .byte 49,32,'f,'o,'r,32,49,46,50,53,'k,'s,'p,'s,44,32
+ 011C 3220666F7220312E356B7370732C2033  .byte 50,32,'f,'o,'r,32,49,46,53,'k,'s,'p,'s,44,32,51
+ 012C 20666F7220312E38376B7370732C2034  .byte 32,'f,'o,'r,32,49,46,56,55,'k,'s,'p,'s,44,32,52
+ 013C 20666F7220322E356B73707300        .byte 32,'f,'o,'r,32,50,46,53,'k,'s,'p,'s,0
+ 0149           L132:
+ 0149 43686F6F73652073616D706C65207261  .byte 'C,'h,'o,'o,'s,'e,32,'s,'a,'m,'p,'l,'e,32,'r,'a
+ 0159 746500            .byte 't,'e,0
+ 015C           L130:
+ 015C 576869636820626C6F636B20746F2072  .byte 'W,'h,'i,'c,'h,32,'b,'l,'o,'c,'k,32,'t,'o,32,'r
+ 016C 6561642066726F6D2044414320413F20  .byte 'e,'a,'d,32,'f,'r,'o,'m,32,'D,'A,'C,32,'A,63,32
+ 017C 2843686F6F736520312C20322C20332C  .byte 40,'C,'h,'o,'o,'s,'e,32,49,44,32,50,44,32,51,44
+ 018C 206F722034292000  .byte 32,'o,'r,32,52,41,32,0
+ 0194           L128:
+ 0194 576869636820626C6F636B20746F2073  .byte 'W,'h,'i,'c,'h,32,'b,'l,'o,'c,'k,32,'t,'o,32,'s
+ 01A4 61766520746F3F202843686F6F736520  .byte 'a,'v,'e,32,'t,'o,63,32,40,'C,'h,'o,'o,'s,'e,32
+ 01B4 312C20322C20332C206F722034292000  .byte 49,44,32,50,44,32,51,44,32,'o,'r,32,52,41,32,0
+ 01C4           L126:
+ 01C4 576F756C6420796F75206C696B652074  .byte 'W,'o,'u,'l,'d,32,'y,'o,'u,32,'l,'i,'k,'e,32,'t
+ 01D4 6F202864296973706C61792077617665  .byte 'o,32,40,'d,41,'i,'s,'p,'l,'a,'y,32,'w,'a,'v,'e
+ 01E4 666F726D206F72202863296170747572  .byte 'f,'o,'r,'m,32,'o,'r,32,40,'c,41,'a,'p,'t,'u,'r
+ 01F4 652077617665666F726D3F202000      .byte 'e,32,'w,'a,'v,'e,'f,'o,'r,'m,63,32,32,0
+ 0202           L116:
+ 0202 496E76616C69642073616D706C652072  .byte 'I,'n,'v,'a,'l,'i,'d,32,'s,'a,'m,'p,'l,'e,32,'r
+ 0212 617465202300      .byte 'a,'t,'e,32,35,0
+ 0218           L94:
+ 0218 496E76616C696420696E70757400      .byte 'I,'n,'v,'a,'l,'i,'d,32,'i,'n,'p,'u,'t,0
+ 0226           L87:
+ 0226 496E76616C696420626C6F636B202300  .byte 'I,'n,'v,'a,'l,'i,'d,32,'b,'l,'o,'c,'k,32,35,0
+ 0236           L78:
+ 0236 496E76616C6964204D6F646500        .byte 'I,'n,'v,'a,'l,'i,'d,32,'M,'o,'d,'e,0
+ 0243           L68:
+ 0243 546F6F206D616E792063686172616374  .byte 'T,'o,'o,32,'m,'a,'n,'y,32,'c,'h,'a,'r,'a,'c,'t
+ 0253 6572732E00        .byte 'e,'r,'s,46,0
+ 0258           L67:
+ 0258 08200800          .byte 8,32,8,0
+ 025C           L63:
+ 025C 0D0A00            .byte 13,10,0
+ 025F           L52:
+ 025F 3E00              .byte 62,0
+ 0261           L42:
+ 0261 536176696E672077617665666F726D00  .byte 'S,'a,'v,'i,'n,'g,32,'w,'a,'v,'e,'f,'o,'r,'m,0
+ 0271           L16:
+ 0271 446973706C6179696E67207761766566  .byte 'D,'i,'s,'p,'l,'a,'y,'i,'n,'g,32,'w,'a,'v,'e,'f
+ 0281 6F726D2028707265737320616E79206B  .byte 'o,'r,'m,32,40,'p,'r,'e,'s,'s,32,'a,'n,'y,32,'k
+ 0291 657920746F20657869742900  .byte 'e,'y,32,'t,'o,32,'e,'x,'i,'t,41,0
+ 029D           L4:
+ 029D 446F6E277420666F7267657420746F20  .byte 'D,'o,'n,39,'t,32,'f,'o,'r,'g,'e,'t,32,'t,'o,32
+ 02AD 706C61636520796F7572206C61622031  .byte 'p,'l,'a,'c,'e,32,'y,'o,'u,'r,32,'l,'a,'b,32,49
+ 02BD 3020535049205352414D20636F646520  .byte 48,32,'S,'P,'I,32,'S,'R,'A,'M,32,'c,'o,'d,'e,32
+ 02CD 696E207370695F7372616D2E63210D0A  .byte 'i,'n,32,'s,'p,'i,95,'s,'r,'a,'m,46,'c,33,13,10
+ 02DD 00                .byte 0
+ 02DE           L3:
+ 02DE 5468697320697320612070726F6A6563  .byte 'T,'h,'i,'s,32,'i,'s,32,'a,32,'p,'r,'o,'j,'e,'c
+ 02EE 742074656D706C6174652E20596F7520  .byte 't,32,'t,'e,'m,'p,'l,'a,'t,'e,46,32,'Y,'o,'u,32
+ 02FE 66696C6C20696E207468652064657461  .byte 'f,'i,'l,'l,32,'i,'n,32,'t,'h,'e,32,'d,'e,'t,'a
+ 030E 696C732E0D0A00    .byte 'i,'l,'s,46,13,10,0
+ 0315           L2:
+ 0315 4C616220313120446174612041637175  .byte 'L,'a,'b,32,49,49,32,'D,'a,'t,'a,32,'A,'c,'q,'u
+ 0325 69736974696F6E2053797374656D0D0A  .byte 'i,'s,'i,'t,'i,'o,'n,32,'S,'y,'s,'t,'e,'m,13,10
+ 0335 00                .byte 0

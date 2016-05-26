@@ -1,0 +1,51 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8ssc.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\lib\GLOBAL~1.INC\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./obj/main.o :  ./lib/COUNTE~1.H ./lib/I2CHWC~1.H ./lib/I2CHWM~1.H\
+   ./lib/LCD.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/UART.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/_const.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/limits.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/stdarg.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/stdio.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/stdlib.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/string.h
+./lib/obj/counter24.o :  ./lib/COUNTE~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/counter24int.o :  ./lib/COUNTE~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/i2chwcommon.o :  ./lib/I2CHWC~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/i2chwint.o :  ./lib/I2CHWC~1.INC ./lib/I2CHWM~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/i2chwmstr.o :  ./lib/I2CHWC~1.INC ./lib/I2CHWM~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/i2chwrsrcinits.o :  ./lib/COUNTE~1.INC ./lib/I2CHWC~1.INC\
+   ./lib/I2CHWM~1.INC ./lib/LCD.inc ./lib/PSoCAPI.inc ./lib/PSOCGP~1.INC\
+   ./lib/UART.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/lcd.o :  ./lib/LCD.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/psocgpioint.o :  ./lib/PSOCGP~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/uart.o :  ./lib/UART.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/uartint.o :  ./lib/UART.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\memory.inc
+./lib/obj/uartplus.o : 

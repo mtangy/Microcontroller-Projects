@@ -1,0 +1,159 @@
+XH
+H 2 areas 20 global symbols
+M counter24.asm
+A text size 0 flags 0
+dbfile lib/counter24.asm
+dbfunc 0 ? 0 I
+dbfile Counter24.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/Counter24.inc
+dbfunc 0 ? 0 I
+dbfile lib/counter24.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/counter24.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 97 flags 0
+dbfile lib/counter24.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 4F 3
+dbline 2 4
+dbline 6B 7
+dbline 2 8
+dbline 88 B
+dbline 2 C
+dbline A4 F
+dbline C0 10
+dbline C1 11
+dbline C2 13
+dbline C3 15
+dbline C4 17
+dbline C5 19
+dbline C6 1B
+dbline 3 1D
+dbline 4 1F
+dbline C8 21
+dbline E1 22
+dbline E2 23
+dbline E3 25
+dbline E4 27
+dbline E5 29
+dbline E6 2B
+dbline E7 2D
+dbline 3 2F
+dbline 4 31
+dbline E9 33
+dbline 3 34
+dbline 3 36
+dbline 10A 38
+dbline 10B 3B
+dbline 10C 3D
+dbline 10D 3F
+dbline 10E 41
+dbline 10F 43
+dbline 110 45
+dbline 3 47
+dbline 4 49
+dbline 112 4B
+dbline 3 4C
+dbline 3 4E
+dbline 138 50
+dbline 139 52
+dbline 13A 53
+dbline 13B 55
+dbline 13C 56
+dbline 13D 58
+dbline 13E 59
+dbline 13F 5B
+dbline 2 5C
+dbline 2 5F
+dbline 142 61
+dbline 143 63
+dbline 145 64
+dbline 2 67
+dbline 147 69
+dbline 148 6C
+dbline 149 6E
+dbline 14A 70
+dbline 14B 72
+dbline 14C 74
+dbline 14D 76
+dbline 14E 78
+dbline 14F 7A
+dbline 150 7C
+dbline 151 7E
+dbline 152 7F
+dbline 153 80
+dbline 154 82
+dbline 155 83
+dbline 156 85
+dbline 157 86
+dbline 2 88
+dbline 159 8A
+dbline 15A 8B
+dbline 2 8D
+dbline 15C 8F
+dbline 15D 90
+dbline 3 92
+dbline 4 94
+dbline 15F 96
+S Counter24_ReadCounter Def004C
+S $sb$Counter24_ReadCompareValue Def0034
+S $se$Counter24_ReadCompareValue Def004C
+S _Counter24_Start Def0008
+S Counter24_WritePeriod Def0010
+S Counter24_EnableInt Def0000
+S $sb$Counter24_ReadCounter Def004C
+S $se$Counter24_ReadCounter Def0097
+S $sb$Counter24_EnableInt Def0000
+S $se$Counter24_EnableInt Def0004
+S _Counter24_ReadCompareValue Def0034
+S Counter24_Stop Def000C
+S _Counter24_ReadCounter Def004C
+S $sb$Counter24_Stop Def000C
+S $se$Counter24_Stop Def0010
+S _Counter24_WritePeriod Def0010
+S Counter24_WriteCompareValue Def0022
+S _Counter24_EnableInt Def0000
+S Counter24_DisableInt Def0004
+S $sb$_Counter24_WritePeriod Def0010
+S $se$_Counter24_WritePeriod Def0022
+S $sb$Counter24_DisableInt Def0004
+S $se$Counter24_DisableInt Def0008
+S _Counter24_Stop Def000C
+S Counter24_Start Def0008
+S $sb$Counter24_Start Def0008
+S $se$Counter24_Start Def000C
+S _Counter24_WriteCompareValue Def0022
+S _Counter24_DisableInt Def0004
+S Counter24_ReadCompareValue Def0034
+S $sb$_Counter24_WriteCompareValue Def0022
+S $se$_Counter24_WriteCompareValue Def0034
+T 00 00 43 E1 40 7F 41 E1 BF 7F 43 33 01 7F 41 33
+R 00 00 00 01
+T 00 0E FE 7F 4F 52 FB 60 39 52 FC 60 35 52 FD 60
+R 00 00 00 01
+T 00 1C 31 70 3F 71 C0 7F 4F 52 FB 60 3A 52 FC 60
+R 00 00 00 01
+T 00 2A 36 52 FD 60 32 70 3F 71 C0 7F 70 BF 60 D3
+R 00 00 00 01
+T 00 38 56 00 00 5D 3A 54 01 5D 36 54 02 5D 32 54
+R 00 00 00 01
+T 00 46 03 70 3F 71 C0 7F 70 BF 60 D3 5D 33 08 5D
+R 00 00 00 01
+T 00 54 3A 08 5D 36 08 5D 32 08 41 33 FE 71 10 5D
+R 00 00 00 01
+T 00 62 39 08 62 39 00 70 EF 56 00 00 5D 38 5D 3A
+R 00 00 00 01
+T 00 70 54 01 5D 34 5D 36 54 02 5D 30 5D 32 54 03
+R 00 00 00 01
+T 00 7E 20 18 60 32 18 60 36 18 60 3A 71 10 5B 60
+R 00 00 00 01
+T 00 8C 39 70 EF 18 60 33 70 3F 71 C0 7F
+R 00 00 00 01

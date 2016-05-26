@@ -1,0 +1,40 @@
+XH
+H 1 areas 2 global symbols
+M main.c
+S __r0 Ref0000
+A text size 3C flags 0
+dbfile ./main.c
+dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB2_1\LAB2_1\main.c
+dbfunc e main 0 fV
+dbline FFFFFFFF 0
+dbline 9 0
+dbline C 2
+dbline 10 2
+dbline 12 E
+dbline 12 E
+dbline 13 11
+dbline 13 11
+dbline 14 1D
+dbline 15 1D
+dbline 17 29
+dbline 17 29
+dbline 18 2C
+dbline 18 2C
+dbline 19 38
+dbline 28 38
+dbline C 38
+dbline FFFFFFFE 3A
+dbline 0 3A
+S _main Def0000
+T 00 00 80 37 5D 04 62 D0 00 00 53 00 00 47 00 00
+R 00 00 00 00 43 08 00 00 03 0B 00 00 03 0E 00 00
+T 00 0B 10 A0 10 45 04 01 5D 04 62 D0 00 00 53
+R 00 00 00 00 43 0C 00 00
+T 00 17 00 00 47 00 00 10 BF F5 5D 04 62 D0 00 00
+R 00 00 00 00 03 02 00 00 03 05 00 00 43 0E 00 00
+T 00 22 53 00 00 47 00 00 20 A0 10 45 04 02 5D 04
+R 00 00 00 00 03 03 00 00 03 06 00 00
+T 00 2E 62 D0 00 00 53 00 00 47 00 00 20 BF F5 8F
+R 00 00 00 00 43 04 00 00 03 07 00 00 03 0A 00 00
+T 00 39 C9 8F FF
+R 00 00 00 00

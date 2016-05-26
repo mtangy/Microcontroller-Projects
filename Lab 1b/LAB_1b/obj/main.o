@@ -1,0 +1,39 @@
+XH
+H 2 areas 2 global symbols
+M main.c
+A text size 33 flags 0
+dbfile ./main.c
+dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_1b\LAB_1b\main.c
+dbfunc e main 0 fV
+dbsym l count 0 c
+dbline FFFFFFFF 0
+dbline A 4
+dbline B 4
+dbline C 9
+dbline D 9
+dbline E B
+dbline F F
+dbline F 18
+dbline F 18
+dbline F 20
+dbline 10 2C
+dbline C 2C
+dbline FFFFFFFE 2E
+dbline 0 31
+S _main Def0000
+A data size 2 flags 20
+dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_1b\LAB_1b\main.c
+dbsym e i 0 I
+S _i Def0000
+T 00 00 10 4F 38 01 56 00 00 80 24 77 00 52 00 60
+R 00 00 00 00
+T 00 0E 00 62 D0 00 00 55 00 01 00 55 00 00 00 62
+R 00 00 00 00 41 05 00 01 01 08 00 01 01 0C 00 01
+T 00 19 D0 00 00 76 00 01 0E 00 00 00 51
+R 00 00 00 00 41 03 00 01 01 06 00 01 01 09 00 01
+T 00 21 00 01 11 10 51 00 00 31 80 19 A7 CF ED 8F
+R 00 00 00 00 01 02 00 01 01 07 00 01
+T 00 2D DC 38 FF 20 8F FF
+R 00 00 00 00
+T 00 00 00 00
+R 00 00 00 01

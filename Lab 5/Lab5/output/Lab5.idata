@@ -1,0 +1,7 @@
+flash 11C1 SRAM    3:
+ 00 70 bytes
+flash 11C5 SRAM   49:
+ <size at next line>   2 36  0  0  1 A0  1 E3  1 FF
+  [size:] 10 bytes
+flash 11D2 SRAM   55:
+ 00 5 bytes

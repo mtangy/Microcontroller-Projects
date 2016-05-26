@@ -1,0 +1,102 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB2_1\LAB2_1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 9
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; #include "PSoCGPIOINT.h" 
+ 0000           ; 
+ 0000           ; void main(void) {     
+ 0000 8037              xjmp L3
+ 0002           L2:
+ 0002                   .dbline 12
+ 0002           ;        
+ 0002           ;     
+ 0002           ; while (1){
+ 0002                   .dbline 16
+ 0002           ;       // LED1_Data_ADDR =& 0x00;
+ 0002           ;       // LED2_Data_ADDR =& 0x00;
+ 0002           ;       
+ 0002           ;       if (SW1_Data_ADDR & SW1_MASK){
+ 0002 5D04              mov A,REG[0x4]
+ 0004 62D000            mov REG[0xd0],>__r0
+ 0007 5300              mov [__r0],A
+ 0009 470010            tst [__r0],16
+ 000C A010              jz L5
+ 000E                   .dbline 18
+ 000E           ;                
+ 000E           ;               LED1_Data_ADDR ^= LED1_MASK;
+ 000E                   .dbline 18
+ 000E 450401            xor REG[0x4],1
+ 0011           L7:
+ 0011                   .dbline 19
+ 0011           ;               while (SW1_Data_ADDR & SW1_MASK);
+ 0011           L8:
+ 0011                   .dbline 19
+ 0011 5D04              mov A,REG[0x4]
+ 0013 62D000            mov REG[0xd0],>__r0
+ 0016 5300              mov [__r0],A
+ 0018 470010            tst [__r0],16
+ 001B BFF5              jnz L7
+ 001D                   .dbline 20
+ 001D           ;       }
+ 001D           L5:
+ 001D                   .dbline 21
+ 001D           ;       if (SW2_Data_ADDR & SW2_MASK){
+ 001D 5D04              mov A,REG[0x4]
+ 001F 62D000            mov REG[0xd0],>__r0
+ 0022 5300              mov [__r0],A
+ 0024 470020            tst [__r0],32
+ 0027 A010              jz L10
+ 0029                   .dbline 23
+ 0029           ;               
+ 0029           ;               LED2_Data_ADDR ^= LED2_MASK;
+ 0029                   .dbline 23
+ 0029 450402            xor REG[0x4],2
+ 002C           L12:
+ 002C                   .dbline 24
+ 002C           ;               while (SW2_Data_ADDR & SW2_MASK);
+ 002C           L13:
+ 002C                   .dbline 24
+ 002C 5D04              mov A,REG[0x4]
+ 002E 62D000            mov REG[0xd0],>__r0
+ 0031 5300              mov [__r0],A
+ 0033 470020            tst [__r0],32
+ 0036 BFF5              jnz L12
+ 0038                   .dbline 25
+ 0038           ;       }
+ 0038           L10:
+ 0038                   .dbline 40
+ 0038           ;       
+ 0038           ; //    if (SW2_Data_ADDR & SW2_MASK){
+ 0038           ; //    LED2_Data_ADDR &=  ~LED2_MASK;
+ 0038           ; //    
+ 0038           ; //    }
+ 0038           ; //    
+ 0038           ; //    if (SW1_Data_ADDR & SW1_MASK){
+ 0038           ; //    
+ 0038           ; //            LED1_Data_ADDR &=  ~LED1_MASK;
+ 0038           ; //    
+ 0038           ; //    }
+ 0038           ;       
+ 0038           ; 
+ 0038           ; 
+ 0038           ; }     
+ 0038           L3:
+ 0038                   .dbline 12
+ 0038 8FC9              xjmp L2
+ 003A           X0:
+ 003A                   .dbline -2
+ 003A           L1:
+ 003A                   .dbline 0 ; func end
+ 003A 8FFF              jmp .
+ 003C                   .dbend

@@ -1,0 +1,45 @@
+XH
+H 3 areas 5 global symbols
+M delsigint.asm
+A text size 0 flags 0
+dbfile lib/delsigint.asm
+dbfunc 0 ? 0 I
+dbfile DelSig.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/DelSig.inc
+dbfunc 0 ? 0 I
+dbfile lib/delsigint.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/delsigint.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 2 flags 20
+S _DelSig_bfStatus Def0001
+S DelSig_cResult Def0000
+S _DelSig_cResult Def0000
+S DelSig_bfStatus Def0001
+A UserModules size 16 flags 0
+dbfile lib/delsigint.asm
+dbfunc 0 ? 0 I
+dbline 57 0
+dbline 58 1
+dbline 59 3
+dbline 5A 5
+dbline 5B 7
+dbline 5C 9
+dbline 5F B
+dbline 64 D
+dbline 66 F
+dbline 67 11
+dbline 74 14
+dbline 75 15
+S _DelSig_ADConversion_ISR Def0000
+T 00 00 08 5D E4 A0 07 5D E5 50 FF 80 03 5D E5 11
+R 00 00 00 02
+T 00 0E 80 53 00 00 55 00 01 10 18 7E
+R 00 00 00 02 01 04 00 01 01 07 00 01

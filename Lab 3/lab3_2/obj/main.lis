@@ -1,0 +1,404 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _Ap::
+ 0000 0000              .word 0
+ 0002                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+ 0002                   .dbsym e Ap _Ap I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+ 0000           _Bp::
+ 0000 0000              .word 0
+ 0002                   .dbsym e Bp _Bp I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+ 0000           _A::
+ 0000 0000              .word 0
+ 0002                   .dbsym e A _A I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+ 0000           _B::
+ 0000 0000              .word 0
+ 0002                   .dbsym e B _B I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+ 0000           _NewData::
+ 0000 00                .byte 0
+ 0001                   .dbsym e NewData _NewData c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+ 0000           _count::
+ 0000 0032              .word 50
+ 0002                   .dbsym e count _count I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\ECE381~1\lab3_2\lab3_2\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;         countp -> X+0
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3802              add SP,2
+ 0004                   .dbline 17
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include <stdbool.h>  //Boolean data types header
+ 0004           ; #include <stdlib.h>
+ 0004           ; #include "PSoCGPIOINT.h"  //GPIO interupt header
+ 0004           ; 
+ 0004           ; #pragma interrupt_handler PSoC_GPIO_ISR_C   // GPIO Interupt directive
+ 0004           ; 
+ 0004           ; int Ap =0; //Ap is the prior Encoder port A input 
+ 0004           ; int Bp =0;
+ 0004           ; int A =0;  //A is current Encoder port A input 
+ 0004           ; int B =0;
+ 0004           ; BOOL NewData = FALSE;   //Boolean flag for interupt 
+ 0004           ; int count = 50;  // count variable intialized 
+ 0004           ; 
+ 0004           ; 
+ 0004           ; void main(void){
+ 0004                   .dbline 20
+ 0004           ; char *countp;    // char pointer to be passed through utoa();
+ 0004           ; 
+ 0004           ; LCD_Start();
+ 0004 10                push X
+ 0005 7C0000            xcall _LCD_Start
+ 0008                   .dbline 21
+ 0008           ; LCD_Position(0, 0);
+ 0008 5000              mov A,0
+ 000A 5700              mov X,0
+ 000C 7C0000            xcall _LCD_Position
+ 000F                   .dbline 22
+ 000F           ; LCD_PrCString("                ");
+ 000F 5009              mov A,>L2
+ 0011 08                push A
+ 0012 5009              mov A,<L2
+ 0014 5C                mov X,A
+ 0015 18                pop A
+ 0016 7C0000            xcall _LCD_PrCString
+ 0019                   .dbline 23
+ 0019           ; LCD_Position(1, 0);
+ 0019 5700              mov X,0
+ 001B 5001              mov A,1
+ 001D 7C0000            xcall _LCD_Position
+ 0020                   .dbline 24
+ 0020           ; LCD_PrCString("                ");    //should clear junk from LCD
+ 0020 5009              mov A,>L2
+ 0022 08                push A
+ 0023 5009              mov A,<L2
+ 0025 5C                mov X,A
+ 0026 18                pop A
+ 0027 7C0000            xcall _LCD_PrCString
+ 002A                   .dbline 25
+ 002A           ; LCD_Position(0, 0);
+ 002A 5000              mov A,0
+ 002C 5700              mov X,0
+ 002E 7C0000            xcall _LCD_Position
+ 0031                   .dbline 26
+ 0031           ; LCD_PrCString("50");                          //Initializes beginning of count to display
+ 0031 5006              mov A,>L3
+ 0033 08                push A
+ 0034 5006              mov A,<L3
+ 0036 5C                mov X,A
+ 0037 18                pop A
+ 0038 7C0000            xcall _LCD_PrCString
+ 003B 20                pop X
+ 003C                   .dbline 28
+ 003C           ; 
+ 003C           ; M8C_EnableIntMask(INT_MSK0,INT_MSK0_GPIO); // Enable global interupt and Masks
+ 003C 43E020            or REG[0xe0],32
+ 003F                   .dbline 29
+ 003F           ; M8C_EnableGInt;
+ 003F 7101                      or  F, 01h
+ 0041           
+ 0041 811A              xjmp L5
+ 0043           L4:
+ 0043                   .dbline 32
+ 0043           ; 
+ 0043           ; while(1) //infinite loop
+ 0043           ; {
+ 0043                   .dbline 34
+ 0043           ; 
+ 0043           ; if(NewData)  //interupt subroutine
+ 0043 62D000            mov REG[0xd0],>_NewData
+ 0046 3C0000            cmp [_NewData],0
+ 0049 A112              jz L7
+ 004B                   .dbline 37
+ 004B           ; {
+ 004B           ; 
+ 004B           ; NewData = FALSE;
+ 004B                   .dbline 37
+ 004B 550000            mov [_NewData],0
+ 004E                   .dbline 39
+ 004E           ; 
+ 004E           ; A = OpEncA_MASK & OpEncA_Data_ADDR;   // daving current encoder values 
+ 004E 5D04              mov A,REG[0x4]
+ 0050 2108              and A,8
+ 0052 62D000            mov REG[0xd0],>_A
+ 0055 5301              mov [_A+1],A
+ 0057 5000              mov A,0
+ 0059 2100              and A,0
+ 005B 5300              mov [_A],A
+ 005D                   .dbline 40
+ 005D           ; B = OpEncB_MASK & OpEncB_Data_ADDR;
+ 005D 5D04              mov A,REG[0x4]
+ 005F 2120              and A,32
+ 0061 62D000            mov REG[0xd0],>_B
+ 0064 5301              mov [_B+1],A
+ 0066 5000              mov A,0
+ 0068 2100              and A,0
+ 006A 5300              mov [_B],A
+ 006C                   .dbline 42
+ 006C           ; 
+ 006C           ; B=B>>2;   // bit shift to line up ports for proper logic
+ 006C 6800              asr [_B]
+ 006E 6E01              rrc [_B+1]
+ 0070 6800              asr [_B]
+ 0072 6E01              rrc [_B+1]
+ 0074                   .dbline 45
+ 0074           ; 
+ 0074           ; //if (Bp^A)//boolean equation for Clockwise turn 
+ 0074           ; if (B^Ap)
+ 0074 5101              mov A,[_B+1]
+ 0076 62D000            mov REG[0xd0],>_Ap
+ 0079 3201              xor A,[_Ap+1]
+ 007B 62D000            mov REG[0xd0],>__r0
+ 007E 5300              mov [__r1],A
+ 0080 62D000            mov REG[0xd0],>_B
+ 0083 5100              mov A,[_B]
+ 0085 62D000            mov REG[0xd0],>_Ap
+ 0088 3200              xor A,[_Ap]
+ 008A 62D000            mov REG[0xd0],>__r0
+ 008D 3900              cmp A,0
+ 008F B006              jnz X1
+ 0091 3C0000            cmp [__r1],0
+ 0094 A03E              jz L9
+ 0096           X1:
+ 0096                   .dbline 47
+ 0096           ;       {
+ 0096           ; if (count<100) // count condition 
+ 0096                   .dbline 47
+ 0096 62D000            mov REG[0xd0],>_count
+ 0099 5101              mov A,[_count+1]
+ 009B 1164              sub A,100
+ 009D 5100              mov A,[_count]
+ 009F 3180              xor A,-128
+ 00A1 1980              sbb A,(0 ^ 0x80)
+ 00A3 D02F              jnc L11
+ 00A5           X2:
+ 00A5                   .dbline 49
+ 00A5           ; {
+ 00A5           ;       count++; //Increment if Count is below 100
+ 00A5                   .dbline 49
+ 00A5 62D000            mov REG[0xd0],>_count
+ 00A8 7601              inc [_count+1]
+ 00AA 0E0000            adc [_count],0
+ 00AD                   .dbline 57
+ 00AD           ; 
+ 00AD           ; //    utoa(countp,count,10);
+ 00AD           ; //    LCD_Position(0, 0);
+ 00AD           ; //    LCD_PrCString("                ");//Clears all previous numbers (prevents 0 from 100 staying)
+ 00AD           ; //    LCD_Position(0, 0);             
+ 00AD           ; //    LCD_PrString(countp);   
+ 00AD           ; 
+ 00AD           ;       LCD_Position(1, 0);     
+ 00AD 10                push X
+ 00AE 5700              mov X,0
+ 00B0 5001              mov A,1
+ 00B2 7C0000            xcall _LCD_Position
+ 00B5                   .dbline 58
+ 00B5           ;       LCD_PrCString("++");//For testing what command(s) have been received 
+ 00B5 5003              mov A,>L13
+ 00B7 08                push A
+ 00B8 5003              mov A,<L13
+ 00BA 5C                mov X,A
+ 00BB 18                pop A
+ 00BC 7C0000            xcall _LCD_PrCString
+ 00BF                   .dbline 59
+ 00BF           ;       LCD_Position(0, 0);
+ 00BF 5000              mov A,0
+ 00C1 5700              mov X,0
+ 00C3 7C0000            xcall _LCD_Position
+ 00C6                   .dbline 60
+ 00C6           ;       LCD_PrHexInt(count);
+ 00C6 62D000            mov REG[0xd0],>_count
+ 00C9 5100              mov A,[_count]
+ 00CB 08                push A
+ 00CC 5101              mov A,[_count+1]
+ 00CE 20                pop X
+ 00CF 7C0000            xcall _LCD_PrHexInt
+ 00D2 20                pop X
+ 00D3                   .dbline 61
+ 00D3           ; }
+ 00D3           L11:
+ 00D3                   .dbline 62
+ 00D3           ;       }
+ 00D3           L9:
+ 00D3                   .dbline 64
+ 00D3           ; 
+ 00D3           ; if (!(B^Ap))  
+ 00D3 62D000            mov REG[0xd0],>_B
+ 00D6 5101              mov A,[_B+1]
+ 00D8 62D000            mov REG[0xd0],>_Ap
+ 00DB 3201              xor A,[_Ap+1]
+ 00DD 62D000            mov REG[0xd0],>__r0
+ 00E0 5300              mov [__r1],A
+ 00E2 62D000            mov REG[0xd0],>_B
+ 00E5 5100              mov A,[_B]
+ 00E7 62D000            mov REG[0xd0],>_Ap
+ 00EA 3200              xor A,[_Ap]
+ 00EC 62D000            mov REG[0xd0],>__r0
+ 00EF 3900              cmp A,0
+ 00F1 B04A              jnz L14
+ 00F3 3C0000            cmp [__r1],0
+ 00F6 B045              jnz L14
+ 00F8           X3:
+ 00F8                   .dbline 67
+ 00F8           ; // if(!(Bp^A)) //Counterclockwise Turn
+ 00F8           ; {
+ 00F8           ; if (count >0) 
+ 00F8                   .dbline 67
+ 00F8 62D000            mov REG[0xd0],>_count
+ 00FB 5000              mov A,0
+ 00FD 1201              sub A,[_count+1]
+ 00FF 5100              mov A,[_count]
+ 0101 3180              xor A,-128
+ 0103 62D000            mov REG[0xd0],>__r0
+ 0106 5300              mov [__rX],A
+ 0108 5080              mov A,(0 ^ 0x80)
+ 010A 1A00              sbb A,[__rX]
+ 010C D02F              jnc L16
+ 010E           X4:
+ 010E                   .dbline 69
+ 010E           ; {
+ 010E           ;       count--; //Decrements count only if count is above 0
+ 010E                   .dbline 69
+ 010E 62D000            mov REG[0xd0],>_count
+ 0111 7A01              dec [_count+1]
+ 0113 1E0000            sbb [_count],0
+ 0116                   .dbline 77
+ 0116           ;       
+ 0116           ; //    utoa(countp,count,10);  //converts count to char to display 
+ 0116           ; //    LCD_Position(0, 0);
+ 0116           ; //    LCD_PrCString("                ");
+ 0116           ; //    LCD_Position(0, 0);
+ 0116           ; //    LCD_PrString(countp);
+ 0116           ;       
+ 0116           ;       LCD_Position(1, 0);     
+ 0116 10                push X
+ 0117 5700              mov X,0
+ 0119 5001              mov A,1
+ 011B 7C0000            xcall _LCD_Position
+ 011E                   .dbline 78
+ 011E           ;       LCD_PrCString("--");
+ 011E 5000              mov A,>L18
+ 0120 08                push A
+ 0121 5000              mov A,<L18
+ 0123 5C                mov X,A
+ 0124 18                pop A
+ 0125 7C0000            xcall _LCD_PrCString
+ 0128                   .dbline 79
+ 0128           ;       LCD_Position(0, 0);
+ 0128 5000              mov A,0
+ 012A 5700              mov X,0
+ 012C 7C0000            xcall _LCD_Position
+ 012F                   .dbline 80
+ 012F           ;       LCD_PrHexInt(count);    
+ 012F 62D000            mov REG[0xd0],>_count
+ 0132 5100              mov A,[_count]
+ 0134 08                push A
+ 0135 5101              mov A,[_count+1]
+ 0137 20                pop X
+ 0138 7C0000            xcall _LCD_PrHexInt
+ 013B 20                pop X
+ 013C                   .dbline 81
+ 013C           ; }
+ 013C           L16:
+ 013C                   .dbline 82
+ 013C           ;       }
+ 013C           L14:
+ 013C                   .dbline 83
+ 013C           ; Ap = A;  //Stores previous encoder values for next cycle
+ 013C 62D000            mov REG[0xd0],>_A
+ 013F 5101              mov A,[_A+1]
+ 0141 08                push A
+ 0142 5100              mov A,[_A]
+ 0144 62D000            mov REG[0xd0],>_Ap
+ 0147 5300              mov [_Ap],A
+ 0149 18                pop A
+ 014A 5301              mov [_Ap+1],A
+ 014C                   .dbline 84
+ 014C           ; Bp = B; 
+ 014C 62D000            mov REG[0xd0],>_B
+ 014F 5101              mov A,[_B+1]
+ 0151 08                push A
+ 0152 5100              mov A,[_B]
+ 0154 62D000            mov REG[0xd0],>_Bp
+ 0157 5300              mov [_Bp],A
+ 0159 18                pop A
+ 015A 5301              mov [_Bp+1],A
+ 015C                   .dbline 85
+ 015C           ;       }
+ 015C           L7:
+ 015C                   .dbline 86
+ 015C           ; }
+ 015C           L5:
+ 015C                   .dbline 31
+ 015C 8EE6              xjmp L4
+ 015E           X0:
+ 015E                   .dbline -2
+ 015E           L1:
+ 015E 38FE              add SP,-2
+ 0160 20                pop X
+ 0161                   .dbline 0 ; func end
+ 0161 8FFF              jmp .
+ 0163                   .dbsym l countp 0 pc
+ 0163                   .dbend
+ 0163                   .dbfunc e PSoC_GPIO_ISR_C _PSoC_GPIO_ISR_C fV
+ 0163           _PSoC_GPIO_ISR_C::
+ 0163                   .dbline -1
+ 0163 71C0              or F,-64
+ 0165 08                push A
+ 0166 5DD0              mov A,REG[0xd0]
+ 0168 08                push A
+ 0169                   .dbline 88
+ 0169           ; }
+ 0169           ; void PSoC_GPIO_ISR_C(void){  //GPIO ISR that raises interupt flag to run subroutine 
+ 0169                   .dbline 90
+ 0169           ; 
+ 0169           ; NewData = TRUE;
+ 0169 62D000            mov REG[0xd0],>_NewData
+ 016C 550001            mov [_NewData],1
+ 016F                   .dbline -2
+ 016F           L19:
+ 016F 18                pop A
+ 0170 60D0              mov REG[208],A
+ 0172 18                pop A
+ 0173                   .dbline 0 ; func end
+ 0173 7E                reti
+ 0174                   .dbend
+                        .area lit(rom, con, rel, lit)
+ 0000           L18:
+ 0000 2D2D00            .byte 45,45,0
+ 0003           L13:
+ 0003 2B2B00            .byte 43,43,0
+ 0006           L3:
+ 0006 353000            .byte 53,48,0
+ 0009           L2:
+ 0009 20202020202020202020202020202020  .byte 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32
+ 0019 00                .byte 0

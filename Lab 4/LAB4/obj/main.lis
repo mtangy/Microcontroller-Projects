@@ -1,0 +1,972 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _Ap::
+ 0000 0000              .word 0
+ 0002                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0002                   .dbsym e Ap _Ap I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _Bp::
+ 0000 0000              .word 0
+ 0002                   .dbsym e Bp _Bp I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _A::
+ 0000 0000              .word 0
+ 0002                   .dbsym e A _A I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _B::
+ 0000 0000              .word 0
+ 0002                   .dbsym e B _B I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _interupt::
+ 0000 00                .byte 0
+ 0001                   .dbsym e interupt _interupt c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _errorOffset::
+ 0000 3F800000          .word 0x3f80,0x0
+ 0004                   .dbsym e errorOffset _errorOffset D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;           freq -> X+0
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3802              add SP,2
+ 0004                   .dbline 40
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // C main line
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include <stdbool.h>
+ 0004           ; 
+ 0004           ; #include <stdio.h>
+ 0004           ; #include <stdlib.h>
+ 0004           ; #include <math.h> 
+ 0004           ; 
+ 0004           ; 
+ 0004           ; 
+ 0004           ; #include <float.h>
+ 0004           ; #include "PSoCGPIOINT.h" 
+ 0004           ; #pragma interrupt_handler PSoC_GPIO_ISR_C
+ 0004           ; 
+ 0004           ; 
+ 0004           ; int Ap =0; //Ap is the prior Encoder port A input 
+ 0004           ; int Bp =0;
+ 0004           ; int A =0;  //A is current Encoder port A input 
+ 0004           ; int B =0;
+ 0004           ; //int T_OUT;
+ 0004           ; 
+ 0004           ; BOOL interupt = FALSE;
+ 0004           ; int period;
+ 0004           ; int compare;
+ 0004           ; 
+ 0004           ; int periodLog;
+ 0004           ; int compareLog;
+ 0004           ; 
+ 0004           ; int integerFreq; 
+ 0004           ; 
+ 0004           ; float OutputF;
+ 0004           ; float errorOffset = 1.0;
+ 0004           ; //float comparef = 2.5;  
+ 0004           ; 
+ 0004           ; 
+ 0004           ; void main(void){
+ 0004                   .dbline 43
+ 0004           ; 
+ 0004           ; char *freq;   
+ 0004           ; period = 1999;
+ 0004 62D000            mov REG[0xd0],>_period
+ 0007 5501CF            mov [_period+1],-49
+ 000A 550007            mov [_period],7
+ 000D                   .dbline 44
+ 000D           ; compare = 1000;
+ 000D 62D000            mov REG[0xd0],>_compare
+ 0010 5501E8            mov [_compare+1],-24
+ 0013 550003            mov [_compare],3
+ 0016                   .dbline 47
+ 0016           ; 
+ 0016           ;       
+ 0016           ; Counter16_Start();
+ 0016 10                push X
+ 0017 7C0000            xcall _Counter16_Start
+ 001A                   .dbline 49
+ 001A           ; //Counter16_1_Start();        
+ 001A           ; Counter16_WritePeriod(period);
+ 001A 62D000            mov REG[0xd0],>_period
+ 001D 5100              mov A,[_period]
+ 001F 08                push A
+ 0020 5101              mov A,[_period+1]
+ 0022 20                pop X
+ 0023 7C0000            xcall _Counter16_WritePeriod
+ 0026                   .dbline 50
+ 0026           ; Counter16_WriteCompareValue(compare); 
+ 0026 62D000            mov REG[0xd0],>_compare
+ 0029 5100              mov A,[_compare]
+ 002B 08                push A
+ 002C 5101              mov A,[_compare+1]
+ 002E 20                pop X
+ 002F 7C0000            xcall _Counter16_WriteCompareValue
+ 0032                   .dbline 60
+ 0032           ; 
+ 0032           ;   
+ 0032           ;      //T_OUT = (Counter16_PERIOD + 1)* T_CLK;
+ 0032           ;        //Counter16_WritePeriod(T_OUT);
+ 0032           ; 
+ 0032           ;      
+ 0032           ;       //Counter16_Start();
+ 0032           ;       //comparef = 2.5;
+ 0032           ; 
+ 0032           ;       LCD_Start();
+ 0032 7C0000            xcall _LCD_Start
+ 0035                   .dbline 61
+ 0035           ;       LCD_Position(0, 0);
+ 0035 5000              mov A,0
+ 0037 5700              mov X,0
+ 0039 7C0000            xcall _LCD_Position
+ 003C                   .dbline 62
+ 003C           ;       LCD_PrCString("Main            ");
+ 003C 5022              mov A,>L2
+ 003E 08                push A
+ 003F 5022              mov A,<L2
+ 0041 5C                mov X,A
+ 0042 18                pop A
+ 0043 7C0000            xcall _LCD_PrCString
+ 0046                   .dbline 63
+ 0046           ;       LCD_Position(1, 0);
+ 0046 5700              mov X,0
+ 0048 5001              mov A,1
+ 004A 7C0000            xcall _LCD_Position
+ 004D                   .dbline 64
+ 004D           ;       LCD_PrCString("                ");      //should clear junk from LCD
+ 004D 5011              mov A,>L3
+ 004F 08                push A
+ 0050 5011              mov A,<L3
+ 0052 5C                mov X,A
+ 0053 18                pop A
+ 0054 7C0000            xcall _LCD_PrCString
+ 0057                   .dbline 68
+ 0057           ;       
+ 0057           ;       
+ 0057           ;       
+ 0057           ;       LCD_Position(1, 0);             
+ 0057 5700              mov X,0
+ 0059 5001              mov A,1
+ 005B 7C0000            xcall _LCD_Position
+ 005E 20                pop X
+ 005F                   .dbline 69
+ 005F           ;       LCD_PrString(freq); //clears previous frequency
+ 005F 10                push X
+ 0060 5200              mov A,[X+0]
+ 0062 08                push A
+ 0063 5201              mov A,[X+1]
+ 0065 5C                mov X,A
+ 0066 18                pop A
+ 0067 7C0000            xcall _LCD_PrString
+ 006A 20                pop X
+ 006B                   .dbline 71
+ 006B           ;       
+ 006B           ;       M8C_EnableIntMask(INT_MSK0,INT_MSK0_GPIO); 
+ 006B 43E020            or REG[0xe0],32
+ 006E                   .dbline 72
+ 006E           ;     M8C_EnableGInt;
+ 006E 7101                      or  F, 01h
+ 0070           
+ 0070 83D6              xjmp L5
+ 0072           L4:
+ 0072                   .dbline 75
+ 0072           ;       
+ 0072           ;       while(1)
+ 0072           ;       {
+ 0072                   .dbline 77
+ 0072           ;           
+ 0072           ;               if(interupt)
+ 0072 62D000            mov REG[0xd0],>_interupt
+ 0075 3C0000            cmp [_interupt],0
+ 0078 A3CE              jz L7
+ 007A                   .dbline 80
+ 007A           ;               {
+ 007A           ;                   
+ 007A           ;                       interupt = FALSE;
+ 007A                   .dbline 80
+ 007A 550000            mov [_interupt],0
+ 007D                   .dbline 82
+ 007D           ;                       
+ 007D           ;                       A = OpEncA_MASK & OpEncA_Data_ADDR;
+ 007D 5D04              mov A,REG[0x4]
+ 007F 2108              and A,8
+ 0081 62D000            mov REG[0xd0],>_A
+ 0084 5301              mov [_A+1],A
+ 0086 5000              mov A,0
+ 0088 2100              and A,0
+ 008A 5300              mov [_A],A
+ 008C                   .dbline 83
+ 008C           ;                       B = OpEncB_MASK & OpEncB_Data_ADDR;
+ 008C 5D04              mov A,REG[0x4]
+ 008E 2120              and A,32
+ 0090 62D000            mov REG[0xd0],>_B
+ 0093 5301              mov [_B+1],A
+ 0095 5000              mov A,0
+ 0097 2100              and A,0
+ 0099 5300              mov [_B],A
+ 009B                   .dbline 85
+ 009B           ;                       
+ 009B           ;                       B=B>>2;
+ 009B 6800              asr [_B]
+ 009D 6E01              rrc [_B+1]
+ 009F 6800              asr [_B]
+ 00A1 6E01              rrc [_B+1]
+ 00A3                   .dbline 87
+ 00A3           ;                       
+ 00A3           ;                   if (Bp^A)//Clockwise turn 
+ 00A3 62D000            mov REG[0xd0],>_Bp
+ 00A6 5101              mov A,[_Bp+1]
+ 00A8 62D000            mov REG[0xd0],>_A
+ 00AB 3201              xor A,[_A+1]
+ 00AD 62D000            mov REG[0xd0],>__r0
+ 00B0 5300              mov [__r1],A
+ 00B2 62D000            mov REG[0xd0],>_Bp
+ 00B5 5100              mov A,[_Bp]
+ 00B7 62D000            mov REG[0xd0],>_A
+ 00BA 3200              xor A,[_A]
+ 00BC 62D000            mov REG[0xd0],>__r0
+ 00BF 3900              cmp A,0
+ 00C1 B006              jnz X1
+ 00C3 3C0000            cmp [__r1],0
+ 00C6 A19D              jz L9
+ 00C8           X1:
+ 00C8                   .dbline 89
+ 00C8           ;                       {
+ 00C8           ;                               if( OutputF >= 100){
+ 00C8                   .dbline 89
+ 00C8 62D000            mov REG[0xd0],>_OutputF
+ 00CB 5042              mov A,66
+ 00CD 08                push A
+ 00CE 50C8              mov A,-56
+ 00D0 08                push A
+ 00D1 5000              mov A,0
+ 00D3 08                push A
+ 00D4 08                push A
+ 00D5 5100              mov A,[_OutputF]
+ 00D7 08                push A
+ 00D8 5101              mov A,[_OutputF+1]
+ 00DA 08                push A
+ 00DB 5102              mov A,[_OutputF+2]
+ 00DD 08                push A
+ 00DE 5103              mov A,[_OutputF+3]
+ 00E0 08                push A
+ 00E1 62D000            mov REG[0xd0],>__r0
+ 00E4 7C0000            xcall __fpcmp
+ 00E7 38F8              add SP,-8
+ 00E9 39FF              cmp A,-1
+ 00EB A178              jz L11
+ 00ED                   .dbline 112
+ 00ED           ; //                            switch (){
+ 00ED           ; //                                    case x:
+ 00ED           ; //                                            
+ 00ED           ; //                                    break;  
+ 00ED           ; //                                    
+ 00ED           ; //                                    case y:
+ 00ED           ; //                            
+ 00ED           ; //                                    break;
+ 00ED           ; //                                            
+ 00ED           ; //                                    case y:
+ 00ED           ; //                            
+ 00ED           ; //                                    break;  
+ 00ED           ; //                                    
+ 00ED           ; //                                    case y:
+ 00ED           ; //                            
+ 00ED           ; //                                    break;          
+ 00ED           ; //                                    
+ 00ED           ; //                                    case y:
+ 00ED           ; //                            
+ 00ED           ; //                                    break;          
+ 00ED           ; //                            }
+ 00ED           ;                               
+ 00ED           ;                               period += 200;
+ 00ED                   .dbline 112
+ 00ED 62D000            mov REG[0xd0],>_period
+ 00F0 0601C8            add [_period+1],-56
+ 00F3 0E0000            adc [_period],0
+ 00F6                   .dbline 113
+ 00F6           ;                 compare = (period+1)/2;
+ 00F6 5101              mov A,[_period+1]
+ 00F8 0101              add A,1
+ 00FA 62D000            mov REG[0xd0],>__r0
+ 00FD 5300              mov [__r1],A
+ 00FF 62D000            mov REG[0xd0],>_period
+ 0102 5100              mov A,[_period]
+ 0104 0900              adc A,0
+ 0106 62D000            mov REG[0xd0],>__r0
+ 0109 5300              mov [__r0],A
+ 010B 5000              mov A,0
+ 010D 08                push A
+ 010E 5002              mov A,2
+ 0110 08                push A
+ 0111 5100              mov A,[__r0]
+ 0113 08                push A
+ 0114 5100              mov A,[__r1]
+ 0116 08                push A
+ 0117 7C0000            xcall __divmod_16X16_16
+ 011A 18                pop A
+ 011B 62D000            mov REG[0xd0],>_compare
+ 011E 5301              mov [_compare+1],A
+ 0120 18                pop A
+ 0121 5300              mov [_compare],A
+ 0123 38FE              add SP,-2
+ 0125                   .dbline 118
+ 0125           ;                               
+ 0125           ;                               //periodLog = log(period);
+ 0125           ;                               //compareLog =(periodLog+1)/2;
+ 0125           ;                               
+ 0125           ;                               Counter16_WritePeriod(period);
+ 0125 10                push X
+ 0126 62D000            mov REG[0xd0],>_period
+ 0129 5100              mov A,[_period]
+ 012B 08                push A
+ 012C 5101              mov A,[_period+1]
+ 012E 20                pop X
+ 012F 7C0000            xcall _Counter16_WritePeriod
+ 0132                   .dbline 119
+ 0132           ;                 Counter16_WriteCompareValue(compare); 
+ 0132 62D000            mov REG[0xd0],>_compare
+ 0135 5100              mov A,[_compare]
+ 0137 08                push A
+ 0138 5101              mov A,[_compare+1]
+ 013A 20                pop X
+ 013B 7C0000            xcall _Counter16_WriteCompareValue
+ 013E 20                pop X
+ 013F                   .dbline 122
+ 013F           ;                               
+ 013F           ;                               
+ 013F           ;                               OutputF = ((100240/(1+period))*20)*errorOffset;
+ 013F 62D000            mov REG[0xd0],>_period
+ 0142 5101              mov A,[_period+1]
+ 0144 0101              add A,1
+ 0146 62D000            mov REG[0xd0],>__r0
+ 0149 5300              mov [__r1],A
+ 014B 62D000            mov REG[0xd0],>_period
+ 014E 5100              mov A,[_period]
+ 0150 0900              adc A,0
+ 0152 62D000            mov REG[0xd0],>__r0
+ 0155 5300              mov [__r0],A
+ 0157 5100              mov A,[__r1]
+ 0159 5300              mov [__r3],A
+ 015B 5100              mov A,[__r0]
+ 015D 5300              mov [__r2],A
+ 015F 470080            tst [__r2],-128
+ 0162 A009              jz X3
+ 0164 5500FF            mov [__r1],-1
+ 0167 5500FF            mov [__r0],-1
+ 016A 800A              jmp X4
+ 016C           X3:
+ 016C 62D000            mov REG[0xd0],>__r0
+ 016F 550000            mov [__r1],0
+ 0172 550000            mov [__r0],0
+ 0175           X4:
+ 0175 62D000            mov REG[0xd0],>__r0
+ 0178 5100              mov A,[__r0]
+ 017A 08                push A
+ 017B 5100              mov A,[__r1]
+ 017D 08                push A
+ 017E 5100              mov A,[__r2]
+ 0180 08                push A
+ 0181 5100              mov A,[__r3]
+ 0183 08                push A
+ 0184 5000              mov A,0
+ 0186 08                push A
+ 0187 5001              mov A,1
+ 0189 08                push A
+ 018A 5087              mov A,-121
+ 018C 08                push A
+ 018D 5090              mov A,-112
+ 018F 08                push A
+ 0190 7C0000            xcall __divmod_32X32_32
+ 0193 18                pop A
+ 0194 5300              mov [__r3],A
+ 0196 18                pop A
+ 0197 5300              mov [__r2],A
+ 0199 18                pop A
+ 019A 5300              mov [__r1],A
+ 019C 18                pop A
+ 019D 38FC              add SP,-4
+ 019F 08                push A
+ 01A0 5100              mov A,[__r1]
+ 01A2 08                push A
+ 01A3 5100              mov A,[__r2]
+ 01A5 08                push A
+ 01A6 5100              mov A,[__r3]
+ 01A8 08                push A
+ 01A9 5000              mov A,0
+ 01AB 08                push A
+ 01AC 08                push A
+ 01AD 08                push A
+ 01AE 5014              mov A,20
+ 01B0 08                push A
+ 01B1 7C0000            xcall __mul_32X32_32
+ 01B4 38FC              add SP,-4
+ 01B6 18                pop A
+ 01B7 5300              mov [__r3],A
+ 01B9 18                pop A
+ 01BA 5300              mov [__r2],A
+ 01BC 18                pop A
+ 01BD 5300              mov [__r1],A
+ 01BF 18                pop A
+ 01C0 08                push A
+ 01C1 5100              mov A,[__r1]
+ 01C3 08                push A
+ 01C4 5100              mov A,[__r2]
+ 01C6 08                push A
+ 01C7 5100              mov A,[__r3]
+ 01C9 08                push A
+ 01CA 7C0000            xcall __long2fp
+ 01CD 18                pop A
+ 01CE 5300              mov [__r3],A
+ 01D0 18                pop A
+ 01D1 5300              mov [__r2],A
+ 01D3 18                pop A
+ 01D4 5300              mov [__r1],A
+ 01D6 18                pop A
+ 01D7 5300              mov [__r0],A
+ 01D9 62D000            mov REG[0xd0],>_errorOffset
+ 01DC 5100              mov A,[_errorOffset]
+ 01DE 08                push A
+ 01DF 5101              mov A,[_errorOffset+1]
+ 01E1 08                push A
+ 01E2 5102              mov A,[_errorOffset+2]
+ 01E4 08                push A
+ 01E5 5103              mov A,[_errorOffset+3]
+ 01E7 08                push A
+ 01E8 62D000            mov REG[0xd0],>__r0
+ 01EB 5100              mov A,[__r0]
+ 01ED 08                push A
+ 01EE 5100              mov A,[__r1]
+ 01F0 08                push A
+ 01F1 5100              mov A,[__r2]
+ 01F3 08                push A
+ 01F4 5100              mov A,[__r3]
+ 01F6 08                push A
+ 01F7 7C0000            xcall __fpmul
+ 01FA 18                pop A
+ 01FB 62D000            mov REG[0xd0],>_OutputF
+ 01FE 5303              mov [_OutputF+3],A
+ 0200 18                pop A
+ 0201 5302              mov [_OutputF+2],A
+ 0203 18                pop A
+ 0204 5301              mov [_OutputF+1],A
+ 0206 18                pop A
+ 0207 5300              mov [_OutputF],A
+ 0209 38FC              add SP,-4
+ 020B                   .dbline 123
+ 020B           ;                               freq = ftoa(OutputF,&integerFreq);
+ 020B 5000              mov A,>_integerFreq
+ 020D 08                push A
+ 020E 5000              mov A,<_integerFreq
+ 0210 08                push A
+ 0211 5100              mov A,[_OutputF]
+ 0213 08                push A
+ 0214 5101              mov A,[_OutputF+1]
+ 0216 08                push A
+ 0217 5102              mov A,[_OutputF+2]
+ 0219 08                push A
+ 021A 5103              mov A,[_OutputF+3]
+ 021C 08                push A
+ 021D 7C0000            xcall _ftoa
+ 0220 38FA              add SP,-6
+ 0222 62D000            mov REG[0xd0],>__r0
+ 0225 5100              mov A,[__r1]
+ 0227 5401              mov [X+1],A
+ 0229 5100              mov A,[__r0]
+ 022B 5400              mov [X+0],A
+ 022D                   .dbline 126
+ 022D           ;                       
+ 022D           ;                               
+ 022D           ;                                   LCD_Position(0, 0); 
+ 022D 10                push X
+ 022E 5000              mov A,0
+ 0230 5700              mov X,0
+ 0232 7C0000            xcall _LCD_Position
+ 0235                   .dbline 127
+ 0235           ;                                   LCD_PrCString("Frequency(Hz):  "); //Initalizes frequency display 
+ 0235 5000              mov A,>L13
+ 0237 08                push A
+ 0238 5000              mov A,<L13
+ 023A 5C                mov X,A
+ 023B 18                pop A
+ 023C 7C0000            xcall _LCD_PrCString
+ 023F                   .dbline 129
+ 023F           ;       
+ 023F           ;                                       LCD_Position(1, 0);             
+ 023F 5700              mov X,0
+ 0241 5001              mov A,1
+ 0243 7C0000            xcall _LCD_Position
+ 0246                   .dbline 130
+ 0246           ;                                       LCD_PrCString("                "); //clears previous frequency
+ 0246 5011              mov A,>L3
+ 0248 08                push A
+ 0249 5011              mov A,<L3
+ 024B 5C                mov X,A
+ 024C 18                pop A
+ 024D 7C0000            xcall _LCD_PrCString
+ 0250                   .dbline 132
+ 0250           ;                                       
+ 0250           ;                                   LCD_Position(1, 0);         
+ 0250 5700              mov X,0
+ 0252 5001              mov A,1
+ 0254 7C0000            xcall _LCD_Position
+ 0257 20                pop X
+ 0258                   .dbline 133
+ 0258           ;                                       LCD_PrString(freq); //displays new frequency 
+ 0258 10                push X
+ 0259 5200              mov A,[X+0]
+ 025B 08                push A
+ 025C 5201              mov A,[X+1]
+ 025E 5C                mov X,A
+ 025F 18                pop A
+ 0260 7C0000            xcall _LCD_PrString
+ 0263 20                pop X
+ 0264                   .dbline 138
+ 0264           ;                                       
+ 0264           ;                               
+ 0264           ;                               
+ 0264           ;                               //itoa(freq, integerFreq, 10);
+ 0264           ;                               }
+ 0264           L11:
+ 0264                   .dbline 140
+ 0264           ;                                       
+ 0264           ;                       }
+ 0264           L9:
+ 0264                   .dbline 142
+ 0264           ;                       
+ 0264           ;                        if(!(Bp^A)) //Counterclockwise Turn
+ 0264 62D000            mov REG[0xd0],>_Bp
+ 0267 5101              mov A,[_Bp+1]
+ 0269 62D000            mov REG[0xd0],>_A
+ 026C 3201              xor A,[_A+1]
+ 026E 62D000            mov REG[0xd0],>__r0
+ 0271 5300              mov [__r1],A
+ 0273 62D000            mov REG[0xd0],>_Bp
+ 0276 5100              mov A,[_Bp]
+ 0278 62D000            mov REG[0xd0],>_A
+ 027B 3200              xor A,[_A]
+ 027D 62D000            mov REG[0xd0],>__r0
+ 0280 3900              cmp A,0
+ 0282 B1A4              jnz L14
+ 0284 3C0000            cmp [__r1],0
+ 0287 B19F              jnz L14
+ 0289           X5:
+ 0289                   .dbline 144
+ 0289           ;                       {
+ 0289           ;                               if(OutputF <= 10000 ){
+ 0289                   .dbline 144
+ 0289 62D000            mov REG[0xd0],>_OutputF
+ 028C 5046              mov A,70
+ 028E 08                push A
+ 028F 501C              mov A,28
+ 0291 08                push A
+ 0292 5040              mov A,64
+ 0294 08                push A
+ 0295 5000              mov A,0
+ 0297 08                push A
+ 0298 5100              mov A,[_OutputF]
+ 029A 08                push A
+ 029B 5101              mov A,[_OutputF+1]
+ 029D 08                push A
+ 029E 5102              mov A,[_OutputF+2]
+ 02A0 08                push A
+ 02A1 5103              mov A,[_OutputF+3]
+ 02A3 08                push A
+ 02A4 62D000            mov REG[0xd0],>__r0
+ 02A7 7C0000            xcall __fpcmp
+ 02AA 38F8              add SP,-8
+ 02AC 3901              cmp A,1
+ 02AE A178              jz L16
+ 02B0                   .dbline 160
+ 02B0           ;                               
+ 02B0           ; //                                    switch (){
+ 02B0           ; //                                    case x:
+ 02B0           ; //                                            
+ 02B0           ; //                                    break;  
+ 02B0           ; //                                    
+ 02B0           ; //                                    case y:
+ 02B0           ; //                            
+ 02B0           ; //                                    break;
+ 02B0           ; //                                            
+ 02B0           ; //                                    case y:
+ 02B0           ; //                            
+ 02B0           ; //                                    break;  
+ 02B0           ; //                            }
+ 02B0           ;                               
+ 02B0           ;                               period -= 200;
+ 02B0                   .dbline 160
+ 02B0 62D000            mov REG[0xd0],>_period
+ 02B3 1601C8            sub [_period+1],-56
+ 02B6 1E0000            sbb [_period],0
+ 02B9                   .dbline 161
+ 02B9           ;                 compare = (period+1)/2;
+ 02B9 5101              mov A,[_period+1]
+ 02BB 0101              add A,1
+ 02BD 62D000            mov REG[0xd0],>__r0
+ 02C0 5300              mov [__r1],A
+ 02C2 62D000            mov REG[0xd0],>_period
+ 02C5 5100              mov A,[_period]
+ 02C7 0900              adc A,0
+ 02C9 62D000            mov REG[0xd0],>__r0
+ 02CC 5300              mov [__r0],A
+ 02CE 5000              mov A,0
+ 02D0 08                push A
+ 02D1 5002              mov A,2
+ 02D3 08                push A
+ 02D4 5100              mov A,[__r0]
+ 02D6 08                push A
+ 02D7 5100              mov A,[__r1]
+ 02D9 08                push A
+ 02DA 7C0000            xcall __divmod_16X16_16
+ 02DD 18                pop A
+ 02DE 62D000            mov REG[0xd0],>_compare
+ 02E1 5301              mov [_compare+1],A
+ 02E3 18                pop A
+ 02E4 5300              mov [_compare],A
+ 02E6 38FE              add SP,-2
+ 02E8                   .dbline 165
+ 02E8           ;                               
+ 02E8           ;                               //periodLog = log(period);
+ 02E8           ;                               //compareLog = log(compare);
+ 02E8           ;                 Counter16_WritePeriod(period);
+ 02E8 10                push X
+ 02E9 62D000            mov REG[0xd0],>_period
+ 02EC 5100              mov A,[_period]
+ 02EE 08                push A
+ 02EF 5101              mov A,[_period+1]
+ 02F1 20                pop X
+ 02F2 7C0000            xcall _Counter16_WritePeriod
+ 02F5                   .dbline 166
+ 02F5           ;                 Counter16_WriteCompareValue(compare); 
+ 02F5 62D000            mov REG[0xd0],>_compare
+ 02F8 5100              mov A,[_compare]
+ 02FA 08                push A
+ 02FB 5101              mov A,[_compare+1]
+ 02FD 20                pop X
+ 02FE 7C0000            xcall _Counter16_WriteCompareValue
+ 0301 20                pop X
+ 0302                   .dbline 168
+ 0302           ;                               
+ 0302           ;                                   OutputF = ((100240/(1+period))*20)*errorOffset;
+ 0302 62D000            mov REG[0xd0],>_period
+ 0305 5101              mov A,[_period+1]
+ 0307 0101              add A,1
+ 0309 62D000            mov REG[0xd0],>__r0
+ 030C 5300              mov [__r1],A
+ 030E 62D000            mov REG[0xd0],>_period
+ 0311 5100              mov A,[_period]
+ 0313 0900              adc A,0
+ 0315 62D000            mov REG[0xd0],>__r0
+ 0318 5300              mov [__r0],A
+ 031A 5100              mov A,[__r1]
+ 031C 5300              mov [__r3],A
+ 031E 5100              mov A,[__r0]
+ 0320 5300              mov [__r2],A
+ 0322 470080            tst [__r2],-128
+ 0325 A009              jz X7
+ 0327 5500FF            mov [__r1],-1
+ 032A 5500FF            mov [__r0],-1
+ 032D 800A              jmp X8
+ 032F           X7:
+ 032F 62D000            mov REG[0xd0],>__r0
+ 0332 550000            mov [__r1],0
+ 0335 550000            mov [__r0],0
+ 0338           X8:
+ 0338 62D000            mov REG[0xd0],>__r0
+ 033B 5100              mov A,[__r0]
+ 033D 08                push A
+ 033E 5100              mov A,[__r1]
+ 0340 08                push A
+ 0341 5100              mov A,[__r2]
+ 0343 08                push A
+ 0344 5100              mov A,[__r3]
+ 0346 08                push A
+ 0347 5000              mov A,0
+ 0349 08                push A
+ 034A 5001              mov A,1
+ 034C 08                push A
+ 034D 5087              mov A,-121
+ 034F 08                push A
+ 0350 5090              mov A,-112
+ 0352 08                push A
+ 0353 7C0000            xcall __divmod_32X32_32
+ 0356 18                pop A
+ 0357 5300              mov [__r3],A
+ 0359 18                pop A
+ 035A 5300              mov [__r2],A
+ 035C 18                pop A
+ 035D 5300              mov [__r1],A
+ 035F 18                pop A
+ 0360 38FC              add SP,-4
+ 0362 08                push A
+ 0363 5100              mov A,[__r1]
+ 0365 08                push A
+ 0366 5100              mov A,[__r2]
+ 0368 08                push A
+ 0369 5100              mov A,[__r3]
+ 036B 08                push A
+ 036C 5000              mov A,0
+ 036E 08                push A
+ 036F 08                push A
+ 0370 08                push A
+ 0371 5014              mov A,20
+ 0373 08                push A
+ 0374 7C0000            xcall __mul_32X32_32
+ 0377 38FC              add SP,-4
+ 0379 18                pop A
+ 037A 5300              mov [__r3],A
+ 037C 18                pop A
+ 037D 5300              mov [__r2],A
+ 037F 18                pop A
+ 0380 5300              mov [__r1],A
+ 0382 18                pop A
+ 0383 08                push A
+ 0384 5100              mov A,[__r1]
+ 0386 08                push A
+ 0387 5100              mov A,[__r2]
+ 0389 08                push A
+ 038A 5100              mov A,[__r3]
+ 038C 08                push A
+ 038D 7C0000            xcall __long2fp
+ 0390 18                pop A
+ 0391 5300              mov [__r3],A
+ 0393 18                pop A
+ 0394 5300              mov [__r2],A
+ 0396 18                pop A
+ 0397 5300              mov [__r1],A
+ 0399 18                pop A
+ 039A 5300              mov [__r0],A
+ 039C 62D000            mov REG[0xd0],>_errorOffset
+ 039F 5100              mov A,[_errorOffset]
+ 03A1 08                push A
+ 03A2 5101              mov A,[_errorOffset+1]
+ 03A4 08                push A
+ 03A5 5102              mov A,[_errorOffset+2]
+ 03A7 08                push A
+ 03A8 5103              mov A,[_errorOffset+3]
+ 03AA 08                push A
+ 03AB 62D000            mov REG[0xd0],>__r0
+ 03AE 5100              mov A,[__r0]
+ 03B0 08                push A
+ 03B1 5100              mov A,[__r1]
+ 03B3 08                push A
+ 03B4 5100              mov A,[__r2]
+ 03B6 08                push A
+ 03B7 5100              mov A,[__r3]
+ 03B9 08                push A
+ 03BA 7C0000            xcall __fpmul
+ 03BD 18                pop A
+ 03BE 62D000            mov REG[0xd0],>_OutputF
+ 03C1 5303              mov [_OutputF+3],A
+ 03C3 18                pop A
+ 03C4 5302              mov [_OutputF+2],A
+ 03C6 18                pop A
+ 03C7 5301              mov [_OutputF+1],A
+ 03C9 18                pop A
+ 03CA 5300              mov [_OutputF],A
+ 03CC 38FC              add SP,-4
+ 03CE                   .dbline 169
+ 03CE           ;                                       freq = ftoa(OutputF,&integerFreq);
+ 03CE 5000              mov A,>_integerFreq
+ 03D0 08                push A
+ 03D1 5000              mov A,<_integerFreq
+ 03D3 08                push A
+ 03D4 5100              mov A,[_OutputF]
+ 03D6 08                push A
+ 03D7 5101              mov A,[_OutputF+1]
+ 03D9 08                push A
+ 03DA 5102              mov A,[_OutputF+2]
+ 03DC 08                push A
+ 03DD 5103              mov A,[_OutputF+3]
+ 03DF 08                push A
+ 03E0 7C0000            xcall _ftoa
+ 03E3 38FA              add SP,-6
+ 03E5 62D000            mov REG[0xd0],>__r0
+ 03E8 5100              mov A,[__r1]
+ 03EA 5401              mov [X+1],A
+ 03EC 5100              mov A,[__r0]
+ 03EE 5400              mov [X+0],A
+ 03F0                   .dbline 173
+ 03F0           ;                               
+ 03F0           ;                               
+ 03F0           ;                                       //itoa(freq, integerFreq, 10);
+ 03F0           ;                                       LCD_Position(0, 0);     
+ 03F0 10                push X
+ 03F1 5000              mov A,0
+ 03F3 5700              mov X,0
+ 03F5 7C0000            xcall _LCD_Position
+ 03F8                   .dbline 174
+ 03F8           ;                                       LCD_PrCString("Frequency(Hz):  "); //Initalizes frequency display 
+ 03F8 5000              mov A,>L13
+ 03FA 08                push A
+ 03FB 5000              mov A,<L13
+ 03FD 5C                mov X,A
+ 03FE 18                pop A
+ 03FF 7C0000            xcall _LCD_PrCString
+ 0402                   .dbline 177
+ 0402           ;       
+ 0402           ;                               
+ 0402           ;                                   LCD_Position(1, 0);         
+ 0402 5700              mov X,0
+ 0404 5001              mov A,1
+ 0406 7C0000            xcall _LCD_Position
+ 0409                   .dbline 178
+ 0409           ;                                       LCD_PrCString("                "); //clears previous frequency 
+ 0409 5011              mov A,>L3
+ 040B 08                push A
+ 040C 5011              mov A,<L3
+ 040E 5C                mov X,A
+ 040F 18                pop A
+ 0410 7C0000            xcall _LCD_PrCString
+ 0413                   .dbline 179
+ 0413           ;                                   LCD_Position(1, 0);         
+ 0413 5700              mov X,0
+ 0415 5001              mov A,1
+ 0417 7C0000            xcall _LCD_Position
+ 041A 20                pop X
+ 041B                   .dbline 180
+ 041B           ;                                       LCD_PrString(freq); //displays new frequency 
+ 041B 10                push X
+ 041C 5200              mov A,[X+0]
+ 041E 08                push A
+ 041F 5201              mov A,[X+1]
+ 0421 5C                mov X,A
+ 0422 18                pop A
+ 0423 7C0000            xcall _LCD_PrString
+ 0426 20                pop X
+ 0427                   .dbline 181
+ 0427           ;                               }
+ 0427           L16:
+ 0427                   .dbline 182
+ 0427           ;                       }
+ 0427           L14:
+ 0427                   .dbline 183
+ 0427           ;                       Ap = A;  //Stores current data to Ap and Bp for next cycle
+ 0427 62D000            mov REG[0xd0],>_A
+ 042A 5101              mov A,[_A+1]
+ 042C 08                push A
+ 042D 5100              mov A,[_A]
+ 042F 62D000            mov REG[0xd0],>_Ap
+ 0432 5300              mov [_Ap],A
+ 0434 18                pop A
+ 0435 5301              mov [_Ap+1],A
+ 0437                   .dbline 184
+ 0437           ;                       Bp = B; 
+ 0437 62D000            mov REG[0xd0],>_B
+ 043A 5101              mov A,[_B+1]
+ 043C 08                push A
+ 043D 5100              mov A,[_B]
+ 043F 62D000            mov REG[0xd0],>_Bp
+ 0442 5300              mov [_Bp],A
+ 0444 18                pop A
+ 0445 5301              mov [_Bp+1],A
+ 0447                   .dbline 186
+ 0447           ;                               
+ 0447           ;               }
+ 0447           L7:
+ 0447                   .dbline 188
+ 0447           ; 
+ 0447           ;       }
+ 0447           L5:
+ 0447                   .dbline 74
+ 0447 8C2A              xjmp L4
+ 0449           X0:
+ 0449                   .dbline -2
+ 0449           L1:
+ 0449 38FE              add SP,-2
+ 044B 20                pop X
+ 044C                   .dbline 0 ; func end
+ 044C 8FFF              jmp .
+ 044E                   .dbsym l freq 0 pc
+ 044E                   .dbend
+ 044E                   .dbfunc e PSoC_GPIO_ISR_C _PSoC_GPIO_ISR_C fV
+ 044E           _PSoC_GPIO_ISR_C::
+ 044E                   .dbline -1
+ 044E 71C0              or F,-64
+ 0450 08                push A
+ 0451 5DD0              mov A,REG[0xd0]
+ 0453 08                push A
+ 0454                   .dbline 191
+ 0454           ; 
+ 0454           ; }
+ 0454           ; void PSoC_GPIO_ISR_C(void){
+ 0454                   .dbline 193
+ 0454           ;       
+ 0454           ;       interupt = TRUE;
+ 0454 62D000            mov REG[0xd0],>_interupt
+ 0457 550001            mov [_interupt],1
+ 045A                   .dbline -2
+ 045A           L18:
+ 045A 18                pop A
+ 045B 60D0              mov REG[208],A
+ 045D 18                pop A
+ 045E                   .dbline 0 ; func end
+ 045E 7E                reti
+ 045F                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _OutputF::
+ 0000 00000000          .byte 0,0,0,0
+ 0004                   .dbsym e OutputF _OutputF D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _integerFreq::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e integerFreq _integerFreq I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _compareLog::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e compareLog _compareLog I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _periodLog::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e periodLog _periodLog I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _compare::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e compare _compare I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB4\LAB4\main.c
+ 0000           _period::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e period _period I
+                        .area lit(rom, con, rel, lit)
+ 0000           L13:
+ 0000 4672657175656E637928487A293A2020  .byte 'F,'r,'e,'q,'u,'e,'n,'c,'y,40,'H,'z,41,58,32,32
+ 0010 00                .byte 0
+ 0011           L3:
+ 0011 20202020202020202020202020202020  .byte 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32
+ 0021 00                .byte 0
+ 0022           L2:
+ 0022 4D61696E202020202020202020202020  .byte 'M,'a,'i,'n,32,32,32,32,32,32,32,32,32,32,32,32
+ 0032 00                .byte 0

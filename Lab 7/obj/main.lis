@@ -1,0 +1,2920 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _parseCounter::
+ 0000 0000              .word 0
+ 0002                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0002                   .dbsym e parseCounter _parseCounter I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _stringSize::
+ 0000 0000              .word 0
+ 0002                   .dbsym e stringSize _stringSize I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _temp::
+ 0000 00                .byte 0
+ 0001                   .dbsym e temp _temp c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _addressInt::
+ 0000 0000              .word 0
+ 0002                   .dbsym e addressInt _addressInt I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _Interupt::
+ 0000 00                .byte 0
+ 0001                   .dbsym e Interupt _Interupt c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _hexOrAscii::
+ 0000 00                .byte 0
+ 0001                   .dbsym e hexOrAscii _hexOrAscii c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _finishFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e finishFlag _finishFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _invaildFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e invaildFlag _invaildFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _readOrWrite::
+ 0000 00                .byte 0
+ 0001                   .dbsym e readOrWrite _readOrWrite c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _firstPass::
+ 0000 01                .byte 1
+ 0001                   .dbsym e firstPass _firstPass c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _THF::
+ 0000 40                .byte 64
+ 0001                   .dbsym e THF _THF c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _TLF::
+ 0000 20                .byte 32
+ 0001                   .dbsym e TLF _TLF c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _tempRead::
+ 0000 AA                .byte 170
+ 0001                   .dbsym e tempRead _tempRead c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _tempStartConvert::
+ 0000 EE                .byte 238
+ 0001                   .dbsym e tempStartConvert _tempStartConvert c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _tempStopConvert::
+ 0000 22                .byte 34
+ 0001                   .dbsym e tempStopConvert _tempStopConvert c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _accessConfigReg::
+ 0000 AC                .byte 172
+ 0001                   .dbsym e accessConfigReg _accessConfigReg c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _accessTL::
+ 0000 A2                .byte 162
+ 0001                   .dbsym e accessTL _accessTL c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _accessTH::
+ 0000 A1                .byte 161
+ 0001                   .dbsym e accessTH _accessTH c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _charIn::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn _charIn c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _charIn1::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn1 _charIn1 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _charIn2::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn2 _charIn2 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _charIn3::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn3 _charIn3 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _charIn4::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn4 _charIn4 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _instBuffer::
+ 0000 00                .byte 0
+ 0001                   .dbsym e instBuffer _instBuffer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _placeCounter::
+ 0000 0000              .word 0
+ 0002                   .dbsym e placeCounter _placeCounter I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _update::
+ 0000 00                .byte 0
+ 0001                   .dbsym e update _update c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+                        .area lit(rom, con, rel, lit)
+ 0000           _welcome::
+ 0000 57656C636F6D6520746F206F75722050  .byte 'W,'e,'l,'c,'o,'m,'e,32,'t,'o,32,'o,'u,'r,32,'P
+ 0010 726F6772616D6D61626C652054686572  .byte 'r,'o,'g,'r,'a,'m,'m,'a,'b,'l,'e,32,'T,'h,'e,'r
+ 0020 6D6F737461742100  .byte 'm,'o,'s,'t,'a,'t,33,0
+ 0028                   .dbsym e welcome _welcome A[40:40]kc
+ 0028           _setTempraturePrompt::
+ 0028 546F20736574207468652074656D7072  .byte 'T,'o,32,'s,'e,'t,32,'t,'h,'e,32,'t,'e,'m,'p,'r
+ 0038 617475726520656E7465722069742069  .byte 'a,'t,'u,'r,'e,32,'e,'n,'t,'e,'r,32,'i,'t,32,'i
+ 0048 6E2074686520666F6C6C6F77696E6720  .byte 'n,32,'t,'h,'e,32,'f,'o,'l,'l,'o,'w,'i,'n,'g,32
+ 0058 666F726D61743A202753202323272028  .byte 'f,'o,'r,'m,'a,'t,58,32,39,'S,32,35,35,39,32,40
+ 0068 23232069732074686520646573697265  .byte 35,35,32,'i,'s,32,'t,'h,'e,32,'d,'e,'s,'i,'r,'e
+ 0078 642074656D7072617475726520696E20  .byte 'd,32,'t,'e,'m,'p,'r,'a,'t,'u,'r,'e,32,'i,'n,32
+ 0088 43656C736975732900        .byte 'C,'e,'l,'s,'i,'u,'s,41,0
+ 0091                   .dbsym e setTempraturePrompt _setTempraturePrompt A[105:105]kc
+ 0091           _setTolerancePrompt::
+ 0091 546F207365742074686520746F6C6572  .byte 'T,'o,32,'s,'e,'t,32,'t,'h,'e,32,'t,'o,'l,'e,'r
+ 00A1 616E636520656E74657220697420696E  .byte 'a,'n,'c,'e,32,'e,'n,'t,'e,'r,32,'i,'t,32,'i,'n
+ 00B1 2074686520666F6C6C6F77696E672066  .byte 32,'t,'h,'e,32,'f,'o,'l,'l,'o,'w,'i,'n,'g,32,'f
+ 00C1 6F726D61743A20275420232720282320  .byte 'o,'r,'m,'a,'t,58,32,39,'T,32,35,39,32,40,35,32
+ 00D1 697320746865207769647468206F6620  .byte 'i,'s,32,'t,'h,'e,32,'w,'i,'d,'t,'h,32,'o,'f,32
+ 00E1 7468652074656D707261747572652074  .byte 't,'h,'e,32,'t,'e,'m,'p,'r,'a,'t,'u,'r,'e,32,'t
+ 00F1 6F6C6572616E636520696E2043656C73  .byte 'o,'l,'e,'r,'a,'n,'c,'e,32,'i,'n,32,'C,'e,'l,'s
+ 0101 6975732900        .byte 'i,'u,'s,41,0
+ 0106                   .dbsym e setTolerancePrompt _setTolerancePrompt A[117:117]kc
+ 0106           _setThermModePrompt::
+ 0106 546F207365742074686520746865726D  .byte 'T,'o,32,'s,'e,'t,32,'t,'h,'e,32,'t,'h,'e,'r,'m
+ 0116 6F73746174206D6F646520656E746572  .byte 'o,'s,'t,'a,'t,32,'m,'o,'d,'e,32,'e,'n,'t,'e,'r
+ 0126 20697420697420696E2074686520666F  .byte 32,'i,'t,32,'i,'t,32,'i,'n,32,'t,'h,'e,32,'f,'o
+ 0136 6C6C6F77696E6720666F726D61743A20  .byte 'l,'l,'o,'w,'i,'n,'g,32,'f,'o,'r,'m,'a,'t,58,32
+ 0146 274D2058272028582073686F756C6420  .byte 39,'M,32,'X,39,32,40,'X,32,'s,'h,'o,'u,'l,'d,32
+ 0156 62652073657420746F204320666F7220  .byte 'b,'e,32,'s,'e,'t,32,'t,'o,32,'C,32,'f,'o,'r,32
+ 0166 636F6F6C2C204820666F722068656174  .byte 'c,'o,'o,'l,44,32,'H,32,'f,'o,'r,32,'h,'e,'a,'t
+ 0176 20616E64204620666F72206F66662900  .byte 32,'a,'n,'d,32,'F,32,'f,'o,'r,32,'o,'f,'f,41,0
+ 0186                   .dbsym e setThermModePrompt _setThermModePrompt A[128:128]kc
+ 0186           _setFanModePrompt::
+ 0186 546F2073657420746865206D6F646520  .byte 'T,'o,32,'s,'e,'t,32,'t,'h,'e,32,'m,'o,'d,'e,32
+ 0196 6F66207468652066616E20656E746572  .byte 'o,'f,32,'t,'h,'e,32,'f,'a,'n,32,'e,'n,'t,'e,'r
+ 01A6 20697420696E2074686520666F6C6C6F  .byte 32,'i,'t,32,'i,'n,32,'t,'h,'e,32,'f,'o,'l,'l,'o
+ 01B6 77696E6720666F726D61743A20274620  .byte 'w,'i,'n,'g,32,'f,'o,'r,'m,'a,'t,58,32,39,'F,32
+ 01C6 58272028582073686F756C6420626520  .byte 'X,39,32,40,'X,32,'s,'h,'o,'u,'l,'d,32,'b,'e,32
+ 01D6 73657420746F204120666F7220617574  .byte 's,'e,'t,32,'t,'o,32,'A,32,'f,'o,'r,32,'a,'u,'t
+ 01E6 6F6D617469632066616E20616E64204D  .byte 'o,'m,'a,'t,'i,'c,32,'f,'a,'n,32,'a,'n,'d,32,'M
+ 01F6 20666F72206D616E75616C2077686963  .byte 32,'f,'o,'r,32,'m,'a,'n,'u,'a,'l,32,'w,'h,'i,'c
+ 0206 68206B65657073207468652066616E20  .byte 'h,32,'k,'e,'e,'p,'s,32,'t,'h,'e,32,'f,'a,'n,32
+ 0216 6F6E20616C6C207468652074696D6529  .byte 'o,'n,32,'a,'l,'l,32,'t,'h,'e,32,'t,'i,'m,'e,41
+ 0226 00                .byte 0
+ 0227                   .dbsym e setFanModePrompt _setFanModePrompt A[161:161]kc
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 136
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; #include <string.h>
+ 0000           ; #include "string.h"
+ 0000           ; #include "PSoCGPIOINT.h"
+ 0000           ; #include "stdlib.h"
+ 0000           ; #include <stdio.h>
+ 0000           ; #include <stdlib.h>
+ 0000           ; #include "I2CHWMstr.h"
+ 0000           ; 
+ 0000           ; #pragma interrupt_handler TempReset 
+ 0000           ; #pragma interrupt_handler T_INT
+ 0000           ; 
+ 0000           ; 
+ 0000           ; 
+ 0000           ; 
+ 0000           ; BYTE currentTempA[2];
+ 0000           ; BYTE currentTemp;
+ 0000           ; BYTE currentTemp1;
+ 0000           ; BYTE currentTemp2;
+ 0000           ; BYTE POLbitFlip[2];
+ 0000           ; 
+ 0000           ; char string0[17];
+ 0000           ; char string1[17];
+ 0000           ; char string2[17];
+ 0000           ; char string3[17];
+ 0000           ; char* tempP;
+ 0000           ; 
+ 0000           ; char* configOutP;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; char TH;
+ 0000           ; char TL;
+ 0000           ; 
+ 0000           ; char* THP;
+ 0000           ; char* TLP;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; char messageString[79];
+ 0000           ; int parseCounter=0;
+ 0000           ; int stringSize=0;
+ 0000           ; char temp = 0;
+ 0000           ; int addressInt=0;
+ 0000           ; char addressHex;
+ 0000           ; int i;
+ 0000           ; int j;
+ 0000           ; char sizeOfString;
+ 0000           ; char command;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; BOOL Interupt = FALSE;
+ 0000           ; BOOL hexOrAscii = FALSE;
+ 0000           ; BOOL finishFlag = FALSE;
+ 0000           ; BOOL invaildFlag = FALSE;
+ 0000           ; BOOL readOrWrite = FALSE;
+ 0000           ; BOOL firstPass = TRUE;
+ 0000           ; BOOL fanOn;
+ 0000           ; /* Define slave address */
+ 0000           ; 
+ 0000           ; #define ThermoStat 0x48
+ 0000           ; 
+ 0000           ; BYTE THF = 0x40;
+ 0000           ; BYTE TLF = 0x20;
+ 0000           ; 
+ 0000           ; /* Define command set */
+ 0000           ; BYTE tempRead = 0xAA;
+ 0000           ; BYTE tempStartConvert = 0xEE;
+ 0000           ; BYTE tempStopConvert = 0x22;
+ 0000           ; BYTE accessConfigReg = 0xAC;
+ 0000           ; BYTE accessTL = 0xA2;
+ 0000           ; BYTE accessTH = 0xA1;
+ 0000           ; 
+ 0000           ; /* Define buffer size */
+ 0000           ; #define BUFFER_SIZE 0xFF
+ 0000           ; 
+ 0000           ; BYTE txBuffer[BUFFER_SIZE];
+ 0000           ; BYTE rxBuffer[2];
+ 0000           ; 
+ 0000           ; BYTE THvalue[3];
+ 0000           ; BYTE TLvalue[3];
+ 0000           ; 
+ 0000           ; BYTE THvalueTest[2];
+ 0000           ; BYTE TLvalueTest[2];
+ 0000           ; 
+ 0000           ; BYTE status;
+ 0000           ; BYTE configOut[2];
+ 0000           ; BYTE configOut2[2];
+ 0000           ; 
+ 0000           ; 
+ 0000           ; //int configOutReg;
+ 0000           ; BYTE* Address_Pointer;
+ 0000           ; 
+ 0000           ; BYTE Read_Address;
+ 0000           ; BYTE Write_Address;
+ 0000           ; char temp1;
+ 0000           ; char temp2;
+ 0000           ; char temp3;
+ 0000           ; char charIn = '\0';
+ 0000           ; char charIn1= '\0';
+ 0000           ; char charIn2= '\0';
+ 0000           ; char charIn3= '\0';
+ 0000           ; char charIn4= '\0';
+ 0000           ; 
+ 0000           ; char instBuffer= '\0';
+ 0000           ; int placeCounter = 0;
+ 0000           ; int count;
+ 0000           ; char tolerence;
+ 0000           ; BOOL heatOrCool;
+ 0000           ; char rawString[79];
+ 0000           ; 
+ 0000           ; BOOL update = FALSE;
+ 0000           ; 
+ 0000           ; const char welcome[] = "Welcome to our Programmable Thermostat!";
+ 0000           ; const char setTempraturePrompt[] = "To set the temprature enter it in the following format: 'S ##' (## is the desired temprature in Celsius)";
+ 0000           ; const char setTolerancePrompt[] = "To set the tolerance enter it in the following format: 'T #' (# is the width of the temprature tolerance in Celsius)";
+ 0000           ; const char setThermModePrompt[] = "To set the thermostat mode enter it it in the following format: 'M X' (X should be set to C for cool, H for heat and F for off)";
+ 0000           ; const char setFanModePrompt[] = "To set the mode of the fan enter it in the following format: 'F X' (X should be set to A for automatic fan and M for manual which keeps the fan on all the time)";
+ 0000           ; 
+ 0000           ; //function prototypes
+ 0000           ; void startFunction (void);
+ 0000           ; void readFunction(void);
+ 0000           ; void stringParser(void);
+ 0000           ; char asciiToInt(char temp1);
+ 0000           ; void setTolerenceLevel(char THvalue[], char TLvalue[]);
+ 0000           ; void compareParameters(void); 
+ 0000           ; void cleerLCD(void);
+ 0000           ; void outputConfig(void);
+ 0000           ; void changePOLbit(void);
+ 0000           ; void initial(void);
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {             
+ 0000                   .dbline 139
+ 0000           ;               
+ 0000           ;       
+ 0000           ;               M8C_EnableIntMask(INT_MSK0,INT_MSK0_GPIO); 
+ 0000 43E020            or REG[0xe0],32
+ 0003                   .dbline 140
+ 0003           ;         I2CHW_Start();
+ 0003 10                push X
+ 0004 7C0000            xcall _I2CHW_Start
+ 0007                   .dbline 141
+ 0007           ;         I2CHW_EnableMstr();
+ 0007 7C0000            xcall _I2CHW_EnableMstr
+ 000A                   .dbline 142
+ 000A           ;         I2CHW_EnableInt();
+ 000A 7C0000            xcall _I2CHW_EnableInt
+ 000D                   .dbline 143
+ 000D           ;         LCD_Start();
+ 000D 7C0000            xcall _LCD_Start
+ 0010                   .dbline 144
+ 0010           ;         UART_Start(UART_PARITY_NONE);
+ 0010 5000              mov A,0
+ 0012 7C0000            xcall _UART_Start
+ 0015 20                pop X
+ 0016                   .dbline 146
+ 0016           ; 
+ 0016           ;               M8C_EnableGInt;
+ 0016 7101                      or  F, 01h
+ 0018           
+ 0018                   .dbline 147
+ 0018           ;               Counter24_Start();
+ 0018 10                push X
+ 0019 7C0000            xcall _Counter24_Start
+ 001C                   .dbline 148
+ 001C           ;               Counter24_EnableInt();
+ 001C 7C0000            xcall _Counter24_EnableInt
+ 001F 20                pop X
+ 0020                   .dbline 150
+ 0020           ;               
+ 0020           ;         firstPass = FALSE;
+ 0020 62D000            mov REG[0xd0],>_firstPass
+ 0023 550000            mov [_firstPass],0
+ 0026                   .dbline 151
+ 0026           ;               invaildFlag = FALSE;
+ 0026 62D000            mov REG[0xd0],>_invaildFlag
+ 0029 550000            mov [_invaildFlag],0
+ 002C                   .dbline 152
+ 002C           ;               txBuffer[0] = 0xAA;
+ 002C 62D000            mov REG[0xd0],>_txBuffer
+ 002F 5500AA            mov [_txBuffer],-86
+ 0032                   .dbline 153
+ 0032           ;               startFunction();
+ 0032 918D              xcall _startFunction
+ 0034                   .dbline 154
+ 0034           ;               configOut2[2] = 0x00;
+ 0034 62D000            mov REG[0xd0],>_configOut2
+ 0037 550200            mov [_configOut2+2],0
+ 003A                   .dbline 156
+ 003A           ;               
+ 003A           ;               initial();
+ 003A 7C08F8            xcall _initial
+ 003D 8179              xjmp L4
+ 003F           L6:
+ 003F                   .dbline 164
+ 003F           ; 
+ 003F           ;               
+ 003F           ;         while(!firstPass)
+ 003F           ;         {
+ 003F           ;                       
+ 003F           ; 
+ 003F           ;               
+ 003F           ;                       while (!invaildFlag){
+ 003F                   .dbline 167
+ 003F           ;       
+ 003F           ; 
+ 003F           ;                               readFunction();
+ 003F 91D3              xcall _readFunction
+ 0041                   .dbline 168
+ 0041           ;                       stringParser();
+ 0041 92F4              xcall _stringParser
+ 0043                   .dbline 172
+ 0043           ;                                       
+ 0043           ; 
+ 0043           ; 
+ 0043           ;                       if (update){
+ 0043 62D000            mov REG[0xd0],>_update
+ 0046 3C0000            cmp [_update],0
+ 0049 A165              jz L9
+ 004B                   .dbline 174
+ 004B           ; 
+ 004B           ;                                       I2CHW_bWriteBytes(ThermoStat, &tempStartConvert , 1 , I2CHW_CompleteXfer);
+ 004B                   .dbline 174
+ 004B 10                push X
+ 004C 5000              mov A,0
+ 004E 08                push A
+ 004F 5001              mov A,1
+ 0051 08                push A
+ 0052 5000              mov A,>_tempStartConvert
+ 0054 08                push A
+ 0055 5000              mov A,<_tempStartConvert
+ 0057 08                push A
+ 0058 5048              mov A,72
+ 005A 08                push A
+ 005B 7C0000            xcall _I2CHW_bWriteBytes
+ 005E 38FB              add SP,-5
+ 0060 20                pop X
+ 0061           L11:
+ 0061                   .dbline 175
+ 0061           ;                               while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 0061           L12:
+ 0061                   .dbline 175
+ 0061 10                push X
+ 0062 7C0000            xcall _I2CHW_bReadI2CStatus
+ 0065 20                pop X
+ 0066 62D000            mov REG[0xd0],>__r0
+ 0069 5300              mov [__r0],A
+ 006B 470040            tst [__r0],64
+ 006E AFF2              jz L11
+ 0070                   .dbline 176
+ 0070           ;                               I2CHW_ClrWrStatus();
+ 0070 10                push X
+ 0071 7C0000            xcall _I2CHW_ClrWrStatus
+ 0074                   .dbline 178
+ 0074           ; 
+ 0074           ;                                       I2CHW_bWriteBytes(ThermoStat, &tempRead , 1 , I2CHW_NoStop);
+ 0074 5002              mov A,2
+ 0076 08                push A
+ 0077 5001              mov A,1
+ 0079 08                push A
+ 007A 5000              mov A,>_tempRead
+ 007C 08                push A
+ 007D 5000              mov A,<_tempRead
+ 007F 08                push A
+ 0080 5048              mov A,72
+ 0082 08                push A
+ 0083 7C0000            xcall _I2CHW_bWriteBytes
+ 0086 38FB              add SP,-5
+ 0088 20                pop X
+ 0089           L14:
+ 0089                   .dbline 179
+ 0089           ;                               while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 0089           L15:
+ 0089                   .dbline 179
+ 0089 10                push X
+ 008A 7C0000            xcall _I2CHW_bReadI2CStatus
+ 008D 20                pop X
+ 008E 62D000            mov REG[0xd0],>__r0
+ 0091 5300              mov [__r0],A
+ 0093 470040            tst [__r0],64
+ 0096 AFF2              jz L14
+ 0098                   .dbline 180
+ 0098           ;                               I2CHW_ClrWrStatus();
+ 0098 10                push X
+ 0099 7C0000            xcall _I2CHW_ClrWrStatus
+ 009C                   .dbline 182
+ 009C           ;                                       
+ 009C           ;                                       I2CHW_fReadBytes(ThermoStat, currentTempA , 2, I2CHW_RepStart);
+ 009C 5001              mov A,1
+ 009E 08                push A
+ 009F 5002              mov A,2
+ 00A1 08                push A
+ 00A2 5000              mov A,>_currentTempA
+ 00A4 08                push A
+ 00A5 5000              mov A,<_currentTempA
+ 00A7 08                push A
+ 00A8 5048              mov A,72
+ 00AA 08                push A
+ 00AB 7C0000            xcall _I2CHW_fReadBytes
+ 00AE 38FB              add SP,-5
+ 00B0 20                pop X
+ 00B1           L17:
+ 00B1                   .dbline 183
+ 00B1           ;                               while(!(I2CHW_bReadI2CStatus() & I2CHW_RD_COMPLETE));
+ 00B1           L18:
+ 00B1                   .dbline 183
+ 00B1 10                push X
+ 00B2 7C0000            xcall _I2CHW_bReadI2CStatus
+ 00B5 20                pop X
+ 00B6 62D000            mov REG[0xd0],>__r0
+ 00B9 5300              mov [__r0],A
+ 00BB 470004            tst [__r0],4
+ 00BE AFF2              jz L17
+ 00C0                   .dbline 184
+ 00C0           ;                               I2CHW_ClrRdStatus();
+ 00C0 10                push X
+ 00C1 7C0000            xcall _I2CHW_ClrRdStatus
+ 00C4 20                pop X
+ 00C5                   .dbline 186
+ 00C5           ;                                       
+ 00C5           ;                                       utoa(tempP, currentTempA[0],10);
+ 00C5 5000              mov A,0
+ 00C7 08                push A
+ 00C8 500A              mov A,10
+ 00CA 08                push A
+ 00CB 62D000            mov REG[0xd0],>_currentTempA
+ 00CE 5100              mov A,[_currentTempA]
+ 00D0 62D000            mov REG[0xd0],>__r0
+ 00D3 5300              mov [__r1],A
+ 00D5 5000              mov A,0
+ 00D7 08                push A
+ 00D8 5100              mov A,[__r1]
+ 00DA 08                push A
+ 00DB 62D000            mov REG[0xd0],>_tempP
+ 00DE 5100              mov A,[_tempP]
+ 00E0 08                push A
+ 00E1 5101              mov A,[_tempP+1]
+ 00E3 08                push A
+ 00E4 7C0000            xcall _utoa
+ 00E7 38FA              add SP,-6
+ 00E9                   .dbline 189
+ 00E9           ;                                       
+ 00E9           ;                                       
+ 00E9           ;                                       cleerLCD();
+ 00E9 964F              xcall _cleerLCD
+ 00EB                   .dbline 190
+ 00EB           ;                                       UART_PutCRLF();
+ 00EB 10                push X
+ 00EC 7C0000            xcall _UART_PutCRLF
+ 00EF                   .dbline 191
+ 00EF           ;                                       UART_CPutString("Current Mode:");
+ 00EF 5008              mov A,>L20
+ 00F1 08                push A
+ 00F2 5008              mov A,<L20
+ 00F4 5C                mov X,A
+ 00F5 18                pop A
+ 00F6 7C0000            xcall _UART_CPutString
+ 00F9 20                pop X
+ 00FA                   .dbline 192
+ 00FA           ;                                       if (heatOrCool){
+ 00FA 62D000            mov REG[0xd0],>_heatOrCool
+ 00FD 3C0000            cmp [_heatOrCool],0
+ 0100 A019              jz L21
+ 0102                   .dbline 193
+ 0102           ;                                       LCD_Position(0,0);      
+ 0102                   .dbline 193
+ 0102 10                push X
+ 0103 5000              mov A,0
+ 0105 5700              mov X,0
+ 0107 7C0000            xcall _LCD_Position
+ 010A                   .dbline 194
+ 010A           ;                                       UART_CPutString("Cool");
+ 010A 5003              mov A,>L23
+ 010C 08                push A
+ 010D 5003              mov A,<L23
+ 010F 5C                mov X,A
+ 0110 18                pop A
+ 0111 7C0000            xcall _UART_CPutString
+ 0114                   .dbline 195
+ 0114           ;                                       UART_PutCRLF();
+ 0114 7C0000            xcall _UART_PutCRLF
+ 0117 20                pop X
+ 0118                   .dbline 196
+ 0118           ;                                       }else {
+ 0118 8017              xjmp L22
+ 011A           L21:
+ 011A                   .dbline 196
+ 011A                   .dbline 197
+ 011A           ;                                       LCD_Position(0,0);      
+ 011A 10                push X
+ 011B 5000              mov A,0
+ 011D 5700              mov X,0
+ 011F 7C0000            xcall _LCD_Position
+ 0122                   .dbline 198
+ 0122           ;                                       UART_CPutString("Heat");
+ 0122 50FE              mov A,>L24
+ 0124 08                push A
+ 0125 50FE              mov A,<L24
+ 0127 5C                mov X,A
+ 0128 18                pop A
+ 0129 7C0000            xcall _UART_CPutString
+ 012C                   .dbline 199
+ 012C           ;                                       UART_PutCRLF();
+ 012C 7C0000            xcall _UART_PutCRLF
+ 012F 20                pop X
+ 0130                   .dbline 200
+ 0130           ;                                       }
+ 0130           L22:
+ 0130                   .dbline 201
+ 0130           ;                                       UART_PutCRLF();
+ 0130 10                push X
+ 0131 7C0000            xcall _UART_PutCRLF
+ 0134                   .dbline 202
+ 0134           ;                                       UART_PutCRLF();
+ 0134 7C0000            xcall _UART_PutCRLF
+ 0137                   .dbline 203
+ 0137           ;                                       UART_CPutString("Current temperature:");
+ 0137 50E9              mov A,>L25
+ 0139 08                push A
+ 013A 50E9              mov A,<L25
+ 013C 5C                mov X,A
+ 013D 18                pop A
+ 013E 7C0000            xcall _UART_CPutString
+ 0141 20                pop X
+ 0142                   .dbline 204
+ 0142           ;                                       utoa(tempP, currentTempA[0],10);
+ 0142 5000              mov A,0
+ 0144 08                push A
+ 0145 500A              mov A,10
+ 0147 08                push A
+ 0148 62D000            mov REG[0xd0],>_currentTempA
+ 014B 5100              mov A,[_currentTempA]
+ 014D 62D000            mov REG[0xd0],>__r0
+ 0150 5300              mov [__r1],A
+ 0152 5000              mov A,0
+ 0154 08                push A
+ 0155 5100              mov A,[__r1]
+ 0157 08                push A
+ 0158 62D000            mov REG[0xd0],>_tempP
+ 015B 5100              mov A,[_tempP]
+ 015D 08                push A
+ 015E 5101              mov A,[_tempP+1]
+ 0160 08                push A
+ 0161 7C0000            xcall _utoa
+ 0164 38FA              add SP,-6
+ 0166                   .dbline 205
+ 0166           ;                                       UART_PutString(tempP);
+ 0166 10                push X
+ 0167 62D000            mov REG[0xd0],>_tempP
+ 016A 5100              mov A,[_tempP]
+ 016C 08                push A
+ 016D 5101              mov A,[_tempP+1]
+ 016F 5C                mov X,A
+ 0170 18                pop A
+ 0171 7C0000            xcall _UART_PutString
+ 0174 20                pop X
+ 0175                   .dbline 207
+ 0175           ;                                       
+ 0175           ;                                       if(currentTempA[1] == 0x00){
+ 0175 62D000            mov REG[0xd0],>_currentTempA
+ 0178 3C0100            cmp [_currentTempA+1],0
+ 017B B00F              jnz L26
+ 017D                   .dbline 208
+ 017D           ;                                       UART_CPutString(".5 C");
+ 017D                   .dbline 208
+ 017D 10                push X
+ 017E 50E4              mov A,>L29
+ 0180 08                push A
+ 0181 50E4              mov A,<L29
+ 0183 5C                mov X,A
+ 0184 18                pop A
+ 0185 7C0000            xcall _UART_CPutString
+ 0188 20                pop X
+ 0189                   .dbline 211
+ 0189           ;                                               
+ 0189           ; 
+ 0189           ;                                       }else {
+ 0189 800D              xjmp L27
+ 018B           L26:
+ 018B                   .dbline 211
+ 018B                   .dbline 213
+ 018B           ; 
+ 018B           ;                                       UART_CPutString(".0 C");                
+ 018B 10                push X
+ 018C 50DF              mov A,>L30
+ 018E 08                push A
+ 018F 50DF              mov A,<L30
+ 0191 5C                mov X,A
+ 0192 18                pop A
+ 0193 7C0000            xcall _UART_CPutString
+ 0196 20                pop X
+ 0197                   .dbline 214
+ 0197           ;                                       }
+ 0197           L27:
+ 0197                   .dbline 215
+ 0197           ;                                       compareParameters();
+ 0197 956A              xcall _compareParameters
+ 0199                   .dbline 216
+ 0199           ;                                       update = FALSE;
+ 0199 62D000            mov REG[0xd0],>_update
+ 019C 550000            mov [_update],0
+ 019F                   .dbline 219
+ 019F           ;                                       
+ 019F           ;                                       
+ 019F           ;                                       if (fanOn){ LED_Fan_Indicator_Data_ADDR ^= LED_Fan_Indicator_MASK;
+ 019F 62D000            mov REG[0xd0],>_fanOn
+ 01A2 3C0000            cmp [_fanOn],0
+ 01A5 A006              jz L31
+ 01A7                   .dbline 219
+ 01A7                   .dbline 219
+ 01A7 450408            xor REG[0x4],8
+ 01AA                   .dbline 220
+ 01AA           ;                                       }else {LED_Fan_Indicator_Data_ADDR &= ~LED_Fan_Indicator_MASK;}
+ 01AA 8004              xjmp L32
+ 01AC           L31:
+ 01AC                   .dbline 220
+ 01AC                   .dbline 220
+ 01AC 4104F7            and REG[0x4],-9
+ 01AF                   .dbline 220
+ 01AF           L32:
+ 01AF                   .dbline 227
+ 01AF           ;                                       
+ 01AF           ;                                       
+ 01AF           ;                       //      }       
+ 01AF           ;                               
+ 01AF           ;                               
+ 01AF           ;                               //firstPass = TRUE;
+ 01AF           ;                               }
+ 01AF           L9:
+ 01AF                   .dbline 228
+ 01AF           ;          }//end invalid input loop
+ 01AF           L7:
+ 01AF                   .dbline 164
+ 01AF 62D000            mov REG[0xd0],>_invaildFlag
+ 01B2 3C0000            cmp [_invaildFlag],0
+ 01B5 AE89              jz L6
+ 01B7                   .dbline 230
+ 01B7           ;               
+ 01B7           ;   }//End while(1)
+ 01B7           L4:
+ 01B7                   .dbline 159
+ 01B7 62D000            mov REG[0xd0],>_firstPass
+ 01BA 3C0000            cmp [_firstPass],0
+ 01BD AFF1              jz L7
+ 01BF                   .dbline -2
+ 01BF           L1:
+ 01BF                   .dbline 0 ; func end
+ 01BF 8FFF              jmp .
+ 01C1                   .dbend
+ 01C1                   .dbfunc e startFunction _startFunction fV
+ 01C1           _startFunction::
+ 01C1                   .dbline -1
+ 01C1                   .dbline 235
+ 01C1           ; 
+ 01C1           ; } //End Main
+ 01C1           ; 
+ 01C1           ; void startFunction (void)
+ 01C1           ; {
+ 01C1                   .dbline 236
+ 01C1           ;       UART_CPutString(welcome);
+ 01C1 10                push X
+ 01C2 5000              mov A,>_welcome
+ 01C4 08                push A
+ 01C5 5000              mov A,<_welcome
+ 01C7 5C                mov X,A
+ 01C8 18                pop A
+ 01C9 7C0000            xcall _UART_CPutString
+ 01CC                   .dbline 237
+ 01CC           ;       UART_PutCRLF();
+ 01CC 7C0000            xcall _UART_PutCRLF
+ 01CF                   .dbline 238
+ 01CF           ;       UART_PutCRLF();
+ 01CF 7C0000            xcall _UART_PutCRLF
+ 01D2                   .dbline 239
+ 01D2           ;       UART_CPutString(setThermModePrompt);
+ 01D2 5006              mov A,>_setThermModePrompt
+ 01D4 08                push A
+ 01D5 5006              mov A,<_setThermModePrompt
+ 01D7 5C                mov X,A
+ 01D8 18                pop A
+ 01D9 7C0000            xcall _UART_CPutString
+ 01DC                   .dbline 240
+ 01DC           ;       UART_PutCRLF();
+ 01DC 7C0000            xcall _UART_PutCRLF
+ 01DF                   .dbline 241
+ 01DF           ;       UART_PutCRLF();
+ 01DF 7C0000            xcall _UART_PutCRLF
+ 01E2                   .dbline 242
+ 01E2           ;       UART_CPutString(setFanModePrompt);
+ 01E2 5086              mov A,>_setFanModePrompt
+ 01E4 08                push A
+ 01E5 5086              mov A,<_setFanModePrompt
+ 01E7 5C                mov X,A
+ 01E8 18                pop A
+ 01E9 7C0000            xcall _UART_CPutString
+ 01EC                   .dbline 243
+ 01EC           ;       UART_PutCRLF();
+ 01EC 7C0000            xcall _UART_PutCRLF
+ 01EF                   .dbline 244
+ 01EF           ;       UART_PutCRLF();
+ 01EF 7C0000            xcall _UART_PutCRLF
+ 01F2                   .dbline 245
+ 01F2           ;       UART_CPutString(setTolerancePrompt);
+ 01F2 5091              mov A,>_setTolerancePrompt
+ 01F4 08                push A
+ 01F5 5091              mov A,<_setTolerancePrompt
+ 01F7 5C                mov X,A
+ 01F8 18                pop A
+ 01F9 7C0000            xcall _UART_CPutString
+ 01FC                   .dbline 246
+ 01FC           ;       UART_PutCRLF();
+ 01FC 7C0000            xcall _UART_PutCRLF
+ 01FF                   .dbline 247
+ 01FF           ;       UART_PutCRLF();
+ 01FF 7C0000            xcall _UART_PutCRLF
+ 0202                   .dbline 248
+ 0202           ;       UART_CPutString(setTempraturePrompt);
+ 0202 5028              mov A,>_setTempraturePrompt
+ 0204 08                push A
+ 0205 5028              mov A,<_setTempraturePrompt
+ 0207 5C                mov X,A
+ 0208 18                pop A
+ 0209 7C0000            xcall _UART_CPutString
+ 020C                   .dbline 249
+ 020C           ;       UART_PutCRLF();
+ 020C 7C0000            xcall _UART_PutCRLF
+ 020F                   .dbline 250
+ 020F           ;       UART_PutCRLF();
+ 020F 7C0000            xcall _UART_PutCRLF
+ 0212 20                pop X
+ 0213                   .dbline -2
+ 0213           L33:
+ 0213                   .dbline 0 ; func end
+ 0213 7F                ret
+ 0214                   .dbend
+ 0214                   .dbfunc e readFunction _readFunction fV
+ 0214           _readFunction::
+ 0214                   .dbline -1
+ 0214                   .dbline 256
+ 0214           ; 
+ 0214           ;       
+ 0214           ; }//end startFunction
+ 0214           ;       
+ 0214           ; void readFunction (void)
+ 0214           ; {
+ 0214                   .dbline 257
+ 0214           ;           UART_CPutString("\r\n");
+ 0214 10                push X
+ 0215 50DC              mov A,>L35
+ 0217 08                push A
+ 0218 50DC              mov A,<L35
+ 021A 5C                mov X,A
+ 021B 18                pop A
+ 021C 7C0000            xcall _UART_CPutString
+ 021F                   .dbline 258
+ 021F           ;               UART_CPutString(">");
+ 021F 50DA              mov A,>L36
+ 0221 08                push A
+ 0222 50DA              mov A,<L36
+ 0224 5C                mov X,A
+ 0225 18                pop A
+ 0226 7C0000            xcall _UART_CPutString
+ 0229 20                pop X
+ 022A                   .dbline 259
+ 022A           ;         placeCounter = 0;
+ 022A 62D000            mov REG[0xd0],>_placeCounter
+ 022D 550100            mov [_placeCounter+1],0
+ 0230 550000            mov [_placeCounter],0
+ 0233                   .dbline 260
+ 0233           ;               finishFlag= FALSE ;
+ 0233 62D000            mov REG[0xd0],>_finishFlag
+ 0236 550000            mov [_finishFlag],0
+ 0239 80F4              xjmp L38
+ 023B           L37:
+ 023B                   .dbline 262
+ 023B           ; 
+ 023B           ;         while (!finishFlag) { 
+ 023B                   .dbline 263
+ 023B           ;               charIn = UART_cReadChar();
+ 023B 10                push X
+ 023C 7C0000            xcall _UART_cReadChar
+ 023F 20                pop X
+ 0240 62D000            mov REG[0xd0],>_charIn
+ 0243 5300              mov [_charIn],A
+ 0245 800B              xjmp L41
+ 0247           L40:
+ 0247                   .dbline 264
+ 0247           ;               while (charIn == 0x00){charIn = UART_cReadChar();}
+ 0247                   .dbline 264
+ 0247 10                push X
+ 0248 7C0000            xcall _UART_cReadChar
+ 024B 20                pop X
+ 024C 62D000            mov REG[0xd0],>_charIn
+ 024F 5300              mov [_charIn],A
+ 0251                   .dbline 264
+ 0251           L41:
+ 0251                   .dbline 264
+ 0251 62D000            mov REG[0xd0],>_charIn
+ 0254 3C0000            cmp [_charIn],0
+ 0257 AFEF              jz L40
+ 0259                   .dbline 265
+ 0259           ;                      if (placeCounter<79){
+ 0259 62D000            mov REG[0xd0],>_placeCounter
+ 025C 5101              mov A,[_placeCounter+1]
+ 025E 114F              sub A,79
+ 0260 5100              mov A,[_placeCounter]
+ 0262 3180              xor A,-128
+ 0264 1980              sbb A,(0 ^ 0x80)
+ 0266 D0A8              jnc L43
+ 0268           X0:
+ 0268                   .dbline 267
+ 0268           ;                                       
+ 0268           ;                     if (charIn == 0x0d){ 
+ 0268                   .dbline 267
+ 0268 62D000            mov REG[0xd0],>_charIn
+ 026B 3C000D            cmp [_charIn],13
+ 026E B01F              jnz L45
+ 0270                   .dbline 268
+ 0270           ;                                 UART_CPutString("\r\n");
+ 0270                   .dbline 268
+ 0270 10                push X
+ 0271 50DC              mov A,>L35
+ 0273 08                push A
+ 0274 50DC              mov A,<L35
+ 0276 5C                mov X,A
+ 0277 18                pop A
+ 0278 7C0000            xcall _UART_CPutString
+ 027B                   .dbline 269
+ 027B           ;                                 UART_CPutString("\r\n");
+ 027B 50DC              mov A,>L35
+ 027D 08                push A
+ 027E 50DC              mov A,<L35
+ 0280 5C                mov X,A
+ 0281 18                pop A
+ 0282 7C0000            xcall _UART_CPutString
+ 0285 20                pop X
+ 0286                   .dbline 270
+ 0286           ;                                 finishFlag = TRUE;
+ 0286 62D000            mov REG[0xd0],>_finishFlag
+ 0289 550001            mov [_finishFlag],1
+ 028C                   .dbline 271
+ 028C           ;                             } //end if CR
+ 028C 80A1              xjmp L44
+ 028E           L45:
+ 028E                   .dbline 272
+ 028E           ;                                                else if ((charIn == 0x08 || charIn ==0x7f) && placeCounter > 0 ){ //if backspace
+ 028E 62D000            mov REG[0xd0],>_charIn
+ 0291 3C0008            cmp [_charIn],8
+ 0294 A006              jz L49
+ 0296 3C007F            cmp [_charIn],127
+ 0299 B02D              jnz L47
+ 029B           L49:
+ 029B 62D000            mov REG[0xd0],>_placeCounter
+ 029E 5000              mov A,0
+ 02A0 1201              sub A,[_placeCounter+1]
+ 02A2 5100              mov A,[_placeCounter]
+ 02A4 3180              xor A,-128
+ 02A6 62D000            mov REG[0xd0],>__r0
+ 02A9 5300              mov [__rX],A
+ 02AB 5080              mov A,(0 ^ 0x80)
+ 02AD 1A00              sbb A,[__rX]
+ 02AF D017              jnc L47
+ 02B1           X1:
+ 02B1                   .dbline 273
+ 02B1           ;                                 placeCounter--;
+ 02B1                   .dbline 273
+ 02B1 62D000            mov REG[0xd0],>_placeCounter
+ 02B4 7A01              dec [_placeCounter+1]
+ 02B6 1E0000            sbb [_placeCounter],0
+ 02B9                   .dbline 274
+ 02B9           ;                                 UART_CPutString("\x8\x20\x8");
+ 02B9 10                push X
+ 02BA 50D6              mov A,>L50
+ 02BC 08                push A
+ 02BD 50D6              mov A,<L50
+ 02BF 5C                mov X,A
+ 02C0 18                pop A
+ 02C1 7C0000            xcall _UART_CPutString
+ 02C4 20                pop X
+ 02C5                   .dbline 275
+ 02C5           ;                                                  } //end if backspace
+ 02C5 8068              xjmp L44
+ 02C7           L47:
+ 02C7                   .dbline 276
+ 02C7           ;                                         else {
+ 02C7                   .dbline 277
+ 02C7           ;                                     rawString[placeCounter] = charIn;
+ 02C7 62D000            mov REG[0xd0],>_placeCounter
+ 02CA 5101              mov A,[_placeCounter+1]
+ 02CC 0100              add A,<_rawString
+ 02CE 62D000            mov REG[0xd0],>__r0
+ 02D1 5300              mov [__r1],A
+ 02D3 62D000            mov REG[0xd0],>_placeCounter
+ 02D6 5100              mov A,[_placeCounter]
+ 02D8 0900              adc A,>_rawString
+ 02DA 60D5              mov REG[0xd5],A
+ 02DC 62D000            mov REG[0xd0],>_charIn
+ 02DF 5100              mov A,[_charIn]
+ 02E1 62D000            mov REG[0xd0],>__r0
+ 02E4 3F00              mvi [__r1],A
+ 02E6                   .dbline 278
+ 02E6           ;                                     UART_PutChar(rawString[placeCounter]);
+ 02E6 62D000            mov REG[0xd0],>_placeCounter
+ 02E9 5101              mov A,[_placeCounter+1]
+ 02EB 0100              add A,<_rawString
+ 02ED 62D000            mov REG[0xd0],>__r0
+ 02F0 5300              mov [__r1],A
+ 02F2 62D000            mov REG[0xd0],>_placeCounter
+ 02F5 5100              mov A,[_placeCounter]
+ 02F7 0900              adc A,>_rawString
+ 02F9 62D000            mov REG[0xd0],>__r0
+ 02FC 60D4              mov REG[0xd4],A
+ 02FE 3E00              mvi A,[__r1]
+ 0300 10                push X
+ 0301 7C0000            xcall _UART_PutChar
+ 0304 20                pop X
+ 0305                   .dbline 279
+ 0305           ;                                     placeCounter++;
+ 0305 62D000            mov REG[0xd0],>_placeCounter
+ 0308 7601              inc [_placeCounter+1]
+ 030A 0E0000            adc [_placeCounter],0
+ 030D                   .dbline 280
+ 030D           ;                             }// end else write into string
+ 030D                   .dbline 281
+ 030D           ;                   }  else { 
+ 030D 8020              xjmp L44
+ 030F           L43:
+ 030F                   .dbline 281
+ 030F                   .dbline 283
+ 030F           ;                                                       
+ 030F           ;                                                       UART_PutCRLF();
+ 030F 10                push X
+ 0310 7C0000            xcall _UART_PutCRLF
+ 0313                   .dbline 284
+ 0313           ;                             UART_CPutString("String Full");
+ 0313 50CA              mov A,>L51
+ 0315 08                push A
+ 0316 50CA              mov A,<L51
+ 0318 5C                mov X,A
+ 0319 18                pop A
+ 031A 7C0000            xcall _UART_CPutString
+ 031D                   .dbline 285
+ 031D           ;                                                       UART_PutChar(0x07);
+ 031D 5007              mov A,7
+ 031F 7C0000            xcall _UART_PutChar
+ 0322 20                pop X
+ 0323                   .dbline 286
+ 0323           ;                             finishFlag = TRUE;
+ 0323 62D000            mov REG[0xd0],>_finishFlag
+ 0326 550001            mov [_finishFlag],1
+ 0329                   .dbline 287
+ 0329           ;                                                       UART_PutCRLF();
+ 0329 10                push X
+ 032A 7C0000            xcall _UART_PutCRLF
+ 032D 20                pop X
+ 032E                   .dbline 289
+ 032E           ;                                                       
+ 032E           ;                     }// end placeCounter if
+ 032E           L44:
+ 032E                   .dbline 291
+ 032E           ; 
+ 032E           ;     }//end while (!finsihFlag)
+ 032E           L38:
+ 032E                   .dbline 262
+ 032E 62D000            mov REG[0xd0],>_finishFlag
+ 0331 3C0000            cmp [_finishFlag],0
+ 0334 AF06              jz L37
+ 0336                   .dbline -2
+ 0336           L34:
+ 0336                   .dbline 0 ; func end
+ 0336 7F                ret
+ 0337                   .dbend
+ 0337                   .dbfunc e stringParser _stringParser fV
+ 0337           _stringParser::
+ 0337                   .dbline -1
+ 0337 10                push X
+ 0338 4F                mov X,SP
+ 0339 3802              add SP,2
+ 033B                   .dbline 295
+ 033B           ;               
+ 033B           ; }//end readFunction
+ 033B           ; void stringParser(void)
+ 033B           ; {
+ 033B                   .dbline 296
+ 033B           ;               if (rawString[2]>= 0x30 && rawString[2]<= 0x39 &&  rawString[3]>= 0x30 && rawString[3]<= 0x39 || rawString[2] == 'h' || rawString[2] == 'c' ){//checks for valid number
+ 033B 62D000            mov REG[0xd0],>_rawString
+ 033E 3C0230            cmp [_rawString+2],48
+ 0341 C01B              jc L64
+ 0343           X2:
+ 0343 62D000            mov REG[0xd0],>_rawString
+ 0346 5039              mov A,57
+ 0348 3A02              cmp A,[_rawString+2]
+ 034A C012              jc L64
+ 034C           X3:
+ 034C 62D000            mov REG[0xd0],>_rawString
+ 034F 3C0330            cmp [_rawString+3],48
+ 0352 C00A              jc L64
+ 0354           X4:
+ 0354 62D000            mov REG[0xd0],>_rawString
+ 0357 5039              mov A,57
+ 0359 3A03              cmp A,[_rawString+3]
+ 035B D00E              jnc L65
+ 035D           X5:
+ 035D           L64:
+ 035D 62D000            mov REG[0xd0],>_rawString
+ 0360 3C0268            cmp [_rawString+2],104
+ 0363 A006              jz L65
+ 0365 3C0263            cmp [_rawString+2],99
+ 0368 B197              jnz L53
+ 036A           L65:
+ 036A                   .dbline 298
+ 036A           ;                       
+ 036A           ;                       if(!(rawString[1] ==' ')){
+ 036A                   .dbline 298
+ 036A 62D000            mov REG[0xd0],>_rawString
+ 036D 3C0120            cmp [_rawString+1],32
+ 0370 A00F              jz L66
+ 0372                   .dbline 300
+ 0372           ;                               
+ 0372           ;                               invaildFlag = TRUE;
+ 0372                   .dbline 300
+ 0372 62D000            mov REG[0xd0],>_invaildFlag
+ 0375 550001            mov [_invaildFlag],1
+ 0378                   .dbline 301
+ 0378           ;                               UART_PutCRLF();
+ 0378 10                push X
+ 0379 7C0000            xcall _UART_PutCRLF
+ 037C                   .dbline 302
+ 037C           ;                               UART_PutCRLF();
+ 037C 7C0000            xcall _UART_PutCRLF
+ 037F 20                pop X
+ 0380                   .dbline 304
+ 0380           ;                               
+ 0380           ;                       }// maybe put else
+ 0380           L66:
+ 0380                   .dbline 306
+ 0380           ;                       
+ 0380           ;                               if(rawString[0]>= 0x41 && rawString[0]<= 0x5a) {rawString[0] = rawString[0]+0x20;} //checks if inputted charter & makes it lower case if it is 
+ 0380 62D000            mov REG[0xd0],>_rawString
+ 0383 3C0041            cmp [_rawString],65
+ 0386 C010              jc L69
+ 0388           X6:
+ 0388 62D000            mov REG[0xd0],>_rawString
+ 038B 505A              mov A,90
+ 038D 3A00              cmp A,[_rawString]
+ 038F C007              jc L69
+ 0391           X7:
+ 0391                   .dbline 306
+ 0391                   .dbline 306
+ 0391 62D000            mov REG[0xd0],>_rawString
+ 0394 060020            add [_rawString],32
+ 0397                   .dbline 306
+ 0397           L69:
+ 0397                   .dbline 307
+ 0397           ;                               if(rawString[2]>= 0x41 && rawString[2]<= 0x5a) {rawString[2] = rawString[2]+0x20;}
+ 0397 62D000            mov REG[0xd0],>_rawString
+ 039A 3C0241            cmp [_rawString+2],65
+ 039D C010              jc L71
+ 039F           X8:
+ 039F 62D000            mov REG[0xd0],>_rawString
+ 03A2 505A              mov A,90
+ 03A4 3A02              cmp A,[_rawString+2]
+ 03A6 C007              jc L71
+ 03A8           X9:
+ 03A8                   .dbline 307
+ 03A8                   .dbline 307
+ 03A8 62D000            mov REG[0xd0],>_rawString
+ 03AB 060220            add [_rawString+2],32
+ 03AE                   .dbline 307
+ 03AE           L71:
+ 03AE                   .dbline 309
+ 03AE           ;                               
+ 03AE           ;                                       switch(rawString[0])//Determines if operation is read or write
+ 03AE 62D000            mov REG[0xd0],>_rawString
+ 03B1 5100              mov A,[_rawString]
+ 03B3 5401              mov [X+1],A
+ 03B5 560000            mov [X+0],0
+ 03B8 5201              mov A,[X+1]
+ 03BA 116D              sub A,109
+ 03BC 62D000            mov REG[0xd0],>__r0
+ 03BF 5300              mov [__rY],A
+ 03C1 5200              mov A,[X+0]
+ 03C3 3180              xor A,-128
+ 03C5 1980              sbb A,(0 ^ 0x80)
+ 03C7 2A00              or A,[__rY]
+ 03C9 A0F4              jz L89
+ 03CB D00D              jnc L99
+ 03CD           X10:
+ 03CD           L98:
+ 03CD 3D0000            cmp [X+0],0
+ 03D0 B006              jnz X11
+ 03D2 3D0166            cmp [X+1],102
+ 03D5 A142              jz L54
+ 03D7           X11:
+ 03D7 810E              xjmp L77
+ 03D9           L99:
+ 03D9 3D0000            cmp [X+0],0
+ 03DC B006              jnz X12
+ 03DE 3D0173            cmp [X+1],115
+ 03E1 A00D              jz L80
+ 03E3           X12:
+ 03E3 3D0000            cmp [X+0],0
+ 03E6 B006              jnz X13
+ 03E8 3D0174            cmp [X+1],116
+ 03EB A03E              jz L83
+ 03ED           X13:
+ 03ED 80F8              xjmp L77
+ 03EF           L80:
+ 03EF                   .dbline 313
+ 03EF           ;                               {
+ 03EF           ;                                       case  's':
+ 03EF           ;                                       
+ 03EF           ;                                                       temp2 = asciiToInt(rawString[2]);
+ 03EF 62D000            mov REG[0xd0],>_rawString
+ 03F2 5102              mov A,[_rawString+2]
+ 03F4 08                push A
+ 03F5 92BA              xcall _asciiToInt
+ 03F7 62D000            mov REG[0xd0],>_temp2
+ 03FA 5300              mov [_temp2],A
+ 03FC                   .dbline 314
+ 03FC           ;                                                       temp3 = asciiToInt(rawString[3]);
+ 03FC 62D000            mov REG[0xd0],>_rawString
+ 03FF 5103              mov A,[_rawString+3]
+ 0401 08                push A
+ 0402 92AD              xcall _asciiToInt
+ 0404 38FE              add SP,-2
+ 0406 62D000            mov REG[0xd0],>_temp3
+ 0409 5300              mov [_temp3],A
+ 040B                   .dbline 316
+ 040B           ;                                                       
+ 040B           ;                                                       temp2 = temp2 * 10;
+ 040B 62D000            mov REG[0xd0],>_temp2
+ 040E 5100              mov A,[_temp2]
+ 0410 60E8              mov REG[0xe8],A
+ 0412 62E90A            mov REG[0xe9],10
+ 0415 40                nop
+ 0416 5DEB              mov A,REG[0xeb]
+ 0418 5300              mov [_temp2],A
+ 041A                   .dbline 317
+ 041A           ;                                                       temp = temp2 + temp3; 
+ 041A 5100              mov A,[_temp2]
+ 041C 62D000            mov REG[0xd0],>_temp3
+ 041F 0200              add A,[_temp3]
+ 0421 62D000            mov REG[0xd0],>_temp
+ 0424 5300              mov [_temp],A
+ 0426                   .dbline 319
+ 0426           ;                                                       
+ 0426           ;                                                       outputConfig();
+ 0426 9337              xcall _outputConfig
+ 0428                   .dbline 320
+ 0428           ;                                       break; //end case r
+ 0428 80EF              xjmp L54
+ 042A           L83:
+ 042A                   .dbline 324
+ 042A           ; 
+ 042A           ;                                       case 't':
+ 042A           ;                                                       
+ 042A           ;                                                       tolerence = asciiToInt(rawString[2]);
+ 042A 62D000            mov REG[0xd0],>_rawString
+ 042D 5102              mov A,[_rawString+2]
+ 042F 08                push A
+ 0430 927F              xcall _asciiToInt
+ 0432 38FF              add SP,-1
+ 0434 62D000            mov REG[0xd0],>_tolerence
+ 0437 5300              mov [_tolerence],A
+ 0439                   .dbline 326
+ 0439           ; 
+ 0439           ;                                                       TH = temp + tolerence/2;
+ 0439 5002              mov A,2
+ 043B 08                push A
+ 043C 5100              mov A,[_tolerence]
+ 043E 08                push A
+ 043F 62D000            mov REG[0xd0],>__r0
+ 0442 7C0000            xcall __divmodu_8X8_8
+ 0445 18                pop A
+ 0446 5300              mov [__r0],A
+ 0448 38FF              add SP,-1
+ 044A 62D000            mov REG[0xd0],>_temp
+ 044D 5100              mov A,[_temp]
+ 044F 62D000            mov REG[0xd0],>__r0
+ 0452 0200              add A,[__r0]
+ 0454 62D000            mov REG[0xd0],>_TH
+ 0457 5300              mov [_TH],A
+ 0459                   .dbline 327
+ 0459           ;                                                       TL = temp - tolerence/2;
+ 0459 62D000            mov REG[0xd0],>_tolerence
+ 045C 5002              mov A,2
+ 045E 08                push A
+ 045F 5100              mov A,[_tolerence]
+ 0461 08                push A
+ 0462 62D000            mov REG[0xd0],>__r0
+ 0465 7C0000            xcall __divmodu_8X8_8
+ 0468 18                pop A
+ 0469 5300              mov [__r0],A
+ 046B 38FF              add SP,-1
+ 046D 62D000            mov REG[0xd0],>_temp
+ 0470 5100              mov A,[_temp]
+ 0472 62D000            mov REG[0xd0],>__r0
+ 0475 1200              sub A,[__r0]
+ 0477 62D000            mov REG[0xd0],>_TL
+ 047A 5300              mov [_TL],A
+ 047C                   .dbline 329
+ 047C           ; 
+ 047C           ;                                                       THvalue[0] = accessTH;
+ 047C 62D000            mov REG[0xd0],>_accessTH
+ 047F 5100              mov A,[_accessTH]
+ 0481 62D000            mov REG[0xd0],>_THvalue
+ 0484 5300              mov [_THvalue],A
+ 0486                   .dbline 330
+ 0486           ;                                                       THvalue[1] = TH;
+ 0486 62D000            mov REG[0xd0],>_TH
+ 0489 5100              mov A,[_TH]
+ 048B 62D000            mov REG[0xd0],>_THvalue
+ 048E 5301              mov [_THvalue+1],A
+ 0490                   .dbline 331
+ 0490           ;                                                       THvalue[2] = 0x00;
+ 0490 550200            mov [_THvalue+2],0
+ 0493                   .dbline 333
+ 0493           ;                                                       
+ 0493           ;                                                       TLvalue[0] = accessTL ;
+ 0493 62D000            mov REG[0xd0],>_accessTL
+ 0496 5100              mov A,[_accessTL]
+ 0498 62D000            mov REG[0xd0],>_TLvalue
+ 049B 5300              mov [_TLvalue],A
+ 049D                   .dbline 334
+ 049D           ;                                                       TLvalue[1] = TL;
+ 049D 62D000            mov REG[0xd0],>_TL
+ 04A0 5100              mov A,[_TL]
+ 04A2 62D000            mov REG[0xd0],>_TLvalue
+ 04A5 5301              mov [_TLvalue+1],A
+ 04A7                   .dbline 335
+ 04A7           ;                                                       TLvalue[2] = 0x00;
+ 04A7 550200            mov [_TLvalue+2],0
+ 04AA                   .dbline 337
+ 04AA           ;                                                       
+ 04AA           ;                                                       setTolerenceLevel(THvalue, TLvalue);
+ 04AA 5000              mov A,>_TLvalue
+ 04AC 08                push A
+ 04AD 5000              mov A,<_TLvalue
+ 04AF 08                push A
+ 04B0 5000              mov A,>_THvalue
+ 04B2 08                push A
+ 04B3 5000              mov A,<_THvalue
+ 04B5 08                push A
+ 04B6 9075              xcall _setTolerenceLevel
+ 04B8 38FC              add SP,-4
+ 04BA                   .dbline 338
+ 04BA           ;                                                       outputConfig();
+ 04BA 92A3              xcall _outputConfig
+ 04BC                   .dbline 340
+ 04BC           ;                                               
+ 04BC           ;                                       break; //end case w
+ 04BC 805B              xjmp L54
+ 04BE           L89:
+ 04BE                   .dbline 344
+ 04BE           ;                                                       
+ 04BE           ;                                                       case 'm':
+ 04BE           ;                                                       
+ 04BE           ;                                                       if (rawString[2]=='c'){
+ 04BE 62D000            mov REG[0xd0],>_rawString
+ 04C1 3C0263            cmp [_rawString+2],99
+ 04C4 B009              jnz L90
+ 04C6                   .dbline 346
+ 04C6           ;                                                               
+ 04C6           ;                                                               heatOrCool=TRUE;
+ 04C6                   .dbline 346
+ 04C6 62D000            mov REG[0xd0],>_heatOrCool
+ 04C9 550001            mov [_heatOrCool],1
+ 04CC                   .dbline 348
+ 04CC           ;                                                               //changePOLbit();
+ 04CC           ;                                                       }else if(rawString[2]=='h'){
+ 04CC 804B              xjmp L54
+ 04CE           L90:
+ 04CE                   .dbline 348
+ 04CE 62D000            mov REG[0xd0],>_rawString
+ 04D1 3C0268            cmp [_rawString+2],104
+ 04D4 B009              jnz L93
+ 04D6                   .dbline 350
+ 04D6           ;                                                       
+ 04D6           ;                                                       heatOrCool = FALSE;
+ 04D6                   .dbline 350
+ 04D6 62D000            mov REG[0xd0],>_heatOrCool
+ 04D9 550000            mov [_heatOrCool],0
+ 04DC                   .dbline 353
+ 04DC           ;                                                       //changePOLbit();               
+ 04DC           ;                                                               
+ 04DC           ;                                                       }else{ fanOn = FALSE;}
+ 04DC 803B              xjmp L54
+ 04DE           L93:
+ 04DE                   .dbline 353
+ 04DE                   .dbline 353
+ 04DE 62D000            mov REG[0xd0],>_fanOn
+ 04E1 550000            mov [_fanOn],0
+ 04E4                   .dbline 353
+ 04E4                   .dbline 355
+ 04E4           ;                                                       
+ 04E4           ;                                                       break;
+ 04E4 8033              xjmp L54
+ 04E6           L77:
+ 04E6                   .dbline 363
+ 04E6           ;                                                       
+ 04E6           ;                                                       case 'f':
+ 04E6           ; 
+ 04E6           ;                                                       break;
+ 04E6           ;                                                       
+ 04E6           ;                                                       default:
+ 04E6           ;                                                       
+ 04E6           ;                                                       UART_PutCRLF();
+ 04E6 10                push X
+ 04E7 7C0000            xcall _UART_PutCRLF
+ 04EA                   .dbline 364
+ 04EA           ;                                       UART_CPutString("invalid input charecter");
+ 04EA 50B2              mov A,>L97
+ 04EC 08                push A
+ 04ED 50B2              mov A,<L97
+ 04EF 5C                mov X,A
+ 04F0 18                pop A
+ 04F1 7C0000            xcall _UART_CPutString
+ 04F4                   .dbline 365
+ 04F4           ;                                       UART_PutCRLF();
+ 04F4 7C0000            xcall _UART_PutCRLF
+ 04F7 20                pop X
+ 04F8                   .dbline 366
+ 04F8           ;                                                       invaildFlag = TRUE;      
+ 04F8 62D000            mov REG[0xd0],>_invaildFlag
+ 04FB 550001            mov [_invaildFlag],1
+ 04FE                   .dbline 368
+ 04FE           ;                                                       
+ 04FE           ;                                       }//end command switch
+ 04FE                   .dbline 370
+ 04FE           ;  
+ 04FE           ;               }else{
+ 04FE 8019              xjmp L54
+ 0500           L53:
+ 0500                   .dbline 370
+ 0500                   .dbline 372
+ 0500           ;                       
+ 0500           ;               UART_PutCRLF();
+ 0500 10                push X
+ 0501 7C0000            xcall _UART_PutCRLF
+ 0504                   .dbline 373
+ 0504           ;               UART_CPutString("Invalid input number");
+ 0504 509D              mov A,>L100
+ 0506 08                push A
+ 0507 509D              mov A,<L100
+ 0509 5C                mov X,A
+ 050A 18                pop A
+ 050B 7C0000            xcall _UART_CPutString
+ 050E                   .dbline 374
+ 050E           ;               UART_PutCRLF();
+ 050E 7C0000            xcall _UART_PutCRLF
+ 0511 20                pop X
+ 0512                   .dbline 375
+ 0512           ;               invaildFlag = TRUE;     
+ 0512 62D000            mov REG[0xd0],>_invaildFlag
+ 0515 550001            mov [_invaildFlag],1
+ 0518                   .dbline 377
+ 0518           ;                       
+ 0518           ;               }//end of invalid input if-else 
+ 0518           L54:
+ 0518                   .dbline -2
+ 0518           L52:
+ 0518 38FE              add SP,-2
+ 051A 20                pop X
+ 051B                   .dbline 0 ; func end
+ 051B 7F                ret
+ 051C                   .dbend
+ 051C                   .dbfunc e TempReset _TempReset fV
+ 051C           _TempReset::
+ 051C                   .dbline -1
+ 051C 71C0              or F,-64
+ 051E 08                push A
+ 051F 5DD0              mov A,REG[0xd0]
+ 0521 08                push A
+ 0522                   .dbline 381
+ 0522           ;       
+ 0522           ; }//parse string
+ 0522           ; 
+ 0522           ; void TempReset(void){
+ 0522                   .dbline 383
+ 0522           ;       
+ 0522           ;               update = TRUE;
+ 0522 62D000            mov REG[0xd0],>_update
+ 0525 550001            mov [_update],1
+ 0528                   .dbline -2
+ 0528           L101:
+ 0528 18                pop A
+ 0529 60D0              mov REG[208],A
+ 052B 18                pop A
+ 052C                   .dbline 0 ; func end
+ 052C 7E                reti
+ 052D                   .dbend
+ 052D                   .dbfunc e setTolerenceLevel _setTolerenceLevel fV
+ 052D           ;        TLvalue -> X-7
+ 052D           ;        THvalue -> X-5
+ 052D           _setTolerenceLevel::
+ 052D                   .dbline -1
+ 052D 10                push X
+ 052E 4F                mov X,SP
+ 052F                   .dbline 387
+ 052F           ;       
+ 052F           ; }
+ 052F           ; 
+ 052F           ; void setTolerenceLevel(char THvalue[], char TLvalue[]){
+ 052F                   .dbline 389
+ 052F           ; 
+ 052F           ;               I2CHW_bWriteBytes(ThermoStat, THvalue , 3 ,I2CHW_CompleteXfer);
+ 052F 10                push X
+ 0530 5000              mov A,0
+ 0532 08                push A
+ 0533 5003              mov A,3
+ 0535 08                push A
+ 0536 52FB              mov A,[X-5]
+ 0538 08                push A
+ 0539 52FC              mov A,[X-4]
+ 053B 08                push A
+ 053C 5048              mov A,72
+ 053E 08                push A
+ 053F 7C0000            xcall _I2CHW_bWriteBytes
+ 0542 38FB              add SP,-5
+ 0544 20                pop X
+ 0545           L103:
+ 0545                   .dbline 390
+ 0545           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 0545           L104:
+ 0545                   .dbline 390
+ 0545 10                push X
+ 0546 7C0000            xcall _I2CHW_bReadI2CStatus
+ 0549 20                pop X
+ 054A 62D000            mov REG[0xd0],>__r0
+ 054D 5300              mov [__r0],A
+ 054F 470040            tst [__r0],64
+ 0552 AFF2              jz L103
+ 0554                   .dbline 391
+ 0554           ;         I2CHW_ClrWrStatus();
+ 0554 10                push X
+ 0555 7C0000            xcall _I2CHW_ClrWrStatus
+ 0558 20                pop X
+ 0559                   .dbline 393
+ 0559           ;               
+ 0559           ;               I2CHW_bWriteBytes(ThermoStat, TLvalue , 3 ,I2CHW_CompleteXfer);
+ 0559 10                push X
+ 055A 5000              mov A,0
+ 055C 08                push A
+ 055D 5003              mov A,3
+ 055F 08                push A
+ 0560 52F9              mov A,[X-7]
+ 0562 08                push A
+ 0563 52FA              mov A,[X-6]
+ 0565 08                push A
+ 0566 5048              mov A,72
+ 0568 08                push A
+ 0569 7C0000            xcall _I2CHW_bWriteBytes
+ 056C 38FB              add SP,-5
+ 056E 20                pop X
+ 056F           L106:
+ 056F                   .dbline 394
+ 056F           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 056F           L107:
+ 056F                   .dbline 394
+ 056F 10                push X
+ 0570 7C0000            xcall _I2CHW_bReadI2CStatus
+ 0573 20                pop X
+ 0574 62D000            mov REG[0xd0],>__r0
+ 0577 5300              mov [__r0],A
+ 0579 470040            tst [__r0],64
+ 057C AFF2              jz L106
+ 057E                   .dbline 395
+ 057E           ;         I2CHW_ClrWrStatus();
+ 057E 10                push X
+ 057F 7C0000            xcall _I2CHW_ClrWrStatus
+ 0582                   .dbline 397
+ 0582           ;               
+ 0582           ;               I2CHW_bWriteBytes(ThermoStat, &accessTH , 1 ,I2CHW_NoStop);
+ 0582 5002              mov A,2
+ 0584 08                push A
+ 0585 5001              mov A,1
+ 0587 08                push A
+ 0588 5000              mov A,>_accessTH
+ 058A 08                push A
+ 058B 5000              mov A,<_accessTH
+ 058D 08                push A
+ 058E 5048              mov A,72
+ 0590 08                push A
+ 0591 7C0000            xcall _I2CHW_bWriteBytes
+ 0594 38FB              add SP,-5
+ 0596 20                pop X
+ 0597           L109:
+ 0597                   .dbline 398
+ 0597           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 0597           L110:
+ 0597                   .dbline 398
+ 0597 10                push X
+ 0598 7C0000            xcall _I2CHW_bReadI2CStatus
+ 059B 20                pop X
+ 059C 62D000            mov REG[0xd0],>__r0
+ 059F 5300              mov [__r0],A
+ 05A1 470040            tst [__r0],64
+ 05A4 AFF2              jz L109
+ 05A6                   .dbline 399
+ 05A6           ;         I2CHW_ClrWrStatus();
+ 05A6 10                push X
+ 05A7 7C0000            xcall _I2CHW_ClrWrStatus
+ 05AA                   .dbline 401
+ 05AA           ;               
+ 05AA           ;               I2CHW_fReadBytes(ThermoStat, THvalueTest , 2, I2CHW_RepStart);
+ 05AA 5001              mov A,1
+ 05AC 08                push A
+ 05AD 5002              mov A,2
+ 05AF 08                push A
+ 05B0 5000              mov A,>_THvalueTest
+ 05B2 08                push A
+ 05B3 5000              mov A,<_THvalueTest
+ 05B5 08                push A
+ 05B6 5048              mov A,72
+ 05B8 08                push A
+ 05B9 7C0000            xcall _I2CHW_fReadBytes
+ 05BC 38FB              add SP,-5
+ 05BE 20                pop X
+ 05BF           L112:
+ 05BF                   .dbline 402
+ 05BF           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_RD_COMPLETE));
+ 05BF           L113:
+ 05BF                   .dbline 402
+ 05BF 10                push X
+ 05C0 7C0000            xcall _I2CHW_bReadI2CStatus
+ 05C3 20                pop X
+ 05C4 62D000            mov REG[0xd0],>__r0
+ 05C7 5300              mov [__r0],A
+ 05C9 470004            tst [__r0],4
+ 05CC AFF2              jz L112
+ 05CE                   .dbline 403
+ 05CE           ;         I2CHW_ClrRdStatus();
+ 05CE 10                push X
+ 05CF 7C0000            xcall _I2CHW_ClrRdStatus
+ 05D2                   .dbline 405
+ 05D2           ;               
+ 05D2           ;               I2CHW_bWriteBytes(ThermoStat, &accessTL , 1 ,I2CHW_NoStop);
+ 05D2 5002              mov A,2
+ 05D4 08                push A
+ 05D5 5001              mov A,1
+ 05D7 08                push A
+ 05D8 5000              mov A,>_accessTL
+ 05DA 08                push A
+ 05DB 5000              mov A,<_accessTL
+ 05DD 08                push A
+ 05DE 5048              mov A,72
+ 05E0 08                push A
+ 05E1 7C0000            xcall _I2CHW_bWriteBytes
+ 05E4 38FB              add SP,-5
+ 05E6 20                pop X
+ 05E7           L115:
+ 05E7                   .dbline 406
+ 05E7           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 05E7           L116:
+ 05E7                   .dbline 406
+ 05E7 10                push X
+ 05E8 7C0000            xcall _I2CHW_bReadI2CStatus
+ 05EB 20                pop X
+ 05EC 62D000            mov REG[0xd0],>__r0
+ 05EF 5300              mov [__r0],A
+ 05F1 470040            tst [__r0],64
+ 05F4 AFF2              jz L115
+ 05F6                   .dbline 407
+ 05F6           ;         I2CHW_ClrWrStatus();
+ 05F6 10                push X
+ 05F7 7C0000            xcall _I2CHW_ClrWrStatus
+ 05FA                   .dbline 409
+ 05FA           ;               
+ 05FA           ;               I2CHW_fReadBytes(ThermoStat, TLvalueTest , 2, I2CHW_RepStart);
+ 05FA 5001              mov A,1
+ 05FC 08                push A
+ 05FD 5002              mov A,2
+ 05FF 08                push A
+ 0600 5000              mov A,>_TLvalueTest
+ 0602 08                push A
+ 0603 5000              mov A,<_TLvalueTest
+ 0605 08                push A
+ 0606 5048              mov A,72
+ 0608 08                push A
+ 0609 7C0000            xcall _I2CHW_fReadBytes
+ 060C 38FB              add SP,-5
+ 060E 20                pop X
+ 060F           L118:
+ 060F                   .dbline 410
+ 060F           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_RD_COMPLETE));
+ 060F           L119:
+ 060F                   .dbline 410
+ 060F 10                push X
+ 0610 7C0000            xcall _I2CHW_bReadI2CStatus
+ 0613 20                pop X
+ 0614 62D000            mov REG[0xd0],>__r0
+ 0617 5300              mov [__r0],A
+ 0619 470004            tst [__r0],4
+ 061C AFF2              jz L118
+ 061E                   .dbline 411
+ 061E           ;         I2CHW_ClrRdStatus();
+ 061E 10                push X
+ 061F 7C0000            xcall _I2CHW_ClrRdStatus
+ 0622                   .dbline 413
+ 0622           ;               
+ 0622           ;               UART_PutCRLF();
+ 0622 7C0000            xcall _UART_PutCRLF
+ 0625                   .dbline 414
+ 0625           ;               UART_PutCRLF();
+ 0625 7C0000            xcall _UART_PutCRLF
+ 0628                   .dbline 415
+ 0628           ;               UART_CPutString("TL value:");
+ 0628 5093              mov A,>L121
+ 062A 08                push A
+ 062B 5093              mov A,<L121
+ 062D 5C                mov X,A
+ 062E 18                pop A
+ 062F 7C0000            xcall _UART_CPutString
+ 0632 20                pop X
+ 0633                   .dbline 418
+ 0633           ;               
+ 0633           ; 
+ 0633           ;               utoa(TLP, TLvalueTest[0],10);
+ 0633 5000              mov A,0
+ 0635 08                push A
+ 0636 500A              mov A,10
+ 0638 08                push A
+ 0639 62D000            mov REG[0xd0],>_TLvalueTest
+ 063C 5100              mov A,[_TLvalueTest]
+ 063E 62D000            mov REG[0xd0],>__r0
+ 0641 5300              mov [__r1],A
+ 0643 5000              mov A,0
+ 0645 08                push A
+ 0646 5100              mov A,[__r1]
+ 0648 08                push A
+ 0649 62D000            mov REG[0xd0],>_TLP
+ 064C 5100              mov A,[_TLP]
+ 064E 08                push A
+ 064F 5101              mov A,[_TLP+1]
+ 0651 08                push A
+ 0652 7C0000            xcall _utoa
+ 0655 38FA              add SP,-6
+ 0657                   .dbline 419
+ 0657           ;               UART_PutString(TLP);
+ 0657 10                push X
+ 0658 62D000            mov REG[0xd0],>_TLP
+ 065B 5100              mov A,[_TLP]
+ 065D 08                push A
+ 065E 5101              mov A,[_TLP+1]
+ 0660 5C                mov X,A
+ 0661 18                pop A
+ 0662 7C0000            xcall _UART_PutString
+ 0665                   .dbline 421
+ 0665           ;               
+ 0665           ;               UART_PutCRLF();
+ 0665 7C0000            xcall _UART_PutCRLF
+ 0668                   .dbline 422
+ 0668           ;               UART_PutCRLF();
+ 0668 7C0000            xcall _UART_PutCRLF
+ 066B                   .dbline 423
+ 066B           ;               UART_CPutString("TH value:");
+ 066B 5089              mov A,>L122
+ 066D 08                push A
+ 066E 5089              mov A,<L122
+ 0670 5C                mov X,A
+ 0671 18                pop A
+ 0672 7C0000            xcall _UART_CPutString
+ 0675 20                pop X
+ 0676                   .dbline 426
+ 0676           ;               
+ 0676           ;               
+ 0676           ;               utoa(THP, THvalueTest[0],10);
+ 0676 5000              mov A,0
+ 0678 08                push A
+ 0679 500A              mov A,10
+ 067B 08                push A
+ 067C 62D000            mov REG[0xd0],>_THvalueTest
+ 067F 5100              mov A,[_THvalueTest]
+ 0681 62D000            mov REG[0xd0],>__r0
+ 0684 5300              mov [__r1],A
+ 0686 5000              mov A,0
+ 0688 08                push A
+ 0689 5100              mov A,[__r1]
+ 068B 08                push A
+ 068C 62D000            mov REG[0xd0],>_THP
+ 068F 5100              mov A,[_THP]
+ 0691 08                push A
+ 0692 5101              mov A,[_THP+1]
+ 0694 08                push A
+ 0695 7C0000            xcall _utoa
+ 0698 38FA              add SP,-6
+ 069A                   .dbline 427
+ 069A           ;               UART_PutString(THP);
+ 069A 10                push X
+ 069B 62D000            mov REG[0xd0],>_THP
+ 069E 5100              mov A,[_THP]
+ 06A0 08                push A
+ 06A1 5101              mov A,[_THP+1]
+ 06A3 5C                mov X,A
+ 06A4 18                pop A
+ 06A5 7C0000            xcall _UART_PutString
+ 06A8 20                pop X
+ 06A9                   .dbline -2
+ 06A9           L102:
+ 06A9 20                pop X
+ 06AA                   .dbline 0 ; func end
+ 06AA 7F                ret
+ 06AB                   .dbsym l TLvalue -7 pc
+ 06AB                   .dbsym l THvalue -5 pc
+ 06AB                   .dbend
+ 06AB                   .dbfunc e T_INT _T_INT fV
+ 06AB           _T_INT::
+ 06AB                   .dbline -1
+ 06AB 08                push A
+ 06AC                   .dbline 432
+ 06AC           ;               
+ 06AC           ; }
+ 06AC           ; 
+ 06AC           ; void T_INT(void)
+ 06AC           ; {
+ 06AC                   .dbline 434
+ 06AC           ;       
+ 06AC           ; LED_Data_ADDR &= LED_MASK;
+ 06AC 410402            and REG[0x4],2
+ 06AF                   .dbline -2
+ 06AF           L123:
+ 06AF 18                pop A
+ 06B0                   .dbline 0 ; func end
+ 06B0 7E                reti
+ 06B1                   .dbend
+ 06B1                   .dbfunc e asciiToInt _asciiToInt fc
+ 06B1           ;          temp1 -> X-4
+ 06B1           _asciiToInt::
+ 06B1                   .dbline -1
+ 06B1 10                push X
+ 06B2 4F                mov X,SP
+ 06B3                   .dbline 439
+ 06B3           ;       
+ 06B3           ; //Interupt = TRUE;
+ 06B3           ;       
+ 06B3           ; }
+ 06B3           ; char asciiToInt(char temp1){
+ 06B3                   .dbline 441
+ 06B3           ;       
+ 06B3           ;       if(temp1>= 0x61 && temp1<= 0x66){
+ 06B3 3DFC61            cmp [X-4],97
+ 06B6 C012              jc L125
+ 06B8           X14:
+ 06B8 5066              mov A,102
+ 06BA 3BFC              cmp A,[X-4]
+ 06BC C00C              jc L125
+ 06BE           X15:
+ 06BE                   .dbline 442
+ 06BE           ;               temp1= temp1-0x20;
+ 06BE                   .dbline 442
+ 06BE 62D000            mov REG[0xd0],>__r0
+ 06C1 52FC              mov A,[X-4]
+ 06C3 1120              sub A,32
+ 06C5 54FC              mov [X-4],A
+ 06C7                   .dbline 443
+ 06C7           ;       }else 
+ 06C7 8034              xjmp L126
+ 06C9           L125:
+ 06C9                   .dbline 445
+ 06C9           ;       
+ 06C9           ;       if (temp1  >= 0x30 && temp1 <= 0x39){
+ 06C9 3DFC30            cmp [X-4],48
+ 06CC C012              jc L127
+ 06CE           X16:
+ 06CE 5039              mov A,57
+ 06D0 3BFC              cmp A,[X-4]
+ 06D2 C00C              jc L127
+ 06D4           X17:
+ 06D4                   .dbline 447
+ 06D4           ;               
+ 06D4           ;               temp1 = temp1 - 0x30;
+ 06D4                   .dbline 447
+ 06D4 62D000            mov REG[0xd0],>__r0
+ 06D7 52FC              mov A,[X-4]
+ 06D9 1130              sub A,48
+ 06DB 54FC              mov [X-4],A
+ 06DD                   .dbline 449
+ 06DD           ;       
+ 06DD           ;       } else if(temp1  >= 0x41 && temp1 <= 0x46){
+ 06DD 801E              xjmp L128
+ 06DF           L127:
+ 06DF                   .dbline 449
+ 06DF 3DFC41            cmp [X-4],65
+ 06E2 C012              jc L129
+ 06E4           X18:
+ 06E4 5046              mov A,70
+ 06E6 3BFC              cmp A,[X-4]
+ 06E8 C00C              jc L129
+ 06EA           X19:
+ 06EA                   .dbline 450
+ 06EA           ;               temp1 = temp1 - 0x31;
+ 06EA                   .dbline 450
+ 06EA 62D000            mov REG[0xd0],>__r0
+ 06ED 52FC              mov A,[X-4]
+ 06EF 1131              sub A,49
+ 06F1 54FC              mov [X-4],A
+ 06F3                   .dbline 452
+ 06F3           ;               
+ 06F3           ;       }
+ 06F3 8008              xjmp L130
+ 06F5           L129:
+ 06F5                   .dbline 453
+ 06F5           ;       else{
+ 06F5                   .dbline 454
+ 06F5           ;               return '0';
+ 06F5 62D000            mov REG[0xd0],>__r0
+ 06F8 5030              mov A,48
+ 06FA 8006              xjmp L124
+ 06FC           L130:
+ 06FC           L128:
+ 06FC           L126:
+ 06FC                   .dbline 457
+ 06FC           ;       }
+ 06FC           ; 
+ 06FC           ;       return temp1;
+ 06FC 52FC              mov A,[X-4]
+ 06FE 62D000            mov REG[0xd0],>__r0
+ 0701                   .dbline -2
+ 0701           L124:
+ 0701 20                pop X
+ 0702                   .dbline 0 ; func end
+ 0702 7F                ret
+ 0703                   .dbsym l temp1 -4 c
+ 0703                   .dbend
+ 0703                   .dbfunc e compareParameters _compareParameters fV
+ 0703           _compareParameters::
+ 0703                   .dbline -1
+ 0703                   .dbline 461
+ 0703           ;       
+ 0703           ; }
+ 0703           ; 
+ 0703           ; void compareParameters(void){
+ 0703                   .dbline 463
+ 0703           ;       
+ 0703           ;       if(heatOrCool && currentTemp >= TH){
+ 0703 62D000            mov REG[0xd0],>_heatOrCool
+ 0706 3C0000            cmp [_heatOrCool],0
+ 0709 A015              jz L132
+ 070B 62D000            mov REG[0xd0],>_currentTemp
+ 070E 5100              mov A,[_currentTemp]
+ 0710 62D000            mov REG[0xd0],>_TH
+ 0713 3A00              cmp A,[_TH]
+ 0715 C009              jc L132
+ 0717           X20:
+ 0717                   .dbline 465
+ 0717           ;               
+ 0717           ;               fanOn = TRUE;
+ 0717                   .dbline 465
+ 0717 62D000            mov REG[0xd0],>_fanOn
+ 071A 550001            mov [_fanOn],1
+ 071D                   .dbline 467
+ 071D           ;       
+ 071D           ;       }else if(!heatOrCool && currentTemp <= TL){
+ 071D 801B              xjmp L133
+ 071F           L132:
+ 071F                   .dbline 467
+ 071F 62D000            mov REG[0xd0],>_heatOrCool
+ 0722 3C0000            cmp [_heatOrCool],0
+ 0725 B013              jnz L134
+ 0727 62D000            mov REG[0xd0],>_TL
+ 072A 5100              mov A,[_TL]
+ 072C 62D000            mov REG[0xd0],>_currentTemp
+ 072F 3A00              cmp A,[_currentTemp]
+ 0731 C007              jc L134
+ 0733           X21:
+ 0733                   .dbline 469
+ 0733           ;               
+ 0733           ;               fanOn = TRUE;   
+ 0733                   .dbline 469
+ 0733 62D000            mov REG[0xd0],>_fanOn
+ 0736 550001            mov [_fanOn],1
+ 0739                   .dbline 470
+ 0739           ;       }       
+ 0739           L134:
+ 0739           L133:
+ 0739                   .dbline -2
+ 0739           L131:
+ 0739                   .dbline 0 ; func end
+ 0739 7F                ret
+ 073A                   .dbend
+ 073A                   .dbfunc e cleerLCD _cleerLCD fV
+ 073A           _cleerLCD::
+ 073A                   .dbline -1
+ 073A                   .dbline 472
+ 073A           ; }
+ 073A           ; void cleerLCD(void){
+ 073A                   .dbline 474
+ 073A           ; 
+ 073A           ; LCD_Position(0,0);
+ 073A 10                push X
+ 073B 5000              mov A,0
+ 073D 5700              mov X,0
+ 073F 7C0000            xcall _LCD_Position
+ 0742                   .dbline 475
+ 0742           ; LCD_PrCString("                 ");   
+ 0742 5077              mov A,>L137
+ 0744 08                push A
+ 0745 5077              mov A,<L137
+ 0747 5C                mov X,A
+ 0748 18                pop A
+ 0749 7C0000            xcall _LCD_PrCString
+ 074C                   .dbline 476
+ 074C           ; LCD_Position(1,0); 
+ 074C 5700              mov X,0
+ 074E 5001              mov A,1
+ 0750 7C0000            xcall _LCD_Position
+ 0753                   .dbline 477
+ 0753           ; LCD_PrCString("                 ");   
+ 0753 5077              mov A,>L137
+ 0755 08                push A
+ 0756 5077              mov A,<L137
+ 0758 5C                mov X,A
+ 0759 18                pop A
+ 075A 7C0000            xcall _LCD_PrCString
+ 075D 20                pop X
+ 075E                   .dbline -2
+ 075E           L136:
+ 075E                   .dbline 0 ; func end
+ 075E 7F                ret
+ 075F                   .dbend
+ 075F                   .dbfunc e outputConfig _outputConfig fV
+ 075F           _outputConfig::
+ 075F                   .dbline -1
+ 075F                   .dbline 480
+ 075F           ;               
+ 075F           ; }     
+ 075F           ; void outputConfig(void){
+ 075F                   .dbline 483
+ 075F           ;       
+ 075F           ;       
+ 075F           ;               I2CHW_bWriteBytes(ThermoStat, &accessConfigReg , 1 ,I2CHW_NoStop);
+ 075F 10                push X
+ 0760 5002              mov A,2
+ 0762 08                push A
+ 0763 5001              mov A,1
+ 0765 08                push A
+ 0766 5000              mov A,>_accessConfigReg
+ 0768 08                push A
+ 0769 5000              mov A,<_accessConfigReg
+ 076B 08                push A
+ 076C 5048              mov A,72
+ 076E 08                push A
+ 076F 7C0000            xcall _I2CHW_bWriteBytes
+ 0772 38FB              add SP,-5
+ 0774 20                pop X
+ 0775           L139:
+ 0775                   .dbline 484
+ 0775           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 0775           L140:
+ 0775                   .dbline 484
+ 0775 10                push X
+ 0776 7C0000            xcall _I2CHW_bReadI2CStatus
+ 0779 20                pop X
+ 077A 62D000            mov REG[0xd0],>__r0
+ 077D 5300              mov [__r0],A
+ 077F 470040            tst [__r0],64
+ 0782 AFF2              jz L139
+ 0784                   .dbline 485
+ 0784           ;         I2CHW_ClrWrStatus();
+ 0784 10                push X
+ 0785 7C0000            xcall _I2CHW_ClrWrStatus
+ 0788                   .dbline 487
+ 0788           ;               
+ 0788           ;               I2CHW_fReadBytes(ThermoStat, configOut , 1, I2CHW_RepStart);
+ 0788 5001              mov A,1
+ 078A 08                push A
+ 078B 08                push A
+ 078C 5000              mov A,>_configOut
+ 078E 08                push A
+ 078F 5000              mov A,<_configOut
+ 0791 08                push A
+ 0792 5048              mov A,72
+ 0794 08                push A
+ 0795 7C0000            xcall _I2CHW_fReadBytes
+ 0798 38FB              add SP,-5
+ 079A 20                pop X
+ 079B           L142:
+ 079B                   .dbline 488
+ 079B           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_RD_COMPLETE));
+ 079B           L143:
+ 079B                   .dbline 488
+ 079B 10                push X
+ 079C 7C0000            xcall _I2CHW_bReadI2CStatus
+ 079F 20                pop X
+ 07A0 62D000            mov REG[0xd0],>__r0
+ 07A3 5300              mov [__r0],A
+ 07A5 470004            tst [__r0],4
+ 07A8 AFF2              jz L142
+ 07AA                   .dbline 489
+ 07AA           ;         I2CHW_ClrRdStatus();
+ 07AA 10                push X
+ 07AB 7C0000            xcall _I2CHW_ClrRdStatus
+ 07AE                   .dbline 491
+ 07AE           ;               
+ 07AE           ;               UART_PutCRLF();
+ 07AE 7C0000            xcall _UART_PutCRLF
+ 07B1                   .dbline 492
+ 07B1           ;               UART_PutCRLF();
+ 07B1 7C0000            xcall _UART_PutCRLF
+ 07B4                   .dbline 493
+ 07B4           ;               UART_CPutString("Configuration Register:");
+ 07B4 505F              mov A,>L145
+ 07B6 08                push A
+ 07B7 505F              mov A,<L145
+ 07B9 5C                mov X,A
+ 07BA 18                pop A
+ 07BB 7C0000            xcall _UART_CPutString
+ 07BE                   .dbline 494
+ 07BE           ;               UART_PutCRLF();
+ 07BE 7C0000            xcall _UART_PutCRLF
+ 07C1                   .dbline 495
+ 07C1           ;               UART_PutCRLF();
+ 07C1 7C0000            xcall _UART_PutCRLF
+ 07C4 20                pop X
+ 07C5                   .dbline 497
+ 07C5           ; 
+ 07C5           ;               utoa(configOutP, configOut[0], 2);
+ 07C5 5000              mov A,0
+ 07C7 08                push A
+ 07C8 5002              mov A,2
+ 07CA 08                push A
+ 07CB 62D000            mov REG[0xd0],>_configOut
+ 07CE 5100              mov A,[_configOut]
+ 07D0 62D000            mov REG[0xd0],>__r0
+ 07D3 5300              mov [__r1],A
+ 07D5 5000              mov A,0
+ 07D7 08                push A
+ 07D8 5100              mov A,[__r1]
+ 07DA 08                push A
+ 07DB 62D000            mov REG[0xd0],>_configOutP
+ 07DE 5100              mov A,[_configOutP]
+ 07E0 08                push A
+ 07E1 5101              mov A,[_configOutP+1]
+ 07E3 08                push A
+ 07E4 7C0000            xcall _utoa
+ 07E7 38FA              add SP,-6
+ 07E9                   .dbline 498
+ 07E9           ;               UART_PutString(configOutP);
+ 07E9 10                push X
+ 07EA 62D000            mov REG[0xd0],>_configOutP
+ 07ED 5100              mov A,[_configOutP]
+ 07EF 08                push A
+ 07F0 5101              mov A,[_configOutP+1]
+ 07F2 5C                mov X,A
+ 07F3 18                pop A
+ 07F4 7C0000            xcall _UART_PutString
+ 07F7                   .dbline 499
+ 07F7           ;               UART_PutCRLF();
+ 07F7 7C0000            xcall _UART_PutCRLF
+ 07FA                   .dbline 500
+ 07FA           ;               UART_PutCRLF();
+ 07FA 7C0000            xcall _UART_PutCRLF
+ 07FD 20                pop X
+ 07FE                   .dbline 502
+ 07FE           ;               
+ 07FE           ;               if (configOut[0] & THF){
+ 07FE 62D000            mov REG[0xd0],>_configOut
+ 0801 5100              mov A,[_configOut]
+ 0803 62D000            mov REG[0xd0],>_THF
+ 0806 2200              and A,[_THF]
+ 0808 62D000            mov REG[0xd0],>__r0
+ 080B 3900              cmp A,0
+ 080D A01B              jz L146
+ 080F                   .dbline 503
+ 080F           ;               UART_PutCRLF();
+ 080F                   .dbline 503
+ 080F 10                push X
+ 0810 7C0000            xcall _UART_PutCRLF
+ 0813                   .dbline 504
+ 0813           ;               UART_PutCRLF();
+ 0813 7C0000            xcall _UART_PutCRLF
+ 0816                   .dbline 505
+ 0816           ;               UART_CPutString("Temp High Flag On!");  
+ 0816 504C              mov A,>L148
+ 0818 08                push A
+ 0819 504C              mov A,<L148
+ 081B 5C                mov X,A
+ 081C 18                pop A
+ 081D 7C0000            xcall _UART_CPutString
+ 0820                   .dbline 506
+ 0820           ;               UART_PutCRLF();
+ 0820 7C0000            xcall _UART_PutCRLF
+ 0823                   .dbline 507
+ 0823           ;               UART_PutCRLF();
+ 0823 7C0000            xcall _UART_PutCRLF
+ 0826 20                pop X
+ 0827                   .dbline 509
+ 0827           ;                       
+ 0827           ;               }else if (configOut[0] & TLF){
+ 0827 8038              xjmp L147
+ 0829           L146:
+ 0829                   .dbline 509
+ 0829 62D000            mov REG[0xd0],>_configOut
+ 082C 5100              mov A,[_configOut]
+ 082E 62D000            mov REG[0xd0],>_TLF
+ 0831 2200              and A,[_TLF]
+ 0833 62D000            mov REG[0xd0],>__r0
+ 0836 3900              cmp A,0
+ 0838 A01B              jz L149
+ 083A                   .dbline 510
+ 083A           ;               UART_PutCRLF();
+ 083A                   .dbline 510
+ 083A 10                push X
+ 083B 7C0000            xcall _UART_PutCRLF
+ 083E                   .dbline 511
+ 083E           ;               UART_PutCRLF();
+ 083E 7C0000            xcall _UART_PutCRLF
+ 0841                   .dbline 512
+ 0841           ;               UART_CPutString("Temp Low Flag On!");
+ 0841 503A              mov A,>L151
+ 0843 08                push A
+ 0844 503A              mov A,<L151
+ 0846 5C                mov X,A
+ 0847 18                pop A
+ 0848 7C0000            xcall _UART_CPutString
+ 084B                   .dbline 513
+ 084B           ;               UART_PutCRLF();
+ 084B 7C0000            xcall _UART_PutCRLF
+ 084E                   .dbline 514
+ 084E           ;               UART_PutCRLF();
+ 084E 7C0000            xcall _UART_PutCRLF
+ 0851 20                pop X
+ 0852                   .dbline 516
+ 0852           ;               
+ 0852           ;               }else{UART_CPutString("High Low flag fail");}   
+ 0852 800D              xjmp L150
+ 0854           L149:
+ 0854                   .dbline 516
+ 0854                   .dbline 516
+ 0854 10                push X
+ 0855 5027              mov A,>L152
+ 0857 08                push A
+ 0858 5027              mov A,<L152
+ 085A 5C                mov X,A
+ 085B 18                pop A
+ 085C 7C0000            xcall _UART_CPutString
+ 085F 20                pop X
+ 0860                   .dbline 516
+ 0860           L150:
+ 0860           L147:
+ 0860                   .dbline -2
+ 0860           L138:
+ 0860                   .dbline 0 ; func end
+ 0860 7F                ret
+ 0861                   .dbend
+ 0861                   .dbfunc e changePOLbit _changePOLbit fV
+ 0861           _changePOLbit::
+ 0861                   .dbline -1
+ 0861                   .dbline 519
+ 0861           ; 
+ 0861           ; }     
+ 0861           ; void changePOLbit(void){
+ 0861                   .dbline 521
+ 0861           ;       
+ 0861           ;               I2CHW_bWriteBytes(ThermoStat, &accessConfigReg , 1 ,I2CHW_NoStop);
+ 0861 10                push X
+ 0862 5002              mov A,2
+ 0864 08                push A
+ 0865 5001              mov A,1
+ 0867 08                push A
+ 0868 5000              mov A,>_accessConfigReg
+ 086A 08                push A
+ 086B 5000              mov A,<_accessConfigReg
+ 086D 08                push A
+ 086E 5048              mov A,72
+ 0870 08                push A
+ 0871 7C0000            xcall _I2CHW_bWriteBytes
+ 0874 38FB              add SP,-5
+ 0876 20                pop X
+ 0877           L154:
+ 0877                   .dbline 522
+ 0877           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 0877           L155:
+ 0877                   .dbline 522
+ 0877 10                push X
+ 0878 7C0000            xcall _I2CHW_bReadI2CStatus
+ 087B 20                pop X
+ 087C 62D000            mov REG[0xd0],>__r0
+ 087F 5300              mov [__r0],A
+ 0881 470040            tst [__r0],64
+ 0884 AFF2              jz L154
+ 0886                   .dbline 523
+ 0886           ;         I2CHW_ClrWrStatus();
+ 0886 10                push X
+ 0887 7C0000            xcall _I2CHW_ClrWrStatus
+ 088A                   .dbline 525
+ 088A           ;               
+ 088A           ;               I2CHW_fReadBytes(ThermoStat, configOut2 , 1, I2CHW_RepStart);
+ 088A 5001              mov A,1
+ 088C 08                push A
+ 088D 08                push A
+ 088E 5000              mov A,>_configOut2
+ 0890 08                push A
+ 0891 5000              mov A,<_configOut2
+ 0893 08                push A
+ 0894 5048              mov A,72
+ 0896 08                push A
+ 0897 7C0000            xcall _I2CHW_fReadBytes
+ 089A 38FB              add SP,-5
+ 089C 20                pop X
+ 089D           L157:
+ 089D                   .dbline 526
+ 089D           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_RD_COMPLETE));
+ 089D           L158:
+ 089D                   .dbline 526
+ 089D 10                push X
+ 089E 7C0000            xcall _I2CHW_bReadI2CStatus
+ 08A1 20                pop X
+ 08A2 62D000            mov REG[0xd0],>__r0
+ 08A5 5300              mov [__r0],A
+ 08A7 470004            tst [__r0],4
+ 08AA AFF2              jz L157
+ 08AC                   .dbline 527
+ 08AC           ;         I2CHW_ClrRdStatus();
+ 08AC 10                push X
+ 08AD 7C0000            xcall _I2CHW_ClrRdStatus
+ 08B0                   .dbline 529
+ 08B0           ;               
+ 08B0           ;               UART_PutCRLF();
+ 08B0 7C0000            xcall _UART_PutCRLF
+ 08B3                   .dbline 530
+ 08B3           ;               UART_PutCRLF();
+ 08B3 7C0000            xcall _UART_PutCRLF
+ 08B6 20                pop X
+ 08B7                   .dbline 537
+ 08B7           ; //            UART_PutSHexByte(configOut2[0]);
+ 08B7           ; //            UART_PutCRLF();
+ 08B7           ; //            UART_PutCRLF();
+ 08B7           ;               
+ 08B7           ;               
+ 08B7           ;               
+ 08B7           ;               POLbitFlip[0] = accessConfigReg;
+ 08B7 62D000            mov REG[0xd0],>_accessConfigReg
+ 08BA 5100              mov A,[_accessConfigReg]
+ 08BC 62D000            mov REG[0xd0],>_POLbitFlip
+ 08BF 5300              mov [_POLbitFlip],A
+ 08C1                   .dbline 538
+ 08C1           ;               POLbitFlip[1] = configOut2[0] ^ 0x02;
+ 08C1 62D000            mov REG[0xd0],>_configOut2
+ 08C4 5100              mov A,[_configOut2]
+ 08C6 3102              xor A,2
+ 08C8 62D000            mov REG[0xd0],>_POLbitFlip
+ 08CB 5301              mov [_POLbitFlip+1],A
+ 08CD                   .dbline 540
+ 08CD           ;       
+ 08CD           ;           I2CHW_bWriteBytes(ThermoStat, POLbitFlip , 2 ,I2CHW_CompleteXfer);
+ 08CD 10                push X
+ 08CE 5000              mov A,0
+ 08D0 08                push A
+ 08D1 5002              mov A,2
+ 08D3 08                push A
+ 08D4 5000              mov A,>_POLbitFlip
+ 08D6 08                push A
+ 08D7 5000              mov A,<_POLbitFlip
+ 08D9 08                push A
+ 08DA 5048              mov A,72
+ 08DC 08                push A
+ 08DD 7C0000            xcall _I2CHW_bWriteBytes
+ 08E0 38FB              add SP,-5
+ 08E2 20                pop X
+ 08E3           L161:
+ 08E3                   .dbline 541
+ 08E3           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 08E3           L162:
+ 08E3                   .dbline 541
+ 08E3 10                push X
+ 08E4 7C0000            xcall _I2CHW_bReadI2CStatus
+ 08E7 20                pop X
+ 08E8 62D000            mov REG[0xd0],>__r0
+ 08EB 5300              mov [__r0],A
+ 08ED 470040            tst [__r0],64
+ 08F0 AFF2              jz L161
+ 08F2                   .dbline 542
+ 08F2           ;         I2CHW_ClrWrStatus();
+ 08F2 10                push X
+ 08F3 7C0000            xcall _I2CHW_ClrWrStatus
+ 08F6 20                pop X
+ 08F7                   .dbline -2
+ 08F7           L153:
+ 08F7                   .dbline 0 ; func end
+ 08F7 7F                ret
+ 08F8                   .dbend
+ 08F8                   .dbfunc e initial _initial fV
+ 08F8           _initial::
+ 08F8                   .dbline -1
+ 08F8                   .dbline 546
+ 08F8           ; 
+ 08F8           ;       
+ 08F8           ; }     
+ 08F8           ; void initial(void){
+ 08F8                   .dbline 548
+ 08F8           ; 
+ 08F8           ;               I2CHW_bWriteBytes(ThermoStat, &tempStartConvert , 1 , I2CHW_CompleteXfer);
+ 08F8 10                push X
+ 08F9 5000              mov A,0
+ 08FB 08                push A
+ 08FC 5001              mov A,1
+ 08FE 08                push A
+ 08FF 5000              mov A,>_tempStartConvert
+ 0901 08                push A
+ 0902 5000              mov A,<_tempStartConvert
+ 0904 08                push A
+ 0905 5048              mov A,72
+ 0907 08                push A
+ 0908 7C0000            xcall _I2CHW_bWriteBytes
+ 090B 38FB              add SP,-5
+ 090D 20                pop X
+ 090E           L165:
+ 090E                   .dbline 549
+ 090E           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 090E           L166:
+ 090E                   .dbline 549
+ 090E 10                push X
+ 090F 7C0000            xcall _I2CHW_bReadI2CStatus
+ 0912 20                pop X
+ 0913 62D000            mov REG[0xd0],>__r0
+ 0916 5300              mov [__r0],A
+ 0918 470040            tst [__r0],64
+ 091B AFF2              jz L165
+ 091D                   .dbline 550
+ 091D           ;         I2CHW_ClrWrStatus();
+ 091D 10                push X
+ 091E 7C0000            xcall _I2CHW_ClrWrStatus
+ 0921                   .dbline 552
+ 0921           ; 
+ 0921           ;               I2CHW_bWriteBytes(ThermoStat, &tempRead , 1 , I2CHW_NoStop);
+ 0921 5002              mov A,2
+ 0923 08                push A
+ 0924 5001              mov A,1
+ 0926 08                push A
+ 0927 5000              mov A,>_tempRead
+ 0929 08                push A
+ 092A 5000              mov A,<_tempRead
+ 092C 08                push A
+ 092D 5048              mov A,72
+ 092F 08                push A
+ 0930 7C0000            xcall _I2CHW_bWriteBytes
+ 0933 38FB              add SP,-5
+ 0935 20                pop X
+ 0936           L168:
+ 0936                   .dbline 553
+ 0936           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 0936           L169:
+ 0936                   .dbline 553
+ 0936 10                push X
+ 0937 7C0000            xcall _I2CHW_bReadI2CStatus
+ 093A 20                pop X
+ 093B 62D000            mov REG[0xd0],>__r0
+ 093E 5300              mov [__r0],A
+ 0940 470040            tst [__r0],64
+ 0943 AFF2              jz L168
+ 0945                   .dbline 554
+ 0945           ;         I2CHW_ClrWrStatus();
+ 0945 10                push X
+ 0946 7C0000            xcall _I2CHW_ClrWrStatus
+ 0949 20                pop X
+ 094A                   .dbline 556
+ 094A           ;               
+ 094A           ;               j = 0;
+ 094A 62D000            mov REG[0xd0],>_j
+ 094D 550100            mov [_j+1],0
+ 0950 550000            mov [_j],0
+ 0953                   .dbline 557
+ 0953           ;               for(j = 0; j < 5000; j++); 
+ 0953 550100            mov [_j+1],0
+ 0956 550000            mov [_j],0
+ 0959           L171:
+ 0959                   .dbline 557
+ 0959           L172:
+ 0959                   .dbline 557
+ 0959 62D000            mov REG[0xd0],>_j
+ 095C 7601              inc [_j+1]
+ 095E 0E0000            adc [_j],0
+ 0961                   .dbline 557
+ 0961 5101              mov A,[_j+1]
+ 0963 1188              sub A,-120
+ 0965 5100              mov A,[_j]
+ 0967 3180              xor A,-128
+ 0969 1993              sbb A,(19 ^ 0x80)
+ 096B CFED              jc L171
+ 096D           X22:
+ 096D                   .dbline 559
+ 096D           ;               
+ 096D           ;               I2CHW_fReadBytes(ThermoStat, currentTempA , 2, I2CHW_RepStart);
+ 096D 10                push X
+ 096E 5001              mov A,1
+ 0970 08                push A
+ 0971 5002              mov A,2
+ 0973 08                push A
+ 0974 5000              mov A,>_currentTempA
+ 0976 08                push A
+ 0977 5000              mov A,<_currentTempA
+ 0979 08                push A
+ 097A 5048              mov A,72
+ 097C 08                push A
+ 097D 7C0000            xcall _I2CHW_fReadBytes
+ 0980 38FB              add SP,-5
+ 0982 20                pop X
+ 0983           L175:
+ 0983                   .dbline 560
+ 0983           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_RD_COMPLETE));
+ 0983           L176:
+ 0983                   .dbline 560
+ 0983 10                push X
+ 0984 7C0000            xcall _I2CHW_bReadI2CStatus
+ 0987 20                pop X
+ 0988 62D000            mov REG[0xd0],>__r0
+ 098B 5300              mov [__r0],A
+ 098D 470004            tst [__r0],4
+ 0990 AFF2              jz L175
+ 0992                   .dbline 561
+ 0992           ;         I2CHW_ClrRdStatus();
+ 0992 10                push X
+ 0993 7C0000            xcall _I2CHW_ClrRdStatus
+ 0996                   .dbline 564
+ 0996           ;               
+ 0996           ;               
+ 0996           ;               I2CHW_bWriteBytes(ThermoStat, &accessConfigReg , 1 ,I2CHW_NoStop);
+ 0996 5002              mov A,2
+ 0998 08                push A
+ 0999 5001              mov A,1
+ 099B 08                push A
+ 099C 5000              mov A,>_accessConfigReg
+ 099E 08                push A
+ 099F 5000              mov A,<_accessConfigReg
+ 09A1 08                push A
+ 09A2 5048              mov A,72
+ 09A4 08                push A
+ 09A5 7C0000            xcall _I2CHW_bWriteBytes
+ 09A8 38FB              add SP,-5
+ 09AA 20                pop X
+ 09AB           L178:
+ 09AB                   .dbline 565
+ 09AB           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_WR_COMPLETE));
+ 09AB           L179:
+ 09AB                   .dbline 565
+ 09AB 10                push X
+ 09AC 7C0000            xcall _I2CHW_bReadI2CStatus
+ 09AF 20                pop X
+ 09B0 62D000            mov REG[0xd0],>__r0
+ 09B3 5300              mov [__r0],A
+ 09B5 470040            tst [__r0],64
+ 09B8 AFF2              jz L178
+ 09BA                   .dbline 566
+ 09BA           ;         I2CHW_ClrWrStatus();
+ 09BA 10                push X
+ 09BB 7C0000            xcall _I2CHW_ClrWrStatus
+ 09BE                   .dbline 568
+ 09BE           ;               
+ 09BE           ;               I2CHW_fReadBytes(ThermoStat, configOut , 1, I2CHW_RepStart);
+ 09BE 5001              mov A,1
+ 09C0 08                push A
+ 09C1 08                push A
+ 09C2 5000              mov A,>_configOut
+ 09C4 08                push A
+ 09C5 5000              mov A,<_configOut
+ 09C7 08                push A
+ 09C8 5048              mov A,72
+ 09CA 08                push A
+ 09CB 7C0000            xcall _I2CHW_fReadBytes
+ 09CE 38FB              add SP,-5
+ 09D0 20                pop X
+ 09D1           L181:
+ 09D1                   .dbline 569
+ 09D1           ;         while(!(I2CHW_bReadI2CStatus() & I2CHW_RD_COMPLETE));
+ 09D1           L182:
+ 09D1                   .dbline 569
+ 09D1 10                push X
+ 09D2 7C0000            xcall _I2CHW_bReadI2CStatus
+ 09D5 20                pop X
+ 09D6 62D000            mov REG[0xd0],>__r0
+ 09D9 5300              mov [__r0],A
+ 09DB 470004            tst [__r0],4
+ 09DE AFF2              jz L181
+ 09E0                   .dbline 570
+ 09E0           ;         I2CHW_ClrRdStatus();
+ 09E0 10                push X
+ 09E1 7C0000            xcall _I2CHW_ClrRdStatus
+ 09E4 20                pop X
+ 09E5                   .dbline 572
+ 09E5           ;               
+ 09E5           ;               j = 0;
+ 09E5 62D000            mov REG[0xd0],>_j
+ 09E8 550100            mov [_j+1],0
+ 09EB 550000            mov [_j],0
+ 09EE                   .dbline 573
+ 09EE           ;               for(j = 0; j < 5000; j++); 
+ 09EE 550100            mov [_j+1],0
+ 09F1 550000            mov [_j],0
+ 09F4           L184:
+ 09F4                   .dbline 573
+ 09F4           L185:
+ 09F4                   .dbline 573
+ 09F4 62D000            mov REG[0xd0],>_j
+ 09F7 7601              inc [_j+1]
+ 09F9 0E0000            adc [_j],0
+ 09FC                   .dbline 573
+ 09FC 5101              mov A,[_j+1]
+ 09FE 1188              sub A,-120
+ 0A00 5100              mov A,[_j]
+ 0A02 3180              xor A,-128
+ 0A04 1993              sbb A,(19 ^ 0x80)
+ 0A06 CFED              jc L184
+ 0A08           X23:
+ 0A08                   .dbline -2
+ 0A08           L164:
+ 0A08                   .dbline 0 ; func end
+ 0A08 7F                ret
+ 0A09                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _rawString::
+ 0000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 003C 00000000000000000000      .word 0,0,0,0,0
+ 0046 000000000000000000        .byte 0,0,0,0,0,0,0,0,0
+ 004F                   .dbsym e rawString _rawString A[79:79]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _heatOrCool::
+ 0000 00                .byte 0
+ 0001                   .dbsym e heatOrCool _heatOrCool c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _tolerence::
+ 0000 00                .byte 0
+ 0001                   .dbsym e tolerence _tolerence c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _count::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e count _count I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _temp3::
+ 0000 00                .byte 0
+ 0001                   .dbsym e temp3 _temp3 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _temp2::
+ 0000 00                .byte 0
+ 0001                   .dbsym e temp2 _temp2 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _temp1::
+ 0000 00                .byte 0
+ 0001                   .dbsym e temp1 _temp1 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _Write_Address::
+ 0000 00                .byte 0
+ 0001                   .dbsym e Write_Address _Write_Address c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _Read_Address::
+ 0000 00                .byte 0
+ 0001                   .dbsym e Read_Address _Read_Address c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _Address_Pointer::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e Address_Pointer _Address_Pointer pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _configOut2::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e configOut2 _configOut2 A[2:2]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _configOut::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e configOut _configOut A[2:2]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _status::
+ 0000 00                .byte 0
+ 0001                   .dbsym e status _status c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _TLvalueTest::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e TLvalueTest _TLvalueTest A[2:2]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _THvalueTest::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e THvalueTest _THvalueTest A[2:2]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _TLvalue::
+ 0000 000000            .byte 0,0,0
+ 0003                   .dbsym e TLvalue _TLvalue A[3:3]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _THvalue::
+ 0000 000000            .byte 0,0,0
+ 0003                   .dbsym e THvalue _THvalue A[3:3]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _rxBuffer::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e rxBuffer _rxBuffer A[2:2]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _txBuffer::
+ 0000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 003C 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0078 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00B4 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00F0 00000000000000000000      .word 0,0,0,0,0
+ 00FA 0000000000        .byte 0,0,0,0,0
+ 00FF                   .dbsym e txBuffer _txBuffer A[255:255]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _fanOn::
+ 0000 00                .byte 0
+ 0001                   .dbsym e fanOn _fanOn c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _command::
+ 0000 00                .byte 0
+ 0001                   .dbsym e command _command c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _sizeOfString::
+ 0000 00                .byte 0
+ 0001                   .dbsym e sizeOfString _sizeOfString c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _j::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e j _j I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _i::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e i _i I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _addressHex::
+ 0000 00                .byte 0
+ 0001                   .dbsym e addressHex _addressHex c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _messageString::
+ 0000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 003C 00000000000000000000      .word 0,0,0,0,0
+ 0046 000000000000000000        .byte 0,0,0,0,0,0,0,0,0
+ 004F                   .dbsym e messageString _messageString A[79:79]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _TLP::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e TLP _TLP pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _THP::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e THP _THP pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _TL::
+ 0000 00                .byte 0
+ 0001                   .dbsym e TL _TL c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _TH::
+ 0000 00                .byte 0
+ 0001                   .dbsym e TH _TH c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _configOutP::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e configOutP _configOutP pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _tempP::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e tempP _tempP pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _string3::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string3 _string3 A[17:17]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _string2::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string2 _string2 A[17:17]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _string1::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string1 _string1 A[17:17]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _string0::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string0 _string0 A[17:17]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _POLbitFlip::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e POLbitFlip _POLbitFlip A[2:2]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _currentTemp2::
+ 0000 00                .byte 0
+ 0001                   .dbsym e currentTemp2 _currentTemp2 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _currentTemp1::
+ 0000 00                .byte 0
+ 0001                   .dbsym e currentTemp1 _currentTemp1 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _currentTemp::
+ 0000 00                .byte 0
+ 0001                   .dbsym e currentTemp _currentTemp c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\Lab_7\Lab_7\main.c
+ 0000           _currentTempA::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e currentTempA _currentTempA A[2:2]c
+                        .area lit(rom, con, rel, lit)
+ 0227           L152:
+ 0227 48696768204C6F7720666C6167206661  .byte 'H,'i,'g,'h,32,'L,'o,'w,32,'f,'l,'a,'g,32,'f,'a
+ 0237 696C00            .byte 'i,'l,0
+ 023A           L151:
+ 023A 54656D70204C6F7720466C6167204F6E  .byte 'T,'e,'m,'p,32,'L,'o,'w,32,'F,'l,'a,'g,32,'O,'n
+ 024A 2100              .byte 33,0
+ 024C           L148:
+ 024C 54656D70204869676820466C6167204F  .byte 'T,'e,'m,'p,32,'H,'i,'g,'h,32,'F,'l,'a,'g,32,'O
+ 025C 6E2100            .byte 'n,33,0
+ 025F           L145:
+ 025F 436F6E66696775726174696F6E205265  .byte 'C,'o,'n,'f,'i,'g,'u,'r,'a,'t,'i,'o,'n,32,'R,'e
+ 026F 6769737465723A00  .byte 'g,'i,'s,'t,'e,'r,58,0
+ 0277           L137:
+ 0277 20202020202020202020202020202020  .byte 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32
+ 0287 2000              .byte 32,0
+ 0289           L122:
+ 0289 54482076616C75653A00      .byte 'T,'H,32,'v,'a,'l,'u,'e,58,0
+ 0293           L121:
+ 0293 544C2076616C75653A00      .byte 'T,'L,32,'v,'a,'l,'u,'e,58,0
+ 029D           L100:
+ 029D 496E76616C696420696E707574206E75  .byte 'I,'n,'v,'a,'l,'i,'d,32,'i,'n,'p,'u,'t,32,'n,'u
+ 02AD 6D62657200        .byte 'm,'b,'e,'r,0
+ 02B2           L97:
+ 02B2 696E76616C696420696E707574206368  .byte 'i,'n,'v,'a,'l,'i,'d,32,'i,'n,'p,'u,'t,32,'c,'h
+ 02C2 6172656374657200  .byte 'a,'r,'e,'c,'t,'e,'r,0
+ 02CA           L51:
+ 02CA 537472696E672046756C6C00  .byte 'S,'t,'r,'i,'n,'g,32,'F,'u,'l,'l,0
+ 02D6           L50:
+ 02D6 08200800          .byte 8,32,8,0
+ 02DA           L36:
+ 02DA 3E00              .byte 62,0
+ 02DC           L35:
+ 02DC 0D0A00            .byte 13,10,0
+ 02DF           L30:
+ 02DF 2E30204300        .byte 46,48,32,'C,0
+ 02E4           L29:
+ 02E4 2E35204300        .byte 46,53,32,'C,0
+ 02E9           L25:
+ 02E9 43757272656E742074656D7065726174  .byte 'C,'u,'r,'r,'e,'n,'t,32,'t,'e,'m,'p,'e,'r,'a,'t
+ 02F9 7572653A00        .byte 'u,'r,'e,58,0
+ 02FE           L24:
+ 02FE 4865617400        .byte 'H,'e,'a,'t,0
+ 0303           L23:
+ 0303 436F6F6C00        .byte 'C,'o,'o,'l,0
+ 0308           L20:
+ 0308 43757272656E74204D6F64653A00      .byte 'C,'u,'r,'r,'e,'n,'t,32,'M,'o,'d,'e,58,0

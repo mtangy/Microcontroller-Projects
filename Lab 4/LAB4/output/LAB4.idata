@@ -1,0 +1,7 @@
+flash 15C7 SRAM    3:
+ 00 15 bytes
+flash 15CB SRAM   1D:
+ <size at next line>  3F 80
+  [size:] 2 bytes
+flash 15D0 SRAM   1F:
+ 00 25 bytes

@@ -1,0 +1,39 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8ssc.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\lib\GLOBAL~1.INC\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./obj/main.o :  ./lib/I2CHWC~1.H ./lib/I2CHWM~1.H ./lib/LCD.h\
+   ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/UART.h\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.h\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/_const.h\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/string.h
+./lib/obj/i2chwcommon.o :  ./lib/I2CHWC~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/i2chwint.o :  ./lib/I2CHWC~1.INC ./lib/I2CHWM~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/i2chwmstr.o :  ./lib/I2CHWC~1.INC ./lib/I2CHWM~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/i2chwrsrcinits.o :  ./lib/I2CHWC~1.INC ./lib/I2CHWM~1.INC\
+   ./lib/LCD.inc ./lib/PSoCAPI.inc ./lib/PSOCGP~1.INC ./lib/UART.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/lcd.o :  ./lib/LCD.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/uart.o :  ./lib/UART.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/uartint.o :  ./lib/UART.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\memory.inc
+./lib/obj/uartplus.o : 

@@ -1,0 +1,97 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8ssc.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\lib\GLOBAL~1.INC\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./obj/keyboard.o :  ./lib/LCD.h ./lib/PS2DIG~1.H ./lib/PS2ONE~1.H\
+   ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8LED.h ./lib/PWMPIA~1.H\
+   ./lib/PWMPIA~3.H ./lib/PWMPIA~2.H ./lib/TENMIC~1.H ./lib/UART.h\
+   ./lib/UARTCL~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.h
+./obj/main.o :  ./lib/LCD.h ./lib/PS2DIG~1.H ./lib/PS2ONE~1.H\
+   ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8LED.h ./lib/PWMPIA~1.H\
+   ./lib/PWMPIA~3.H ./lib/PWMPIA~2.H ./lib/TENMIC~1.H ./lib/UART.h\
+   ./lib/UARTCL~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.h
+./obj/mouse.o :  ./lib/LCD.h ./lib/PS2DIG~1.H ./lib/PS2ONE~1.H\
+   ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8LED.h ./lib/PWMPIA~1.H\
+   ./lib/PWMPIA~3.H ./lib/PWMPIA~2.H ./lib/TENMIC~1.H ./lib/UART.h\
+   ./lib/UARTCL~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.h
+./obj/ps2.o :  ./lib/LCD.h ./lib/PS2DIG~1.H ./lib/PS2ONE~1.H\
+   ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8LED.h ./lib/PWMPIA~1.H\
+   ./lib/PWMPIA~3.H ./lib/PWMPIA~2.H ./lib/TENMIC~1.H ./lib/UART.h\
+   ./lib/UARTCL~1.H\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.h\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.h
+./lib/obj/lcd.o :  ./lib/LCD.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/ps2digbuf.o :  ./lib/PS2DIG~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/ps2digbufint.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/ps2oneshot.o :  ./lib/PS2ONE~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/ps2oneshotint.o :  ./lib/PS2ONE~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/pwm8led.o :  ./lib/PWM8LED.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/pwm8ledint.o :  ./lib/PWM8LED.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/pwmpiano1.o :  ./lib/PWMPIA~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/pwmpiano1int.o :  ./lib/PWMPIA~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/pwmpiano2.o :  ./lib/PWMPIA~3.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/pwmpiano2int.o :  ./lib/PWMPIA~3.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/pwmpiano3.o :  ./lib/PWMPIA~2.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/pwmpiano3int.o :  ./lib/PWMPIA~2.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/tenmicrosectimer.o :  ./lib/TENMIC~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/tenmicrosectimerint.o :  ./lib/TENMIC~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/uart.o :  ./lib/UART.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/uartclock.o :  ./lib/UARTCL~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/uartclockint.o :  ./lib/UARTCL~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/uartint.o :  ./lib/UART.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\memory.inc
+./lib/obj/uartplus.o : 

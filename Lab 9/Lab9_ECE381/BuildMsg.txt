@@ -1,0 +1,64 @@
+Starting MAKE...
+creating project.mk 
+
+lib/adcinc.asm
+
+lib/adcincint.asm
+
+lib/lcd.asm
+
+lib/pga.asm
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+lib/sleeptimer.asm
+
+lib/sleeptimerint.asm
+
+./boot.asm
+
+Linking..
+
+LMM info: area 'InterruptRAM' uses 18 bytes in SRAM bank 0
+
+LMM info: area 'data' item of 15 bytes allocated in SRAM page 0
+
+LMM info: area 'virtual_registers' uses 11 bytes in SRAM page 0
+
+LMM info: area 'data' item of 4 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 4 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+idata dump at output/Lab9_ECE381.idata
+
+  ROM 16% full. 5023 out of 32768 bytes used (does not include absolute areas).
+
+  RAM 5% full. 72 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+Lab9_ECE381 - 0 error(s) 0 warning(s) 19:12:43
+

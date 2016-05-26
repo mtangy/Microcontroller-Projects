@@ -1,0 +1,1176 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _parseCounter::
+ 0000 0000              .word 0
+ 0002                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0002                   .dbsym e parseCounter _parseCounter I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _finishFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e finishFlag _finishFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _invaildFlag::
+ 0000 00                .byte 0
+ 0001                   .dbsym e invaildFlag _invaildFlag c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _charIn::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn _charIn c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _charIn1::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn1 _charIn1 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _charIn2::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn2 _charIn2 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _charIn3::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn3 _charIn3 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _charIn4::
+ 0000 00                .byte 0
+ 0001                   .dbsym e charIn4 _charIn4 c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _instBuffer::
+ 0000 00                .byte 0
+ 0001                   .dbsym e instBuffer _instBuffer c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _placeCounter::
+ 0000 0000              .word 0
+ 0002                   .dbsym e placeCounter _placeCounter I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+                        .area lit(rom, con, rel, lit)
+ 0000           _welcomeMsg::
+ 0000 57656C636F6D652E00        .byte 'W,'e,'l,'c,'o,'m,'e,46,0
+ 0009                   .dbsym e welcomeMsg _welcomeMsg A[9:9]kc
+ 0009           _instructMsg::
+ 0009 5479706520696E2074686520666F726D  .byte 'T,'y,'p,'e,32,'i,'n,32,'t,'h,'e,32,'f,'o,'r,'m
+ 0019 207765206C696B652028492073776561  .byte 32,'w,'e,32,'l,'i,'k,'e,32,40,'I,32,'s,'w,'e,'a
+ 0029 722049276C6C20666978207468697329  .byte 'r,32,'I,39,'l,'l,32,'f,'i,'x,32,'t,'h,'i,'s,41
+ 0039 00                .byte 0
+ 003A                   .dbsym e instructMsg _instructMsg A[49:49]kc
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 66
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; #include "string.h"
+ 0000           ; //#include "stdbool.h"
+ 0000           ; //#include <stdbool.h>
+ 0000           ; #include "I2CHWMstr.h"
+ 0000           ; 
+ 0000           ; //char register [7];
+ 0000           ; char string0[17];
+ 0000           ; char string1[17];
+ 0000           ; char string2[17];
+ 0000           ; char string3[17];
+ 0000           ; 
+ 0000           ; char address[2]; 
+ 0000           ; char messageString[79]; 
+ 0000           ; int parseCounter=0; 
+ 0000           ; 
+ 0000           ; BYTE ramSelect;
+ 0000           ; 
+ 0000           ; BOOL finishFlag = FALSE; 
+ 0000           ; BOOL invaildFlag = FALSE; 
+ 0000           ; 
+ 0000           ; /* Define slave address */
+ 0000           ; #define Ram1 0x50
+ 0000           ; #define Ram2 0x51  //NOTE:1 may need to be changed to a 2 to make room for the R/W bit  
+ 0000           ; 
+ 0000           ; /* Define buffer size */
+ 0000           ; #define BUFFER_SIZE 0x08
+ 0000           ; 
+ 0000           ; BYTE txBuffer[BUFFER_SIZE];
+ 0000           ; BYTE rxBuffer[BUFFER_SIZE];
+ 0000           ; BYTE status;
+ 0000           ; 
+ 0000           ; BYTE *Read_Address;
+ 0000           ; 
+ 0000           ; char charIn = '\0';
+ 0000           ; char charIn1= '\0';
+ 0000           ; char charIn2= '\0';
+ 0000           ; char charIn3= '\0';
+ 0000           ; char charIn4= '\0';
+ 0000           ; 
+ 0000           ; char instBuffer= '\0';
+ 0000           ; int placeCounter = 0;
+ 0000           ; int count;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; char rawString[79]; 
+ 0000           ; 
+ 0000           ; const char welcomeMsg[] = "Welcome.";
+ 0000           ; const char instructMsg[] = "Type in the form we like (I swear I'll fix this)";
+ 0000           ; //"W # XX A Mary had a little lamb"
+ 0000           ; 
+ 0000           ; //function prototypes
+ 0000           ; void startFunction(void);
+ 0000           ; void readFunction(void);
+ 0000           ; void stringParser(void);
+ 0000           ; void instructions(void);
+ 0000           ; 
+ 0000           ; 
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 68
+ 0000           ;       
+ 0000           ;       I2CHW_Start(); 
+ 0000 10                push X
+ 0001 7C0000            xcall _I2CHW_Start
+ 0004                   .dbline 69
+ 0004           ;       I2CHW_EnableMstr();
+ 0004 7C0000            xcall _I2CHW_EnableMstr
+ 0007 20                pop X
+ 0008                   .dbline 70
+ 0008           ;       M8C_EnableGInt;
+ 0008 7101                      or  F, 01h
+ 000A           
+ 000A                   .dbline 71
+ 000A           ;       I2CHW_EnableInt();
+ 000A 10                push X
+ 000B 7C0000            xcall _I2CHW_EnableInt
+ 000E                   .dbline 72
+ 000E           ;       LCD_Start();
+ 000E 7C0000            xcall _LCD_Start
+ 0011                   .dbline 75
+ 0011           ;       
+ 0011           ;       
+ 0011           ;       UART_Start(UART_PARITY_NONE);
+ 0011 5000              mov A,0
+ 0013 7C0000            xcall _UART_Start
+ 0016 20                pop X
+ 0017                   .dbline 79
+ 0017           ;               
+ 0017           ;       //I2CHW_InitRamRead(txBuffer, BUFFER_SIZE);
+ 0017           ; 
+ 0017           ;       Read_Address = 0x00;
+ 0017 62D000            mov REG[0xd0],>_Read_Address
+ 001A 550100            mov [_Read_Address+1],0
+ 001D 550000            mov [_Read_Address],0
+ 0020                   .dbline 81
+ 0020           ;       
+ 0020           ;       txBuffer[0] = 0x00;
+ 0020 62D000            mov REG[0xd0],>_txBuffer
+ 0023 550000            mov [_txBuffer],0
+ 0026                   .dbline 82
+ 0026           ;       txBuffer[1] = 0x55;
+ 0026 550155            mov [_txBuffer+1],85
+ 0029                   .dbline 83
+ 0029           ;       txBuffer[2] = 0x55;
+ 0029 550255            mov [_txBuffer+2],85
+ 002C                   .dbline 84
+ 002C           ;       txBuffer[3] = 0x55;
+ 002C 550355            mov [_txBuffer+3],85
+ 002F                   .dbline 85
+ 002F           ;       txBuffer[4] = 0x55;
+ 002F 550455            mov [_txBuffer+4],85
+ 0032                   .dbline 86
+ 0032           ;       txBuffer[5] = 0x55;
+ 0032 550555            mov [_txBuffer+5],85
+ 0035                   .dbline 87
+ 0035           ;       txBuffer[6] = 0x55;
+ 0035 550655            mov [_txBuffer+6],85
+ 0038                   .dbline 88
+ 0038           ;       txBuffer[7] = 0x55;
+ 0038 550755            mov [_txBuffer+7],85
+ 003B 8040              xjmp L10
+ 003D           L9:
+ 003D                   .dbline 93
+ 003D           ;       
+ 003D           ;       //txBuffer[8] = 0x55;
+ 003D           ;       
+ 003D           ;       while(1) 
+ 003D           ;       {
+ 003D                   .dbline 95
+ 003D           ;               
+ 003D           ;               startFunction();
+ 003D 9041              xcall _startFunction
+ 003F                   .dbline 96
+ 003F           ;               readFunction();
+ 003F 9066              xcall _readFunction
+ 0041                   .dbline 98
+ 0041           ;               
+ 0041           ;               if (finishFlag){
+ 0041 62D000            mov REG[0xd0],>_finishFlag
+ 0044 3C0000            cmp [_finishFlag],0
+ 0047 A014              jz L12
+ 0049                   .dbline 99
+ 0049           ;               LCD_Position(0,0);
+ 0049                   .dbline 99
+ 0049 10                push X
+ 004A 5000              mov A,0
+ 004C 5700              mov X,0
+ 004E 7C0000            xcall _LCD_Position
+ 0051                   .dbline 100
+ 0051           ;               LCD_PrString(rawString); 
+ 0051 5000              mov A,>_rawString
+ 0053 08                push A
+ 0054 5000              mov A,<_rawString
+ 0056 5C                mov X,A
+ 0057 18                pop A
+ 0058 7C0000            xcall _LCD_PrString
+ 005B 20                pop X
+ 005C                   .dbline 101
+ 005C           ;               }
+ 005C           L12:
+ 005C                   .dbline 102
+ 005C           ;               stringParser(); 
+ 005C 9143              xcall _stringParser
+ 005E                   .dbline 103
+ 005E           ;               if (invaildFlag)
+ 005E 62D000            mov REG[0xd0],>_invaildFlag
+ 0061 3C0000            cmp [_invaildFlag],0
+ 0064 A017              jz L14
+ 0066                   .dbline 105
+ 0066           ;               {
+ 0066           ;                       UART_CPutString("This string was invalid");
+ 0066                   .dbline 105
+ 0066 10                push X
+ 0067 500E              mov A,>L16
+ 0069 08                push A
+ 006A 500E              mov A,<L16
+ 006C 5C                mov X,A
+ 006D 18                pop A
+ 006E 7C0000            xcall _UART_CPutString
+ 0071                   .dbline 106
+ 0071           ;                       UART_CPutString(instructMsg);
+ 0071 5009              mov A,>_instructMsg
+ 0073 08                push A
+ 0074 5009              mov A,<_instructMsg
+ 0076 5C                mov X,A
+ 0077 18                pop A
+ 0078 7C0000            xcall _UART_CPutString
+ 007B 20                pop X
+ 007C                   .dbline 107
+ 007C           ;               }//end invalid flag if
+ 007C           L14:
+ 007C                   .dbline 109
+ 007C           ;               else 
+ 007C           ;               {       
+ 007C                   .dbline 112
+ 007C           ;                       //This is where the good I2c stuff goes
+ 007C           ;               
+ 007C           ;               }
+ 007C           L15:
+ 007C                   .dbline 113
+ 007C           ;       }//End while(1)
+ 007C           L10:
+ 007C                   .dbline 92
+ 007C 8FC0              xjmp L9
+ 007E           X0:
+ 007E                   .dbline -2
+ 007E           L1:
+ 007E                   .dbline 0 ; func end
+ 007E 8FFF              jmp .
+ 0080                   .dbend
+ 0080                   .dbfunc e startFunction _startFunction fV
+ 0080           _startFunction::
+ 0080                   .dbline -1
+ 0080                   .dbline 118
+ 0080           ; 
+ 0080           ; } //End Main
+ 0080           ; 
+ 0080           ; void startFunction (void)
+ 0080           ; {
+ 0080                   .dbline 120
+ 0080           ;       
+ 0080           ;       UART_CPutString(welcomeMsg);
+ 0080 10                push X
+ 0081 5000              mov A,>_welcomeMsg
+ 0083 08                push A
+ 0084 5000              mov A,<_welcomeMsg
+ 0086 5C                mov X,A
+ 0087 18                pop A
+ 0088 7C0000            xcall _UART_CPutString
+ 008B                   .dbline 121
+ 008B           ;       UART_PutCRLF();
+ 008B 7C0000            xcall _UART_PutCRLF
+ 008E                   .dbline 122
+ 008E           ;       UART_CPutString(instructMsg);
+ 008E 5009              mov A,>_instructMsg
+ 0090 08                push A
+ 0091 5009              mov A,<_instructMsg
+ 0093 5C                mov X,A
+ 0094 18                pop A
+ 0095 7C0000            xcall _UART_CPutString
+ 0098                   .dbline 123
+ 0098           ;       UART_PutCRLF();
+ 0098 7C0000            xcall _UART_PutCRLF
+ 009B                   .dbline 124
+ 009B           ;       UART_CPutString(">");
+ 009B 500C              mov A,>L18
+ 009D 08                push A
+ 009E 500C              mov A,<L18
+ 00A0 5C                mov X,A
+ 00A1 18                pop A
+ 00A2 7C0000            xcall _UART_CPutString
+ 00A5 20                pop X
+ 00A6                   .dbline -2
+ 00A6           L17:
+ 00A6                   .dbline 0 ; func end
+ 00A6 7F                ret
+ 00A7                   .dbend
+ 00A7                   .dbfunc e readFunction _readFunction fV
+ 00A7           _readFunction::
+ 00A7                   .dbline -1
+ 00A7                   .dbline 128
+ 00A7           ;       
+ 00A7           ; }//end startFunction
+ 00A7           ; void readFunction (void)
+ 00A7           ; {
+ 00A7                   .dbline 129
+ 00A7           ;       placeCounter = 0; 
+ 00A7 62D000            mov REG[0xd0],>_placeCounter
+ 00AA 550100            mov [_placeCounter+1],0
+ 00AD 550000            mov [_placeCounter],0
+ 00B0                   .dbline 130
+ 00B0           ;       finishFlag= FALSE; 
+ 00B0 62D000            mov REG[0xd0],>_finishFlag
+ 00B3 550000            mov [_finishFlag],0
+ 00B6 80DE              xjmp L21
+ 00B8           L20:
+ 00B8                   .dbline 132
+ 00B8           ;       
+ 00B8           ;       while (!finishFlag) {
+ 00B8                   .dbline 134
+ 00B8           ;                               
+ 00B8           ;                               charIn = UART_cReadChar();      
+ 00B8 10                push X
+ 00B9 7C0000            xcall _UART_cReadChar
+ 00BC 20                pop X
+ 00BD 62D000            mov REG[0xd0],>_charIn
+ 00C0 5300              mov [_charIn],A
+ 00C2 800B              xjmp L24
+ 00C4           L23:
+ 00C4                   .dbline 135
+ 00C4           ;                                       while (charIn == 0x00){charIn = UART_cReadChar();}
+ 00C4                   .dbline 135
+ 00C4 10                push X
+ 00C5 7C0000            xcall _UART_cReadChar
+ 00C8 20                pop X
+ 00C9 62D000            mov REG[0xd0],>_charIn
+ 00CC 5300              mov [_charIn],A
+ 00CE                   .dbline 135
+ 00CE           L24:
+ 00CE                   .dbline 135
+ 00CE 62D000            mov REG[0xd0],>_charIn
+ 00D1 3C0000            cmp [_charIn],0
+ 00D4 AFEF              jz L23
+ 00D6                   .dbline 136
+ 00D6           ;                                               if (placeCounter<78){
+ 00D6 62D000            mov REG[0xd0],>_placeCounter
+ 00D9 5101              mov A,[_placeCounter+1]
+ 00DB 114E              sub A,78
+ 00DD 5100              mov A,[_placeCounter]
+ 00DF 3180              xor A,-128
+ 00E1 1980              sbb A,(0 ^ 0x80)
+ 00E3 D09F              jnc L26
+ 00E5           X1:
+ 00E5                   .dbline 138
+ 00E5           ;                                                       
+ 00E5           ;                                           if (charIn == 0x0d){ //if carriage return 
+ 00E5                   .dbline 138
+ 00E5 62D000            mov REG[0xd0],>_charIn
+ 00E8 3C000D            cmp [_charIn],13
+ 00EB B01F              jnz L28
+ 00ED                   .dbline 139
+ 00ED           ;                                                               UART_CPutString("\r\n");
+ 00ED                   .dbline 139
+ 00ED 10                push X
+ 00EE 5009              mov A,>L30
+ 00F0 08                push A
+ 00F1 5009              mov A,<L30
+ 00F3 5C                mov X,A
+ 00F4 18                pop A
+ 00F5 7C0000            xcall _UART_CPutString
+ 00F8                   .dbline 140
+ 00F8           ;                                                               UART_CPutString("\r\n");
+ 00F8 5009              mov A,>L30
+ 00FA 08                push A
+ 00FB 5009              mov A,<L30
+ 00FD 5C                mov X,A
+ 00FE 18                pop A
+ 00FF 7C0000            xcall _UART_CPutString
+ 0102 20                pop X
+ 0103                   .dbline 141
+ 0103           ;                                                           finishFlag = TRUE; 
+ 0103 62D000            mov REG[0xd0],>_finishFlag
+ 0106 550001            mov [_finishFlag],1
+ 0109                   .dbline 143
+ 0109           ;                                                               //Call the parser function here
+ 0109           ;                                                   } //end if CR
+ 0109 808B              xjmp L27
+ 010B           L28:
+ 010B                   .dbline 145
+ 010B           ;                                               
+ 010B           ;                                               else if (charIn == 0x08 || charIn ==0x7f){ //if backspace
+ 010B 62D000            mov REG[0xd0],>_charIn
+ 010E 3C0008            cmp [_charIn],8
+ 0111 A006              jz L33
+ 0113 3C007F            cmp [_charIn],127
+ 0116 B024              jnz L31
+ 0118           L33:
+ 0118                   .dbline 146
+ 0118           ;                                                       placeCounter--;
+ 0118                   .dbline 146
+ 0118 62D000            mov REG[0xd0],>_placeCounter
+ 011B 7A01              dec [_placeCounter+1]
+ 011D 1E0000            sbb [_placeCounter],0
+ 0120                   .dbline 147
+ 0120           ;                                                       string0[placeCounter] = ' ';
+ 0120 5101              mov A,[_placeCounter+1]
+ 0122 0100              add A,<_string0
+ 0124 62D000            mov REG[0xd0],>__r0
+ 0127 5300              mov [__r1],A
+ 0129 62D000            mov REG[0xd0],>_placeCounter
+ 012C 5100              mov A,[_placeCounter]
+ 012E 0900              adc A,>_string0
+ 0130 62D000            mov REG[0xd0],>__r0
+ 0133 60D5              mov REG[0xd5],A
+ 0135 5020              mov A,32
+ 0137 3F00              mvi [__r1],A
+ 0139                   .dbline 149
+ 0139           ;                                                       
+ 0139           ;                                               } //end if backspace 
+ 0139 805B              xjmp L27
+ 013B           L31:
+ 013B                   .dbline 150
+ 013B           ;                                               else {
+ 013B                   .dbline 151
+ 013B           ;                                                               rawString[placeCounter] = charIn;
+ 013B 62D000            mov REG[0xd0],>_placeCounter
+ 013E 5101              mov A,[_placeCounter+1]
+ 0140 0100              add A,<_rawString
+ 0142 62D000            mov REG[0xd0],>__r0
+ 0145 5300              mov [__r1],A
+ 0147 62D000            mov REG[0xd0],>_placeCounter
+ 014A 5100              mov A,[_placeCounter]
+ 014C 0900              adc A,>_rawString
+ 014E 60D5              mov REG[0xd5],A
+ 0150 62D000            mov REG[0xd0],>_charIn
+ 0153 5100              mov A,[_charIn]
+ 0155 62D000            mov REG[0xd0],>__r0
+ 0158 3F00              mvi [__r1],A
+ 015A                   .dbline 152
+ 015A           ;                                                       UART_PutChar(rawString[placeCounter]);
+ 015A 62D000            mov REG[0xd0],>_placeCounter
+ 015D 5101              mov A,[_placeCounter+1]
+ 015F 0100              add A,<_rawString
+ 0161 62D000            mov REG[0xd0],>__r0
+ 0164 5300              mov [__r1],A
+ 0166 62D000            mov REG[0xd0],>_placeCounter
+ 0169 5100              mov A,[_placeCounter]
+ 016B 0900              adc A,>_rawString
+ 016D 62D000            mov REG[0xd0],>__r0
+ 0170 60D4              mov REG[0xd4],A
+ 0172 3E00              mvi A,[__r1]
+ 0174 10                push X
+ 0175 7C0000            xcall _UART_PutChar
+ 0178 20                pop X
+ 0179                   .dbline 153
+ 0179           ;                                                               placeCounter++;
+ 0179 62D000            mov REG[0xd0],>_placeCounter
+ 017C 7601              inc [_placeCounter+1]
+ 017E 0E0000            adc [_placeCounter],0
+ 0181                   .dbline 154
+ 0181           ;                                                       }// end else write into string 
+ 0181                   .dbline 156
+ 0181           ;                                       
+ 0181           ;                                               } // end placeCounter if
+ 0181 8013              xjmp L27
+ 0183           L26:
+ 0183                   .dbline 158
+ 0183           ;                                       else 
+ 0183           ;                                               {
+ 0183                   .dbline 160
+ 0183           ;                                                       
+ 0183           ;                                                       UART_CPutString("String Full"); 
+ 0183 10                push X
+ 0184 50FD              mov A,>L34
+ 0186 08                push A
+ 0187 50FD              mov A,<L34
+ 0189 5C                mov X,A
+ 018A 18                pop A
+ 018B 7C0000            xcall _UART_CPutString
+ 018E 20                pop X
+ 018F                   .dbline 161
+ 018F           ;                                                       finishFlag = TRUE;
+ 018F 62D000            mov REG[0xd0],>_finishFlag
+ 0192 550001            mov [_finishFlag],1
+ 0195                   .dbline 162
+ 0195           ;                                               }
+ 0195           L27:
+ 0195                   .dbline 164
+ 0195           ;                               
+ 0195           ;       }//end while (~finsihFlag) 
+ 0195           L21:
+ 0195                   .dbline 132
+ 0195 62D000            mov REG[0xd0],>_finishFlag
+ 0198 3C0000            cmp [_finishFlag],0
+ 019B AF1C              jz L20
+ 019D                   .dbline 166
+ 019D           ;       
+ 019D           ;       finishFlag= FALSE ;
+ 019D 550000            mov [_finishFlag],0
+ 01A0                   .dbline -2
+ 01A0           L19:
+ 01A0                   .dbline 0 ; func end
+ 01A0 7F                ret
+ 01A1                   .dbend
+ 01A1                   .dbfunc e stringParser _stringParser fV
+ 01A1           _stringParser::
+ 01A1                   .dbline -1
+ 01A1 10                push X
+ 01A2 4F                mov X,SP
+ 01A3 3806              add SP,6
+ 01A5                   .dbline 171
+ 01A5           ;       
+ 01A5           ; }//end readFunction
+ 01A5           ; 
+ 01A5           ; void stringParser(void)
+ 01A5           ; {
+ 01A5                   .dbline 172
+ 01A5           ;       switch (rawString[0])
+ 01A5 62D000            mov REG[0xd0],>_rawString
+ 01A8 5100              mov A,[_rawString]
+ 01AA 5401              mov [X+1],A
+ 01AC 560000            mov [X+0],0
+ 01AF 5201              mov A,[X+1]
+ 01B1 1172              sub A,114
+ 01B3 62D000            mov REG[0xd0],>__r0
+ 01B6 5300              mov [__rY],A
+ 01B8 5200              mov A,[X+0]
+ 01BA 3180              xor A,-128
+ 01BC 1980              sbb A,(0 ^ 0x80)
+ 01BE C039              jc L36
+ 01C0 2A00              or A,[__rY]
+ 01C2 A00D              jz L39
+ 01C4           X2:
+ 01C4           L44:
+ 01C4 3D0000            cmp [X+0],0
+ 01C7 B006              jnz X3
+ 01C9 3D0177            cmp [X+1],119
+ 01CC A017              jz L41
+ 01CE           X3:
+ 01CE 8029              xjmp L36
+ 01D0           L39:
+ 01D0                   .dbline 176
+ 01D0           ;       {
+ 01D0           ;               case  'r'|'R': 
+ 01D0           ;                       
+ 01D0           ;               UART_PutCRLF();
+ 01D0 10                push X
+ 01D1 7C0000            xcall _UART_PutCRLF
+ 01D4                   .dbline 177
+ 01D4           ;               UART_CPutString("read");
+ 01D4 50F8              mov A,>L40
+ 01D6 08                push A
+ 01D7 50F8              mov A,<L40
+ 01D9 5C                mov X,A
+ 01DA 18                pop A
+ 01DB 7C0000            xcall _UART_CPutString
+ 01DE                   .dbline 178
+ 01DE           ;               UART_PutCRLF();
+ 01DE 7C0000            xcall _UART_PutCRLF
+ 01E1 20                pop X
+ 01E2                   .dbline 180
+ 01E2           ;                       
+ 01E2           ;               break; //end case r 
+ 01E2 802D              xjmp L37
+ 01E4           L41:
+ 01E4                   .dbline 184
+ 01E4           ;               
+ 01E4           ;               case 'w'|'W':
+ 01E4           ;               
+ 01E4           ;               UART_PutCRLF();
+ 01E4 10                push X
+ 01E5 7C0000            xcall _UART_PutCRLF
+ 01E8                   .dbline 185
+ 01E8           ;               UART_CPutString("write");
+ 01E8 50F2              mov A,>L42
+ 01EA 08                push A
+ 01EB 50F2              mov A,<L42
+ 01ED 5C                mov X,A
+ 01EE 18                pop A
+ 01EF 7C0000            xcall _UART_CPutString
+ 01F2                   .dbline 186
+ 01F2           ;               UART_PutCRLF(); 
+ 01F2 7C0000            xcall _UART_PutCRLF
+ 01F5 20                pop X
+ 01F6                   .dbline 188
+ 01F6           ;               
+ 01F6           ;               break; //end case w 
+ 01F6 8019              xjmp L37
+ 01F8           L36:
+ 01F8                   .dbline 191
+ 01F8           ;               
+ 01F8           ;               default: 
+ 01F8           ;               invaildFlag = TRUE; 
+ 01F8 62D000            mov REG[0xd0],>_invaildFlag
+ 01FB 550001            mov [_invaildFlag],1
+ 01FE                   .dbline 193
+ 01FE           ;                       
+ 01FE           ;               UART_PutCRLF();
+ 01FE 10                push X
+ 01FF 7C0000            xcall _UART_PutCRLF
+ 0202                   .dbline 194
+ 0202           ;               UART_CPutString("r/w fail");
+ 0202 50E9              mov A,>L43
+ 0204 08                push A
+ 0205 50E9              mov A,<L43
+ 0207 5C                mov X,A
+ 0208 18                pop A
+ 0209 7C0000            xcall _UART_CPutString
+ 020C                   .dbline 195
+ 020C           ;               UART_PutCRLF();         
+ 020C 7C0000            xcall _UART_PutCRLF
+ 020F 20                pop X
+ 0210                   .dbline 198
+ 0210           ;                       
+ 0210           ;                       
+ 0210           ;       }//end read/write switch
+ 0210           L37:
+ 0210                   .dbline 200
+ 0210           ;       
+ 0210           ;       switch (rawString[2])
+ 0210 62D000            mov REG[0xd0],>_rawString
+ 0213 5102              mov A,[_rawString+2]
+ 0215 5403              mov [X+3],A
+ 0217 560200            mov [X+2],0
+ 021A 3D0200            cmp [X+2],0
+ 021D B006              jnz X4
+ 021F 3D0330            cmp [X+3],48
+ 0222 A00D              jz L49
+ 0224           X4:
+ 0224 3D0200            cmp [X+2],0
+ 0227 B006              jnz X5
+ 0229 3D0331            cmp [X+3],49
+ 022C A01D              jz L51
+ 022E           X5:
+ 022E 802F              xjmp L45
+ 0230           L49:
+ 0230                   .dbline 204
+ 0230           ;       {
+ 0230           ;               case  '0': 
+ 0230           ;               
+ 0230           ;               ramSelect = Ram1;
+ 0230 62D000            mov REG[0xd0],>_ramSelect
+ 0233 550050            mov [_ramSelect],80
+ 0236                   .dbline 206
+ 0236           ;                       
+ 0236           ;               UART_PutCRLF();
+ 0236 10                push X
+ 0237 7C0000            xcall _UART_PutCRLF
+ 023A                   .dbline 207
+ 023A           ;               UART_CPutString("ram 1");
+ 023A 50E3              mov A,>L50
+ 023C 08                push A
+ 023D 50E3              mov A,<L50
+ 023F 5C                mov X,A
+ 0240 18                pop A
+ 0241 7C0000            xcall _UART_CPutString
+ 0244                   .dbline 208
+ 0244           ;               UART_PutCRLF(); 
+ 0244 7C0000            xcall _UART_PutCRLF
+ 0247 20                pop X
+ 0248                   .dbline 210
+ 0248           ;               
+ 0248           ;               break; //end case 0 
+ 0248 802D              xjmp L46
+ 024A           L51:
+ 024A                   .dbline 214
+ 024A           ;               
+ 024A           ;               case '1':
+ 024A           ;               
+ 024A           ;               UART_PutCRLF();
+ 024A 10                push X
+ 024B 7C0000            xcall _UART_PutCRLF
+ 024E                   .dbline 215
+ 024E           ;               UART_CPutString("ram 2");
+ 024E 50DD              mov A,>L52
+ 0250 08                push A
+ 0251 50DD              mov A,<L52
+ 0253 5C                mov X,A
+ 0254 18                pop A
+ 0255 7C0000            xcall _UART_CPutString
+ 0258                   .dbline 216
+ 0258           ;               UART_PutCRLF(); 
+ 0258 7C0000            xcall _UART_PutCRLF
+ 025B 20                pop X
+ 025C                   .dbline 218
+ 025C           ;               
+ 025C           ;               break; //end case 1 
+ 025C 8019              xjmp L46
+ 025E           L45:
+ 025E                   .dbline 222
+ 025E           ;               
+ 025E           ;               default: 
+ 025E           ;                       
+ 025E           ;               UART_PutCRLF();
+ 025E 10                push X
+ 025F 7C0000            xcall _UART_PutCRLF
+ 0262                   .dbline 223
+ 0262           ;               UART_CPutString("ram fail");
+ 0262 50D4              mov A,>L53
+ 0264 08                push A
+ 0265 50D4              mov A,<L53
+ 0267 5C                mov X,A
+ 0268 18                pop A
+ 0269 7C0000            xcall _UART_CPutString
+ 026C                   .dbline 224
+ 026C           ;               UART_PutCRLF();         
+ 026C 7C0000            xcall _UART_PutCRLF
+ 026F 20                pop X
+ 0270                   .dbline 225
+ 0270           ;               invaildFlag = TRUE; 
+ 0270 62D000            mov REG[0xd0],>_invaildFlag
+ 0273 550001            mov [_invaildFlag],1
+ 0276                   .dbline 227
+ 0276           ;                       
+ 0276           ;       }//end address switch
+ 0276           L46:
+ 0276                   .dbline 229
+ 0276           ;       
+ 0276           ;       address[0] = rawString[4];
+ 0276 62D000            mov REG[0xd0],>_rawString
+ 0279 5104              mov A,[_rawString+4]
+ 027B 62D000            mov REG[0xd0],>_address
+ 027E 5300              mov [_address],A
+ 0280                   .dbline 230
+ 0280           ;       address[1] = rawString[5];
+ 0280 62D000            mov REG[0xd0],>_rawString
+ 0283 5105              mov A,[_rawString+5]
+ 0285 62D000            mov REG[0xd0],>_address
+ 0288 5301              mov [_address+1],A
+ 028A                   .dbline 232
+ 028A           ;       
+ 028A           ;       UART_PutCRLF();
+ 028A 10                push X
+ 028B 7C0000            xcall _UART_PutCRLF
+ 028E                   .dbline 233
+ 028E           ;       UART_CPutString("address: ");
+ 028E 50CA              mov A,>L57
+ 0290 08                push A
+ 0291 50CA              mov A,<L57
+ 0293 5C                mov X,A
+ 0294 18                pop A
+ 0295 7C0000            xcall _UART_CPutString
+ 0298                   .dbline 234
+ 0298           ;       UART_PutString(address);
+ 0298 5000              mov A,>_address
+ 029A 08                push A
+ 029B 5000              mov A,<_address
+ 029D 5C                mov X,A
+ 029E 18                pop A
+ 029F 7C0000            xcall _UART_PutString
+ 02A2                   .dbline 235
+ 02A2           ;       UART_PutCRLF();
+ 02A2 7C0000            xcall _UART_PutCRLF
+ 02A5 20                pop X
+ 02A6                   .dbline 237
+ 02A6           ;       
+ 02A6           ;       switch (rawString[7])
+ 02A6 62D000            mov REG[0xd0],>_rawString
+ 02A9 5107              mov A,[_rawString+7]
+ 02AB 5405              mov [X+5],A
+ 02AD 560400            mov [X+4],0
+ 02B0 5205              mov A,[X+5]
+ 02B2 1161              sub A,97
+ 02B4 62D000            mov REG[0xd0],>__r0
+ 02B7 5300              mov [__rY],A
+ 02B9 5204              mov A,[X+4]
+ 02BB 3180              xor A,-128
+ 02BD 1980              sbb A,(0 ^ 0x80)
+ 02BF C039              jc L58
+ 02C1 2A00              or A,[__rY]
+ 02C3 A00D              jz L62
+ 02C5           X6:
+ 02C5           L67:
+ 02C5 3D0400            cmp [X+4],0
+ 02C8 B006              jnz X7
+ 02CA 3D0568            cmp [X+5],104
+ 02CD A017              jz L64
+ 02CF           X7:
+ 02CF 8029              xjmp L58
+ 02D1           L62:
+ 02D1                   .dbline 240
+ 02D1           ;       {
+ 02D1           ;               case  'a'|'A': 
+ 02D1           ;               UART_PutCRLF();
+ 02D1 10                push X
+ 02D2 7C0000            xcall _UART_PutCRLF
+ 02D5                   .dbline 241
+ 02D5           ;               UART_CPutString("ascii");
+ 02D5 50C4              mov A,>L63
+ 02D7 08                push A
+ 02D8 50C4              mov A,<L63
+ 02DA 5C                mov X,A
+ 02DB 18                pop A
+ 02DC 7C0000            xcall _UART_CPutString
+ 02DF                   .dbline 242
+ 02DF           ;               UART_PutCRLF();
+ 02DF 7C0000            xcall _UART_PutCRLF
+ 02E2 20                pop X
+ 02E3                   .dbline 243
+ 02E3           ;               break; //end case 0 
+ 02E3 806F              xjmp L69
+ 02E5           L64:
+ 02E5                   .dbline 246
+ 02E5           ;               
+ 02E5           ;               case 'h'|'H':
+ 02E5           ;               UART_PutCRLF();
+ 02E5 10                push X
+ 02E6 7C0000            xcall _UART_PutCRLF
+ 02E9                   .dbline 247
+ 02E9           ;               UART_CPutString("hex");
+ 02E9 50C0              mov A,>L65
+ 02EB 08                push A
+ 02EC 50C0              mov A,<L65
+ 02EE 5C                mov X,A
+ 02EF 18                pop A
+ 02F0 7C0000            xcall _UART_CPutString
+ 02F3                   .dbline 248
+ 02F3           ;               UART_PutCRLF();
+ 02F3 7C0000            xcall _UART_PutCRLF
+ 02F6 20                pop X
+ 02F7                   .dbline 249
+ 02F7           ;               break; //end case 1 
+ 02F7 805B              xjmp L69
+ 02F9           L58:
+ 02F9                   .dbline 253
+ 02F9           ;               
+ 02F9           ;               default: 
+ 02F9           ;                       
+ 02F9           ;               UART_PutCRLF();
+ 02F9 10                push X
+ 02FA 7C0000            xcall _UART_PutCRLF
+ 02FD                   .dbline 254
+ 02FD           ;               UART_CPutString("ascii/hex fail");
+ 02FD 50B1              mov A,>L66
+ 02FF 08                push A
+ 0300 50B1              mov A,<L66
+ 0302 5C                mov X,A
+ 0303 18                pop A
+ 0304 7C0000            xcall _UART_CPutString
+ 0307                   .dbline 255
+ 0307           ;               UART_PutCRLF(); 
+ 0307 7C0000            xcall _UART_PutCRLF
+ 030A 20                pop X
+ 030B                   .dbline 257
+ 030B           ;                       
+ 030B           ;               invaildFlag = TRUE; 
+ 030B 62D000            mov REG[0xd0],>_invaildFlag
+ 030E 550001            mov [_invaildFlag],1
+ 0311                   .dbline 259
+ 0311           ;                       
+ 0311           ;       }//end ascii/hex switch
+ 0311 8041              xjmp L69
+ 0313           L68:
+ 0313                   .dbline 262
+ 0313           ;       
+ 0313           ;       while((parseCounter+9)<placeCounter)
+ 0313           ;       {
+ 0313                   .dbline 263
+ 0313           ;               messageString[parseCounter] = rawString[(parseCounter+9)];
+ 0313 62D000            mov REG[0xd0],>_parseCounter
+ 0316 5101              mov A,[_parseCounter+1]
+ 0318 0109              add A,<_rawString+9
+ 031A 62D000            mov REG[0xd0],>__r0
+ 031D 5300              mov [__r1],A
+ 031F 62D000            mov REG[0xd0],>_parseCounter
+ 0322 5100              mov A,[_parseCounter]
+ 0324 0909              adc A,>_rawString+9
+ 0326 62D000            mov REG[0xd0],>__r0
+ 0329 60D4              mov REG[0xd4],A
+ 032B 3E00              mvi A,[__r1]
+ 032D 5300              mov [__r0],A
+ 032F 62D000            mov REG[0xd0],>_parseCounter
+ 0332 5101              mov A,[_parseCounter+1]
+ 0334 0100              add A,<_messageString
+ 0336 62D000            mov REG[0xd0],>__r0
+ 0339 5300              mov [__r3],A
+ 033B 62D000            mov REG[0xd0],>_parseCounter
+ 033E 5100              mov A,[_parseCounter]
+ 0340 0900              adc A,>_messageString
+ 0342 62D000            mov REG[0xd0],>__r0
+ 0345 60D5              mov REG[0xd5],A
+ 0347 5100              mov A,[__r0]
+ 0349 3F00              mvi [__r3],A
+ 034B                   .dbline 264
+ 034B           ;               parseCounter++;
+ 034B 62D000            mov REG[0xd0],>_parseCounter
+ 034E 7601              inc [_parseCounter+1]
+ 0350 0E0000            adc [_parseCounter],0
+ 0353                   .dbline 266
+ 0353           ;               
+ 0353           ;       }//end parseCounter while 
+ 0353           L69:
+ 0353                   .dbline 261
+ 0353 62D000            mov REG[0xd0],>_parseCounter
+ 0356 5101              mov A,[_parseCounter+1]
+ 0358 0109              add A,9
+ 035A 62D000            mov REG[0xd0],>__r0
+ 035D 5300              mov [__r1],A
+ 035F 62D000            mov REG[0xd0],>_parseCounter
+ 0362 5100              mov A,[_parseCounter]
+ 0364 0900              adc A,0
+ 0366 62D000            mov REG[0xd0],>__r0
+ 0369 5300              mov [__r0],A
+ 036B 5100              mov A,[__r1]
+ 036D 62D000            mov REG[0xd0],>_placeCounter
+ 0370 1201              sub A,[_placeCounter+1]
+ 0372 5100              mov A,[_placeCounter]
+ 0374 3180              xor A,-128
+ 0376 62D000            mov REG[0xd0],>__r0
+ 0379 5300              mov [__rX],A
+ 037B 5100              mov A,[__r0]
+ 037D 3180              xor A,-128
+ 037F 1A00              sbb A,[__rX]
+ 0381 CF91              jc L68
+ 0383           X8:
+ 0383                   .dbline 268
+ 0383           ;       
+ 0383           ;       UART_PutCRLF();
+ 0383 10                push X
+ 0384 7C0000            xcall _UART_PutCRLF
+ 0387                   .dbline 269
+ 0387           ;       UART_PutString(messageString);
+ 0387 5000              mov A,>_messageString
+ 0389 08                push A
+ 038A 5000              mov A,<_messageString
+ 038C 5C                mov X,A
+ 038D 18                pop A
+ 038E 7C0000            xcall _UART_PutString
+ 0391                   .dbline 270
+ 0391           ;       UART_PutCRLF();
+ 0391 7C0000            xcall _UART_PutCRLF
+ 0394 20                pop X
+ 0395                   .dbline 272
+ 0395           ;       
+ 0395           ;       placeCounter=0;
+ 0395 62D000            mov REG[0xd0],>_placeCounter
+ 0398 550100            mov [_placeCounter+1],0
+ 039B 550000            mov [_placeCounter],0
+ 039E                   .dbline 273
+ 039E           ;       parseCounter=0;
+ 039E 62D000            mov REG[0xd0],>_parseCounter
+ 03A1 550100            mov [_parseCounter+1],0
+ 03A4 550000            mov [_parseCounter],0
+ 03A7                   .dbline -2
+ 03A7           L35:
+ 03A7 38FA              add SP,-6
+ 03A9 20                pop X
+ 03AA                   .dbline 0 ; func end
+ 03AA 7F                ret
+ 03AB                   .dbend
+ 03AB                   .dbfunc e instructions _instructions fV
+ 03AB           _instructions::
+ 03AB                   .dbline -1
+ 03AB                   .dbline 278
+ 03AB           ;       
+ 03AB           ; }//end stringParser
+ 03AB           ; 
+ 03AB           ; void instructions(void)
+ 03AB           ; {
+ 03AB                   .dbline 281
+ 03AB           ;       //const char instructMsg[] = "Type in the form we like (I swear I'll fix this)";
+ 03AB           ;       //"W # XX A Mary had a little lamb"
+ 03AB           ;       UART_CPutString("Please format your request in the following format: ");
+ 03AB 10                push X
+ 03AC 507C              mov A,>L73
+ 03AE 08                push A
+ 03AF 507C              mov A,<L73
+ 03B1 5C                mov X,A
+ 03B2 18                pop A
+ 03B3 7C0000            xcall _UART_CPutString
+ 03B6                   .dbline 282
+ 03B6           ;       UART_PutCRLF();
+ 03B6 7C0000            xcall _UART_PutCRLF
+ 03B9                   .dbline 284
+ 03B9           ;       
+ 03B9           ;       UART_CPutString("R # XX A Mary had a little lamb...");
+ 03B9 5059              mov A,>L74
+ 03BB 08                push A
+ 03BC 5059              mov A,<L74
+ 03BE 5C                mov X,A
+ 03BF 18                pop A
+ 03C0 7C0000            xcall _UART_CPutString
+ 03C3                   .dbline 285
+ 03C3           ;       UART_PutCRLF();
+ 03C3 7C0000            xcall _UART_PutCRLF
+ 03C6                   .dbline 287
+ 03C6           ;       
+ 03C6           ;       UART_CPutString("R reads from a memory location");
+ 03C6 503A              mov A,>L75
+ 03C8 08                push A
+ 03C9 503A              mov A,<L75
+ 03CB 5C                mov X,A
+ 03CC 18                pop A
+ 03CD 7C0000            xcall _UART_CPutString
+ 03D0                   .dbline 288
+ 03D0           ;       UART_PutCRLF();
+ 03D0 7C0000            xcall _UART_PutCRLF
+ 03D3 20                pop X
+ 03D4                   .dbline -2
+ 03D4           L72:
+ 03D4                   .dbline 0 ; func end
+ 03D4 7F                ret
+ 03D5                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _rawString::
+ 0000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 003C 00000000000000000000      .word 0,0,0,0,0
+ 0046 000000000000000000        .byte 0,0,0,0,0,0,0,0,0
+ 004F                   .dbsym e rawString _rawString A[79:79]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _count::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e count _count I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _Read_Address::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e Read_Address _Read_Address pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _status::
+ 0000 00                .byte 0
+ 0001                   .dbsym e status _status c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _rxBuffer::
+ 0000 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0008                   .dbsym e rxBuffer _rxBuffer A[8:8]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _txBuffer::
+ 0000 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0008                   .dbsym e txBuffer _txBuffer A[8:8]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _ramSelect::
+ 0000 00                .byte 0
+ 0001                   .dbsym e ramSelect _ramSelect c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _messageString::
+ 0000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 003C 00000000000000000000      .word 0,0,0,0,0
+ 0046 000000000000000000        .byte 0,0,0,0,0,0,0,0,0
+ 004F                   .dbsym e messageString _messageString A[79:79]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _address::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e address _address A[2:2]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _string3::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string3 _string3 A[17:17]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _string2::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string2 _string2 A[17:17]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _string1::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string1 _string1 A[17:17]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\mtangy\Desktop\ECE381~1\LAB_6\LAB_6\main.c
+ 0000           _string0::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 00000000000000    .byte 0,0,0,0,0,0,0
+ 0011                   .dbsym e string0 _string0 A[17:17]c
+                        .area lit(rom, con, rel, lit)
+ 003A           L75:
+ 003A 522072656164732066726F6D2061206D  .byte 'R,32,'r,'e,'a,'d,'s,32,'f,'r,'o,'m,32,'a,32,'m
+ 004A 656D6F7279206C6F636174696F6E00    .byte 'e,'m,'o,'r,'y,32,'l,'o,'c,'a,'t,'i,'o,'n,0
+ 0059           L74:
+ 0059 5220232058582041204D617279206861  .byte 'R,32,35,32,'X,'X,32,'A,32,'M,'a,'r,'y,32,'h,'a
+ 0069 642061206C6974746C65206C616D622E  .byte 'd,32,'a,32,'l,'i,'t,'t,'l,'e,32,'l,'a,'m,'b,46
+ 0079 2E2E00            .byte 46,46,0
+ 007C           L73:
+ 007C 506C6561736520666F726D617420796F  .byte 'P,'l,'e,'a,'s,'e,32,'f,'o,'r,'m,'a,'t,32,'y,'o
+ 008C 7572207265717565737420696E207468  .byte 'u,'r,32,'r,'e,'q,'u,'e,'s,'t,32,'i,'n,32,'t,'h
+ 009C 6520666F6C6C6F77696E6720666F726D  .byte 'e,32,'f,'o,'l,'l,'o,'w,'i,'n,'g,32,'f,'o,'r,'m
+ 00AC 61743A2000        .byte 'a,'t,58,32,0
+ 00B1           L66:
+ 00B1 61736369692F686578206661696C00    .byte 'a,'s,'c,'i,'i,47,'h,'e,'x,32,'f,'a,'i,'l,0
+ 00C0           L65:
+ 00C0 68657800          .byte 'h,'e,'x,0
+ 00C4           L63:
+ 00C4 617363696900      .byte 'a,'s,'c,'i,'i,0
+ 00CA           L57:
+ 00CA 616464726573733A2000      .byte 'a,'d,'d,'r,'e,'s,'s,58,32,0
+ 00D4           L53:
+ 00D4 72616D206661696C00        .byte 'r,'a,'m,32,'f,'a,'i,'l,0
+ 00DD           L52:
+ 00DD 72616D203200      .byte 'r,'a,'m,32,50,0
+ 00E3           L50:
+ 00E3 72616D203100      .byte 'r,'a,'m,32,49,0
+ 00E9           L43:
+ 00E9 722F77206661696C00        .byte 'r,47,'w,32,'f,'a,'i,'l,0
+ 00F2           L42:
+ 00F2 777269746500      .byte 'w,'r,'i,'t,'e,0
+ 00F8           L40:
+ 00F8 7265616400        .byte 'r,'e,'a,'d,0
+ 00FD           L34:
+ 00FD 537472696E672046756C6C00  .byte 'S,'t,'r,'i,'n,'g,32,'F,'u,'l,'l,0
+ 0109           L30:
+ 0109 0D0A00            .byte 13,10,0
+ 010C           L18:
+ 010C 3E00              .byte 62,0
+ 010E           L16:
+ 010E 5468697320737472696E672077617320  .byte 'T,'h,'i,'s,32,'s,'t,'r,'i,'n,'g,32,'w,'a,'s,32
+ 011E 696E76616C696400  .byte 'i,'n,'v,'a,'l,'i,'d,0

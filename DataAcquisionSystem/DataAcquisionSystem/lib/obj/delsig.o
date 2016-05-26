@@ -1,0 +1,122 @@
+XH
+H 2 areas 2C global symbols
+M delsig.asm
+S DelSig_cResult Ref0000
+S DelSig_bfStatus Ref0000
+A text size 0 flags 0
+dbfile lib/delsig.asm
+dbfunc 0 ? 0 I
+dbfile DelSig.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/DelSig.inc
+dbfunc 0 ? 0 I
+dbfile lib/delsig.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/delsig.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 54 flags 0
+dbfile lib/delsig.asm
+dbfunc 0 ? 0 I
+dbline 56 0
+dbline 57 1
+dbline 58 3
+dbline 59 4
+dbline 5A 6
+dbline 5B 8
+dbline 5C A
+dbline 5D C
+dbline 5E E
+dbline 5F 10
+dbline 60 12
+dbline 61 14
+dbline 3 15
+dbline 4 17
+dbline 63 19
+dbline 76 1A
+dbline 77 1D
+dbline 79 20
+dbline 2 21
+dbline 8D 24
+dbline 8F 27
+dbline A4 28
+dbline 2 2B
+dbline A7 2E
+dbline 3 2F
+dbline C1 32
+dbline C3 34
+dbline 3 35
+dbline 2 38
+dbline E5 3B
+dbline E6 3E
+dbline 2 40
+dbline E9 43
+dbline 3 44
+dbline 107 47
+dbline 109 49
+dbline 3 4A
+dbline 123 4D
+dbline 125 50
+dbline 13F 51
+dbline 141 53
+S _DelSig_Start Def0000
+S _DelSig_WritePulseWidth Def0051
+S $sb$DelSig_cGetDataClearFlag Def0035
+S _DelSig_fIsDataAvailable Def002F
+S $sb$DelSig_ClearFlag Def004A
+S $se$DelSig_cGetDataClearFlag Def0044
+S $se$DelSig_ClearFlag Def0051
+S _DelSig_StopAD Def0028
+S DelSig_StartAD Def0021
+S _DelSig_SetPower Def0000
+S DelSig_Stop Def001A
+S $sb$DelSig_StartAD Def0021
+S $se$DelSig_StartAD Def0028
+S _DelSig_bGetDataClearFlag Def0035
+S _DelSig_cGetDataClearFlag Def0035
+S _DelSig_ClearFlag Def004A
+S $sb$DelSig_Stop Def001A
+S $se$DelSig_Stop Def0021
+S _DelSig_StartAD Def0021
+S DelSig_bGetData Def0044
+S DelSig_cGetData Def0044
+S _DelSig_Stop Def001A
+S DelSig_Start Def0000
+S DelSig_WritePulseWidth Def0051
+S $sb$DelSig_cGetData Def0044
+S $se$DelSig_cGetData Def004A
+S DelSig_fIsDataAvailable Def002F
+S $sb$DelSig_Start Def0000
+S DelSig_StopAD Def0028
+S $se$DelSig_Start Def001A
+S $sb$DelSig_WritePulseWidth Def0051
+S $se$DelSig_WritePulseWidth Def0054
+S DelSig_SetPower Def0000
+S $sb$DelSig_fIsDataAvailable Def002F
+S $se$DelSig_fIsDataAvailable Def0035
+S $sb$DelSig_StopAD Def0028
+S $se$DelSig_StopAD Def002F
+S _DelSig_bGetData Def0044
+S _DelSig_cGetData Def0044
+S DelSig_bGetDataClearFlag Def0035
+S DelSig_cGetDataClearFlag Def0035
+S DelSig_ClearFlag Def004A
+T 00 00 4F 21 03 08 5D 83 21 FC 2B 00 60 83 5D 93
+R 00 00 00 01
+T 00 0E 21 FC 2B 00 60 93 18 70 3F 71 C0 7F 41 83
+R 00 00 00 01
+T 00 1C FC 41 93 FC 7F 43 E1 01 62 23 01 7F 62 23
+R 00 00 00 01
+T 00 2A 00 41 E1 FE 7F 62 D0 00 00 51 00 00 7F 62
+R 00 00 00 01 43 09 00 01 03 0C 00 01
+T 00 36 D0 00 00 41 E1 FE 26 00 00 EF 51 00 00 43
+R 00 00 00 01 43 03 00 01 03 09 00 01 03 0D 00 00
+T 00 41 E1 01 7F 62 D0 00 00 51 00 00 7F 62 D0
+R 00 00 00 01 43 07 00 00 03 0A 00 00
+T 00 4C 00 00 26 00 00 EF 7F 60 22 7F
+R 00 00 00 01 43 02 00 01 03 05 00 01

@@ -1,0 +1,1065 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _PS2FrameStatus::
+ 0000 00                .byte 0
+ 0001                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0001                   .dbsym e PS2FrameStatus _PS2FrameStatus c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _PS2RxBufIn::
+ 0000 00                .byte 0
+ 0001                   .dbsym e PS2RxBufIn _PS2RxBufIn c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _PS2RxBufOut::
+ 0000 00                .byte 0
+ 0001                   .dbsym e PS2RxBufOut _PS2RxBufOut c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _TenMicroSecTimerReps::
+ 0000 00                .byte 0
+ 0001                   .dbsym e TenMicroSecTimerReps _TenMicroSecTimerReps c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _NumLock::
+ 0000 00                .byte 0
+ 0001                   .dbsym e NumLock _NumLock c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _CapsLock::
+ 0000 00                .byte 0
+ 0001                   .dbsym e CapsLock _CapsLock c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _ScrollLock::
+ 0000 00                .byte 0
+ 0001                   .dbsym e ScrollLock _ScrollLock c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _ShiftDown::
+ 0000 00                .byte 0
+ 0001                   .dbsym e ShiftDown _ShiftDown c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _CtrlDown::
+ 0000 00                .byte 0
+ 0001                   .dbsym e CtrlDown _CtrlDown c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _AltDown::
+ 0000 00                .byte 0
+ 0001                   .dbsym e AltDown _AltDown c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _PianoMode::
+ 0000 00                .byte 0
+ 0001                   .dbsym e PianoMode _PianoMode c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _IsMouse::
+ 0000 00                .byte 0
+ 0001                   .dbsym e IsMouse _IsMouse c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _DeleteDown::
+ 0000 00                .byte 0
+ 0001                   .dbsym e DeleteDown _DeleteDown c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;              c -> X+5
+ 0000           ;    keyspressed -> X+4
+ 0000           ;       codetype -> X+3
+ 0000           ;         cursor -> X+2
+ 0000           ;       scancode -> X+1
+ 0000           ;         status -> X+0
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3806              add SP,6
+ 0004                   .dbline 85
+ 0004           ; //-----------------------------------------------------------------------------
+ 0004           ; // PS/2 Keyboard Bit-Banging Interface
+ 0004           ; //
+ 0004           ; // Uses the bit-banging technique to receive PS/2 frames from a PS/2 keyboard
+ 0004           ; // and decode them to extract the key scan codes sent from the keyboard.
+ 0004           ; //
+ 0004           ; // Uses a software state machine to decode the frames and verify that the
+ 0004           ; // Start, Parity, and Stop bits inside the frame have the correct values.
+ 0004           ; //
+ 0004           ; // The bit-banging interface is interrupt-driven and a DigBuf User Module is
+ 0004           ; // used to generate interrupts on the falling-edge of the PS/2 clock. The
+ 0004           ; // DigBuf ISR contains the frame decoding state machine which sets a global
+ 0004           ; // variable to indicate that a valid frame has been decoded and a scan code
+ 0004           ; // is ready for processing. In addition, a OneShot User Module is used to
+ 0004           ; // reset the state machine if the PS/2 clock line has remained high for 80us.
+ 0004           ; // This prevents any glitches on the clock line from causing the state machine
+ 0004           ; // to incorrectly start processing the glitch as a frame.
+ 0004           ; //
+ 0004           ; // Another software state machine is used to decode the keyboard scan codes
+ 0004           ; // to indicate which keys have been pressed or released.
+ 0004           ; //
+ 0004           ; // Raw scan codes read from the keyboard are printed on the LCD display.
+ 0004           ; //
+ 0004           ; // Scan codes corresponding to printable ASCII characters are sent to the
+ 0004           ; // UART for display on a terminal program.
+ 0004           ; //
+ 0004           ; // Some non-printable scan codes take specific actions. Examine this program
+ 0004           ; // for more details.
+ 0004           ; //
+ 0004           ; // Hardware Note: The PS/2 Clock and Data lines must both have pull-up
+ 0004           ; // resistors at the PSoC end in case the device is not attached.
+ 0004           ; //
+ 0004           ; // NOTE: Comments with an XXX in them refer to either things to be fixed/changed
+ 0004           ; //       or items I don't have enough information on.
+ 0004           ; //
+ 0004           ; // XXX - Some of the comments, including these in the introduction, have not
+ 0004           ; //       been updated to reflect that host-to-keyboard communication has been
+ 0004           ; //       implemented.
+ 0004           ; //
+ 0004           ; // Pretty-print this with:
+ 0004           ; // enscript -r -G -T4 -Ec -fCourier7 main.c
+ 0004           ; //
+ 0004           ; // B. Noble - 12 October 2011
+ 0004           ; //-----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "PSoCGPIOINT.h"
+ 0004           ; #include "ps2.h"
+ 0004           ; #include "keyboard.h"
+ 0004           ; #include "mouse.h"
+ 0004           ; 
+ 0004           ; 
+ 0004           ; //// Common Baud Rates for a 16-bit UART clock with a 24MHz clock source.
+ 0004           ; #define BAUD_57600_PERIOD     52
+ 0004           ; #define BAUD_38400_PERIOD     78
+ 0004           ; #define       BAUD_19200_PERIOD       156
+ 0004           ; #define       BAUD_9600_PERIOD        312
+ 0004           ; 
+ 0004           ; //// Global Variables (identified by names in LeadingCaps)
+ 0004           ; BYTE PS2FrameStatus = 0; // Note: This only changes at the end of a complete frame or when the PS2OneShot fires (due to incomplete clock)
+ 0004           ; BYTE PS2RxBuffer[16]; // Receive buffer. We save only up to 16 unprocessed scan codes.
+ 0004           ; BYTE PS2RxBufIn = 0; // Index of where we insert bytes in receive buffer
+ 0004           ; BYTE PS2RxBufOut = 0; // Index of where we read bytes out of the receive buffer
+ 0004           ; BYTE TenMicroSecTimerReps = 0; // Number of repetitions of the 10-microsecond timer
+ 0004           ; BYTE NumLock = 0; // 0-NumLock is off, 1-NumLock is on
+ 0004           ; BYTE CapsLock = 0; // 0-CapsLock is off, 1-CapsLock is on
+ 0004           ; BYTE ScrollLock = 0; // 0-ScrollLock is off, 1-ScrollLock is on
+ 0004           ; BYTE ShiftDown = 0; // 0-No Shift keys are pressed, 1-At least one Shift key is pressed
+ 0004           ; BYTE CtrlDown = 0; // 0-No Ctrl keys are pressed, 1-At least one Ctrl key is pressed
+ 0004           ; BYTE AltDown = 0; // 0-No Alt keys are pressed, 1-At least one Alt key is pressed
+ 0004           ; BYTE PianoMode = 0; // 0-The keyboard is in regular mode, 1-The keyboard is in piano mode
+ 0004           ; BYTE IsMouse = 0; // 0-The device is a keyboard, 1-The devices is a mouse
+ 0004           ; BYTE DeleteDown = 0; 
+ 0004           ; 
+ 0004           ; //// Port/Shadow Register Control Macros
+ 0004           ; #define LED1_ON                       {LED1_DataShadow |=  LED1_MASK; LED1_Data_ADDR = LED1_DataShadow;}
+ 0004           ; #define LED1_OFF              {LED1_DataShadow &= ~LED1_MASK; LED1_Data_ADDR = LED1_DataShadow;}
+ 0004           ; #define LED1_TOGGLE           {LED1_DataShadow ^=  LED1_MASK; LED1_Data_ADDR = LED1_DataShadow;}
+ 0004           ; #define TRIGGER_HIGH  {TRIGGER_DataShadow |=  TRIGGER_MASK; TRIGGER_Data_ADDR = TRIGGER_DataShadow;}
+ 0004           ; #define TRIGGER_LOW           {TRIGGER_DataShadow &= ~TRIGGER_MASK; TRIGGER_Data_ADDR = TRIGGER_DataShadow;}
+ 0004           ; #define TRIGGER_TOGGLE        {TRIGGER_DataShadow ^=  TRIGGER_MASK; TRIGGER_Data_ADDR = TRIGGER_DataShadow;}
+ 0004           ; 
+ 0004           ; void main(void)
+ 0004           ; {
+ 0004                   .dbline 87
+ 0004           ;       char c;                                 // Generic character variable
+ 0004           ;       BYTE status = 0;                // Generic status byte
+ 0004 560000            mov [X+0],0
+ 0007                   .dbline 88
+ 0007           ;       BYTE cursor = 0;                // LCD cursor position for printing of scan codes
+ 0007 560200            mov [X+2],0
+ 000A                   .dbline 89
+ 000A           ;       BYTE codetype = 0;              // Contains the type of keyboard scancode
+ 000A 560300            mov [X+3],0
+ 000D                   .dbline 90
+ 000D           ;       BYTE keyspressed = 0;   // Count of the total number of keys currently held down
+ 000D 560400            mov [X+4],0
+ 0010                   .dbline 99
+ 0010           ;       BYTE scancode;                  // Keyboard scan code to process
+ 0010           ; 
+ 0010           ;       /////////////////////////////////////////////////////////////////////////////////
+ 0010           ;       // Since we use a shadow register for Port 1, we need to set all bits in it,
+ 0010           ;       // controlled by StdCPU, to match the state we want them to be in initially.
+ 0010           ;       // Write a 1 to our PS/2 Clock Out and Data pins which, in Open Drain Low mode,
+ 0010           ;       // will let the PS/2 bus be pulled high. Also, turn off the Frame Error LED.
+ 0010           ;       /////////////////////////////////////////////////////////////////////////////////
+ 0010           ;       PS2CLOCK_HIGH;
+ 0010                   .dbline 99
+ 0010 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 0013 2E0008            or [_Port_1_Data_SHADE],8
+ 0016                   .dbline 99
+ 0016 5100              mov A,[_Port_1_Data_SHADE]
+ 0018 6004              mov REG[0x4],A
+ 001A                   .dbline 99
+ 001A                   .dbline 99
+ 001A                   .dbline 100
+ 001A           ;       PS2DATA_HIGH;
+ 001A                   .dbline 100
+ 001A 2E0010            or [_Port_1_Data_SHADE],16
+ 001D                   .dbline 100
+ 001D 5100              mov A,[_Port_1_Data_SHADE]
+ 001F 6004              mov REG[0x4],A
+ 0021                   .dbline 100
+ 0021                   .dbline 100
+ 0021                   .dbline 101
+ 0021           ;       LED1_OFF;
+ 0021                   .dbline 101
+ 0021 2600FE            and [_Port_1_Data_SHADE],-2
+ 0024                   .dbline 101
+ 0024 5100              mov A,[_Port_1_Data_SHADE]
+ 0026 6004              mov REG[0x4],A
+ 0028                   .dbline 101
+ 0028                   .dbline 101
+ 0028                   .dbline 107
+ 0028           ;       //TRIGGER_HIGH; //// XXX - Diagnostics
+ 0028           ;       //
+ 0028           ;       /////////////////////////////////////////////////////////////////////////////////
+ 0028           ;       // Start the UART clock and the UART
+ 0028           ;       /////////////////////////////////////////////////////////////////////////////////
+ 0028           ;       UARTClock_WritePeriod(BAUD_57600_PERIOD-1);
+ 0028 10                push X
+ 0029 5700              mov X,0
+ 002B 5033              mov A,51
+ 002D 7C0000            xcall _UARTClock_WritePeriod
+ 0030                   .dbline 108
+ 0030           ;       UARTClock_WriteCompareValue((BAUD_57600_PERIOD>>1)-1);
+ 0030 5700              mov X,0
+ 0032 5019              mov A,25
+ 0034 7C0000            xcall _UARTClock_WriteCompareValue
+ 0037                   .dbline 109
+ 0037           ;       UARTClock_Start();
+ 0037 7C0000            xcall _UARTClock_Start
+ 003A                   .dbline 110
+ 003A           ;       UART_Start(UART_PARITY_NONE);
+ 003A 5000              mov A,0
+ 003C 7C0000            xcall _UART_Start
+ 003F                   .dbline 115
+ 003F           ;       //
+ 003F           ;       /////////////////////////////////////////////////////////////////////////////////
+ 003F           ;       // Start the User Modules that will bit-bang the PS/2 frames in from the keyboard
+ 003F           ;       /////////////////////////////////////////////////////////////////////////////////
+ 003F           ;       PS2DigBuf_EnableInt();
+ 003F 7C0000            xcall _PS2DigBuf_EnableInt
+ 0042                   .dbline 116
+ 0042           ;       PS2DigBuf_Start();
+ 0042 7C0000            xcall _PS2DigBuf_Start
+ 0045                   .dbline 117
+ 0045           ;       PS2OneShot_Start();
+ 0045 7C0000            xcall _PS2OneShot_Start
+ 0048                   .dbline 118
+ 0048           ;       TenMicroSecTimer_EnableInt();
+ 0048 7C0000            xcall _TenMicroSecTimer_EnableInt
+ 004B                   .dbline 123
+ 004B           ;       //
+ 004B           ;       /////////////////////////////////////////////////////////////////////////////////
+ 004B           ;       // Start the LCD, print an informational message and get it ready to print scan codes
+ 004B           ;       /////////////////////////////////////////////////////////////////////////////////
+ 004B           ;       LCD_Start();
+ 004B 7C0000            xcall _LCD_Start
+ 004E                   .dbline 124
+ 004E           ;       LCD_Position(0,0);      
+ 004E 5000              mov A,0
+ 0050 5700              mov X,0
+ 0052 7C0000            xcall _LCD_Position
+ 0055                   .dbline 125
+ 0055           ;       LCD_PrCString("PS/2 Bit-Banging");
+ 0055 50ED              mov A,>L2
+ 0057 08                push A
+ 0058 50ED              mov A,<L2
+ 005A 5C                mov X,A
+ 005B 18                pop A
+ 005C 7C0000            xcall _LCD_PrCString
+ 005F                   .dbline 126
+ 005F           ;       LCD_Position(1,0);      // Print the PS/2 keyboard scan codes on the second line.
+ 005F 5700              mov X,0
+ 0061 5001              mov A,1
+ 0063 7C0000            xcall _LCD_Position
+ 0066                   .dbline 128
+ 0066           ; //    LCD_Control(LCD_CURSOR_WINK);   // Turn on the LCD cursor. See LCD.h.
+ 0066           ;       LCD_Control(LCD_CURSOR_BLINK);  // Turn on the LCD cursor. See LCD.h.
+ 0066 500F              mov A,15
+ 0068 7C0000            xcall _LCD_Control
+ 006B 20                pop X
+ 006C                   .dbline 135
+ 006C           ;       //
+ 006C           ;       /////////////////////////////////////////////////////////////////////////////////
+ 006C           ;       // Enable Global Interrupts
+ 006C           ;       // Needed by the PS/2 bit-banging user modules PS2DigBuf and PS2OneShot
+ 006C           ;       // and TenMicroSecTimer
+ 006C           ;       /////////////////////////////////////////////////////////////////////////////////
+ 006C           ;       M8C_EnableGInt;
+ 006C 7101                      or  F, 01h
+ 006E           
+ 006E                   .dbline 140
+ 006E           ;       //
+ 006E           ;       /////////////////////////////////////////////////////////////////////////////////
+ 006E           ;       // Print an informational message out to the host computer via the UART
+ 006E           ;       /////////////////////////////////////////////////////////////////////////////////
+ 006E           ;       UART_CPutString("\r\nPSoC PS/2 Bit-Banging Interface test program.\r\n");
+ 006E 10                push X
+ 006F 50BB              mov A,>L3
+ 0071 08                push A
+ 0072 50BB              mov A,<L3
+ 0074 5C                mov X,A
+ 0075 18                pop A
+ 0076 7C0000            xcall _UART_CPutString
+ 0079 20                pop X
+ 007A 812C              xjmp L5
+ 007C           L4:
+ 007C                   .dbline 145
+ 007C           ;       //
+ 007C           ;       /////////////////////////////////////////////////////////////////////////////////
+ 007C           ;       // Loop here until we detect a working PS/2 device.
+ 007C           ;       /////////////////////////////////////////////////////////////////////////////////
+ 007C           ;       while(1) {
+ 007C                   .dbline 146
+ 007C           ;               LCD_Position(1,0);
+ 007C 10                push X
+ 007D 5700              mov X,0
+ 007F 5001              mov A,1
+ 0081 7C0000            xcall _LCD_Position
+ 0084                   .dbline 147
+ 0084           ;               LCD_PrCString("Detecting Device");
+ 0084 50AA              mov A,>L7
+ 0086 08                push A
+ 0087 50AA              mov A,<L7
+ 0089 5C                mov X,A
+ 008A 18                pop A
+ 008B 7C0000            xcall _LCD_PrCString
+ 008E 20                pop X
+ 008F                   .dbline 148
+ 008F           ;               status = PS2_Detect_Device();
+ 008F 7C0000            xcall _PS2_Detect_Device
+ 0092 5400              mov [X+0],A
+ 0094                   .dbline 149
+ 0094           ;               if (!status) {
+ 0094 3D0000            cmp [X+0],0
+ 0097 B01C              jnz L8
+ 0099                   .dbline 150
+ 0099           ;                       IsMouse = 0;
+ 0099                   .dbline 150
+ 0099 62D000            mov REG[0xd0],>_IsMouse
+ 009C 550000            mov [_IsMouse],0
+ 009F                   .dbline 151
+ 009F           ;                       LCD_Position(1,0);
+ 009F 10                push X
+ 00A0 5700              mov X,0
+ 00A2 5001              mov A,1
+ 00A4 7C0000            xcall _LCD_Position
+ 00A7                   .dbline 152
+ 00A7           ;                       LCD_PrCString(" Keyboard Ready ");
+ 00A7 5099              mov A,>L10
+ 00A9 08                push A
+ 00AA 5099              mov A,<L10
+ 00AC 5C                mov X,A
+ 00AD 18                pop A
+ 00AE 7C0000            xcall _LCD_PrCString
+ 00B1 20                pop X
+ 00B2                   .dbline 153
+ 00B2           ;                       break;
+ 00B2 80F6              xjmp L6
+ 00B4           L8:
+ 00B4                   .dbline 155
+ 00B4           ;               }
+ 00B4           ;               if (status == DEVICE_IS_MOUSE) {
+ 00B4 3D0080            cmp [X+0],-128
+ 00B7 B01C              jnz L11
+ 00B9                   .dbline 156
+ 00B9           ;                       IsMouse = 1;
+ 00B9                   .dbline 156
+ 00B9 62D000            mov REG[0xd0],>_IsMouse
+ 00BC 550001            mov [_IsMouse],1
+ 00BF                   .dbline 157
+ 00BF           ;                       LCD_Position(1,0);
+ 00BF 10                push X
+ 00C0 5700              mov X,0
+ 00C2 5001              mov A,1
+ 00C4 7C0000            xcall _LCD_Position
+ 00C7                   .dbline 158
+ 00C7           ;                       LCD_PrCString("  Mouse Ready   ");
+ 00C7 5088              mov A,>L13
+ 00C9 08                push A
+ 00CA 5088              mov A,<L13
+ 00CC 5C                mov X,A
+ 00CD 18                pop A
+ 00CE 7C0000            xcall _LCD_PrCString
+ 00D1 20                pop X
+ 00D2                   .dbline 159
+ 00D2           ;                       break;
+ 00D2 80D6              xjmp L6
+ 00D4           L11:
+ 00D4                   .dbline 162
+ 00D4           ;               }
+ 00D4           ;               //// No device if the transmission timed-out.
+ 00D4           ;               if (status & DEVICE_TX_TIMEOUT) {
+ 00D4 480001            tst [X+0],1
+ 00D7 A016              jz L14
+ 00D9                   .dbline 163
+ 00D9           ;                       LCD_Position(1,0);
+ 00D9                   .dbline 163
+ 00D9 10                push X
+ 00DA 5700              mov X,0
+ 00DC 5001              mov A,1
+ 00DE 7C0000            xcall _LCD_Position
+ 00E1                   .dbline 164
+ 00E1           ;                       LCD_PrCString("   No Device    ");
+ 00E1 5077              mov A,>L16
+ 00E3 08                push A
+ 00E4 5077              mov A,<L16
+ 00E6 5C                mov X,A
+ 00E7 18                pop A
+ 00E8 7C0000            xcall _LCD_PrCString
+ 00EB 20                pop X
+ 00EC                   .dbline 165
+ 00EC           ;               }
+ 00EC 809B              xjmp L15
+ 00EE           L14:
+ 00EE                   .dbline 167
+ 00EE           ;               //// A framing error occured while transmitting to the device. (XXX - Force test this)
+ 00EE           ;               else if (status & DEVICE_TX_FRAME_ERROR) {
+ 00EE 480004            tst [X+0],4
+ 00F1 A016              jz L17
+ 00F3                   .dbline 168
+ 00F3           ;                       LCD_Position(1,0);
+ 00F3                   .dbline 168
+ 00F3 10                push X
+ 00F4 5700              mov X,0
+ 00F6 5001              mov A,1
+ 00F8 7C0000            xcall _LCD_Position
+ 00FB                   .dbline 169
+ 00FB           ;                       LCD_PrCString(" TX Frame Error ");
+ 00FB 5066              mov A,>L19
+ 00FD 08                push A
+ 00FE 5066              mov A,<L19
+ 0100 5C                mov X,A
+ 0101 18                pop A
+ 0102 7C0000            xcall _LCD_PrCString
+ 0105 20                pop X
+ 0106                   .dbline 170
+ 0106           ;               }
+ 0106 8081              xjmp L18
+ 0108           L17:
+ 0108                   .dbline 172
+ 0108           ;               //// A framing error occured while receiving from the device. (XXX - Force test this)
+ 0108           ;               else if (status & DEVICE_RX_FRAME_ERROR) {
+ 0108 480008            tst [X+0],8
+ 010B A016              jz L20
+ 010D                   .dbline 173
+ 010D           ;                       LCD_Position(1,0);
+ 010D                   .dbline 173
+ 010D 10                push X
+ 010E 5700              mov X,0
+ 0110 5001              mov A,1
+ 0112 7C0000            xcall _LCD_Position
+ 0115                   .dbline 174
+ 0115           ;                       LCD_PrCString(" RX Frame Error ");
+ 0115 5055              mov A,>L22
+ 0117 08                push A
+ 0118 5055              mov A,<L22
+ 011A 5C                mov X,A
+ 011B 18                pop A
+ 011C 7C0000            xcall _LCD_PrCString
+ 011F 20                pop X
+ 0120                   .dbline 175
+ 0120           ;               }
+ 0120 8067              xjmp L21
+ 0122           L20:
+ 0122                   .dbline 177
+ 0122           ;               //// We should probably consider an RX Timeout to be a device error. (XXX - Force test this)
+ 0122           ;               else if (status & DEVICE_RX_TIMEOUT) {
+ 0122 480002            tst [X+0],2
+ 0125 A016              jz L23
+ 0127                   .dbline 178
+ 0127           ;                       LCD_Position(1,0);
+ 0127                   .dbline 178
+ 0127 10                push X
+ 0128 5700              mov X,0
+ 012A 5001              mov A,1
+ 012C 7C0000            xcall _LCD_Position
+ 012F                   .dbline 179
+ 012F           ;                       LCD_PrCString("Receive Timeout ");
+ 012F 5044              mov A,>L25
+ 0131 08                push A
+ 0132 5044              mov A,<L25
+ 0134 5C                mov X,A
+ 0135 18                pop A
+ 0136 7C0000            xcall _LCD_PrCString
+ 0139 20                pop X
+ 013A                   .dbline 180
+ 013A           ;               }
+ 013A 804D              xjmp L24
+ 013C           L23:
+ 013C                   .dbline 182
+ 013C           ;               //// The response we received from our RESET command was invalid. (XXX - Force test this)
+ 013C           ;               else if (status & DEVICE_INVALID_RESPONSE) {
+ 013C 480020            tst [X+0],32
+ 013F A016              jz L26
+ 0141                   .dbline 183
+ 0141           ;                       LCD_Position(1,0);
+ 0141                   .dbline 183
+ 0141 10                push X
+ 0142 5700              mov X,0
+ 0144 5001              mov A,1
+ 0146 7C0000            xcall _LCD_Position
+ 0149                   .dbline 184
+ 0149           ;                       LCD_PrCString("Invalid Response");
+ 0149 5033              mov A,>L28
+ 014B 08                push A
+ 014C 5033              mov A,<L28
+ 014E 5C                mov X,A
+ 014F 18                pop A
+ 0150 7C0000            xcall _LCD_PrCString
+ 0153 20                pop X
+ 0154                   .dbline 185
+ 0154           ;               }
+ 0154 8033              xjmp L27
+ 0156           L26:
+ 0156                   .dbline 187
+ 0156           ;               //// The device failed a diagnostic self-test (BAT) (XXX - Force test this)
+ 0156           ;               else if (status & DEVICE_BAD_BAT) {
+ 0156 480010            tst [X+0],16
+ 0159 A016              jz L29
+ 015B                   .dbline 188
+ 015B           ;                       LCD_Position(1,0);
+ 015B                   .dbline 188
+ 015B 10                push X
+ 015C 5700              mov X,0
+ 015E 5001              mov A,1
+ 0160 7C0000            xcall _LCD_Position
+ 0163                   .dbline 189
+ 0163           ;                       LCD_PrCString("Device BAT Error");
+ 0163 5022              mov A,>L31
+ 0165 08                push A
+ 0166 5022              mov A,<L31
+ 0168 5C                mov X,A
+ 0169 18                pop A
+ 016A 7C0000            xcall _LCD_PrCString
+ 016D 20                pop X
+ 016E                   .dbline 190
+ 016E           ;               }
+ 016E 8019              xjmp L30
+ 0170           L29:
+ 0170                   .dbline 192
+ 0170           ;               //// We received a partial frame
+ 0170           ;               else if (status & DEVICE_ERROR) {
+ 0170 480040            tst [X+0],64
+ 0173 A014              jz L32
+ 0175                   .dbline 193
+ 0175           ;                       LCD_Position(1,0);
+ 0175                   .dbline 193
+ 0175 10                push X
+ 0176 5700              mov X,0
+ 0178 5001              mov A,1
+ 017A 7C0000            xcall _LCD_Position
+ 017D                   .dbline 194
+ 017D           ;                       LCD_PrCString("  Device Error  ");
+ 017D 5011              mov A,>L34
+ 017F 08                push A
+ 0180 5011              mov A,<L34
+ 0182 5C                mov X,A
+ 0183 18                pop A
+ 0184 7C0000            xcall _LCD_PrCString
+ 0187 20                pop X
+ 0188                   .dbline 195
+ 0188           ;               }
+ 0188           L32:
+ 0188           L30:
+ 0188           L27:
+ 0188           L24:
+ 0188           L21:
+ 0188           L18:
+ 0188           L15:
+ 0188                   .dbline 197
+ 0188           ;               //// If we had an error, wait 1 second and try again.
+ 0188           ;               TenMicroSecTimerReps = 2;
+ 0188 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 018B 550002            mov [_TenMicroSecTimerReps],2
+ 018E                   .dbline 198
+ 018E           ;               TenMicroSecTimer_WritePeriod(49999); // 1000ms
+ 018E 10                push X
+ 018F 57C3              mov X,-61
+ 0191 504F              mov A,79
+ 0193 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 0196                   .dbline 199
+ 0196           ;               TenMicroSecTimer_Start();
+ 0196 7C0000            xcall _TenMicroSecTimer_Start
+ 0199 20                pop X
+ 019A           L35:
+ 019A                   .dbline 200
+ 019A           ;               while(TenMicroSecTimerReps);
+ 019A           L36:
+ 019A                   .dbline 200
+ 019A 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 019D 3C0000            cmp [_TenMicroSecTimerReps],0
+ 01A0 BFF9              jnz L35
+ 01A2                   .dbline 201
+ 01A2           ;               TenMicroSecTimer_Stop();
+ 01A2 10                push X
+ 01A3 7C0000            xcall _TenMicroSecTimer_Stop
+ 01A6 20                pop X
+ 01A7                   .dbline 202
+ 01A7           ;       }
+ 01A7           L5:
+ 01A7                   .dbline 145
+ 01A7 8ED4              xjmp L4
+ 01A9           L6:
+ 01A9                   .dbline 204
+ 01A9           ;       //// The device was detected so wait 1 second before clearing the display.
+ 01A9           ;       TenMicroSecTimerReps = 2;
+ 01A9 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 01AC 550002            mov [_TenMicroSecTimerReps],2
+ 01AF                   .dbline 205
+ 01AF           ;       TenMicroSecTimer_WritePeriod(49999); // 1000ms
+ 01AF 10                push X
+ 01B0 57C3              mov X,-61
+ 01B2 504F              mov A,79
+ 01B4 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 01B7                   .dbline 206
+ 01B7           ;       TenMicroSecTimer_Start();
+ 01B7 7C0000            xcall _TenMicroSecTimer_Start
+ 01BA 20                pop X
+ 01BB           L38:
+ 01BB                   .dbline 207
+ 01BB           ;       while(TenMicroSecTimerReps);
+ 01BB           L39:
+ 01BB                   .dbline 207
+ 01BB 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 01BE 3C0000            cmp [_TenMicroSecTimerReps],0
+ 01C1 BFF9              jnz L38
+ 01C3                   .dbline 208
+ 01C3           ;       TenMicroSecTimer_Stop();
+ 01C3 10                push X
+ 01C4 7C0000            xcall _TenMicroSecTimer_Stop
+ 01C7 20                pop X
+ 01C8                   .dbline 220
+ 01C8           ;       //
+ 01C8           ;       //// XXX - Add capability to both the mouse and keyboard functions that,
+ 01C8           ;       ////       upon detecting a BAT code from the device, will reinitialize it
+ 01C8           ;       ////       and resume operation.
+ 01C8           ;       //
+ 01C8           ;       ///////////////////////////////////////////////////////////////////////////
+ 01C8           ;       //// - Mouse stuff below
+ 01C8           ;       ///////////////////////////////////////////////////////////////////////////
+ 01C8           ;       // Enter the main loop, printing mouse button and X/Y data to the LCD
+ 01C8           ;       // scan codes out to the UART.
+ 01C8           ;       ///////////////////////////////////////////////////////////////////////////
+ 01C8           ;       if (IsMouse) {
+ 01C8 62D000            mov REG[0xd0],>_IsMouse
+ 01CB 3C0000            cmp [_IsMouse],0
+ 01CE A028              jz L41
+ 01D0                   .dbline 224
+ 01D0           ;               /////////////////////////////////////////////////////////////////////////////////
+ 01D0           ;               // Start the PWM8 User Module that controls the brightness of the LED on P[1]1
+ 01D0           ;               /////////////////////////////////////////////////////////////////////////////////
+ 01D0           ;               PWM8LED_WritePulseWidth(0);
+ 01D0                   .dbline 224
+ 01D0 10                push X
+ 01D1 5000              mov A,0
+ 01D3 7C0000            xcall _PWM8LED_WritePulseWidth
+ 01D6                   .dbline 225
+ 01D6           ;               PWM8LED_Start();
+ 01D6 7C0000            xcall _PWM8LED_Start
+ 01D9 20                pop X
+ 01DA                   .dbline 227
+ 01DA           ;               //
+ 01DA           ;               MouseInit();
+ 01DA 7C0000            xcall _MouseInit
+ 01DD                   .dbline 235
+ 01DD           ; //            //// Print the raw 3-byte mouse data to the LCD
+ 01DD           ; //            LCD_Position(1,0);
+ 01DD           ; //            LCD_PrCString("                ");
+ 01DD           ; //            while(1) {
+ 01DD           ; //                    MousePrintRawData();
+ 01DD           ; //            }
+ 01DD           ;               //// Move the LCD cursor around the LCD and display data
+ 01DD           ;               LCD_Position(1,0);
+ 01DD 10                push X
+ 01DE 5700              mov X,0
+ 01E0 5001              mov A,1
+ 01E2 7C0000            xcall _LCD_Position
+ 01E5                   .dbline 236
+ 01E5           ;               LCD_PrCString("   X:0000 Y:0000");
+ 01E5 5000              mov A,>L43
+ 01E7 08                push A
+ 01E8 5000              mov A,<L43
+ 01EA 5C                mov X,A
+ 01EB 18                pop A
+ 01EC 7C0000            xcall _LCD_PrCString
+ 01EF 20                pop X
+ 01F0 8004              xjmp L45
+ 01F2           L44:
+ 01F2                   .dbline 237
+ 01F2           ;               while(1) {
+ 01F2                   .dbline 238
+ 01F2           ;                       MouseCursor();
+ 01F2 7C0000            xcall _MouseCursor
+ 01F5                   .dbline 239
+ 01F5           ;               }
+ 01F5           L45:
+ 01F5                   .dbline 237
+ 01F5 8FFC              xjmp L44
+ 01F7           L41:
+ 01F7                   .dbline 241
+ 01F7           ;       }
+ 01F7           ;       else {
+ 01F7                   .dbline 245
+ 01F7           ;               /////////////////////////////////////////////////////////////////////////////////
+ 01F7           ;               // Start the PWM8 User Module that controls the brightness of the LED on P[1]1
+ 01F7           ;               /////////////////////////////////////////////////////////////////////////////////
+ 01F7           ;               PWM8LED_WritePulseWidth(127);
+ 01F7 10                push X
+ 01F8 507F              mov A,127
+ 01FA 7C0000            xcall _PWM8LED_WritePulseWidth
+ 01FD                   .dbline 246
+ 01FD           ;               PWM8LED_Start();
+ 01FD 7C0000            xcall _PWM8LED_Start
+ 0200 20                pop X
+ 0201 80F6              xjmp L48
+ 0203           L47:
+ 0203                   .dbline 253
+ 0203           ;               //
+ 0203           ;               //// - Keyboard stuff below
+ 0203           ;               /////////////////////////////////////////////////////////////////////////////////
+ 0203           ;               // Enter the main loop, printing received scan codes out on the LCD and printable
+ 0203           ;               // scan codes out to the UART.
+ 0203           ;               /////////////////////////////////////////////////////////////////////////////////
+ 0203           ;               while(1) {
+ 0203                   .dbline 256
+ 0203           ;                       //// If we get a parity error, regardless of where we are in the
+ 0203           ;                       //// receive buffer, transmit a resend command
+ 0203           ;                       if (PS2FrameStatus & FRAME_RX_PARITY_ERROR) {
+ 0203 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0206 470004            tst [_PS2FrameStatus],4
+ 0209 A013              jz L50
+ 020B                   .dbline 257
+ 020B           ;                               PS2FrameStatus = 0x00;
+ 020B                   .dbline 257
+ 020B 550000            mov [_PS2FrameStatus],0
+ 020E                   .dbline 258
+ 020E           ;                               PS2_Write_Byte(0xFE);
+ 020E 50FE              mov A,-2
+ 0210 08                push A
+ 0211 7C0000            xcall _PS2_Write_Byte
+ 0214 38FF              add SP,-1
+ 0216 62D000            mov REG[0xd0],>__r0
+ 0219 5300              mov [__r0],A
+ 021B                   .dbline 259
+ 021B           ;                               continue;
+ 021B 80DC              xjmp L48
+ 021D           L50:
+ 021D                   .dbline 266
+ 021D           ;                       }
+ 021D           ;                       //// XXX - We should probably check for other frame error types.
+ 021D           ;                       //// XXX - If we get a FRAME_RX_FRAME_ERROR, lets send a resend
+ 021D           ;                       //// XXX - If we get a FRAME_INCOMPLETE, the keyboard may have
+ 021D           ;                       ////       been unplugged so send an ECHO. If we don't get a
+ 021D           ;                       ////       valid response, reset the keyboard and restart.
+ 021D           ;                       if (PS2RxBufOut != PS2RxBufIn) {
+ 021D 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0220 5100              mov A,[_PS2RxBufOut]
+ 0222 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0225 3A00              cmp A,[_PS2RxBufIn]
+ 0227 A0D0              jz L52
+ 0229                   .dbline 267
+ 0229           ;                               scancode = PS2RxBuffer[PS2RxBufOut];
+ 0229                   .dbline 267
+ 0229 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 022C 5100              mov A,[_PS2RxBufOut]
+ 022E 62D000            mov REG[0xd0],>__r0
+ 0231 5300              mov [__r1],A
+ 0233 550000            mov [__r0],0
+ 0236 060000            add [__r1],<_PS2RxBuffer
+ 0239 0E0000            adc [__r0],>_PS2RxBuffer
+ 023C 5100              mov A,[__r0]
+ 023E 60D4              mov REG[0xd4],A
+ 0240 3E00              mvi A,[__r1]
+ 0242 5401              mov [X+1],A
+ 0244                   .dbline 268
+ 0244           ;                               PS2RxBufOut++;
+ 0244 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0247 7600              inc [_PS2RxBufOut]
+ 0249                   .dbline 270
+ 0249           ;                               // Wrap around the circular buffer pointer at 16 
+ 0249           ;                               if (PS2RxBufOut & 0x10) PS2RxBufOut = 0;
+ 0249 470010            tst [_PS2RxBufOut],16
+ 024C A004              jz L54
+ 024E                   .dbline 270
+ 024E 550000            mov [_PS2RxBufOut],0
+ 0251           L54:
+ 0251                   .dbline 272
+ 0251           ;                               //// Wrap the cursor around on the second line when printing scan codes.
+ 0251           ;                               if (cursor > 15) cursor = 0;
+ 0251 500F              mov A,15
+ 0253 3B02              cmp A,[X+2]
+ 0255 D004              jnc L56
+ 0257           X0:
+ 0257                   .dbline 272
+ 0257 560200            mov [X+2],0
+ 025A           L56:
+ 025A                   .dbline 273
+ 025A           ;                               LCD_Position(1,cursor);
+ 025A 10                push X
+ 025B 5902              mov X,[X+2]
+ 025D 5001              mov A,1
+ 025F 7C0000            xcall _LCD_Position
+ 0262 20                pop X
+ 0263                   .dbline 274
+ 0263           ;                               LCD_PrHexByte(scancode);
+ 0263 10                push X
+ 0264 5201              mov A,[X+1]
+ 0266 7C0000            xcall _LCD_PrHexByte
+ 0269                   .dbline 276
+ 0269           ;                               //// Keep the LCD CURSOR on top of the last character written
+ 0269           ;                               LCD_Control(LCD_CURSOR_SH_LEFT);
+ 0269 5010              mov A,16
+ 026B 7C0000            xcall _LCD_Control
+ 026E 20                pop X
+ 026F                   .dbline 277
+ 026F           ;                               cursor+=2;
+ 026F 070202            add [X+2],2
+ 0272                   .dbline 281
+ 0272           ;                               //// Process any keyboard commands
+ 0272           ;                               // Getting a 0x00 from the keyboard means there is either a
+ 0272           ;                               // keyboard buffer overrun or a key detection error.
+ 0272           ;                               if (scancode == 0x00) {
+ 0272 3D0100            cmp [X+1],0
+ 0275 B003              jnz L58
+ 0277                   .dbline 283
+ 0277           ;                                       // XXX - Should we indicate to the user that there is a problem?
+ 0277           ;                                       continue;
+ 0277                   .dbline 283
+ 0277 8080              xjmp L48
+ 0279           L58:
+ 0279                   .dbline 288
+ 0279           ;                               }
+ 0279           ;                               // If we get a BAT, assume the keyboard has been powered-on
+ 0279           ;                               // again and reset any appropriate state variables.
+ 0279           ;                               // XXX - Maybe we should handle a bad BAT (0xFC) too.
+ 0279           ;                               if (scancode == 0xAA) { // Power-on BAT
+ 0279 3D01AA            cmp [X+1],-86
+ 027C B003              jnz L60
+ 027E                   .dbline 290
+ 027E           ;                                       // XXX - Implement the keyboard power-on sequence
+ 027E           ;                                       continue;
+ 027E                   .dbline 290
+ 027E 8079              xjmp L48
+ 0280           L60:
+ 0280                   .dbline 295
+ 0280           ;                               }
+ 0280           ;                               // If we find a Resend in our input buffer, ignore it since
+ 0280           ;                               // we handle resends in PS2_Send_Command_Process_Response().
+ 0280           ;                               // Note: This should never happen.
+ 0280           ;                               if (scancode == 0xFE) {
+ 0280 3D01FE            cmp [X+1],-2
+ 0283 B003              jnz L62
+ 0285                   .dbline 296
+ 0285           ;                                       continue;
+ 0285                   .dbline 296
+ 0285 8072              xjmp L48
+ 0287           L62:
+ 0287                   .dbline 299
+ 0287           ;                               }
+ 0287           ;                               //// Convert the individual scan codes into meaningful key actions
+ 0287           ;                               codetype = KeyboardDecodeData(scancode);
+ 0287 5201              mov A,[X+1]
+ 0289 08                push A
+ 028A 7C0000            xcall _KeyboardDecodeData
+ 028D 38FF              add SP,-1
+ 028F 62D000            mov REG[0xd0],>__r0
+ 0292 5403              mov [X+3],A
+ 0294                   .dbline 301
+ 0294           ;                               //// Keep track of how many keys are pressed
+ 0294           ;                               keyspressed = KeyboardTotalPressed(scancode,codetype);
+ 0294 5203              mov A,[X+3]
+ 0296 08                push A
+ 0297 5201              mov A,[X+1]
+ 0299 08                push A
+ 029A 7C0000            xcall _KeyboardTotalPressed
+ 029D 62D000            mov REG[0xd0],>__r0
+ 02A0 5404              mov [X+4],A
+ 02A2                   .dbline 302
+ 02A2           ;                               KeyboardAction(scancode,codetype,keyspressed);
+ 02A2 5204              mov A,[X+4]
+ 02A4 08                push A
+ 02A5 5203              mov A,[X+3]
+ 02A7 08                push A
+ 02A8 5201              mov A,[X+1]
+ 02AA 08                push A
+ 02AB 7C0000            xcall _KeyboardAction
+ 02AE 38FB              add SP,-5
+ 02B0                   .dbline 303
+ 02B0           ;                               if (!PianoMode) {
+ 02B0 62D000            mov REG[0xd0],>_PianoMode
+ 02B3 3C0000            cmp [_PianoMode],0
+ 02B6 B041              jnz L64
+ 02B8                   .dbline 304
+ 02B8           ;                                       c = KeyboardToASCII(scancode,codetype);
+ 02B8                   .dbline 304
+ 02B8 5203              mov A,[X+3]
+ 02BA 08                push A
+ 02BB 5201              mov A,[X+1]
+ 02BD 08                push A
+ 02BE 7C0000            xcall _KeyboardToASCII
+ 02C1 38FE              add SP,-2
+ 02C3 62D000            mov REG[0xd0],>__r0
+ 02C6 5405              mov [X+5],A
+ 02C8                   .dbline 305
+ 02C8           ;                                       if (!c) continue;
+ 02C8 3D0500            cmp [X+5],0
+ 02CB B003              jnz L66
+ 02CD                   .dbline 305
+ 02CD 802A              xjmp L48
+ 02CF           L66:
+ 02CF                   .dbline 306
+ 02CF           ;                                       if (c == 0x0d) {
+ 02CF 3D050D            cmp [X+5],13
+ 02D2 B006              jnz L68
+ 02D4                   .dbline 307
+ 02D4           ;                                               UART_PutCRLF();
+ 02D4                   .dbline 307
+ 02D4 10                push X
+ 02D5 7C0000            xcall _UART_PutCRLF
+ 02D8 20                pop X
+ 02D9                   .dbline 308
+ 02D9           ;                                       } 
+ 02D9           L68:
+ 02D9                   .dbline 309
+ 02D9           ;                                       if (c == 0x08) {
+ 02D9 3D0508            cmp [X+5],8
+ 02DC B014              jnz L70
+ 02DE                   .dbline 311
+ 02DE           ;                                               // Send rubout
+ 02DE           ;                                               UART_PutChar(0x08);
+ 02DE                   .dbline 311
+ 02DE 10                push X
+ 02DF 5008              mov A,8
+ 02E1 7C0000            xcall _UART_PutChar
+ 02E4                   .dbline 312
+ 02E4           ;                                               UART_PutChar(' ');
+ 02E4 5020              mov A,32
+ 02E6 7C0000            xcall _UART_PutChar
+ 02E9                   .dbline 313
+ 02E9           ;                                               UART_PutChar(0x08);
+ 02E9 5008              mov A,8
+ 02EB 7C0000            xcall _UART_PutChar
+ 02EE 20                pop X
+ 02EF                   .dbline 314
+ 02EF           ;                                       } else {
+ 02EF 8008              xjmp L71
+ 02F1           L70:
+ 02F1                   .dbline 314
+ 02F1                   .dbline 315
+ 02F1           ;                                               UART_PutChar(c);
+ 02F1 10                push X
+ 02F2 5205              mov A,[X+5]
+ 02F4 7C0000            xcall _UART_PutChar
+ 02F7 20                pop X
+ 02F8                   .dbline 316
+ 02F8           ;                                       }
+ 02F8           L71:
+ 02F8                   .dbline 317
+ 02F8           ;                               }
+ 02F8           L64:
+ 02F8                   .dbline 318
+ 02F8           ;                       }
+ 02F8           L52:
+ 02F8                   .dbline 319
+ 02F8           ;               }
+ 02F8           L48:
+ 02F8                   .dbline 253
+ 02F8 8F0A              xjmp L47
+ 02FA           L42:
+ 02FA                   .dbline -2
+ 02FA           L1:
+ 02FA 38FA              add SP,-6
+ 02FC 20                pop X
+ 02FD                   .dbline 0 ; func end
+ 02FD 8FFF              jmp .
+ 02FF                   .dbsym l c 5 c
+ 02FF                   .dbsym l keyspressed 4 c
+ 02FF                   .dbsym l codetype 3 c
+ 02FF                   .dbsym l cursor 2 c
+ 02FF                   .dbsym l scancode 1 c
+ 02FF                   .dbsym l status 0 c
+ 02FF                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\main.c
+ 0000           _PS2RxBuffer::
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 000000000000      .byte 0,0,0,0,0,0
+ 0010                   .dbsym e PS2RxBuffer _PS2RxBuffer A[16:16]c
+                        .area lit(rom, con, rel, lit)
+ 0000           L43:
+ 0000 202020583A3030303020593A30303030  .byte 32,32,32,'X,58,48,48,48,48,32,'Y,58,48,48,48,48
+ 0010 00                .byte 0
+ 0011           L34:
+ 0011 2020446576696365204572726F722020  .byte 32,32,'D,'e,'v,'i,'c,'e,32,'E,'r,'r,'o,'r,32,32
+ 0021 00                .byte 0
+ 0022           L31:
+ 0022 44657669636520424154204572726F72  .byte 'D,'e,'v,'i,'c,'e,32,'B,'A,'T,32,'E,'r,'r,'o,'r
+ 0032 00                .byte 0
+ 0033           L28:
+ 0033 496E76616C696420526573706F6E7365  .byte 'I,'n,'v,'a,'l,'i,'d,32,'R,'e,'s,'p,'o,'n,'s,'e
+ 0043 00                .byte 0
+ 0044           L25:
+ 0044 526563656976652054696D656F757420  .byte 'R,'e,'c,'e,'i,'v,'e,32,'T,'i,'m,'e,'o,'u,'t,32
+ 0054 00                .byte 0
+ 0055           L22:
+ 0055 205258204672616D65204572726F7220  .byte 32,'R,'X,32,'F,'r,'a,'m,'e,32,'E,'r,'r,'o,'r,32
+ 0065 00                .byte 0
+ 0066           L19:
+ 0066 205458204672616D65204572726F7220  .byte 32,'T,'X,32,'F,'r,'a,'m,'e,32,'E,'r,'r,'o,'r,32
+ 0076 00                .byte 0
+ 0077           L16:
+ 0077 2020204E6F2044657669636520202020  .byte 32,32,32,'N,'o,32,'D,'e,'v,'i,'c,'e,32,32,32,32
+ 0087 00                .byte 0
+ 0088           L13:
+ 0088 20204D6F757365205265616479202020  .byte 32,32,'M,'o,'u,'s,'e,32,'R,'e,'a,'d,'y,32,32,32
+ 0098 00                .byte 0
+ 0099           L10:
+ 0099 204B6579626F61726420526561647920  .byte 32,'K,'e,'y,'b,'o,'a,'r,'d,32,'R,'e,'a,'d,'y,32
+ 00A9 00                .byte 0
+ 00AA           L7:
+ 00AA 446574656374696E6720446576696365  .byte 'D,'e,'t,'e,'c,'t,'i,'n,'g,32,'D,'e,'v,'i,'c,'e
+ 00BA 00                .byte 0
+ 00BB           L3:
+ 00BB 0D0A50536F432050532F32204269742D  .byte 13,10,'P,'S,'o,'C,32,'P,'S,47,50,32,'B,'i,'t,45
+ 00CB 42616E67696E6720496E746572666163  .byte 'B,'a,'n,'g,'i,'n,'g,32,'I,'n,'t,'e,'r,'f,'a,'c
+ 00DB 6520746573742070726F6772616D2E0D  .byte 'e,32,'t,'e,'s,'t,32,'p,'r,'o,'g,'r,'a,'m,46,13
+ 00EB 0A00              .byte 10,0
+ 00ED           L2:
+ 00ED 50532F32204269742D42616E67696E67  .byte 'P,'S,47,50,32,'B,'i,'t,45,'B,'a,'n,'g,'i,'n,'g
+ 00FD 00                .byte 0

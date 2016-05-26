@@ -1,0 +1,14 @@
+flash 2DDA SRAM    4:
+ 00 16 bytes
+flash 2DDE SRAM   23:
+ 00 62 bytes
+flash 2DE2 SRAM   61:
+ <size at next line>   1
+  [size:] 1 bytes
+flash 2DE6 SRAM   62:
+ 00 13 bytes
+flash 2DEA SRAM   6F:
+ <size at next line>  7F
+  [size:] 1 bytes
+flash 2DEE SRAM   70:
+ 00 14 bytes

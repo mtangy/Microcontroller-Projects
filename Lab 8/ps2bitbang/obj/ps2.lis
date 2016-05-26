@@ -1,0 +1,2316 @@
+ 0000                   cpu LMM
+                        .module ps2.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./ps2.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./ps2.c
+ 0000           _PS2FrameState:
+ 0000 00                .byte 0
+ 0001                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0001                   .dbsym s PS2FrameState _PS2FrameState c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000           _PS2DataIn:
+ 0000 00                .byte 0
+ 0001                   .dbsym s PS2DataIn _PS2DataIn c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000           _PS2DataOut:
+ 0000 00                .byte 0
+ 0001                   .dbsym s PS2DataOut _PS2DataOut c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000           _XXXForceBadRxParity:
+ 0000 00                .byte 0
+ 0001                   .dbsym s XXXForceBadRxParity _XXXForceBadRxParity c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000           _XXXForceBadTxParity:
+ 0000 00                .byte 0
+ 0001                   .dbsym s XXXForceBadTxParity _XXXForceBadTxParity c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000                   .dbfunc e PS2_Write_Byte _PS2_Write_Byte fc
+ 0000           ;          delay -> X+0
+ 0000           ;        ps2data -> X-4
+ 0000           _PS2_Write_Byte::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3801              add SP,1
+ 0004                   .dbline 63
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "PSoCGPIOINT.h"
+ 0004           ; #include "ps2.h"
+ 0004           ; 
+ 0004           ; //// All external global variables (identified by names in LeadingCaps)
+ 0004           ; extern BYTE PS2FrameStatus; // Note: This only changes at the end of a complete frame or when the PS2OneShot fires (due to incomplete clock)
+ 0004           ; extern BYTE PS2RxBuffer[16]; // Receive buffer
+ 0004           ; extern BYTE PS2RxBufIn; // Bytes in receive buffer
+ 0004           ; extern BYTE PS2RxBufOut; // Bytes in receive buffer
+ 0004           ; extern BYTE TenMicroSecTimerReps;
+ 0004           ; 
+ 0004           ; //// Global Variables unique to this file (identified by names in LeadingCaps)
+ 0004           ; static BYTE PS2FrameState = 0;
+ 0004           ; static BYTE PS2DataIn = 0;
+ 0004           ; static BYTE PS2DataOut = 0;
+ 0004           ; static BYTE XXXForceBadRxParity = 0; // XXX - Testing
+ 0004           ; static BYTE XXXForceBadTxParity = 0; // XXX - Testing
+ 0004           ; 
+ 0004           ; //// State names used in the PS/2 bit-banging state machine implemented
+ 0004           ; //// in PS2DigBuf_ISR and PS2OneShot_ISR.
+ 0004           ; #define PS2_START_BIT_IN      0
+ 0004           ; #define PS2_D0_BIT_IN         1
+ 0004           ; #define PS2_D1_BIT_IN         2
+ 0004           ; #define PS2_D2_BIT_IN         3
+ 0004           ; #define PS2_D3_BIT_IN         4
+ 0004           ; #define PS2_D4_BIT_IN         5
+ 0004           ; #define PS2_D5_BIT_IN         6
+ 0004           ; #define PS2_D6_BIT_IN         7
+ 0004           ; #define PS2_D7_BIT_IN         8
+ 0004           ; #define PS2_PARITY_BIT_IN     9
+ 0004           ; #define PS2_STOP_BIT_IN               10
+ 0004           ; #define PS2_TRANSMIT_BEGIN    11
+ 0004           ; #define PS2_D0_BIT_OUT                12
+ 0004           ; #define PS2_D1_BIT_OUT                13
+ 0004           ; #define PS2_D2_BIT_OUT                14
+ 0004           ; #define PS2_D3_BIT_OUT                15
+ 0004           ; #define PS2_D4_BIT_OUT                16
+ 0004           ; #define PS2_D5_BIT_OUT                17
+ 0004           ; #define PS2_D6_BIT_OUT                18
+ 0004           ; #define PS2_D7_BIT_OUT                19
+ 0004           ; #define PS2_PARITY_BIT_OUT    20
+ 0004           ; #define PS2_STOP_BIT_OUT      21
+ 0004           ; #define PS2_ACK_BIT_IN                22
+ 0004           ; 
+ 0004           ; //-----------------------------------------------------------------------------
+ 0004           ; // Transmit a byte to the PS/2 device
+ 0004           ; //
+ 0004           ; // Returns:
+ 0004           ; //    0                                               No error in transmission or reception
+ 0004           ; //    DEVICE_TX_TIMEOUT               Timeout in transmission waiting for Clock
+ 0004           ; //    DEVICE_TX_FRAME_ERROR   A TX frame error occured while sending
+ 0004           ; //    DEVICE_ERROR                    The device didn't generate enough clock transitions
+ 0004           ; //
+ 0004           ; // XXX - Implement this!
+ 0004           ; // From http://www.networktechinc.com/ps2-prots.html:
+ 0004           ; // The system checks for an PS/2 device transmission in process.
+ 0004           ; // If a transmission is in process and beyond the 10th clock, the
+ 0004           ; // system must receive the data.
+ 0004           ; // XXX - Sort-of implemented in the first line of this function.
+ 0004           ; //-----------------------------------------------------------------------------
+ 0004           ; BYTE PS2_Write_Byte(BYTE ps2data)
+ 0004           ; {
+ 0004           L2:
+ 0004                   .dbline 67
+ 0004           ;       BYTE delay;
+ 0004           ; 
+ 0004           ;       //// If we're receiving something, wait until the transmission is done.
+ 0004           ;       while(PS2FrameState != PS2_START_BIT_IN);
+ 0004           L3:
+ 0004                   .dbline 67
+ 0004 62D000            mov REG[0xd0],>_PS2FrameState
+ 0007 3C0000            cmp [_PS2FrameState],0
+ 000A BFF9              jnz L2
+ 000C                   .dbline 70
+ 000C           ;       //// Copy the byte-to-be-sent to the PS2DataOut global variable used by
+ 000C           ;       //// the PS/2 communication ISR
+ 000C           ;       PS2DataOut = ps2data;
+ 000C 52FC              mov A,[X-4]
+ 000E 62D000            mov REG[0xd0],>_PS2DataOut
+ 0011 5300              mov [_PS2DataOut],A
+ 0013                   .dbline 78
+ 0013           ;       //// XXX - Diagnostics: Make a trigger pulse for the oscilloscope
+ 0013           ;       //TRIGGER_LOW;
+ 0013           ;       //delay = 1;
+ 0013           ;       //while(delay--);
+ 0013           ;       //TRIGGER_HIGH;
+ 0013           ;       //
+ 0013           ;       //// Initialize the state machine to transmit mode.
+ 0013           ;       PS2FrameState = PS2_TRANSMIT_BEGIN;
+ 0013 62D000            mov REG[0xd0],>_PS2FrameState
+ 0016 55000B            mov [_PS2FrameState],11
+ 0019                   .dbline 81
+ 0019           ;       //// Bring the PS/2 Clock line LOW. This will trigger an interrupt
+ 0019           ;       //// on PS2DigBuf which will advance the state machine to PS2_D0_BIT_OUT.
+ 0019           ;       PS2CLOCK_LOW;
+ 0019                   .dbline 81
+ 0019 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 001C 2600F7            and [_Port_1_Data_SHADE],-9
+ 001F                   .dbline 81
+ 001F 5100              mov A,[_Port_1_Data_SHADE]
+ 0021 6004              mov REG[0x4],A
+ 0023                   .dbline 81
+ 0023                   .dbline 81
+ 0023                   .dbline 85
+ 0023           ;       //// Hold the clock line LOW for a min/max of 90us/100us total (min 60us)
+ 0023           ;       //// Set up the timer to let us know when 60us have elapsed.
+ 0023           ;       //// Note: Timer setup, polling, and ISR can add up to 10us of latency.
+ 0023           ;       TenMicroSecTimerReps = 1;
+ 0023 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 0026 550001            mov [_TenMicroSecTimerReps],1
+ 0029                   .dbline 86
+ 0029           ;       TenMicroSecTimer_WritePeriod(5); // (5+1) * 10us = 60us
+ 0029 10                push X
+ 002A 5700              mov X,0
+ 002C 5005              mov A,5
+ 002E 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 0031                   .dbline 87
+ 0031           ;       TenMicroSecTimer_Start();
+ 0031 7C0000            xcall _TenMicroSecTimer_Start
+ 0034 20                pop X
+ 0035           L5:
+ 0035                   .dbline 88
+ 0035           ;       while(TenMicroSecTimerReps);
+ 0035           L6:
+ 0035                   .dbline 88
+ 0035 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 0038 3C0000            cmp [_TenMicroSecTimerReps],0
+ 003B BFF9              jnz L5
+ 003D                   .dbline 89
+ 003D           ;       TenMicroSecTimer_Stop();
+ 003D 10                push X
+ 003E 7C0000            xcall _TenMicroSecTimer_Stop
+ 0041 20                pop X
+ 0042                   .dbline 91
+ 0042           ;       //// Bring the PS/2 Data line LOW (note: this is also the Start bit out)
+ 0042           ;       PS2DATA_LOW;
+ 0042                   .dbline 91
+ 0042 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 0045 2600EF            and [_Port_1_Data_SHADE],-17
+ 0048                   .dbline 91
+ 0048 5100              mov A,[_Port_1_Data_SHADE]
+ 004A 6004              mov REG[0x4],A
+ 004C                   .dbline 91
+ 004C                   .dbline 91
+ 004C                   .dbline 94
+ 004C           ;       //// Set up the timer to let us know when 30us have elapsed.
+ 004C           ;       //// Note: Timer setup, polling, and ISR can add up to 10us of latency.
+ 004C           ;       TenMicroSecTimerReps = 1;
+ 004C 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 004F 550001            mov [_TenMicroSecTimerReps],1
+ 0052                   .dbline 95
+ 0052           ;       TenMicroSecTimer_WritePeriod(2); // (2+1) * 10us = 30us
+ 0052 10                push X
+ 0053 5700              mov X,0
+ 0055 5002              mov A,2
+ 0057 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 005A                   .dbline 96
+ 005A           ;       TenMicroSecTimer_Start();
+ 005A 7C0000            xcall _TenMicroSecTimer_Start
+ 005D 20                pop X
+ 005E           L8:
+ 005E                   .dbline 97
+ 005E           ;       while(TenMicroSecTimerReps);
+ 005E           L9:
+ 005E                   .dbline 97
+ 005E 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 0061 3C0000            cmp [_TenMicroSecTimerReps],0
+ 0064 BFF9              jnz L8
+ 0066                   .dbline 98
+ 0066           ;       TenMicroSecTimer_Stop();
+ 0066 10                push X
+ 0067 7C0000            xcall _TenMicroSecTimer_Stop
+ 006A 20                pop X
+ 006B                   .dbline 104
+ 006B           ;       //// Bring the clock line HIGH which should cause the device to generate
+ 006B           ;       //// a clock signal.
+ 006B           ;       //// Note: Normally, a HIGH level on the Clock line causes the PS2OneShot
+ 006B           ;       //// to start its relax interval timing, however, interrupts for the
+ 006B           ;       //// PS2OneShot are only enabled when actively transmitting or receiving.
+ 006B           ;       PS2CLOCK_HIGH;
+ 006B                   .dbline 104
+ 006B 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 006E 2E0008            or [_Port_1_Data_SHADE],8
+ 0071                   .dbline 104
+ 0071 5100              mov A,[_Port_1_Data_SHADE]
+ 0073 6004              mov REG[0x4],A
+ 0075                   .dbline 104
+ 0075                   .dbline 104
+ 0075                   .dbline 108
+ 0075           ;       //// Per Adam Chapweske: Wait here for 15ms or until we've transitioned
+ 0075           ;       //// out of the PS2_D0_BIT_OUT state. If this time is exceeded, it is a
+ 0075           ;       //// Transmit Timeout.
+ 0075           ;       TenMicroSecTimerReps = 1;
+ 0075 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 0078 550001            mov [_TenMicroSecTimerReps],1
+ 007B                   .dbline 109
+ 007B           ;       TenMicroSecTimer_WritePeriod(1499); // (1499+1) * 10us = 15ms
+ 007B 10                push X
+ 007C 5705              mov X,5
+ 007E 50DB              mov A,-37
+ 0080 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 0083                   .dbline 110
+ 0083           ;       TenMicroSecTimer_Start();
+ 0083 7C0000            xcall _TenMicroSecTimer_Start
+ 0086 20                pop X
+ 0087           L11:
+ 0087                   .dbline 111
+ 0087           ;       while(TenMicroSecTimerReps&&(PS2FrameState == PS2_D0_BIT_OUT));
+ 0087           L12:
+ 0087                   .dbline 111
+ 0087 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 008A 3C0000            cmp [_TenMicroSecTimerReps],0
+ 008D A009              jz L14
+ 008F 62D000            mov REG[0xd0],>_PS2FrameState
+ 0092 3C000C            cmp [_PS2FrameState],12
+ 0095 AFF1              jz L11
+ 0097           L14:
+ 0097                   .dbline 112
+ 0097           ;       TenMicroSecTimer_Stop();
+ 0097 10                push X
+ 0098 7C0000            xcall _TenMicroSecTimer_Stop
+ 009B 20                pop X
+ 009C                   .dbline 116
+ 009C           ;       //// If we've timed out, without moving from the PS2_D0_BIT_OUT state,
+ 009C           ;       //// it means the device never sent us a clock signal after our
+ 009C           ;       //// transmission request. Return a Transmit Timeout Error code.
+ 009C           ;       if (PS2FrameState == PS2_D0_BIT_OUT) {
+ 009C 62D000            mov REG[0xd0],>_PS2FrameState
+ 009F 3C000C            cmp [_PS2FrameState],12
+ 00A2 B018              jnz L18
+ 00A4                   .dbline 117
+ 00A4           ;               PS2DATA_HIGH; // Since we've timed-out, bring the Data line HIGH again
+ 00A4                   .dbline 117
+ 00A4                   .dbline 117
+ 00A4 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 00A7 2E0010            or [_Port_1_Data_SHADE],16
+ 00AA                   .dbline 117
+ 00AA 5100              mov A,[_Port_1_Data_SHADE]
+ 00AC 6004              mov REG[0x4],A
+ 00AE                   .dbline 117
+ 00AE                   .dbline 117
+ 00AE                   .dbline 118
+ 00AE           ;               PS2FrameState = PS2_START_BIT_IN; // Reset the state machine
+ 00AE 62D000            mov REG[0xd0],>_PS2FrameState
+ 00B1 550000            mov [_PS2FrameState],0
+ 00B4                   .dbline 119
+ 00B4           ;               return(DEVICE_TX_TIMEOUT);
+ 00B4 62D000            mov REG[0xd0],>__r0
+ 00B7 5001              mov A,1
+ 00B9 8038              xjmp L1
+ 00BB           L17:
+ 00BB                   .dbline 124
+ 00BB           ;       }
+ 00BB           ;       //// We've transitioned out of the PS2_D0_BIT_OUT state so wait until
+ 00BB           ;       //// we return to the PS2_START_BIT_IN state, either because we completed
+ 00BB           ;       //// transmitting a full frame or the PS2OneShot reset us.
+ 00BB           ;       while(PS2FrameState != PS2_START_BIT_IN);
+ 00BB           L18:
+ 00BB                   .dbline 124
+ 00BB 62D000            mov REG[0xd0],>_PS2FrameState
+ 00BE 3C0000            cmp [_PS2FrameState],0
+ 00C1 BFF9              jnz L17
+ 00C3                   .dbline 126
+ 00C3           ;       //// If the transmission was successful, return 0.
+ 00C3           ;       if (PS2FrameStatus & FRAME_BYTE_TRANSMITTED) {
+ 00C3 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 00C6 470002            tst [_PS2FrameStatus],2
+ 00C9 A00B              jz L20
+ 00CB                   .dbline 127
+ 00CB           ;               PS2FrameStatus = 0; // Clear PS2FrameStatus
+ 00CB                   .dbline 127
+ 00CB 550000            mov [_PS2FrameStatus],0
+ 00CE                   .dbline 128
+ 00CE           ;               return(0);
+ 00CE 62D000            mov REG[0xd0],>__r0
+ 00D1 5000              mov A,0
+ 00D3 801E              xjmp L1
+ 00D5           L20:
+ 00D5                   .dbline 131
+ 00D5           ;       }
+ 00D5           ;       //// If the transmission had a frame error, notify the calling function.
+ 00D5           ;       if (PS2FrameStatus & FRAME_TX_FRAME_ERROR) {
+ 00D5 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 00D8 470010            tst [_PS2FrameStatus],16
+ 00DB A00B              jz L22
+ 00DD                   .dbline 132
+ 00DD           ;               PS2FrameStatus = 0; // Clear PS2FrameStatus
+ 00DD                   .dbline 132
+ 00DD 550000            mov [_PS2FrameStatus],0
+ 00E0                   .dbline 133
+ 00E0           ;               return(DEVICE_TX_FRAME_ERROR);
+ 00E0 62D000            mov REG[0xd0],>__r0
+ 00E3 5004              mov A,4
+ 00E5 800C              xjmp L1
+ 00E7           L22:
+ 00E7                   .dbline 136
+ 00E7           ;       }
+ 00E7           ;       //// The only other condition, FRAME_INCOMPLETE, means device error.
+ 00E7           ;       PS2FrameStatus = 0; // Clear PS2FrameStatus
+ 00E7 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 00EA 550000            mov [_PS2FrameStatus],0
+ 00ED                   .dbline 137
+ 00ED           ;       return(DEVICE_ERROR);
+ 00ED 62D000            mov REG[0xd0],>__r0
+ 00F0 5040              mov A,64
+ 00F2                   .dbline -2
+ 00F2           L1:
+ 00F2 38FF              add SP,-1
+ 00F4 20                pop X
+ 00F5                   .dbline 0 ; func end
+ 00F5 7F                ret
+ 00F6                   .dbsym l delay 0 c
+ 00F6                   .dbsym l ps2data -4 c
+ 00F6                   .dbend
+ 00F6                   .dbfunc e PS2_Send_Command_Process_Response _PS2_Send_Command_Process_Response fc
+ 00F6           ;        dataout -> X+1
+ 00F6           ;       txstatus -> X+0
+ 00F6           ;        ps2data -> X-4
+ 00F6           _PS2_Send_Command_Process_Response::
+ 00F6                   .dbline -1
+ 00F6 10                push X
+ 00F7 4F                mov X,SP
+ 00F8 3804              add SP,4
+ 00FA                   .dbline 161
+ 00FA           ; }
+ 00FA           ; 
+ 00FA           ; //-----------------------------------------------------------------------------
+ 00FA           ; // Send a command to the PS/2 device and process the device's response.
+ 00FA           ; //
+ 00FA           ; // Returns:
+ 00FA           ; //    0                                               No error in transmission or reception
+ 00FA           ; //    DEVICE_TX_TIMEOUT               Timeout in transmission waiting for Clock
+ 00FA           ; //    DEVICE_RX_TIMEOUT               No device response to our command
+ 00FA           ; //    DEVICE_TX_FRAME_ERROR   A TX frame error occured while sending
+ 00FA           ; //    DEVICE_RX_FRAME_ERROR   An RX frame error occured while receiving
+ 00FA           ; //    DEVICE_INVALID_RESPONSE The device response to our command was not valid
+ 00FA           ; //    DEVICE_ERROR                    The device didn't generate enough clock transitions
+ 00FA           ; //-----------------------------------------------------------------------------
+ 00FA           ; // From: The AT-PS/2 Keyboard Interface, Copyright 2001, Adam Chapweske:
+ 00FA           ; //
+ 00FA           ; // Every byte sent to the keyboard gets a response of 0xFA ("acknowledge")
+ 00FA           ; // from the keyboard.  The only exceptions to this are the keyboard's response
+ 00FA           ; // to the "Resend" and "Echo" commands.  The host should wait for an
+ 00FA           ; // "acknowledge" before sending the next byte to the keyboard.  The keyboard
+ 00FA           ; // clears its output buffer in response to any command.
+ 00FA           ; //-----------------------------------------------------------------------------
+ 00FA           ; BYTE PS2_Send_Command_Process_Response(BYTE ps2data)
+ 00FA           ; {
+ 00FA                   .dbline 168
+ 00FA           ;       BYTE dataout;
+ 00FA           ;       BYTE txstatus;
+ 00FA           ; 
+ 00FA           ;       //// Loop in case we get a RESEND response from the PS/2 device.
+ 00FA           ;       //// XXX - Should we put an upper bound on how many Resends we're willing
+ 00FA           ;       //// to do for writing a single byte? (e.g. i=3; while(i--) { ... })
+ 00FA           ;       dataout = ps2data;
+ 00FA 52FC              mov A,[X-4]
+ 00FC 5401              mov [X+1],A
+ 00FE 8101              xjmp L26
+ 0100           L25:
+ 0100                   .dbline 169
+ 0100           ;       while(1) {
+ 0100                   .dbline 170
+ 0100           ;               txstatus = PS2_Write_Byte(dataout);
+ 0100 5201              mov A,[X+1]
+ 0102 08                push A
+ 0103 9EFB              xcall _PS2_Write_Byte
+ 0105 38FF              add SP,-1
+ 0107 62D000            mov REG[0xd0],>__r0
+ 010A 5400              mov [X+0],A
+ 010C                   .dbline 173
+ 010C           ;               //// A non-zero return value means there was an transmission error:
+ 010C           ;               //// DEVICE_TX_TIMEOUT, DEVICE_TX_FRAME_ERROR, or DEVICE_ERROR
+ 010C           ;               if (txstatus) {
+ 010C 3D0000            cmp [X+0],0
+ 010F A005              jz L28
+ 0111                   .dbline 174
+ 0111           ;                       return(txstatus);
+ 0111                   .dbline 174
+ 0111 5200              mov A,[X+0]
+ 0113 80F9              xjmp L24
+ 0115           L28:
+ 0115                   .dbline 178
+ 0115           ;               }
+ 0115           ;               ///////////////////////////////////////////////////////////////////////
+ 0115           ;               //// A response should come from the keyboard within 20ms from now.
+ 0115           ;               TenMicroSecTimerReps = 1;
+ 0115 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 0118 550001            mov [_TenMicroSecTimerReps],1
+ 011B                   .dbline 179
+ 011B           ;               TenMicroSecTimer_WritePeriod(1999); // (1999+1) * 10us = 20ms
+ 011B 10                push X
+ 011C 5707              mov X,7
+ 011E 50CF              mov A,-49
+ 0120 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 0123                   .dbline 180
+ 0123           ;               TenMicroSecTimer_Start();
+ 0123 7C0000            xcall _TenMicroSecTimer_Start
+ 0126 20                pop X
+ 0127           L30:
+ 0127                   .dbline 181
+ 0127           ;               while(TenMicroSecTimerReps&&(!PS2FrameStatus));
+ 0127           L31:
+ 0127                   .dbline 181
+ 0127 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 012A 3C0000            cmp [_TenMicroSecTimerReps],0
+ 012D A009              jz L33
+ 012F 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0132 3C0000            cmp [_PS2FrameStatus],0
+ 0135 AFF1              jz L30
+ 0137           L33:
+ 0137                   .dbline 182
+ 0137           ;               TenMicroSecTimer_Stop();
+ 0137 10                push X
+ 0138 7C0000            xcall _TenMicroSecTimer_Stop
+ 013B 20                pop X
+ 013C                   .dbline 184
+ 013C           ;               //// If the device sent us a response, process it.
+ 013C           ;               if (PS2FrameStatus & FRAME_DATA_AVAILABLE) {
+ 013C 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 013F 470001            tst [_PS2FrameStatus],1
+ 0142 A07F              jz L34
+ 0144                   .dbline 186
+ 0144           ;                       //// Clear PS2FrameStatus
+ 0144           ;                       PS2FrameStatus = 0x00;
+ 0144                   .dbline 186
+ 0144 550000            mov [_PS2FrameStatus],0
+ 0147                   .dbline 188
+ 0147           ;                       //// Remove the response from the RX Buffer
+ 0147           ;                       if (PS2RxBufIn) PS2RxBufIn--; else PS2RxBufIn = 15;
+ 0147 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 014A 3C0000            cmp [_PS2RxBufIn],0
+ 014D A005              jz L36
+ 014F                   .dbline 188
+ 014F 7A00              dec [_PS2RxBufIn]
+ 0151 8007              xjmp L37
+ 0153           L36:
+ 0153                   .dbline 188
+ 0153 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0156 55000F            mov [_PS2RxBufIn],15
+ 0159           L37:
+ 0159                   .dbline 190
+ 0159           ;                       //// Valid responses: ACK (0xFA), Resend (0xFE), or Echo (0xEE)
+ 0159           ;                       switch(PS2DataIn) {
+ 0159 62D000            mov REG[0xd0],>_PS2DataIn
+ 015C 5100              mov A,[_PS2DataIn]
+ 015E 5403              mov [X+3],A
+ 0160 560200            mov [X+2],0
+ 0163 5203              mov A,[X+3]
+ 0165 11FA              sub A,-6
+ 0167 62D000            mov REG[0xd0],>__r0
+ 016A 5300              mov [__rY],A
+ 016C 5202              mov A,[X+2]
+ 016E 3180              xor A,-128
+ 0170 1980              sbb A,(0 ^ 0x80)
+ 0172 2A00              or A,[__rY]
+ 0174 A01B              jz L41
+ 0176 D00D              jnc L47
+ 0178           X0:
+ 0178           L46:
+ 0178 3D0200            cmp [X+2],0
+ 017B B006              jnz X1
+ 017D 3D03EE            cmp [X+3],-18
+ 0180 A016              jz L43
+ 0182           X1:
+ 0182 8027              xjmp L38
+ 0184           L47:
+ 0184 3D0200            cmp [X+2],0
+ 0187 B006              jnz X2
+ 0189 3D03FE            cmp [X+3],-2
+ 018C A035              jz L39
+ 018E           X2:
+ 018E 801B              xjmp L38
+ 0190           L41:
+ 0190                   .dbline 192
+ 0190           ;                       case 0xFA: // ACK: The device correctly received our command
+ 0190           ;                               return(0);
+ 0190 62D000            mov REG[0xd0],>__r0
+ 0193 5000              mov A,0
+ 0195 8077              xjmp L24
+ 0197           L43:
+ 0197                   .dbline 202
+ 0197           ;                       case 0xFE: // RESEND: The device wants us to resend the last byte
+ 0197           ;                               //// Caused by the device getting a parity error.
+ 0197           ;                               //// If we break out of this switch, the while() loop we're in
+ 0197           ;                               //// will resend our command.
+ 0197           ;                               // XXX - Should we keep a count of resend requests received from
+ 0197           ;                               // the device? Should we give up after many back-to-back Resends?
+ 0197           ;                               break;
+ 0197           ;                       case 0xEE: // ECHO: The device responded with an Echo
+ 0197           ;                               //// This should be because we sent it an Echo
+ 0197           ;                               if (ps2data == 0xEE) {
+ 0197 3DFCEE            cmp [X-4],-18
+ 019A B008              jnz L44
+ 019C                   .dbline 203
+ 019C           ;                                       return(0);
+ 019C                   .dbline 203
+ 019C 62D000            mov REG[0xd0],>__r0
+ 019F 5000              mov A,0
+ 01A1 806B              xjmp L24
+ 01A3           L44:
+ 01A3                   .dbline 206
+ 01A3           ;                               }
+ 01A3           ;                               //// If we received an Echo but didn't send one, it's invalid.
+ 01A3           ;                               return(DEVICE_INVALID_RESPONSE);
+ 01A3 62D000            mov REG[0xd0],>__r0
+ 01A6 5020              mov A,32
+ 01A8 8064              xjmp L24
+ 01AA           L38:
+ 01AA                   .dbline 211
+ 01AA           ;                       //// XXX - What if we get an error code from the device? Can we? 
+ 01AA           ;                       ////       Test what happens when we send a bogus command.
+ 01AA           ;                       //case 0xFC: // ERROR: The device indicated an error
+ 01AA           ;                       default:
+ 01AA           ;                               LCD_Position(0,14);
+ 01AA 10                push X
+ 01AB 570E              mov X,14
+ 01AD 5000              mov A,0
+ 01AF 7C0000            xcall _LCD_Position
+ 01B2                   .dbline 212
+ 01B2           ;                               LCD_PrHexByte(PS2DataIn);
+ 01B2 62D000            mov REG[0xd0],>_PS2DataIn
+ 01B5 5100              mov A,[_PS2DataIn]
+ 01B7 7C0000            xcall _LCD_PrHexByte
+ 01BA 20                pop X
+ 01BB                   .dbline 216
+ 01BB           ;                               // We should never get here. This can only happen if the
+ 01BB           ;                               // device sent us a response to a command that wasn't one
+ 01BB           ;                               // of the three listed above.
+ 01BB           ;                               return(DEVICE_INVALID_RESPONSE);
+ 01BB 62D000            mov REG[0xd0],>__r0
+ 01BE 5020              mov A,32
+ 01C0 804C              xjmp L24
+ 01C2           L39:
+ 01C2                   .dbline 218
+ 01C2           ;                       }
+ 01C2           ;               }
+ 01C2           L34:
+ 01C2                   .dbline 221
+ 01C2           ;               //// If the response frame from the device had a parity error,
+ 01C2           ;               //// send a RESEND command.
+ 01C2           ;               if (PS2FrameStatus & FRAME_RX_PARITY_ERROR) {
+ 01C2 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 01C5 470004            tst [_PS2FrameStatus],4
+ 01C8 A009              jz L48
+ 01CA                   .dbline 222
+ 01CA           ;                       PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 01CA                   .dbline 222
+ 01CA 550000            mov [_PS2FrameStatus],0
+ 01CD                   .dbline 223
+ 01CD           ;                       dataout = 0xFE;
+ 01CD 5601FE            mov [X+1],-2
+ 01D0                   .dbline 224
+ 01D0           ;                       continue;
+ 01D0 802F              xjmp L26
+ 01D2           L48:
+ 01D2                   .dbline 231
+ 01D2           ;               }
+ 01D2           ;               //// If we didn't get any change in frame status in response to our
+ 01D2           ;               //// transmission then return a Receive Timeout Error code.
+ 01D2           ;               //// Per Adam Chapweske: Device is probably broken.
+ 01D2           ;               //// XXX - Then should this return DEVICE_ERROR instead?
+ 01D2           ;               ////       If so, just change the return() to a break
+ 01D2           ;               if (!PS2FrameStatus) {
+ 01D2 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 01D5 3C0000            cmp [_PS2FrameStatus],0
+ 01D8 B008              jnz L50
+ 01DA                   .dbline 232
+ 01DA           ;                       return(DEVICE_RX_TIMEOUT);
+ 01DA                   .dbline 232
+ 01DA 62D000            mov REG[0xd0],>__r0
+ 01DD 5002              mov A,2
+ 01DF 802D              xjmp L24
+ 01E1           L50:
+ 01E1                   .dbline 236
+ 01E1           ;               }
+ 01E1           ;               //// If we have an incomplete number of clock transitions in the
+ 01E1           ;               //// response from the device, it is broken or was unplugged.
+ 01E1           ;               if (PS2FrameStatus & FRAME_INCOMPLETE) {
+ 01E1 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 01E4 470020            tst [_PS2FrameStatus],32
+ 01E7 A006              jz L52
+ 01E9                   .dbline 237
+ 01E9           ;                       PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 01E9                   .dbline 237
+ 01E9 550000            mov [_PS2FrameStatus],0
+ 01EC                   .dbline 238
+ 01EC           ;                       break;
+ 01EC 8015              xjmp L27
+ 01EE           L52:
+ 01EE                   .dbline 242
+ 01EE           ;               }
+ 01EE           ;               //// XXX - What should we do if we get an FRAME_RX_FRAME_ERROR?
+ 01EE           ;               ////       The specs aren't clear on what to do with framing errors.
+ 01EE           ;               if (PS2FrameStatus & FRAME_RX_FRAME_ERROR) {
+ 01EE 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 01F1 470008            tst [_PS2FrameStatus],8
+ 01F4 A00B              jz L54
+ 01F6                   .dbline 243
+ 01F6           ;                       PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 01F6                   .dbline 243
+ 01F6 550000            mov [_PS2FrameStatus],0
+ 01F9                   .dbline 244
+ 01F9           ;                       return(DEVICE_RX_FRAME_ERROR);
+ 01F9 62D000            mov REG[0xd0],>__r0
+ 01FC 5008              mov A,8
+ 01FE 800E              xjmp L24
+ 0200           L54:
+ 0200                   .dbline 246
+ 0200           ;               }
+ 0200           ;       }
+ 0200           L26:
+ 0200                   .dbline 169
+ 0200 8EFF              xjmp L25
+ 0202           L27:
+ 0202                   .dbline 248
+ 0202           ;       //// If we get here, the device is faulty (incomplete frame).
+ 0202           ;       PS2FrameStatus = 0x00;
+ 0202 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0205 550000            mov [_PS2FrameStatus],0
+ 0208                   .dbline 249
+ 0208           ;       return(DEVICE_ERROR);
+ 0208 62D000            mov REG[0xd0],>__r0
+ 020B 5040              mov A,64
+ 020D                   .dbline -2
+ 020D           L24:
+ 020D 38FC              add SP,-4
+ 020F 20                pop X
+ 0210                   .dbline 0 ; func end
+ 0210 7F                ret
+ 0211                   .dbsym l dataout 1 c
+ 0211                   .dbsym l txstatus 0 c
+ 0211                   .dbsym l ps2data -4 c
+ 0211                   .dbend
+ 0211                   .dbfunc e PS2_Detect_Device _PS2_Detect_Device fc
+ 0211           ;   power_on_bat -> X+1
+ 0211           ;         status -> X+0
+ 0211           _PS2_Detect_Device::
+ 0211                   .dbline -1
+ 0211 10                push X
+ 0212 4F                mov X,SP
+ 0213 3802              add SP,2
+ 0215                   .dbline 271
+ 0215           ; }
+ 0215           ; 
+ 0215           ; //-----------------------------------------------------------------------------
+ 0215           ; // Determines if a PS/2 keyboard or mouse is present by detecting either the
+ 0215           ; // Basic Assurance Test (BAT) completion code at power-on or, failing that,
+ 0215           ; // sending a RESET command to the device and detecting the subsequent BAT code.
+ 0215           ; // Also waits 20ms after receiving a valid BAT code for the device to send a
+ 0215           ; // Mouse ID (0x00) code. If this is detected, the function identifies the
+ 0215           ; // device as a mouse in the return value.
+ 0215           ; //
+ 0215           ; //    0                                               No error in transmission or reception
+ 0215           ; //    DEVICE_TX_TIMEOUT               Timeout in transmission waiting for Clock
+ 0215           ; //    DEVICE_RX_TIMEOUT               The device didn't respond to our command
+ 0215           ; //    DEVICE_TX_FRAME_ERROR   A TX frame error occured while sending
+ 0215           ; //    DEVICE_RX_FRAME_ERROR   An RX frame error occured while receiving
+ 0215           ; //    DEVICE_IS_MOUSE                 A mouse is detected. If not set, assume keyboard
+ 0215           ; //    DEVICE_BAD_BAT                  Device responded with a bad BAT self-test
+ 0215           ; //    DEVICE_INVALID_RESPONSE The device response to our command was not valid
+ 0215           ; //    DEVICE_ERROR                    The device didn't generate enough clock transitions
+ 0215           ; //-----------------------------------------------------------------------------
+ 0215           ; BYTE PS2_Detect_Device(void)
+ 0215           ; {
+ 0215                   .dbline 272
+ 0215           ;       BYTE power_on_bat = 0;
+ 0215 560100            mov [X+1],0
+ 0218                   .dbline 280
+ 0218           ;       BYTE status;
+ 0218           ; 
+ 0218           ;       ///////////////////////////////////////////////////////////////////////////
+ 0218           ;       // Determine if the device has just powered on, i.e. we receive an 0xAA
+ 0218           ;       // within 750ms (we'll wait 1000ms).
+ 0218           ;       ///////////////////////////////////////////////////////////////////////////
+ 0218           ;       //// Set up the timer to let us know when 1000ms has elapsed.
+ 0218           ;       TenMicroSecTimerReps = 2;
+ 0218 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 021B 550002            mov [_TenMicroSecTimerReps],2
+ 021E                   .dbline 281
+ 021E           ;       TenMicroSecTimer_WritePeriod(49999); // 2*((49999+1) * 10us) = 1000ms
+ 021E 10                push X
+ 021F 57C3              mov X,-61
+ 0221 504F              mov A,79
+ 0223 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 0226                   .dbline 282
+ 0226           ;       TenMicroSecTimer_Start();
+ 0226 7C0000            xcall _TenMicroSecTimer_Start
+ 0229 20                pop X
+ 022A           L57:
+ 022A                   .dbline 284
+ 022A           ;       //// Wait until we either get a change in frame status or the timer elapses
+ 022A           ;       while(TenMicroSecTimerReps&&(!PS2FrameStatus));
+ 022A           L58:
+ 022A                   .dbline 284
+ 022A 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 022D 3C0000            cmp [_TenMicroSecTimerReps],0
+ 0230 A009              jz L60
+ 0232 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0235 3C0000            cmp [_PS2FrameStatus],0
+ 0238 AFF1              jz L57
+ 023A           L60:
+ 023A                   .dbline 285
+ 023A           ;       TenMicroSecTimer_Stop();
+ 023A 10                push X
+ 023B 7C0000            xcall _TenMicroSecTimer_Stop
+ 023E 20                pop X
+ 023F                   .dbline 287
+ 023F           ;       //// If we got a valid frame, check to see if it is a BAT code
+ 023F           ;       if (PS2FrameStatus & FRAME_DATA_AVAILABLE) {
+ 023F 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0242 470001            tst [_PS2FrameStatus],1
+ 0245 A034              jz L61
+ 0247                   .dbline 288
+ 0247           ;               PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 0247                   .dbline 288
+ 0247 550000            mov [_PS2FrameStatus],0
+ 024A                   .dbline 289
+ 024A           ;               if (PS2DataIn == 0xAA) { // Good BAT
+ 024A 62D000            mov REG[0xd0],>_PS2DataIn
+ 024D 3C00AA            cmp [_PS2DataIn],-86
+ 0250 B009              jnz L63
+ 0252                   .dbline 290
+ 0252           ;                       power_on_bat = 1;
+ 0252                   .dbline 290
+ 0252 560101            mov [X+1],1
+ 0255                   .dbline 291
+ 0255           ;                       status = 0;
+ 0255 560000            mov [X+0],0
+ 0258                   .dbline 292
+ 0258           ;               }
+ 0258 800F              xjmp L64
+ 025A           L63:
+ 025A                   .dbline 293
+ 025A           ;               else if (PS2DataIn == 0xFC) { // Bad BAT
+ 025A 62D000            mov REG[0xd0],>_PS2DataIn
+ 025D 3C00FC            cmp [_PS2DataIn],-4
+ 0260 B007              jnz L65
+ 0262                   .dbline 294
+ 0262           ;                       power_on_bat = 1;
+ 0262                   .dbline 294
+ 0262 560101            mov [X+1],1
+ 0265                   .dbline 295
+ 0265           ;                       status = DEVICE_BAD_BAT;
+ 0265 560010            mov [X+0],16
+ 0268                   .dbline 296
+ 0268           ;               }
+ 0268           L65:
+ 0268           L64:
+ 0268                   .dbline 298
+ 0268           ;               //// Remove the response from the RX Buffer
+ 0268           ;               if (PS2RxBufIn) PS2RxBufIn--; else PS2RxBufIn = 15;
+ 0268 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 026B 3C0000            cmp [_PS2RxBufIn],0
+ 026E A005              jz L67
+ 0270                   .dbline 298
+ 0270 7A00              dec [_PS2RxBufIn]
+ 0272 8007              xjmp L68
+ 0274           L67:
+ 0274                   .dbline 298
+ 0274 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0277 55000F            mov [_PS2RxBufIn],15
+ 027A           L68:
+ 027A                   .dbline 299
+ 027A           ;       }
+ 027A           L61:
+ 027A                   .dbline 302
+ 027A           ;       //// If we didn't get a BAT code, got a response that is not a BAT code, or
+ 027A           ;       //// we got a frame with an error status, send the device a RESET command.
+ 027A           ;       if (!power_on_bat) {
+ 027A 3D0100            cmp [X+1],0
+ 027D B09B              jnz L69
+ 027F                   .dbline 303
+ 027F           ;               status = PS2_Send_Command_Process_Response(0xFF); // Send RESET
+ 027F                   .dbline 303
+ 027F 50FF              mov A,-1
+ 0281 08                push A
+ 0282 9E72              xcall _PS2_Send_Command_Process_Response
+ 0284 38FF              add SP,-1
+ 0286 62D000            mov REG[0xd0],>__r0
+ 0289 5400              mov [X+0],A
+ 028B                   .dbline 305
+ 028B           ;               //// If we get an error, exit and return the error type
+ 028B           ;               if (status) {
+ 028B 3D0000            cmp [X+0],0
+ 028E A005              jz L71
+ 0290                   .dbline 306
+ 0290           ;                       return(status);
+ 0290                   .dbline 306
+ 0290 5200              mov A,[X+0]
+ 0292 80FC              xjmp L56
+ 0294           L71:
+ 0294                   .dbline 310
+ 0294           ;               }
+ 0294           ;               //// Spin until we either get a change in frame status in response to
+ 0294           ;               //// the RESET/ACK, or 1000ms has elapsed, whichever comes first.
+ 0294           ;               TenMicroSecTimerReps = 2;
+ 0294 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 0297 550002            mov [_TenMicroSecTimerReps],2
+ 029A                   .dbline 311
+ 029A           ;               TenMicroSecTimer_WritePeriod(49999); // 2*((49999+1) * 10us) = 1000ms
+ 029A 10                push X
+ 029B 57C3              mov X,-61
+ 029D 504F              mov A,79
+ 029F 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 02A2                   .dbline 312
+ 02A2           ;               TenMicroSecTimer_Start();
+ 02A2 7C0000            xcall _TenMicroSecTimer_Start
+ 02A5 20                pop X
+ 02A6           L73:
+ 02A6                   .dbline 313
+ 02A6           ;               while(TenMicroSecTimerReps&&(!PS2FrameStatus));
+ 02A6           L74:
+ 02A6                   .dbline 313
+ 02A6 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 02A9 3C0000            cmp [_TenMicroSecTimerReps],0
+ 02AC A009              jz L76
+ 02AE 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 02B1 3C0000            cmp [_PS2FrameStatus],0
+ 02B4 AFF1              jz L73
+ 02B6           L76:
+ 02B6                   .dbline 314
+ 02B6           ;               TenMicroSecTimer_Stop();
+ 02B6 10                push X
+ 02B7 7C0000            xcall _TenMicroSecTimer_Stop
+ 02BA 20                pop X
+ 02BB                   .dbline 316
+ 02BB           ;               //// If we got a response, determine BAT type
+ 02BB           ;               if (PS2FrameStatus & FRAME_DATA_AVAILABLE) {
+ 02BB 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 02BE 470001            tst [_PS2FrameStatus],1
+ 02C1 A04A              jz L77
+ 02C3                   .dbline 317
+ 02C3           ;                       PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 02C3                   .dbline 317
+ 02C3 550000            mov [_PS2FrameStatus],0
+ 02C6                   .dbline 318
+ 02C6           ;                       if (PS2DataIn == 0xAA) { // Good BAT
+ 02C6 62D000            mov REG[0xd0],>_PS2DataIn
+ 02C9 3C00AA            cmp [_PS2DataIn],-86
+ 02CC B006              jnz L79
+ 02CE                   .dbline 319
+ 02CE           ;                               status = 0;
+ 02CE                   .dbline 319
+ 02CE 560000            mov [X+0],0
+ 02D1                   .dbline 320
+ 02D1           ;                       }
+ 02D1 8026              xjmp L80
+ 02D3           L79:
+ 02D3                   .dbline 321
+ 02D3           ;                       else if (PS2DataIn == 0xFC) { // Bad BAT
+ 02D3 62D000            mov REG[0xd0],>_PS2DataIn
+ 02D6 3C00FC            cmp [_PS2DataIn],-4
+ 02D9 B006              jnz L81
+ 02DB                   .dbline 322
+ 02DB           ;                               status = DEVICE_BAD_BAT;
+ 02DB                   .dbline 322
+ 02DB 560010            mov [X+0],16
+ 02DE                   .dbline 323
+ 02DE           ;                       }
+ 02DE 8019              xjmp L82
+ 02E0           L81:
+ 02E0                   .dbline 324
+ 02E0           ;                       else { // Error: Not a BAT code
+ 02E0                   .dbline 325
+ 02E0           ;                               LCD_Position(0,12);
+ 02E0 10                push X
+ 02E1 570C              mov X,12
+ 02E3 5000              mov A,0
+ 02E5 7C0000            xcall _LCD_Position
+ 02E8                   .dbline 326
+ 02E8           ;                               LCD_PrHexByte(PS2DataIn);
+ 02E8 62D000            mov REG[0xd0],>_PS2DataIn
+ 02EB 5100              mov A,[_PS2DataIn]
+ 02ED 7C0000            xcall _LCD_PrHexByte
+ 02F0 20                pop X
+ 02F1                   .dbline 327
+ 02F1           ;                               return(DEVICE_INVALID_RESPONSE);
+ 02F1 62D000            mov REG[0xd0],>__r0
+ 02F4 5020              mov A,32
+ 02F6 8098              xjmp L56
+ 02F8           L82:
+ 02F8           L80:
+ 02F8                   .dbline 330
+ 02F8           ;                       }
+ 02F8           ;                       //// Remove the response from the RX Buffer
+ 02F8           ;                       if (PS2RxBufIn) PS2RxBufIn--; else PS2RxBufIn = 15;
+ 02F8 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 02FB 3C0000            cmp [_PS2RxBufIn],0
+ 02FE A005              jz L83
+ 0300                   .dbline 330
+ 0300 7A00              dec [_PS2RxBufIn]
+ 0302 8016              xjmp L78
+ 0304           L83:
+ 0304                   .dbline 330
+ 0304 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0307 55000F            mov [_PS2RxBufIn],15
+ 030A                   .dbline 331
+ 030A           ;               }
+ 030A 800E              xjmp L78
+ 030C           L77:
+ 030C                   .dbline 334
+ 030C           ;               //// If we either didn't receive a BAT code or had any frame error,
+ 030C           ;               //// return a DEVICE_ERROR to the calling function; it can try again.
+ 030C           ;               else {
+ 030C                   .dbline 335
+ 030C           ;                       PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 030C 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 030F 550000            mov [_PS2FrameStatus],0
+ 0312                   .dbline 336
+ 0312           ;                       return(DEVICE_ERROR);
+ 0312 62D000            mov REG[0xd0],>__r0
+ 0315 5040              mov A,64
+ 0317 8077              xjmp L56
+ 0319           L78:
+ 0319                   .dbline 338
+ 0319           ;               }
+ 0319           ;       }
+ 0319           L69:
+ 0319                   .dbline 341
+ 0319           ;       //// A mouse will send a Mouse ID of 0x00 after the BAT completion code.
+ 0319           ;       //// We assume this should take no more than 20ms; same as an RX timeout.
+ 0319           ;       TenMicroSecTimerReps = 1;
+ 0319 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 031C 550001            mov [_TenMicroSecTimerReps],1
+ 031F                   .dbline 342
+ 031F           ;       TenMicroSecTimer_WritePeriod(1999); // (1999+1) * 10us = 20ms
+ 031F 10                push X
+ 0320 5707              mov X,7
+ 0322 50CF              mov A,-49
+ 0324 7C0000            xcall _TenMicroSecTimer_WritePeriod
+ 0327                   .dbline 343
+ 0327           ;       TenMicroSecTimer_Start();
+ 0327 7C0000            xcall _TenMicroSecTimer_Start
+ 032A 20                pop X
+ 032B           L85:
+ 032B                   .dbline 344
+ 032B           ;       while(TenMicroSecTimerReps&&(!PS2FrameStatus));
+ 032B           L86:
+ 032B                   .dbline 344
+ 032B 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 032E 3C0000            cmp [_TenMicroSecTimerReps],0
+ 0331 A009              jz L88
+ 0333 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0336 3C0000            cmp [_PS2FrameStatus],0
+ 0339 AFF1              jz L85
+ 033B           L88:
+ 033B                   .dbline 345
+ 033B           ;       TenMicroSecTimer_Stop();
+ 033B 10                push X
+ 033C 7C0000            xcall _TenMicroSecTimer_Stop
+ 033F 20                pop X
+ 0340                   .dbline 346
+ 0340           ;       if (!PS2FrameStatus) {
+ 0340 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0343 3C0000            cmp [_PS2FrameStatus],0
+ 0346 B008              jnz L89
+ 0348                   .dbline 349
+ 0348           ;               //// If we didn't receive an additional byte within 20ms after
+ 0348           ;               //// the BAT code, assume the device is a keyboard
+ 0348           ;               return(status);
+ 0348                   .dbline 349
+ 0348 5200              mov A,[X+0]
+ 034A 62D000            mov REG[0xd0],>__r0
+ 034D 8041              xjmp L56
+ 034F           L89:
+ 034F                   .dbline 351
+ 034F           ;       }
+ 034F           ;       if (PS2FrameStatus & FRAME_DATA_AVAILABLE) {
+ 034F 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0352 470001            tst [_PS2FrameStatus],1
+ 0355 A02E              jz L91
+ 0357                   .dbline 352
+ 0357           ;               PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 0357                   .dbline 352
+ 0357 550000            mov [_PS2FrameStatus],0
+ 035A                   .dbline 354
+ 035A           ;               //// Remove the response from the RX Buffer
+ 035A           ;               if (PS2RxBufIn) PS2RxBufIn--; else PS2RxBufIn = 15;
+ 035A 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 035D 3C0000            cmp [_PS2RxBufIn],0
+ 0360 A005              jz L93
+ 0362                   .dbline 354
+ 0362 7A00              dec [_PS2RxBufIn]
+ 0364 8007              xjmp L94
+ 0366           L93:
+ 0366                   .dbline 354
+ 0366 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0369 55000F            mov [_PS2RxBufIn],15
+ 036C           L94:
+ 036C                   .dbline 356
+ 036C           ;               //// If we got a byte and it is 0x00, the device is a mouse
+ 036C           ;               if (PS2DataIn == 0x00) {
+ 036C 62D000            mov REG[0xd0],>_PS2DataIn
+ 036F 3C0000            cmp [_PS2DataIn],0
+ 0372 B00A              jnz L95
+ 0374                   .dbline 357
+ 0374           ;                       return(status|DEVICE_IS_MOUSE);
+ 0374                   .dbline 357
+ 0374 62D000            mov REG[0xd0],>__r0
+ 0377 5200              mov A,[X+0]
+ 0379 2980              or A,-128
+ 037B 8013              xjmp L56
+ 037D           L95:
+ 037D                   .dbline 360
+ 037D           ;               }
+ 037D           ;               //// If it isn't 0x00, the response isn't valid
+ 037D           ;               return(DEVICE_INVALID_RESPONSE);
+ 037D 62D000            mov REG[0xd0],>__r0
+ 0380 5020              mov A,32
+ 0382 800C              xjmp L56
+ 0384           L91:
+ 0384                   .dbline 364
+ 0384           ;       }
+ 0384           ;       //// If we had any frame error in the response, return a DEVICE_ERROR
+ 0384           ;       //// to the calling function; it can try again.
+ 0384           ;       PS2FrameStatus = 0x00; // Clear PS2FrameStatus
+ 0384 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0387 550000            mov [_PS2FrameStatus],0
+ 038A                   .dbline 365
+ 038A           ;       return(DEVICE_ERROR);
+ 038A 62D000            mov REG[0xd0],>__r0
+ 038D 5040              mov A,64
+ 038F                   .dbline -2
+ 038F           L56:
+ 038F 38FE              add SP,-2
+ 0391 20                pop X
+ 0392                   .dbline 0 ; func end
+ 0392 7F                ret
+ 0393                   .dbsym l power_on_bat 1 c
+ 0393                   .dbsym l status 0 c
+ 0393                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000           L98:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000           L99:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0000           L100:
+ 0000 00                .byte 0
+                        .area text(rom, con, rel)
+ 0393                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0393                   .dbfunc e PS2DigBuf_ISR _PS2DigBuf_ISR fV
+                        .area func_lit(rom, con, rel, proclab)
+ 0000           L157:
+ 0000 0446              .word L106
+ 0002 0470              .word L109
+ 0004 0491              .word L110
+ 0006 04BB              .word L111
+ 0008 04E7              .word L112
+ 000A 050B              .word L113
+ 000C 0530              .word L114
+ 000E 0556              .word L115
+ 0010 057D              .word L116
+ 0012 05A5              .word L117
+ 0014 05BC              .word L118
+ 0016 0627              .word L125
+ 0018 0635              .word L126
+ 001A 066F              .word L129
+ 001C 069E              .word L132
+ 001E 06CD              .word L135
+ 0020 06FC              .word L138
+ 0022 072B              .word L141
+ 0024 075A              .word L144
+ 0026 0789              .word L147
+ 0028 07B8              .word L150
+ 002A 07DE              .word L153
+ 002C 07F0              .word L154
+                        .area text(rom, con, rel)
+ 0393                   .dbsym s parity L100 c
+ 0393                   .dbsym s bit L99 c
+ 0393                   .dbsym s data L98 c
+ 0393           _PS2DigBuf_ISR::
+ 0393                   .dbline -1
+ 0393 71C0              or F,-64
+ 0395 08                push A
+ 0396 5DD0              mov A,REG[0xd0]
+ 0398 08                push A
+ 0399 5DD3              mov A,REG[0xd3]
+ 039B 08                push A
+ 039C 5DD4              mov A,REG[0xd4]
+ 039E 08                push A
+ 039F 5DD5              mov A,REG[0xd5]
+ 03A1 08                push A
+ 03A2 62D000            mov REG[0xd0],>__r0
+ 03A5 5100              mov A,[__r0]
+ 03A7 08                push A
+ 03A8 5100              mov A,[__r1]
+ 03AA 08                push A
+ 03AB 5100              mov A,[__r2]
+ 03AD 08                push A
+ 03AE 5100              mov A,[__r3]
+ 03B0 08                push A
+ 03B1 5100              mov A,[__r4]
+ 03B3 08                push A
+ 03B4 5100              mov A,[__r5]
+ 03B6 08                push A
+ 03B7 5100              mov A,[__r6]
+ 03B9 08                push A
+ 03BA 5100              mov A,[__r7]
+ 03BC 08                push A
+ 03BD 5100              mov A,[__r8]
+ 03BF 08                push A
+ 03C0 5100              mov A,[__r9]
+ 03C2 08                push A
+ 03C3 5100              mov A,[__r10]
+ 03C5 08                push A
+ 03C6 5100              mov A,[__r11]
+ 03C8 08                push A
+ 03C9 5100              mov A,[__rX]
+ 03CB 08                push A
+ 03CC 5100              mov A,[__rY]
+ 03CE 08                push A
+ 03CF 5100              mov A,[__rZ]
+ 03D1 08                push A
+ 03D2 10                push X
+ 03D3 4F                mov X,SP
+ 03D4 3802              add SP,2
+ 03D6                   .dbline 406
+ 03D6           ; }
+ 03D6           ; 
+ 03D6           ; //////////////////////////////////////////////////////////////////////////////////////////
+ 03D6           ; //////////////////////////////////////////////////////////////////////////////////////////
+ 03D6           ; //// Interrupt Service Routines (ISRs) follow
+ 03D6           ; //////////////////////////////////////////////////////////////////////////////////////////
+ 03D6           ; //////////////////////////////////////////////////////////////////////////////////////////
+ 03D6           ; 
+ 03D6           ; #pragma interrupt_handler PS2DigBuf_ISR PS2OneShot_ISR TenMicroSecTimer_ISR
+ 03D6           ; 
+ 03D6           ; //----------------------------------------------------------------------------------------
+ 03D6           ; // PS/2 Clock ISR
+ 03D6           ; //
+ 03D6           ; // A primary objective in writing this PS/2 bit-banging interface was to make it as general
+ 03D6           ; // as possible so that it could be incorporated into many different designs that could benefit
+ 03D6           ; // from a keyboard (or mouse, for that matter).
+ 03D6           ; //
+ 03D6           ; // The PS/2 protocol says that the data line is valid on the falling-edge of the clock signal.
+ 03D6           ; // While using a falling-edge GPIO interrupt would certainly work, the GPIO ISR would have
+ 03D6           ; // to be shared by any other GPIO interrupts and would require the ISR to determine which
+ 03D6           ; // pin it was supposed to be handling (e.g. optical encoder interrupt or keyboard interrupt).
+ 03D6           ; //
+ 03D6           ; // By passing the PS/2 Clock line into Input 1 of a DigBuf User Module (named PS2DigBuf here),
+ 03D6           ; // and by setting the InvertInput1 parameter to Invert, the DigBuf User Module will call a
+ 03D6           ; // unique ISR whenever the PS/2 clock falling-edge occurs. Inside the ISR, we use a simple
+ 03D6           ; // port pin read operation to get the value of the data line when this occurs.
+ 03D6           ; //
+ 03D6           ; // A simple state machine can verify a valid frame is present, extract the data therein,
+ 03D6           ; // confirm parity is matched, and finally set a global variable indicating a scan code
+ 03D6           ; // was received.
+ 03D6           ; //
+ 03D6           ; // XXX - Update these comments to discuss how this ISR is also used to transmit data.
+ 03D6           ; //
+ 03D6           ; // Global variables used:
+ 03D6           ; //   PS2FrameState - 
+ 03D6           ; //   PS2DataIn      - where this ISR places a reassembled scan code
+ 03D6           ; //   PS2GotFrame   - set to 1 in this ISR when a valid PS2 frame is found
+ 03D6           ; //                   set to 0 by other functions in the program after PS2DataIn is processed
+ 03D6           ; //----------------------------------------------------------------------------------------
+ 03D6           ; void PS2DigBuf_ISR(void)
+ 03D6           ; {
+ 03D6                   .dbline 412
+ 03D6           ;       static BYTE data;       // Note: declaring a variable as static in a function causes the
+ 03D6           ;       static BYTE bit;        // compiler to keep it in RAM and not the stack. This means it
+ 03D6           ;       static BYTE parity;     // retains its value between calls to the function.
+ 03D6           ; 
+ 03D6           ;       //// Read the PS/2 Data bit every time we enter this ISR
+ 03D6           ;       if (PS2DATA_Data_ADDR & PS2DATA_MASK)
+ 03D6 5D04              mov A,REG[0x4]
+ 03D8 62D000            mov REG[0xd0],>__r0
+ 03DB 5300              mov [__r0],A
+ 03DD 470010            tst [__r0],16
+ 03E0 A009              jz L101
+ 03E2                   .dbline 413
+ 03E2           ;               bit = 0x01;
+ 03E2 62D000            mov REG[0xd0],>L99
+ 03E5 550001            mov [L99],1
+ 03E8 8007              xjmp L102
+ 03EA           L101:
+ 03EA                   .dbline 415
+ 03EA           ;       else
+ 03EA           ;               bit = 0x00;
+ 03EA 62D000            mov REG[0xd0],>L99
+ 03ED 550000            mov [L99],0
+ 03F0           L102:
+ 03F0                   .dbline 417
+ 03F0           ;       //// Step through the state machine to decode the frame
+ 03F0           ;       switch (PS2FrameState) {
+ 03F0 62D000            mov REG[0xd0],>_PS2FrameState
+ 03F3 5100              mov A,[_PS2FrameState]
+ 03F5 5401              mov [X+1],A
+ 03F7 560000            mov [X+0],0
+ 03FA 5201              mov A,[X+1]
+ 03FC 1100              sub A,0
+ 03FE 5200              mov A,[X+0]
+ 0400 3180              xor A,-128
+ 0402 1980              sbb A,(0 ^ 0x80)
+ 0404 C40C              jc L97
+ 0406           X4:
+ 0406 5016              mov A,22
+ 0408 1301              sub A,[X+1]
+ 040A 5200              mov A,[X+0]
+ 040C 3180              xor A,-128
+ 040E 62D000            mov REG[0xd0],>__r0
+ 0411 5300              mov [__rX],A
+ 0413 5080              mov A,(0 ^ 0x80)
+ 0415 1A00              sbb A,[__rX]
+ 0417 C3F9              jc L97
+ 0419           X5:
+ 0419 62D000            mov REG[0xd0],>__r0
+ 041C 5201              mov A,[X+1]
+ 041E 5300              mov [__r1],A
+ 0420 5200              mov A,[X+0]
+ 0422 5300              mov [__r0],A
+ 0424 6500              asl [__r1]
+ 0426 6B00              rlc [__r0]
+ 0428 060000            add [__r1],<L157
+ 042B 0E0000            adc [__r0],>L157
+ 042E 5100              mov A,[__r0]
+ 0430 10                push X
+ 0431 5800              mov X,[__r1]
+ 0433 08                push A
+ 0434 28                romx
+ 0435 5300              mov [__r0],A
+ 0437 18                pop A
+ 0438 75                inc X
+ 0439 0900              adc A,0
+ 043B 28                romx
+ 043C 5300              mov [__r1],A
+ 043E 20                pop X
+ 043F 5100              mov A,[__r0]
+ 0441 08                push A
+ 0442 5100              mov A,[__r1]
+ 0444 08                push A
+ 0445 7F                ret
+ 0446           X3:
+ 0446                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\ps2.c
+ 0446                   .dbline 417
+ 0446           L106:
+ 0446                   .dbline 420
+ 0446           ;       case PS2_START_BIT_IN: // Start of PS/2 frame
+ 0446           ;               // Reset the frame status
+ 0446           ;               PS2FrameStatus = 0x00;
+ 0446 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0449 550000            mov [_PS2FrameStatus],0
+ 044C                   .dbline 422
+ 044C           ;               // Clear the frame data reassembly byte
+ 044C           ;               data = 0;
+ 044C 62D000            mov REG[0xd0],>L98
+ 044F 550000            mov [L98],0
+ 0452                   .dbline 424
+ 0452           ;               //// If this bit is 0, assume this is the Start bit of the frame and go to the state 1
+ 0452           ;               if (bit == 0) {
+ 0452 62D000            mov REG[0xd0],>L99
+ 0455 3C0000            cmp [L99],0
+ 0458 B3B8              jnz L97
+ 045A                   .dbline 426
+ 045A           ;                       // Reset our computed parity to 1
+ 045A           ;                       parity = 1;
+ 045A                   .dbline 426
+ 045A 62D000            mov REG[0xd0],>L100
+ 045D 550001            mov [L100],1
+ 0460                   .dbline 430
+ 0460           ;                       // Enable interrupts on the OneShot so that if we don't get enough
+ 0460           ;                       // clock transistions for a valid frame, the OneShot will reset
+ 0460           ;                       // this state machine and report a FRAME_INCOMPLETE error.
+ 0460           ;                       PS2OneShot_ClearInt();
+ 0460 10                push X
+ 0461 7C0000            xcall _PS2OneShot_ClearInt
+ 0464                   .dbline 431
+ 0464           ;                       PS2OneShot_EnableInt();
+ 0464 7C0000            xcall _PS2OneShot_EnableInt
+ 0467 20                pop X
+ 0468                   .dbline 433
+ 0468           ;                       // Look for the D0 bit.
+ 0468           ;                       PS2FrameState = PS2_D0_BIT_IN;
+ 0468 62D000            mov REG[0xd0],>_PS2FrameState
+ 046B 550001            mov [_PS2FrameState],1
+ 046E                   .dbline 434
+ 046E           ;               }
+ 046E                   .dbline 437
+ 046E           ;               // If this bit is 1, it cannot be the Start bit so remain in this state.
+ 046E           ;               // Treat it as a glitch and ignore it (don't even bother reporting it).
+ 046E           ;               break;
+ 046E 83A2              xjmp L97
+ 0470           L109:
+ 0470                   .dbline 439
+ 0470           ;       case PS2_D0_BIT_IN: // Get D0
+ 0470           ;               data|=bit; parity^=bit; PS2FrameState=PS2_D1_BIT_IN; break;
+ 0470 62D000            mov REG[0xd0],>L99
+ 0473 5100              mov A,[L99]
+ 0475 62D000            mov REG[0xd0],>L98
+ 0478 2C00              or [L98],A
+ 047A                   .dbline 439
+ 047A 62D000            mov REG[0xd0],>L100
+ 047D 5100              mov A,[L100]
+ 047F 62D000            mov REG[0xd0],>L99
+ 0482 3200              xor A,[L99]
+ 0484 62D000            mov REG[0xd0],>L100
+ 0487 5300              mov [L100],A
+ 0489                   .dbline 439
+ 0489 62D000            mov REG[0xd0],>_PS2FrameState
+ 048C 550002            mov [_PS2FrameState],2
+ 048F                   .dbline 439
+ 048F 8381              xjmp L97
+ 0491           L110:
+ 0491                   .dbline 441
+ 0491           ;       case PS2_D1_BIT_IN: // Get D1
+ 0491           ;               data|=bit<<1; parity^=bit; PS2FrameState=PS2_D2_BIT_IN; break;
+ 0491 62D000            mov REG[0xd0],>L99
+ 0494 5100              mov A,[L99]
+ 0496 62D000            mov REG[0xd0],>__r0
+ 0499 5300              mov [__r0],A
+ 049B 6500              asl [__r0]
+ 049D 5100              mov A,[__r0]
+ 049F 62D000            mov REG[0xd0],>L98
+ 04A2 2C00              or [L98],A
+ 04A4                   .dbline 441
+ 04A4 62D000            mov REG[0xd0],>L100
+ 04A7 5100              mov A,[L100]
+ 04A9 62D000            mov REG[0xd0],>L99
+ 04AC 3200              xor A,[L99]
+ 04AE 62D000            mov REG[0xd0],>L100
+ 04B1 5300              mov [L100],A
+ 04B3                   .dbline 441
+ 04B3 62D000            mov REG[0xd0],>_PS2FrameState
+ 04B6 550003            mov [_PS2FrameState],3
+ 04B9                   .dbline 441
+ 04B9 8357              xjmp L97
+ 04BB           L111:
+ 04BB                   .dbline 443
+ 04BB           ;       case PS2_D2_BIT_IN: // Get D2
+ 04BB           ;               data|=bit<<2; parity^=bit; PS2FrameState=PS2_D3_BIT_IN; break;
+ 04BB 62D000            mov REG[0xd0],>L99
+ 04BE 5100              mov A,[L99]
+ 04C0 62D000            mov REG[0xd0],>__r0
+ 04C3 5300              mov [__r0],A
+ 04C5 6500              asl [__r0]
+ 04C7 6500              asl [__r0]
+ 04C9 5100              mov A,[__r0]
+ 04CB 62D000            mov REG[0xd0],>L98
+ 04CE 2C00              or [L98],A
+ 04D0                   .dbline 443
+ 04D0 62D000            mov REG[0xd0],>L100
+ 04D3 5100              mov A,[L100]
+ 04D5 62D000            mov REG[0xd0],>L99
+ 04D8 3200              xor A,[L99]
+ 04DA 62D000            mov REG[0xd0],>L100
+ 04DD 5300              mov [L100],A
+ 04DF                   .dbline 443
+ 04DF 62D000            mov REG[0xd0],>_PS2FrameState
+ 04E2 550004            mov [_PS2FrameState],4
+ 04E5                   .dbline 443
+ 04E5 832B              xjmp L97
+ 04E7           L112:
+ 04E7                   .dbline 445
+ 04E7           ;       case PS2_D3_BIT_IN: // Get D3
+ 04E7           ;               data|=bit<<3; parity^=bit; PS2FrameState=PS2_D4_BIT_IN; break;
+ 04E7 62D000            mov REG[0xd0],>L99
+ 04EA 5100              mov A,[L99]
+ 04EC 64                asl A
+ 04ED 64                asl A
+ 04EE 64                asl A
+ 04EF 62D000            mov REG[0xd0],>L98
+ 04F2 2C00              or [L98],A
+ 04F4                   .dbline 445
+ 04F4 62D000            mov REG[0xd0],>L100
+ 04F7 5100              mov A,[L100]
+ 04F9 62D000            mov REG[0xd0],>L99
+ 04FC 3200              xor A,[L99]
+ 04FE 62D000            mov REG[0xd0],>L100
+ 0501 5300              mov [L100],A
+ 0503                   .dbline 445
+ 0503 62D000            mov REG[0xd0],>_PS2FrameState
+ 0506 550005            mov [_PS2FrameState],5
+ 0509                   .dbline 445
+ 0509 8307              xjmp L97
+ 050B           L113:
+ 050B                   .dbline 447
+ 050B           ;       case PS2_D4_BIT_IN: // Get D4
+ 050B           ;               data|=bit<<4; parity^=bit; PS2FrameState=PS2_D5_BIT_IN; break;
+ 050B 62D000            mov REG[0xd0],>L99
+ 050E 5100              mov A,[L99]
+ 0510 64                asl A
+ 0511 64                asl A
+ 0512 64                asl A
+ 0513 64                asl A
+ 0514 62D000            mov REG[0xd0],>L98
+ 0517 2C00              or [L98],A
+ 0519                   .dbline 447
+ 0519 62D000            mov REG[0xd0],>L100
+ 051C 5100              mov A,[L100]
+ 051E 62D000            mov REG[0xd0],>L99
+ 0521 3200              xor A,[L99]
+ 0523 62D000            mov REG[0xd0],>L100
+ 0526 5300              mov [L100],A
+ 0528                   .dbline 447
+ 0528 62D000            mov REG[0xd0],>_PS2FrameState
+ 052B 550006            mov [_PS2FrameState],6
+ 052E                   .dbline 447
+ 052E 82E2              xjmp L97
+ 0530           L114:
+ 0530                   .dbline 449
+ 0530           ;       case PS2_D5_BIT_IN: // Get D5
+ 0530           ;               data|=bit<<5; parity^=bit; PS2FrameState=PS2_D6_BIT_IN; break;
+ 0530 62D000            mov REG[0xd0],>L99
+ 0533 5100              mov A,[L99]
+ 0535 64                asl A
+ 0536 64                asl A
+ 0537 64                asl A
+ 0538 64                asl A
+ 0539 64                asl A
+ 053A 62D000            mov REG[0xd0],>L98
+ 053D 2C00              or [L98],A
+ 053F                   .dbline 449
+ 053F 62D000            mov REG[0xd0],>L100
+ 0542 5100              mov A,[L100]
+ 0544 62D000            mov REG[0xd0],>L99
+ 0547 3200              xor A,[L99]
+ 0549 62D000            mov REG[0xd0],>L100
+ 054C 5300              mov [L100],A
+ 054E                   .dbline 449
+ 054E 62D000            mov REG[0xd0],>_PS2FrameState
+ 0551 550007            mov [_PS2FrameState],7
+ 0554                   .dbline 449
+ 0554 82BC              xjmp L97
+ 0556           L115:
+ 0556                   .dbline 451
+ 0556           ;       case PS2_D6_BIT_IN: // Get D6
+ 0556           ;               data|=bit<<6; parity^=bit; PS2FrameState=PS2_D7_BIT_IN; break;
+ 0556 62D000            mov REG[0xd0],>L99
+ 0559 5100              mov A,[L99]
+ 055B 64                asl A
+ 055C 64                asl A
+ 055D 64                asl A
+ 055E 64                asl A
+ 055F 64                asl A
+ 0560 64                asl A
+ 0561 62D000            mov REG[0xd0],>L98
+ 0564 2C00              or [L98],A
+ 0566                   .dbline 451
+ 0566 62D000            mov REG[0xd0],>L100
+ 0569 5100              mov A,[L100]
+ 056B 62D000            mov REG[0xd0],>L99
+ 056E 3200              xor A,[L99]
+ 0570 62D000            mov REG[0xd0],>L100
+ 0573 5300              mov [L100],A
+ 0575                   .dbline 451
+ 0575 62D000            mov REG[0xd0],>_PS2FrameState
+ 0578 550008            mov [_PS2FrameState],8
+ 057B                   .dbline 451
+ 057B 8295              xjmp L97
+ 057D           L116:
+ 057D                   .dbline 453
+ 057D           ;       case PS2_D7_BIT_IN: // Get D7
+ 057D           ;               data|=bit<<7; parity^=bit; PS2FrameState=PS2_PARITY_BIT_IN; break;
+ 057D 62D000            mov REG[0xd0],>L99
+ 0580 5100              mov A,[L99]
+ 0582 64                asl A
+ 0583 64                asl A
+ 0584 64                asl A
+ 0585 64                asl A
+ 0586 64                asl A
+ 0587 64                asl A
+ 0588 64                asl A
+ 0589 62D000            mov REG[0xd0],>L98
+ 058C 2C00              or [L98],A
+ 058E                   .dbline 453
+ 058E 62D000            mov REG[0xd0],>L100
+ 0591 5100              mov A,[L100]
+ 0593 62D000            mov REG[0xd0],>L99
+ 0596 3200              xor A,[L99]
+ 0598 62D000            mov REG[0xd0],>L100
+ 059B 5300              mov [L100],A
+ 059D                   .dbline 453
+ 059D 62D000            mov REG[0xd0],>_PS2FrameState
+ 05A0 550009            mov [_PS2FrameState],9
+ 05A3                   .dbline 453
+ 05A3 826D              xjmp L97
+ 05A5           L117:
+ 05A5                   .dbline 455
+ 05A5           ;       case PS2_PARITY_BIT_IN: // Get parity. ODD:parity=0, EVEN:parity=1
+ 05A5           ;               parity^=bit; PS2FrameState=PS2_STOP_BIT_IN; break;
+ 05A5 62D000            mov REG[0xd0],>L100
+ 05A8 5100              mov A,[L100]
+ 05AA 62D000            mov REG[0xd0],>L99
+ 05AD 3200              xor A,[L99]
+ 05AF 62D000            mov REG[0xd0],>L100
+ 05B2 5300              mov [L100],A
+ 05B4                   .dbline 455
+ 05B4 62D000            mov REG[0xd0],>_PS2FrameState
+ 05B7 55000A            mov [_PS2FrameState],10
+ 05BA                   .dbline 455
+ 05BA 8256              xjmp L97
+ 05BC           L118:
+ 05BC                   .dbline 471
+ 05BC           ; //            //// XXX - Force a bad receive parity bit periodically for testing.
+ 05BC           ; //            if (XXXForceBadRxParity++ > 3) { // bad parity every N+1 transmissions
+ 05BC           ; //                    XXXForceBadRxParity = 0;
+ 05BC           ; //                    parity = 1;
+ 05BC           ; //            }
+ 05BC           ; //            PS2FrameState=PS2_STOP_BIT_IN;
+ 05BC           ; //            break;
+ 05BC           ;       case PS2_STOP_BIT_IN: // Check the Stop bit
+ 05BC           ;               //// If Stop bit is 0, this is a framing error
+ 05BC           ;               //// Note: A frame error overrides a parity error
+ 05BC           ;               //// XXX - Unresolved issue: If the Stop bit is wrong, did we really
+ 05BC           ;               ////       get a complete frame? Until I learn more, I'm going to
+ 05BC           ;               ////       report we've had an RX framing error.
+ 05BC           ;               ////       Should the application request a retransmission if it
+ 05BC           ;               ////       get's a frame error? I don't know.
+ 05BC           ;               if (bit == 0) {
+ 05BC 62D000            mov REG[0xd0],>L99
+ 05BF 3C0000            cmp [L99],0
+ 05C2 B009              jnz L119
+ 05C4                   .dbline 472
+ 05C4           ;                       PS2FrameStatus = FRAME_RX_FRAME_ERROR;
+ 05C4                   .dbline 472
+ 05C4 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 05C7 550008            mov [_PS2FrameStatus],8
+ 05CA                   .dbline 473
+ 05CA           ;               }
+ 05CA 804F              xjmp L120
+ 05CC           L119:
+ 05CC                   .dbline 474
+ 05CC           ;               else {
+ 05CC                   .dbline 476
+ 05CC           ;                       //// The Stop bit is 1, so the frame is valid. Check the parity.
+ 05CC           ;                       if (parity) {
+ 05CC 62D000            mov REG[0xd0],>L100
+ 05CF 3C0000            cmp [L100],0
+ 05D2 A009              jz L121
+ 05D4                   .dbline 477
+ 05D4           ;                               PS2FrameStatus = FRAME_RX_PARITY_ERROR;
+ 05D4                   .dbline 477
+ 05D4 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 05D7 550004            mov [_PS2FrameStatus],4
+ 05DA                   .dbline 478
+ 05DA           ;                       }
+ 05DA 803F              xjmp L122
+ 05DC           L121:
+ 05DC                   .dbline 479
+ 05DC           ;                       else {
+ 05DC                   .dbline 480
+ 05DC           ;                               PS2DataIn = data;
+ 05DC 62D000            mov REG[0xd0],>L98
+ 05DF 5100              mov A,[L98]
+ 05E1 62D000            mov REG[0xd0],>_PS2DataIn
+ 05E4 5300              mov [_PS2DataIn],A
+ 05E6                   .dbline 481
+ 05E6           ;                               PS2FrameStatus = FRAME_DATA_AVAILABLE;
+ 05E6 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 05E9 550001            mov [_PS2FrameStatus],1
+ 05EC                   .dbline 482
+ 05EC           ;                               PS2RxBuffer[PS2RxBufIn] = data;
+ 05EC 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 05EF 5100              mov A,[_PS2RxBufIn]
+ 05F1 62D000            mov REG[0xd0],>__r0
+ 05F4 5300              mov [__r1],A
+ 05F6 550000            mov [__r0],0
+ 05F9 060000            add [__r1],<_PS2RxBuffer
+ 05FC 0E0000            adc [__r0],>_PS2RxBuffer
+ 05FF 5100              mov A,[__r0]
+ 0601 60D5              mov REG[0xd5],A
+ 0603 62D000            mov REG[0xd0],>L98
+ 0606 5100              mov A,[L98]
+ 0608 62D000            mov REG[0xd0],>__r0
+ 060B 3F00              mvi [__r1],A
+ 060D                   .dbline 483
+ 060D           ;                               PS2RxBufIn++;
+ 060D 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0610 7600              inc [_PS2RxBufIn]
+ 0612                   .dbline 485
+ 0612           ;                               // Wrap around the circular buffer pointer at 16
+ 0612           ;                               if (PS2RxBufIn & 0x10) PS2RxBufIn = 0;
+ 0612 470010            tst [_PS2RxBufIn],16
+ 0615 A004              jz L123
+ 0617                   .dbline 485
+ 0617 550000            mov [_PS2RxBufIn],0
+ 061A           L123:
+ 061A                   .dbline 486
+ 061A           ;                       }
+ 061A           L122:
+ 061A                   .dbline 487
+ 061A           ;               }
+ 061A           L120:
+ 061A                   .dbline 489
+ 061A           ;               //// We got a complete frame so reset the state and disable PS2OneShot.
+ 061A           ;               PS2FrameState = PS2_START_BIT_IN;
+ 061A 62D000            mov REG[0xd0],>_PS2FrameState
+ 061D 550000            mov [_PS2FrameState],0
+ 0620                   .dbline 490
+ 0620           ;               PS2OneShot_DisableInt();
+ 0620 10                push X
+ 0621 7C0000            xcall _PS2OneShot_DisableInt
+ 0624 20                pop X
+ 0625                   .dbline 491
+ 0625           ;               break;
+ 0625 81EB              xjmp L97
+ 0627           L125:
+ 0627                   .dbline 497
+ 0627           ;       ///////////////////////////////////////////////////////////////////////////
+ 0627           ;       //////// States used to send data to keyboard
+ 0627           ;       ///////////////////////////////////////////////////////////////////////////
+ 0627           ;       case PS2_TRANSMIT_BEGIN:
+ 0627           ;               // Reset the frame status
+ 0627           ;               PS2FrameStatus = 0x00;
+ 0627 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 062A 550000            mov [_PS2FrameStatus],0
+ 062D                   .dbline 498
+ 062D           ;               PS2FrameState=PS2_D0_BIT_OUT;
+ 062D 62D000            mov REG[0xd0],>_PS2FrameState
+ 0630 55000C            mov [_PS2FrameState],12
+ 0633                   .dbline 499
+ 0633           ;               break;
+ 0633 81DD              xjmp L97
+ 0635           L126:
+ 0635                   .dbline 502
+ 0635           ;       case PS2_D0_BIT_OUT:
+ 0635           ;               // Send the D0 bit and initialize parity
+ 0635           ;               if (PS2DataOut&0x01) { parity = 0; PS2DATA_HIGH; }
+ 0635 62D000            mov REG[0xd0],>_PS2DataOut
+ 0638 470001            tst [_PS2DataOut],1
+ 063B A013              jz L127
+ 063D                   .dbline 502
+ 063D                   .dbline 502
+ 063D 62D000            mov REG[0xd0],>L100
+ 0640 550000            mov [L100],0
+ 0643                   .dbline 502
+ 0643                   .dbline 502
+ 0643 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 0646 2E0010            or [_Port_1_Data_SHADE],16
+ 0649                   .dbline 502
+ 0649 5100              mov A,[_Port_1_Data_SHADE]
+ 064B 6004              mov REG[0x4],A
+ 064D                   .dbline 502
+ 064D                   .dbline 502
+ 064D                   .dbline 502
+ 064D 8011              xjmp L128
+ 064F           L127:
+ 064F                   .dbline 503
+ 064F           ;               else { parity = 1; PS2DATA_LOW; }
+ 064F                   .dbline 503
+ 064F 62D000            mov REG[0xd0],>L100
+ 0652 550001            mov [L100],1
+ 0655                   .dbline 503
+ 0655                   .dbline 503
+ 0655 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 0658 2600EF            and [_Port_1_Data_SHADE],-17
+ 065B                   .dbline 503
+ 065B 5100              mov A,[_Port_1_Data_SHADE]
+ 065D 6004              mov REG[0x4],A
+ 065F                   .dbline 503
+ 065F                   .dbline 503
+ 065F                   .dbline 503
+ 065F           L128:
+ 065F                   .dbline 507
+ 065F           ;               // Enable interrupts on the OneShot so that if we don't get enough
+ 065F           ;               // clock transistions for a valid frame, the OneShot will reset
+ 065F           ;               // this state machine and report a FRAME_INCOMPLETE error.
+ 065F           ;               PS2OneShot_ClearInt();
+ 065F 10                push X
+ 0660 7C0000            xcall _PS2OneShot_ClearInt
+ 0663                   .dbline 508
+ 0663           ;               PS2OneShot_EnableInt();
+ 0663 7C0000            xcall _PS2OneShot_EnableInt
+ 0666 20                pop X
+ 0667                   .dbline 509
+ 0667           ;               PS2FrameState=PS2_D1_BIT_OUT;
+ 0667 62D000            mov REG[0xd0],>_PS2FrameState
+ 066A 55000D            mov [_PS2FrameState],13
+ 066D                   .dbline 510
+ 066D           ;               break;
+ 066D 81A3              xjmp L97
+ 066F           L129:
+ 066F                   .dbline 512
+ 066F           ;       case PS2_D1_BIT_OUT:
+ 066F           ;               if (PS2DataOut&0x02) { parity ^= 0x01; PS2DATA_HIGH; }
+ 066F 62D000            mov REG[0xd0],>_PS2DataOut
+ 0672 470002            tst [_PS2DataOut],2
+ 0675 A016              jz L130
+ 0677                   .dbline 512
+ 0677                   .dbline 512
+ 0677 62D000            mov REG[0xd0],>L100
+ 067A 5100              mov A,[L100]
+ 067C 3101              xor A,1
+ 067E 5300              mov [L100],A
+ 0680                   .dbline 512
+ 0680                   .dbline 512
+ 0680 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 0683 2E0010            or [_Port_1_Data_SHADE],16
+ 0686                   .dbline 512
+ 0686 5100              mov A,[_Port_1_Data_SHADE]
+ 0688 6004              mov REG[0x4],A
+ 068A                   .dbline 512
+ 068A                   .dbline 512
+ 068A                   .dbline 512
+ 068A 800B              xjmp L131
+ 068C           L130:
+ 068C                   .dbline 513
+ 068C           ;               else { PS2DATA_LOW; }
+ 068C                   .dbline 513
+ 068C                   .dbline 513
+ 068C 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 068F 2600EF            and [_Port_1_Data_SHADE],-17
+ 0692                   .dbline 513
+ 0692 5100              mov A,[_Port_1_Data_SHADE]
+ 0694 6004              mov REG[0x4],A
+ 0696                   .dbline 513
+ 0696                   .dbline 513
+ 0696                   .dbline 513
+ 0696           L131:
+ 0696                   .dbline 514
+ 0696           ;               PS2FrameState=PS2_D2_BIT_OUT;
+ 0696 62D000            mov REG[0xd0],>_PS2FrameState
+ 0699 55000E            mov [_PS2FrameState],14
+ 069C                   .dbline 515
+ 069C           ;               break;
+ 069C 8174              xjmp L97
+ 069E           L132:
+ 069E                   .dbline 517
+ 069E           ;       case PS2_D2_BIT_OUT:
+ 069E           ;               if (PS2DataOut&0x04) { parity ^= 0x01; PS2DATA_HIGH; }
+ 069E 62D000            mov REG[0xd0],>_PS2DataOut
+ 06A1 470004            tst [_PS2DataOut],4
+ 06A4 A016              jz L133
+ 06A6                   .dbline 517
+ 06A6                   .dbline 517
+ 06A6 62D000            mov REG[0xd0],>L100
+ 06A9 5100              mov A,[L100]
+ 06AB 3101              xor A,1
+ 06AD 5300              mov [L100],A
+ 06AF                   .dbline 517
+ 06AF                   .dbline 517
+ 06AF 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 06B2 2E0010            or [_Port_1_Data_SHADE],16
+ 06B5                   .dbline 517
+ 06B5 5100              mov A,[_Port_1_Data_SHADE]
+ 06B7 6004              mov REG[0x4],A
+ 06B9                   .dbline 517
+ 06B9                   .dbline 517
+ 06B9                   .dbline 517
+ 06B9 800B              xjmp L134
+ 06BB           L133:
+ 06BB                   .dbline 518
+ 06BB           ;               else { PS2DATA_LOW;     }
+ 06BB                   .dbline 518
+ 06BB                   .dbline 518
+ 06BB 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 06BE 2600EF            and [_Port_1_Data_SHADE],-17
+ 06C1                   .dbline 518
+ 06C1 5100              mov A,[_Port_1_Data_SHADE]
+ 06C3 6004              mov REG[0x4],A
+ 06C5                   .dbline 518
+ 06C5                   .dbline 518
+ 06C5                   .dbline 518
+ 06C5           L134:
+ 06C5                   .dbline 519
+ 06C5           ;               PS2FrameState=PS2_D3_BIT_OUT;
+ 06C5 62D000            mov REG[0xd0],>_PS2FrameState
+ 06C8 55000F            mov [_PS2FrameState],15
+ 06CB                   .dbline 520
+ 06CB           ;               break;
+ 06CB 8145              xjmp L97
+ 06CD           L135:
+ 06CD                   .dbline 522
+ 06CD           ;       case PS2_D3_BIT_OUT:
+ 06CD           ;               if (PS2DataOut&0x08) { parity ^= 0x01; PS2DATA_HIGH; }
+ 06CD 62D000            mov REG[0xd0],>_PS2DataOut
+ 06D0 470008            tst [_PS2DataOut],8
+ 06D3 A016              jz L136
+ 06D5                   .dbline 522
+ 06D5                   .dbline 522
+ 06D5 62D000            mov REG[0xd0],>L100
+ 06D8 5100              mov A,[L100]
+ 06DA 3101              xor A,1
+ 06DC 5300              mov [L100],A
+ 06DE                   .dbline 522
+ 06DE                   .dbline 522
+ 06DE 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 06E1 2E0010            or [_Port_1_Data_SHADE],16
+ 06E4                   .dbline 522
+ 06E4 5100              mov A,[_Port_1_Data_SHADE]
+ 06E6 6004              mov REG[0x4],A
+ 06E8                   .dbline 522
+ 06E8                   .dbline 522
+ 06E8                   .dbline 522
+ 06E8 800B              xjmp L137
+ 06EA           L136:
+ 06EA                   .dbline 523
+ 06EA           ;               else { PS2DATA_LOW; }
+ 06EA                   .dbline 523
+ 06EA                   .dbline 523
+ 06EA 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 06ED 2600EF            and [_Port_1_Data_SHADE],-17
+ 06F0                   .dbline 523
+ 06F0 5100              mov A,[_Port_1_Data_SHADE]
+ 06F2 6004              mov REG[0x4],A
+ 06F4                   .dbline 523
+ 06F4                   .dbline 523
+ 06F4                   .dbline 523
+ 06F4           L137:
+ 06F4                   .dbline 524
+ 06F4           ;               PS2FrameState=PS2_D4_BIT_OUT;
+ 06F4 62D000            mov REG[0xd0],>_PS2FrameState
+ 06F7 550010            mov [_PS2FrameState],16
+ 06FA                   .dbline 525
+ 06FA           ;               break;
+ 06FA 8116              xjmp L97
+ 06FC           L138:
+ 06FC                   .dbline 527
+ 06FC           ;       case PS2_D4_BIT_OUT:
+ 06FC           ;               if (PS2DataOut&0x10) { parity ^= 0x01; PS2DATA_HIGH; }
+ 06FC 62D000            mov REG[0xd0],>_PS2DataOut
+ 06FF 470010            tst [_PS2DataOut],16
+ 0702 A016              jz L139
+ 0704                   .dbline 527
+ 0704                   .dbline 527
+ 0704 62D000            mov REG[0xd0],>L100
+ 0707 5100              mov A,[L100]
+ 0709 3101              xor A,1
+ 070B 5300              mov [L100],A
+ 070D                   .dbline 527
+ 070D                   .dbline 527
+ 070D 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 0710 2E0010            or [_Port_1_Data_SHADE],16
+ 0713                   .dbline 527
+ 0713 5100              mov A,[_Port_1_Data_SHADE]
+ 0715 6004              mov REG[0x4],A
+ 0717                   .dbline 527
+ 0717                   .dbline 527
+ 0717                   .dbline 527
+ 0717 800B              xjmp L140
+ 0719           L139:
+ 0719                   .dbline 528
+ 0719           ;               else { PS2DATA_LOW; }
+ 0719                   .dbline 528
+ 0719                   .dbline 528
+ 0719 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 071C 2600EF            and [_Port_1_Data_SHADE],-17
+ 071F                   .dbline 528
+ 071F 5100              mov A,[_Port_1_Data_SHADE]
+ 0721 6004              mov REG[0x4],A
+ 0723                   .dbline 528
+ 0723                   .dbline 528
+ 0723                   .dbline 528
+ 0723           L140:
+ 0723                   .dbline 529
+ 0723           ;               PS2FrameState=PS2_D5_BIT_OUT;
+ 0723 62D000            mov REG[0xd0],>_PS2FrameState
+ 0726 550011            mov [_PS2FrameState],17
+ 0729                   .dbline 530
+ 0729           ;               break;
+ 0729 80E7              xjmp L97
+ 072B           L141:
+ 072B                   .dbline 532
+ 072B           ;       case PS2_D5_BIT_OUT:
+ 072B           ;               if (PS2DataOut&0x20) { parity ^= 0x01; PS2DATA_HIGH; }
+ 072B 62D000            mov REG[0xd0],>_PS2DataOut
+ 072E 470020            tst [_PS2DataOut],32
+ 0731 A016              jz L142
+ 0733                   .dbline 532
+ 0733                   .dbline 532
+ 0733 62D000            mov REG[0xd0],>L100
+ 0736 5100              mov A,[L100]
+ 0738 3101              xor A,1
+ 073A 5300              mov [L100],A
+ 073C                   .dbline 532
+ 073C                   .dbline 532
+ 073C 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 073F 2E0010            or [_Port_1_Data_SHADE],16
+ 0742                   .dbline 532
+ 0742 5100              mov A,[_Port_1_Data_SHADE]
+ 0744 6004              mov REG[0x4],A
+ 0746                   .dbline 532
+ 0746                   .dbline 532
+ 0746                   .dbline 532
+ 0746 800B              xjmp L143
+ 0748           L142:
+ 0748                   .dbline 533
+ 0748           ;               else { PS2DATA_LOW; }
+ 0748                   .dbline 533
+ 0748                   .dbline 533
+ 0748 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 074B 2600EF            and [_Port_1_Data_SHADE],-17
+ 074E                   .dbline 533
+ 074E 5100              mov A,[_Port_1_Data_SHADE]
+ 0750 6004              mov REG[0x4],A
+ 0752                   .dbline 533
+ 0752                   .dbline 533
+ 0752                   .dbline 533
+ 0752           L143:
+ 0752                   .dbline 534
+ 0752           ;               PS2FrameState=PS2_D6_BIT_OUT;
+ 0752 62D000            mov REG[0xd0],>_PS2FrameState
+ 0755 550012            mov [_PS2FrameState],18
+ 0758                   .dbline 535
+ 0758           ;               break;
+ 0758 80B8              xjmp L97
+ 075A           L144:
+ 075A                   .dbline 537
+ 075A           ;       case PS2_D6_BIT_OUT:
+ 075A           ;               if (PS2DataOut&0x40) { parity ^= 0x01; PS2DATA_HIGH; }
+ 075A 62D000            mov REG[0xd0],>_PS2DataOut
+ 075D 470040            tst [_PS2DataOut],64
+ 0760 A016              jz L145
+ 0762                   .dbline 537
+ 0762                   .dbline 537
+ 0762 62D000            mov REG[0xd0],>L100
+ 0765 5100              mov A,[L100]
+ 0767 3101              xor A,1
+ 0769 5300              mov [L100],A
+ 076B                   .dbline 537
+ 076B                   .dbline 537
+ 076B 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 076E 2E0010            or [_Port_1_Data_SHADE],16
+ 0771                   .dbline 537
+ 0771 5100              mov A,[_Port_1_Data_SHADE]
+ 0773 6004              mov REG[0x4],A
+ 0775                   .dbline 537
+ 0775                   .dbline 537
+ 0775                   .dbline 537
+ 0775 800B              xjmp L146
+ 0777           L145:
+ 0777                   .dbline 538
+ 0777           ;               else { PS2DATA_LOW; }
+ 0777                   .dbline 538
+ 0777                   .dbline 538
+ 0777 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 077A 2600EF            and [_Port_1_Data_SHADE],-17
+ 077D                   .dbline 538
+ 077D 5100              mov A,[_Port_1_Data_SHADE]
+ 077F 6004              mov REG[0x4],A
+ 0781                   .dbline 538
+ 0781                   .dbline 538
+ 0781                   .dbline 538
+ 0781           L146:
+ 0781                   .dbline 539
+ 0781           ;               PS2FrameState=PS2_D7_BIT_OUT;
+ 0781 62D000            mov REG[0xd0],>_PS2FrameState
+ 0784 550013            mov [_PS2FrameState],19
+ 0787                   .dbline 540
+ 0787           ;               break;
+ 0787 8089              xjmp L97
+ 0789           L147:
+ 0789                   .dbline 542
+ 0789           ;       case PS2_D7_BIT_OUT:
+ 0789           ;               if (PS2DataOut&0x80) { parity ^= 0x01; PS2DATA_HIGH; }
+ 0789 62D000            mov REG[0xd0],>_PS2DataOut
+ 078C 470080            tst [_PS2DataOut],-128
+ 078F A016              jz L148
+ 0791                   .dbline 542
+ 0791                   .dbline 542
+ 0791 62D000            mov REG[0xd0],>L100
+ 0794 5100              mov A,[L100]
+ 0796 3101              xor A,1
+ 0798 5300              mov [L100],A
+ 079A                   .dbline 542
+ 079A                   .dbline 542
+ 079A 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 079D 2E0010            or [_Port_1_Data_SHADE],16
+ 07A0                   .dbline 542
+ 07A0 5100              mov A,[_Port_1_Data_SHADE]
+ 07A2 6004              mov REG[0x4],A
+ 07A4                   .dbline 542
+ 07A4                   .dbline 542
+ 07A4                   .dbline 542
+ 07A4 800B              xjmp L149
+ 07A6           L148:
+ 07A6                   .dbline 543
+ 07A6           ;               else { PS2DATA_LOW; }
+ 07A6                   .dbline 543
+ 07A6                   .dbline 543
+ 07A6 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 07A9 2600EF            and [_Port_1_Data_SHADE],-17
+ 07AC                   .dbline 543
+ 07AC 5100              mov A,[_Port_1_Data_SHADE]
+ 07AE 6004              mov REG[0x4],A
+ 07B0                   .dbline 543
+ 07B0                   .dbline 543
+ 07B0                   .dbline 543
+ 07B0           L149:
+ 07B0                   .dbline 544
+ 07B0           ;               PS2FrameState=PS2_PARITY_BIT_OUT;
+ 07B0 62D000            mov REG[0xd0],>_PS2FrameState
+ 07B3 550014            mov [_PS2FrameState],20
+ 07B6                   .dbline 545
+ 07B6           ;               break;
+ 07B6 805A              xjmp L97
+ 07B8           L150:
+ 07B8                   .dbline 547
+ 07B8           ;       case PS2_PARITY_BIT_OUT:
+ 07B8           ;               if (parity) { PS2DATA_HIGH; }
+ 07B8 62D000            mov REG[0xd0],>L100
+ 07BB 3C0000            cmp [L100],0
+ 07BE A00D              jz L151
+ 07C0                   .dbline 547
+ 07C0                   .dbline 547
+ 07C0                   .dbline 547
+ 07C0 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 07C3 2E0010            or [_Port_1_Data_SHADE],16
+ 07C6                   .dbline 547
+ 07C6 5100              mov A,[_Port_1_Data_SHADE]
+ 07C8 6004              mov REG[0x4],A
+ 07CA                   .dbline 547
+ 07CA                   .dbline 547
+ 07CA                   .dbline 547
+ 07CA 800B              xjmp L152
+ 07CC           L151:
+ 07CC                   .dbline 548
+ 07CC           ;               else { PS2DATA_LOW; }
+ 07CC                   .dbline 548
+ 07CC                   .dbline 548
+ 07CC 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 07CF 2600EF            and [_Port_1_Data_SHADE],-17
+ 07D2                   .dbline 548
+ 07D2 5100              mov A,[_Port_1_Data_SHADE]
+ 07D4 6004              mov REG[0x4],A
+ 07D6                   .dbline 548
+ 07D6                   .dbline 548
+ 07D6                   .dbline 548
+ 07D6           L152:
+ 07D6                   .dbline 549
+ 07D6           ;               PS2FrameState=PS2_STOP_BIT_OUT;
+ 07D6 62D000            mov REG[0xd0],>_PS2FrameState
+ 07D9 550015            mov [_PS2FrameState],21
+ 07DC                   .dbline 550
+ 07DC           ;               break;
+ 07DC 8034              xjmp L97
+ 07DE           L153:
+ 07DE                   .dbline 565
+ 07DE           ; //            //// XXX - Force a bad transmit parity bit periodically for testing
+ 07DE           ; //            if (XXXForceBadTxParity++ > 3) { // Bad parity every N+1 transmissions
+ 07DE           ; //                    XXXForceBadTxParity=0;
+ 07DE           ; //                    if (parity) {
+ 07DE           ; //                            PS2DATA_LOW;
+ 07DE           ; //                    }
+ 07DE           ; //                    else {
+ 07DE           ; //                            PS2DATA_HIGH;
+ 07DE           ; //                    }
+ 07DE           ; //                    PS2FrameState=PS2_STOP_BIT_OUT;
+ 07DE           ; //                    break;
+ 07DE           ; //            }
+ 07DE           ;       case PS2_STOP_BIT_OUT:
+ 07DE           ;               //// Release the Data Line to make the Stop bit
+ 07DE           ;               PS2DATA_HIGH;
+ 07DE                   .dbline 565
+ 07DE 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 07E1 2E0010            or [_Port_1_Data_SHADE],16
+ 07E4                   .dbline 565
+ 07E4 5100              mov A,[_Port_1_Data_SHADE]
+ 07E6 6004              mov REG[0x4],A
+ 07E8                   .dbline 565
+ 07E8                   .dbline 565
+ 07E8                   .dbline 566
+ 07E8           ;               PS2FrameState=PS2_ACK_BIT_IN;
+ 07E8 62D000            mov REG[0xd0],>_PS2FrameState
+ 07EB 550016            mov [_PS2FrameState],22
+ 07EE                   .dbline 567
+ 07EE           ;               break;
+ 07EE 8022              xjmp L97
+ 07F0           L154:
+ 07F0                   .dbline 569
+ 07F0           ;       case PS2_ACK_BIT_IN:
+ 07F0           ;               if (bit == 0) {
+ 07F0 62D000            mov REG[0xd0],>L99
+ 07F3 3C0000            cmp [L99],0
+ 07F6 B009              jnz L155
+ 07F8                   .dbline 570
+ 07F8           ;                       PS2FrameStatus = FRAME_BYTE_TRANSMITTED;
+ 07F8                   .dbline 570
+ 07F8 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 07FB 550002            mov [_PS2FrameStatus],2
+ 07FE                   .dbline 571
+ 07FE           ;               }
+ 07FE 8007              xjmp L156
+ 0800           L155:
+ 0800                   .dbline 574
+ 0800           ;               //// XXX - I can't find what we should do if we get a bad ACK bit so
+ 0800           ;               ////       I'm declaring a Frame Error.
+ 0800           ;               else {
+ 0800                   .dbline 576
+ 0800           ;                       // If we don't get a valid ACK bit, this is a transmission frame error
+ 0800           ;                       PS2FrameStatus = FRAME_TX_FRAME_ERROR;
+ 0800 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 0803 550010            mov [_PS2FrameStatus],16
+ 0806                   .dbline 577
+ 0806           ;               }
+ 0806           L156:
+ 0806                   .dbline 579
+ 0806           ;               //// We sent a complete frame so reset the state and disable PS2OneShot.
+ 0806           ;               PS2FrameState = PS2_START_BIT_IN;
+ 0806 62D000            mov REG[0xd0],>_PS2FrameState
+ 0809 550000            mov [_PS2FrameState],0
+ 080C                   .dbline 580
+ 080C           ;               PS2OneShot_DisableInt();
+ 080C 10                push X
+ 080D 7C0000            xcall _PS2OneShot_DisableInt
+ 0810 20                pop X
+ 0811                   .dbline 581
+ 0811           ;               break;
+ 0811                   .dbline 584
+ 0811           ;       default: // We should never, ever, get here.
+ 0811           ;               // XXX - So should we delete it after we're done developing the code?
+ 0811           ;               break;
+ 0811                   .dbline 586
+ 0811           ;       }
+ 0811           ;       return;
+ 0811                   .dbline -2
+ 0811           L97:
+ 0811 38FE              add SP,-2
+ 0813 20                pop X
+ 0814 62D000            mov REG[0xD0],>__r0
+ 0817 18                pop A
+ 0818 5300              mov [__rZ],A
+ 081A 18                pop A
+ 081B 5300              mov [__rY],A
+ 081D 18                pop A
+ 081E 5300              mov [__rX],A
+ 0820 18                pop A
+ 0821 5300              mov [__r11],A
+ 0823 18                pop A
+ 0824 5300              mov [__r10],A
+ 0826 18                pop A
+ 0827 5300              mov [__r9],A
+ 0829 18                pop A
+ 082A 5300              mov [__r8],A
+ 082C 18                pop A
+ 082D 5300              mov [__r7],A
+ 082F 18                pop A
+ 0830 5300              mov [__r6],A
+ 0832 18                pop A
+ 0833 5300              mov [__r5],A
+ 0835 18                pop A
+ 0836 5300              mov [__r4],A
+ 0838 18                pop A
+ 0839 5300              mov [__r3],A
+ 083B 18                pop A
+ 083C 5300              mov [__r2],A
+ 083E 18                pop A
+ 083F 5300              mov [__r1],A
+ 0841 18                pop A
+ 0842 5300              mov [__r0],A
+ 0844 18                pop A
+ 0845 60D5              mov REG[213],A
+ 0847 18                pop A
+ 0848 60D4              mov REG[212],A
+ 084A 18                pop A
+ 084B 60D3              mov REG[211],A
+ 084D 18                pop A
+ 084E 60D0              mov REG[208],A
+ 0850 18                pop A
+ 0851                   .dbline 0 ; func end
+ 0851 7E                reti
+ 0852                   .dbend
+ 0852                   .dbfunc e PS2OneShot_ISR _PS2OneShot_ISR fV
+ 0852           _PS2OneShot_ISR::
+ 0852                   .dbline -1
+ 0852 71C0              or F,-64
+ 0854 08                push A
+ 0855 5DD0              mov A,REG[0xd0]
+ 0857 08                push A
+ 0858                   .dbline 613
+ 0858           ; }
+ 0858           ; 
+ 0858           ; //----------------------------------------------------------------------------------------
+ 0858           ; // PS/2 Bit-Banging State Machine Reset
+ 0858           ; //
+ 0858           ; // Since it is possible that a glitch can appear on the PS/2 Clock line to the PSoC
+ 0858           ; // and cause the state machine to believe it is receiving data from the PS/2 interface,
+ 0858           ; // a OneShot User Module (named PS2OneShot here) is used to reset the state machine
+ 0858           ; //
+ 0858           ; // PS/2 specifications say that acceptable clock frequencies range from 10kHz to 16kHz
+ 0858           ; // (i.e. clock periods range from 100us to 62.5us).
+ 0858           ; //
+ 0858           ; // In this design an 8-bit OneShot User Module is configured with a clock source of VC3
+ 0858           ; // with the VC3 source of SysClk/1 and divider of 240. This clocks the OneShot at a rate
+ 0858           ; // of 100kHz. Upon detecting the falling-edge of the PS/2 clock, the OneShot becomes
+ 0858           ; // active. The OneShot will not generate an interrupt until the PS/2 clock line remains
+ 0858           ; // high (i.e. PS/2 clock is idle) for 8/100kHz = 80us. This is sufficient time for the
+ 0858           ; // state machine to read the Stop bit from a valid PS/2 frame before this OneShot ISR
+ 0858           ; // resets the state machine. One the other hand, if the clock line glitched and the
+ 0858           ; // state machine was started, this ISR will reset the state machine instead of leaving
+ 0858           ; // it (incorrectly) in an intermediate state when a valid frame arrives.
+ 0858           ; //
+ 0858           ; // XXX - Update these comments to reflect the new behavior of only calling
+ 0858           ; //       this ISR if we don't get a complete frame.
+ 0858           ; //----------------------------------------------------------------------------------------
+ 0858           ; void PS2OneShot_ISR(void)
+ 0858           ; {
+ 0858                   .dbline 619
+ 0858           ;       // Make sure the PS/2 Data line is HIGH (undriven) by the PSoC in case the
+ 0858           ;       // transmission of a frame was interrupted while it was held LOW.
+ 0858           ;       // Note: We don't need to make the PS/2 Clock line HIGH since, it something else
+ 0858           ;       // is driving it LOW, this ISR will never be called since the OneShot will be
+ 0858           ;       // held in its active state.
+ 0858           ;       PS2DATA_HIGH;
+ 0858                   .dbline 619
+ 0858 62D000            mov REG[0xd0],>_Port_1_Data_SHADE
+ 085B 2E0010            or [_Port_1_Data_SHADE],16
+ 085E                   .dbline 619
+ 085E 5100              mov A,[_Port_1_Data_SHADE]
+ 0860 6004              mov REG[0x4],A
+ 0862                   .dbline 619
+ 0862                   .dbline 619
+ 0862                   .dbline 621
+ 0862           ;       //// Reset the frame state machine
+ 0862           ;       if (PS2FrameState != PS2_START_BIT_IN) {
+ 0862 62D000            mov REG[0xd0],>_PS2FrameState
+ 0865 3C0000            cmp [_PS2FrameState],0
+ 0868 A00D              jz L158
+ 086A                   .dbline 622
+ 086A           ;               PS2FrameStatus = FRAME_INCOMPLETE;
+ 086A                   .dbline 622
+ 086A 62D000            mov REG[0xd0],>_PS2FrameStatus
+ 086D 550020            mov [_PS2FrameStatus],32
+ 0870                   .dbline 623
+ 0870           ;               PS2FrameState = PS2_START_BIT_IN;
+ 0870 62D000            mov REG[0xd0],>_PS2FrameState
+ 0873 550000            mov [_PS2FrameState],0
+ 0876                   .dbline 624
+ 0876           ;       }
+ 0876                   .dbline 625
+ 0876           ;       return;
+ 0876                   .dbline -2
+ 0876           L158:
+ 0876 18                pop A
+ 0877 60D0              mov REG[208],A
+ 0879 18                pop A
+ 087A                   .dbline 0 ; func end
+ 087A 7E                reti
+ 087B                   .dbend
+ 087B                   .dbfunc e TenMicroSecTimer_ISR _TenMicroSecTimer_ISR fV
+ 087B           _TenMicroSecTimer_ISR::
+ 087B                   .dbline -1
+ 087B 71C0              or F,-64
+ 087D 08                push A
+ 087E 5DD0              mov A,REG[0xd0]
+ 0880 08                push A
+ 0881                   .dbline 632
+ 0881           ; }
+ 0881           ; 
+ 0881           ; //----------------------------------------------------------------------------------------
+ 0881           ; // Ten Micro Second Timer Interrupt Service Routine
+ 0881           ; //----------------------------------------------------------------------------------------
+ 0881           ; void TenMicroSecTimer_ISR(void)
+ 0881           ; {
+ 0881                   .dbline 633
+ 0881           ;       TenMicroSecTimerReps--;
+ 0881 62D000            mov REG[0xd0],>_TenMicroSecTimerReps
+ 0884 7A00              dec [_TenMicroSecTimerReps]
+ 0886                   .dbline 634
+ 0886           ;       return;
+ 0886                   .dbline -2
+ 0886           L161:
+ 0886 18                pop A
+ 0887 60D0              mov REG[208],A
+ 0889 18                pop A
+ 088A                   .dbline 0 ; func end
+ 088A 7E                reti
+ 088B                   .dbend

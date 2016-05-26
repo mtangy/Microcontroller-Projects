@@ -1,0 +1,599 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _tempValue::
+ 0000 0000              .word 0
+ 0002                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0002                   .dbsym e tempValue _tempValue pI
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _voltageValuep::
+ 0000 0000              .word 0
+ 0002                   .dbsym e voltageValuep _voltageValuep pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _tempValuep::
+ 0000 0000              .word 0
+ 0002                   .dbsym e tempValuep _tempValuep pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _count::
+ 0000 0000              .word 0
+ 0002                   .dbsym e count _count I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 32
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; #include <stdbool.h>
+ 0000           ; #include <stdlib.h>
+ 0000           ; 
+ 0000           ; #include "stdlib.h"
+ 0000           ; #include "math.h"
+ 0000           ; 
+ 0000           ; void clearScreen(void);
+ 0000           ; 
+ 0000           ; int sampleIn;
+ 0000           ; 
+ 0000           ; char *Degree;
+ 0000           ; 
+ 0000           ; float voltageIn;
+ 0000           ;  
+ 0000           ; int*  tempValue = 0x00;
+ 0000           ; char *voltageValuep = 0x00;
+ 0000           ; BYTE *tempValuep = 0x00;
+ 0000           ; int *status;
+ 0000           ; int i;
+ 0000           ; int j;
+ 0000           ; int count=0;
+ 0000           ; int iStatus;
+ 0000           ; float scaleFactor;
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 34
+ 0000           ;       
+ 0000           ;       M8C_EnableGInt;
+ 0000 7101                      or  F, 01h
+ 0002           
+ 0002                   .dbline 35
+ 0002           ;       PGA_Start(PGA_HIGHPOWER);
+ 0002 10                push X
+ 0003 5003              mov A,3
+ 0005 7C0000            xcall _PGA_Start
+ 0008                   .dbline 36
+ 0008           ;       ADCINC_Start (ADCINC_HIGHPOWER);
+ 0008 5003              mov A,3
+ 000A 7C0000            xcall _ADCINC_Start
+ 000D                   .dbline 37
+ 000D           ;       LCD_Start(); 
+ 000D 7C0000            xcall _LCD_Start
+ 0010                   .dbline 38
+ 0010           ;       SleepTimer_Start();
+ 0010 7C0000            xcall _SleepTimer_Start
+ 0013                   .dbline 39
+ 0013           ;       SleepTimer_EnableInt();
+ 0013 7C0000            xcall _SleepTimer_EnableInt
+ 0016                   .dbline 40
+ 0016           ;       SleepTimer_SetInterval(SleepTimer_1_HZ);
+ 0016 5018              mov A,24
+ 0018 7C0000            xcall _SleepTimer_SetInterval
+ 001B 20                pop X
+ 001C                   .dbline 42
+ 001C           ;       
+ 001C           ;       scaleFactor = ((float)1.3)/((float)16384);
+ 001C 62D000            mov REG[0xd0],>_scaleFactor
+ 001F 550038            mov [_scaleFactor],56
+ 0022 5501A6            mov [_scaleFactor+1],-90
+ 0025 550266            mov [_scaleFactor+2],102
+ 0028 550366            mov [_scaleFactor+3],102
+ 002B                   .dbline 45
+ 002B           ;       //Degree = 0xDF;
+ 002B           ;       
+ 002B           ;       ADCINC_GetSamples(0);   
+ 002B 10                push X
+ 002C 5000              mov A,0
+ 002E 7C0000            xcall _ADCINC_GetSamples
+ 0031 20                pop X
+ 0032 820D              xjmp L3
+ 0034           L2:
+ 0034                   .dbline 47
+ 0034           ;       
+ 0034           ;       while (1){
+ 0034                   .dbline 49
+ 0034           ;       
+ 0034           ;       count++;
+ 0034 62D000            mov REG[0xd0],>_count
+ 0037 7601              inc [_count+1]
+ 0039 0E0000            adc [_count],0
+ 003C                   .dbline 54
+ 003C           ; //    i = 0;
+ 003C           ; //    j = 0;
+ 003C           ; //            
+ 003C           ;       
+ 003C           ;       SleepTimer_SyncWait(0x01,SleepTimer_WAIT_RELOAD);
+ 003C 10                push X
+ 003D 5700              mov X,0
+ 003F 5001              mov A,1
+ 0041 7C0000            xcall _SleepTimer_SyncWait
+ 0044 20                pop X
+ 0045           L5:
+ 0045                   .dbline 58
+ 0045           ; 
+ 0045           ;       //      for (j = 0; j < 1000; j++);
+ 0045           ;               
+ 0045           ;               while(ADCINC_fIsDataAvailable() == 0);  
+ 0045           L6:
+ 0045                   .dbline 58
+ 0045 10                push X
+ 0046 7C0000            xcall _ADCINC_fIsDataAvailable
+ 0049 20                pop X
+ 004A 62D000            mov REG[0xd0],>__r0
+ 004D 3900              cmp A,0
+ 004F AFF5              jz L5
+ 0051                   .dbline 60
+ 0051           ; //            
+ 0051           ;       sampleIn = ADCINC_iClearFlagGetData();
+ 0051 10                push X
+ 0052 7C0000            xcall _ADCINC_iClearFlagGetData
+ 0055 62D000            mov REG[0xd0],>__r0
+ 0058 5A00              mov [__r0],X
+ 005A 20                pop X
+ 005B 08                push A
+ 005C 5100              mov A,[__r0]
+ 005E 62D000            mov REG[0xd0],>_sampleIn
+ 0061 5300              mov [_sampleIn],A
+ 0063 18                pop A
+ 0064 5301              mov [_sampleIn+1],A
+ 0066                   .dbline 61
+ 0066           ;               voltageIn = ((scaleFactor*(float)sampleIn)*100)+.05;
+ 0066 5101              mov A,[_sampleIn+1]
+ 0068 62D000            mov REG[0xd0],>__r0
+ 006B 5300              mov [__r3],A
+ 006D 62D000            mov REG[0xd0],>_sampleIn
+ 0070 5100              mov A,[_sampleIn]
+ 0072 62D000            mov REG[0xd0],>__r0
+ 0075 5300              mov [__r2],A
+ 0077 470080            tst [__r2],-128
+ 007A A009              jz X1
+ 007C 5500FF            mov [__r1],-1
+ 007F 5500FF            mov [__r0],-1
+ 0082 800A              jmp X2
+ 0084           X1:
+ 0084 62D000            mov REG[0xd0],>__r0
+ 0087 550000            mov [__r1],0
+ 008A 550000            mov [__r0],0
+ 008D           X2:
+ 008D 62D000            mov REG[0xd0],>__r0
+ 0090 5100              mov A,[__r0]
+ 0092 08                push A
+ 0093 5100              mov A,[__r1]
+ 0095 08                push A
+ 0096 5100              mov A,[__r2]
+ 0098 08                push A
+ 0099 5100              mov A,[__r3]
+ 009B 08                push A
+ 009C 7C0000            xcall __long2fp
+ 009F 18                pop A
+ 00A0 5300              mov [__r3],A
+ 00A2 18                pop A
+ 00A3 5300              mov [__r2],A
+ 00A5 18                pop A
+ 00A6 5300              mov [__r1],A
+ 00A8 18                pop A
+ 00A9 08                push A
+ 00AA 5100              mov A,[__r1]
+ 00AC 08                push A
+ 00AD 5100              mov A,[__r2]
+ 00AF 08                push A
+ 00B0 5100              mov A,[__r3]
+ 00B2 08                push A
+ 00B3 62D000            mov REG[0xd0],>_scaleFactor
+ 00B6 5100              mov A,[_scaleFactor]
+ 00B8 08                push A
+ 00B9 5101              mov A,[_scaleFactor+1]
+ 00BB 08                push A
+ 00BC 5102              mov A,[_scaleFactor+2]
+ 00BE 08                push A
+ 00BF 5103              mov A,[_scaleFactor+3]
+ 00C1 08                push A
+ 00C2 62D000            mov REG[0xd0],>__r0
+ 00C5 7C0000            xcall __fpmul
+ 00C8 18                pop A
+ 00C9 5300              mov [__r3],A
+ 00CB 18                pop A
+ 00CC 5300              mov [__r2],A
+ 00CE 18                pop A
+ 00CF 5300              mov [__r1],A
+ 00D1 18                pop A
+ 00D2 38FC              add SP,-4
+ 00D4 08                push A
+ 00D5 5100              mov A,[__r1]
+ 00D7 08                push A
+ 00D8 5100              mov A,[__r2]
+ 00DA 08                push A
+ 00DB 5100              mov A,[__r3]
+ 00DD 08                push A
+ 00DE 5042              mov A,66
+ 00E0 08                push A
+ 00E1 50C8              mov A,-56
+ 00E3 08                push A
+ 00E4 5000              mov A,0
+ 00E6 08                push A
+ 00E7 08                push A
+ 00E8 7C0000            xcall __fpmul
+ 00EB 18                pop A
+ 00EC 5300              mov [__r3],A
+ 00EE 18                pop A
+ 00EF 5300              mov [__r2],A
+ 00F1 18                pop A
+ 00F2 5300              mov [__r1],A
+ 00F4 18                pop A
+ 00F5 5300              mov [__r0],A
+ 00F7 38FC              add SP,-4
+ 00F9 503D              mov A,61
+ 00FB 08                push A
+ 00FC 504C              mov A,76
+ 00FE 08                push A
+ 00FF 50CC              mov A,-52
+ 0101 08                push A
+ 0102 50CD              mov A,-51
+ 0104 08                push A
+ 0105 5100              mov A,[__r0]
+ 0107 08                push A
+ 0108 5100              mov A,[__r1]
+ 010A 08                push A
+ 010B 5100              mov A,[__r2]
+ 010D 08                push A
+ 010E 5100              mov A,[__r3]
+ 0110 08                push A
+ 0111 7C0000            xcall __fpadd
+ 0114 18                pop A
+ 0115 62D000            mov REG[0xd0],>_voltageIn
+ 0118 5303              mov [_voltageIn+3],A
+ 011A 18                pop A
+ 011B 5302              mov [_voltageIn+2],A
+ 011D 18                pop A
+ 011E 5301              mov [_voltageIn+1],A
+ 0120 18                pop A
+ 0121 5300              mov [_voltageIn],A
+ 0123 38FC              add SP,-4
+ 0125                   .dbline 63
+ 0125           ;               
+ 0125           ;               voltageValuep = ftoa(voltageIn, &iStatus);
+ 0125 5000              mov A,>_iStatus
+ 0127 08                push A
+ 0128 5000              mov A,<_iStatus
+ 012A 08                push A
+ 012B 5100              mov A,[_voltageIn]
+ 012D 08                push A
+ 012E 5101              mov A,[_voltageIn+1]
+ 0130 08                push A
+ 0131 5102              mov A,[_voltageIn+2]
+ 0133 08                push A
+ 0134 5103              mov A,[_voltageIn+3]
+ 0136 08                push A
+ 0137 7C0000            xcall _ftoa
+ 013A 38FA              add SP,-6
+ 013C 62D000            mov REG[0xd0],>__r0
+ 013F 5100              mov A,[__r1]
+ 0141 08                push A
+ 0142 5100              mov A,[__r0]
+ 0144 62D000            mov REG[0xd0],>_voltageValuep
+ 0147 5300              mov [_voltageValuep],A
+ 0149 18                pop A
+ 014A 5301              mov [_voltageValuep+1],A
+ 014C                   .dbline 69
+ 014C           ;               
+ 014C           ;               //tempValue = (int)&voltageValuep*100;
+ 014C           ;               
+ 014C           ; //            utoa(tempValuep,tempValue,10);
+ 014C           ;         
+ 014C           ;               clearScreen();
+ 014C 90F6              xcall _clearScreen
+ 014E                   .dbline 70
+ 014E           ;               LCD_Position(0,0);                                      // Set LCD position to row 1 column 0
+ 014E 10                push X
+ 014F 5000              mov A,0
+ 0151 5700              mov X,0
+ 0153 7C0000            xcall _LCD_Position
+ 0156                   .dbline 72
+ 0156           ;               
+ 0156           ;               LCD_PrString(voltageValuep);                            // Print voltage value on LCD
+ 0156 62D000            mov REG[0xd0],>_voltageValuep
+ 0159 5100              mov A,[_voltageValuep]
+ 015B 08                push A
+ 015C 5101              mov A,[_voltageValuep+1]
+ 015E 5C                mov X,A
+ 015F 18                pop A
+ 0160 7C0000            xcall _LCD_PrString
+ 0163 20                pop X
+ 0164                   .dbline 74
+ 0164           ;               //LCD_PrString(Degree);
+ 0164           ;               if ((voltageIn<100)&&(voltageIn>10))
+ 0164 62D000            mov REG[0xd0],>_voltageIn
+ 0167 5042              mov A,66
+ 0169 08                push A
+ 016A 50C8              mov A,-56
+ 016C 08                push A
+ 016D 5000              mov A,0
+ 016F 08                push A
+ 0170 08                push A
+ 0171 5100              mov A,[_voltageIn]
+ 0173 08                push A
+ 0174 5101              mov A,[_voltageIn+1]
+ 0176 08                push A
+ 0177 5102              mov A,[_voltageIn+2]
+ 0179 08                push A
+ 017A 5103              mov A,[_voltageIn+3]
+ 017C 08                push A
+ 017D 62D000            mov REG[0xd0],>__r0
+ 0180 7C0000            xcall __fpcmp
+ 0183 38F8              add SP,-8
+ 0185 3900              cmp A,0
+ 0187 A048              jz L8
+ 0189 3901              cmp A,1
+ 018B A044              jz L8
+ 018D 62D000            mov REG[0xd0],>_voltageIn
+ 0190 5041              mov A,65
+ 0192 08                push A
+ 0193 5020              mov A,32
+ 0195 08                push A
+ 0196 5000              mov A,0
+ 0198 08                push A
+ 0199 08                push A
+ 019A 5100              mov A,[_voltageIn]
+ 019C 08                push A
+ 019D 5101              mov A,[_voltageIn+1]
+ 019F 08                push A
+ 01A0 5102              mov A,[_voltageIn+2]
+ 01A2 08                push A
+ 01A3 5103              mov A,[_voltageIn+3]
+ 01A5 08                push A
+ 01A6 62D000            mov REG[0xd0],>__r0
+ 01A9 7C0000            xcall __fpcmp
+ 01AC 38F8              add SP,-8
+ 01AE 3900              cmp A,0
+ 01B0 A01F              jz L8
+ 01B2 3901              cmp A,1
+ 01B4 B01B              jnz L8
+ 01B6                   .dbline 76
+ 01B6           ;               {
+ 01B6           ;                       LCD_Position(0,4);
+ 01B6                   .dbline 76
+ 01B6 10                push X
+ 01B7 5704              mov X,4
+ 01B9 5000              mov A,0
+ 01BB 7C0000            xcall _LCD_Position
+ 01BE                   .dbline 77
+ 01BE           ;                       LCD_WriteData(0xDF);
+ 01BE 50DF              mov A,-33
+ 01C0 7C0000            xcall _LCD_WriteData
+ 01C3                   .dbline 78
+ 01C3           ;                       LCD_PrCString("F            ");
+ 01C3 5011              mov A,>L10
+ 01C5 08                push A
+ 01C6 5011              mov A,<L10
+ 01C8 5C                mov X,A
+ 01C9 18                pop A
+ 01CA 7C0000            xcall _LCD_PrCString
+ 01CD 20                pop X
+ 01CE                   .dbline 79
+ 01CE           ;               }
+ 01CE 805C              xjmp L9
+ 01D0           L8:
+ 01D0                   .dbline 80
+ 01D0           ;               else if(voltageIn>100)  
+ 01D0 62D000            mov REG[0xd0],>_voltageIn
+ 01D3 5042              mov A,66
+ 01D5 08                push A
+ 01D6 50C8              mov A,-56
+ 01D8 08                push A
+ 01D9 5000              mov A,0
+ 01DB 08                push A
+ 01DC 08                push A
+ 01DD 5100              mov A,[_voltageIn]
+ 01DF 08                push A
+ 01E0 5101              mov A,[_voltageIn+1]
+ 01E2 08                push A
+ 01E3 5102              mov A,[_voltageIn+2]
+ 01E5 08                push A
+ 01E6 5103              mov A,[_voltageIn+3]
+ 01E8 08                push A
+ 01E9 62D000            mov REG[0xd0],>__r0
+ 01EC 7C0000            xcall __fpcmp
+ 01EF 38F8              add SP,-8
+ 01F1 3900              cmp A,0
+ 01F3 A01F              jz L11
+ 01F5 3901              cmp A,1
+ 01F7 B01B              jnz L11
+ 01F9                   .dbline 82
+ 01F9           ;               {
+ 01F9           ;                       LCD_Position(0,5);
+ 01F9                   .dbline 82
+ 01F9 10                push X
+ 01FA 5705              mov X,5
+ 01FC 5000              mov A,0
+ 01FE 7C0000            xcall _LCD_Position
+ 0201                   .dbline 83
+ 0201           ;                       LCD_WriteData(0xDF);
+ 0201 50DF              mov A,-33
+ 0203 7C0000            xcall _LCD_WriteData
+ 0206                   .dbline 84
+ 0206           ;                       LCD_PrCString("F            ");
+ 0206 5011              mov A,>L10
+ 0208 08                push A
+ 0209 5011              mov A,<L10
+ 020B 5C                mov X,A
+ 020C 18                pop A
+ 020D 7C0000            xcall _LCD_PrCString
+ 0210 20                pop X
+ 0211                   .dbline 85
+ 0211           ;               }else {
+ 0211 8019              xjmp L12
+ 0213           L11:
+ 0213                   .dbline 85
+ 0213                   .dbline 86
+ 0213           ;                       LCD_Position(0,3);
+ 0213 10                push X
+ 0214 5703              mov X,3
+ 0216 5000              mov A,0
+ 0218 7C0000            xcall _LCD_Position
+ 021B                   .dbline 87
+ 021B           ;                       LCD_WriteData(0xDF);
+ 021B 50DF              mov A,-33
+ 021D 7C0000            xcall _LCD_WriteData
+ 0220                   .dbline 88
+ 0220           ;                       LCD_PrCString("F            ");
+ 0220 5011              mov A,>L10
+ 0222 08                push A
+ 0223 5011              mov A,<L10
+ 0225 5C                mov X,A
+ 0226 18                pop A
+ 0227 7C0000            xcall _LCD_PrCString
+ 022A 20                pop X
+ 022B                   .dbline 89
+ 022B           ;               }
+ 022B           L12:
+ 022B           L9:
+ 022B                   .dbline 96
+ 022B           ;               
+ 022B           ;               
+ 022B           ; //            LCD_Position(0,0);             
+ 022B           ; //            LCD_PrHexInt(tempValue);
+ 022B           ; //            LCD_Position(1,0);  
+ 022B           ; //            LCD_PrString(tempValuep);
+ 022B           ;               LCD_Position(1,11);  
+ 022B 10                push X
+ 022C 570B              mov X,11
+ 022E 5001              mov A,1
+ 0230 7C0000            xcall _LCD_Position
+ 0233                   .dbline 97
+ 0233           ;               LCD_PrHexInt(count);
+ 0233 62D000            mov REG[0xd0],>_count
+ 0236 5100              mov A,[_count]
+ 0238 08                push A
+ 0239 5101              mov A,[_count+1]
+ 023B 20                pop X
+ 023C 7C0000            xcall _LCD_PrHexInt
+ 023F 20                pop X
+ 0240                   .dbline 102
+ 0240           ; //            LCD_Position(0,5); 
+ 0240           ; //            LCD_PrString(ftoa(tempValue,status));
+ 0240           ;       
+ 0240           ;       
+ 0240           ;       }       
+ 0240           L3:
+ 0240                   .dbline 47
+ 0240 8DF3              xjmp L2
+ 0242           X0:
+ 0242                   .dbline -2
+ 0242           L1:
+ 0242                   .dbline 0 ; func end
+ 0242 8FFF              jmp .
+ 0244                   .dbend
+ 0244                   .dbfunc e clearScreen _clearScreen fV
+ 0244           _clearScreen::
+ 0244                   .dbline -1
+ 0244                   .dbline 105
+ 0244           ; }
+ 0244           ; 
+ 0244           ; void clearScreen(void){
+ 0244                   .dbline 107
+ 0244           ;       
+ 0244           ;       LCD_Position(0,0);  
+ 0244 10                push X
+ 0245 5000              mov A,0
+ 0247 5700              mov X,0
+ 0249 7C0000            xcall _LCD_Position
+ 024C                   .dbline 108
+ 024C           ;       LCD_PrCString("                "); 
+ 024C 5000              mov A,>L14
+ 024E 08                push A
+ 024F 5000              mov A,<L14
+ 0251 5C                mov X,A
+ 0252 18                pop A
+ 0253 7C0000            xcall _LCD_PrCString
+ 0256                   .dbline 109
+ 0256           ;       LCD_Position(1,0);  
+ 0256 5700              mov X,0
+ 0258 5001              mov A,1
+ 025A 7C0000            xcall _LCD_Position
+ 025D                   .dbline 110
+ 025D           ;       LCD_PrCString("                ");
+ 025D 5000              mov A,>L14
+ 025F 08                push A
+ 0260 5000              mov A,<L14
+ 0262 5C                mov X,A
+ 0263 18                pop A
+ 0264 7C0000            xcall _LCD_PrCString
+ 0267 20                pop X
+ 0268                   .dbline -2
+ 0268           L13:
+ 0268                   .dbline 0 ; func end
+ 0268 7F                ret
+ 0269                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _scaleFactor::
+ 0000 00000000          .byte 0,0,0,0
+ 0004                   .dbsym e scaleFactor _scaleFactor D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _iStatus::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e iStatus _iStatus I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _j::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e j _j I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _i::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e i _i I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _status::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e status _status pI
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _voltageIn::
+ 0000 00000000          .byte 0,0,0,0
+ 0004                   .dbsym e voltageIn _voltageIn D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _Degree::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e Degree _Degree pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\LAB9_E~1\LAB9_E~1\main.c
+ 0000           _sampleIn::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e sampleIn _sampleIn I
+                        .area lit(rom, con, rel, lit)
+ 0000           L14:
+ 0000 20202020202020202020202020202020  .byte 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32
+ 0010 00                .byte 0
+ 0011           L10:
+ 0011 4620202020202020202020202000      .byte 'F,32,32,32,32,32,32,32,32,32,32,32,32,0

@@ -1,0 +1,6 @@
+flash  F7E SRAM    C:
+ 00 235 bytes
+flash  F82 SRAM  100:
+ 00 8 bytes
+flash  F86 SRAM  10D:
+ 00 19 bytes

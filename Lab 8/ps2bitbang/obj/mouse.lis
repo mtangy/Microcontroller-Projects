@@ -1,0 +1,1172 @@
+ 0000                   cpu LMM
+                        .module mouse.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./mouse.c
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000                   .dbfunc e MouseInit _MouseInit fV
+ 0000           _MouseInit::
+ 0000                   .dbline -1
+ 0000                   .dbline 18
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // XXX - Create the comments for this.
+ 0000           ; //
+ 0000           ; // B. Noble - 18 October 2010
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; #include "PSoCGPIOINT.h"
+ 0000           ; #include "ps2.h"
+ 0000           ; #include "mouse.h"
+ 0000           ; 
+ 0000           ; extern BYTE PS2RxBuffer[];
+ 0000           ; extern BYTE PS2RxBufIn;
+ 0000           ; extern BYTE PS2RxBufOut;
+ 0000           ; 
+ 0000           ; void MouseInit(void)
+ 0000           ; {
+ 0000                   .dbline 21
+ 0000           ;       //// Mouse init stuff
+ 0000           ;       //// XXX - Document these!
+ 0000           ;       PS2_Send_Command_Process_Response(0xF3);
+ 0000 50F3              mov A,-13
+ 0002 08                push A
+ 0003 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0006 62D000            mov REG[0xd0],>__r0
+ 0009                   .dbline 22
+ 0009           ;       PS2_Send_Command_Process_Response(0x0A);
+ 0009 500A              mov A,10
+ 000B 08                push A
+ 000C 7C0000            xcall _PS2_Send_Command_Process_Response
+ 000F 38FE              add SP,-2
+ 0011 62D000            mov REG[0xd0],>__r0
+ 0014                   .dbline 23
+ 0014           ;       PS2_Send_Command_Process_Response(0xE8);
+ 0014 50E8              mov A,-24
+ 0016 08                push A
+ 0017 7C0000            xcall _PS2_Send_Command_Process_Response
+ 001A 62D000            mov REG[0xd0],>__r0
+ 001D                   .dbline 24
+ 001D           ;       PS2_Send_Command_Process_Response(0x03);
+ 001D 5003              mov A,3
+ 001F 08                push A
+ 0020 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0023 38FE              add SP,-2
+ 0025 62D000            mov REG[0xd0],>__r0
+ 0028                   .dbline 25
+ 0028           ;       PS2_Send_Command_Process_Response(0xE6);
+ 0028 50E6              mov A,-26
+ 002A 08                push A
+ 002B 7C0000            xcall _PS2_Send_Command_Process_Response
+ 002E 62D000            mov REG[0xd0],>__r0
+ 0031                   .dbline 26
+ 0031           ;       PS2_Send_Command_Process_Response(0xF4);
+ 0031 50F4              mov A,-12
+ 0033 08                push A
+ 0034 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0037 38FE              add SP,-2
+ 0039 62D000            mov REG[0xd0],>__r0
+ 003C                   .dbline -2
+ 003C           L1:
+ 003C                   .dbline 0 ; func end
+ 003C 7F                ret
+ 003D                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000           L3:
+ 0000 0000              .word 0
+                        .area text(rom, con, rel)
+ 003D                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 003D                   .dbfunc e MousePrintRawData _MousePrintRawData fV
+ 003D                   .dbsym s i L3 I
+ 003D           ;       scancode -> X+0
+ 003D           _MousePrintRawData::
+ 003D                   .dbline -1
+ 003D 10                push X
+ 003E 4F                mov X,SP
+ 003F 3801              add SP,1
+ 0041                   .dbline 30
+ 0041           ; }
+ 0041           ; 
+ 0041           ; void MousePrintRawData(void)
+ 0041           ; {
+ 0041           L4:
+ 0041                   .dbline 34
+ 0041           ;       BYTE scancode;
+ 0041           ;       static int i = 0;
+ 0041           ; 
+ 0041           ;       while(PS2RxBufOut == PS2RxBufIn); // Spin until we get data
+ 0041           L5:
+ 0041                   .dbline 34
+ 0041 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0044 5100              mov A,[_PS2RxBufOut]
+ 0046 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0049 3A00              cmp A,[_PS2RxBufIn]
+ 004B AFF5              jz L4
+ 004D                   .dbline 35
+ 004D           ;       scancode = PS2RxBuffer[PS2RxBufOut];
+ 004D 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0050 5100              mov A,[_PS2RxBufOut]
+ 0052 62D000            mov REG[0xd0],>__r0
+ 0055 5300              mov [__r1],A
+ 0057 550000            mov [__r0],0
+ 005A 060000            add [__r1],<_PS2RxBuffer
+ 005D 0E0000            adc [__r0],>_PS2RxBuffer
+ 0060 5100              mov A,[__r0]
+ 0062 60D4              mov REG[0xd4],A
+ 0064 3E00              mvi A,[__r1]
+ 0066 5400              mov [X+0],A
+ 0068                   .dbline 36
+ 0068           ;       PS2RxBufOut++;
+ 0068 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 006B 7600              inc [_PS2RxBufOut]
+ 006D                   .dbline 38
+ 006D           ;       // Wrap around the circular buffer pointer at 16 
+ 006D           ;       if (PS2RxBufOut & 0x10) PS2RxBufOut = 0;
+ 006D 470010            tst [_PS2RxBufOut],16
+ 0070 A004              jz L7
+ 0072                   .dbline 38
+ 0072 550000            mov [_PS2RxBufOut],0
+ 0075           L7:
+ 0075                   .dbline 40
+ 0075           ;       // If Bit 3 isn't set, then this isn't Byte 1
+ 0075           ;       if ((i==0)&&(!(scancode & 0x08))) return;
+ 0075 62D000            mov REG[0xd0],>L3
+ 0078 3C0000            cmp [L3],0
+ 007B B00D              jnz L9
+ 007D 3C0100            cmp [L3+1],0
+ 0080 B008              jnz L9
+ 0082           X0:
+ 0082 480008            tst [X+0],8
+ 0085 B003              jnz L9
+ 0087                   .dbline 40
+ 0087 805F              xjmp L2
+ 0089           L9:
+ 0089                   .dbline 41
+ 0089           ;       LCD_Position(1,i);
+ 0089 62D000            mov REG[0xd0],>L3
+ 008C 5101              mov A,[L3+1]
+ 008E 62D000            mov REG[0xd0],>__r0
+ 0091 10                push X
+ 0092 08                push A
+ 0093 5001              mov A,1
+ 0095 20                pop X
+ 0096 7C0000            xcall _LCD_Position
+ 0099 20                pop X
+ 009A                   .dbline 42
+ 009A           ;       LCD_PrHexByte(scancode);
+ 009A 10                push X
+ 009B 5200              mov A,[X+0]
+ 009D 7C0000            xcall _LCD_PrHexByte
+ 00A0 20                pop X
+ 00A1                   .dbline 43
+ 00A1           ;       if (i==0) i=3;
+ 00A1 62D000            mov REG[0xd0],>L3
+ 00A4 3C0000            cmp [L3],0
+ 00A7 B011              jnz L11
+ 00A9 3C0100            cmp [L3+1],0
+ 00AC B00C              jnz L11
+ 00AE           X1:
+ 00AE                   .dbline 43
+ 00AE 62D000            mov REG[0xd0],>L3
+ 00B1 550103            mov [L3+1],3
+ 00B4 550000            mov [L3],0
+ 00B7 802F              xjmp L2
+ 00B9           L11:
+ 00B9                   .dbline 44
+ 00B9           ;       else if (i==3) i=6;
+ 00B9 62D000            mov REG[0xd0],>L3
+ 00BC 3C0000            cmp [L3],0
+ 00BF B011              jnz L13
+ 00C1 3C0103            cmp [L3+1],3
+ 00C4 B00C              jnz L13
+ 00C6           X2:
+ 00C6                   .dbline 44
+ 00C6 62D000            mov REG[0xd0],>L3
+ 00C9 550106            mov [L3+1],6
+ 00CC 550000            mov [L3],0
+ 00CF 8017              xjmp L2
+ 00D1           L13:
+ 00D1                   .dbline 45
+ 00D1           ;       else if (i==6) i=0;
+ 00D1 62D000            mov REG[0xd0],>L3
+ 00D4 3C0000            cmp [L3],0
+ 00D7 B00F              jnz L2
+ 00D9 3C0106            cmp [L3+1],6
+ 00DC B00A              jnz L2
+ 00DE           X3:
+ 00DE                   .dbline 45
+ 00DE 62D000            mov REG[0xd0],>L3
+ 00E1 550100            mov [L3+1],0
+ 00E4 550000            mov [L3],0
+ 00E7                   .dbline 46
+ 00E7           ;       return;
+ 00E7                   .dbline -2
+ 00E7           L2:
+ 00E7 38FF              add SP,-1
+ 00E9 20                pop X
+ 00EA                   .dbline 0 ; func end
+ 00EA 7F                ret
+ 00EB                   .dbsym l scancode 0 c
+ 00EB                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000           L18:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000           L19:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000           L20:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000           L21:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000           L22:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 0000           L23:
+ 0000 00                .byte 0
+                        .area text(rom, con, rel)
+ 00EB                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\mouse.c
+ 00EB                   .dbfunc e MouseCursor _MouseCursor fV
+ 00EB                   .dbsym s yopos L23 c
+ 00EB                   .dbsym s xopos L22 c
+ 00EB                   .dbsym s ypos L21 c
+ 00EB                   .dbsym s xpos L20 c
+ 00EB                   .dbsym s ycount L19 I
+ 00EB                   .dbsym s xcount L18 I
+ 00EB           ;            xov -> X+10
+ 00EB           ;            yov -> X+9
+ 00EB           ;           mbtn -> X+8
+ 00EB           ;          xsign -> X+7
+ 00EB           ;          ysign -> X+6
+ 00EB           ;           lbtn -> X+5
+ 00EB           ;           rbtn -> X+4
+ 00EB           ;          ystep -> X+3
+ 00EB           ;          xstep -> X+2
+ 00EB           ;       scancode -> X+1
+ 00EB           ;              i -> X+0
+ 00EB           _MouseCursor::
+ 00EB                   .dbline -1
+ 00EB 10                push X
+ 00EC 4F                mov X,SP
+ 00ED 380B              add SP,11
+ 00EF                   .dbline 50
+ 00EF           ; }
+ 00EF           ; 
+ 00EF           ; void MouseCursor(void)
+ 00EF           ; {
+ 00EF                   .dbline 60
+ 00EF           ;       signed char i;
+ 00EF           ;       BYTE scancode;
+ 00EF           ;       BYTE yov;
+ 00EF           ;       BYTE xov;
+ 00EF           ;       BYTE ysign;
+ 00EF           ;       BYTE xsign;
+ 00EF           ;       BYTE mbtn;
+ 00EF           ;       BYTE rbtn;
+ 00EF           ;       BYTE lbtn;
+ 00EF           ;       BYTE xstep = 0;
+ 00EF 560200            mov [X+2],0
+ 00F2                   .dbline 61
+ 00F2           ;       BYTE ystep = 0;
+ 00F2 560300            mov [X+3],0
+ 00F5           L24:
+ 00F5                   .dbline 70
+ 00F5           ;       static int xcount = 0;
+ 00F5           ;       static int ycount = 0;
+ 00F5           ;       static BYTE xpos = 0;
+ 00F5           ;       static BYTE ypos = 0;
+ 00F5           ;       static BYTE xopos = 0;
+ 00F5           ;       static BYTE yopos = 0;
+ 00F5           ; 
+ 00F5           ;       //// Byte 1 - X&Y overflow, X&Y sign, and 3-button data
+ 00F5           ;       while(PS2RxBufOut == PS2RxBufIn); // Spin until we get data
+ 00F5           L25:
+ 00F5                   .dbline 70
+ 00F5 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 00F8 5100              mov A,[_PS2RxBufOut]
+ 00FA 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 00FD 3A00              cmp A,[_PS2RxBufIn]
+ 00FF AFF5              jz L24
+ 0101                   .dbline 71
+ 0101           ;       scancode = PS2RxBuffer[PS2RxBufOut];
+ 0101 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0104 5100              mov A,[_PS2RxBufOut]
+ 0106 62D000            mov REG[0xd0],>__r0
+ 0109 5300              mov [__r1],A
+ 010B 550000            mov [__r0],0
+ 010E 060000            add [__r1],<_PS2RxBuffer
+ 0111 0E0000            adc [__r0],>_PS2RxBuffer
+ 0114 5100              mov A,[__r0]
+ 0116 60D4              mov REG[0xd4],A
+ 0118 3E00              mvi A,[__r1]
+ 011A 5401              mov [X+1],A
+ 011C                   .dbline 72
+ 011C           ;       PS2RxBufOut++;
+ 011C 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 011F 7600              inc [_PS2RxBufOut]
+ 0121                   .dbline 74
+ 0121           ;       // Wrap around the circular buffer pointer at 16
+ 0121           ;       if (PS2RxBufOut & 0x10) PS2RxBufOut = 0;
+ 0121 470010            tst [_PS2RxBufOut],16
+ 0124 A004              jz L27
+ 0126                   .dbline 74
+ 0126 550000            mov [_PS2RxBufOut],0
+ 0129           L27:
+ 0129                   .dbline 76
+ 0129           ;       //// If Bit 3 isn't set, then this isn't Byte 1
+ 0129           ;       if (!(scancode & 0x08)) return;
+ 0129 480108            tst [X+1],8
+ 012C B003              jnz L29
+ 012E                   .dbline 76
+ 012E 847D              xjmp L17
+ 0130           L29:
+ 0130                   .dbline 77
+ 0130           ;       yov = (scancode & 0x80) >> 7;
+ 0130 62D000            mov REG[0xd0],>__r0
+ 0133 5201              mov A,[X+1]
+ 0135 2180              and A,-128
+ 0137 67                asr A
+ 0138 67                asr A
+ 0139 67                asr A
+ 013A 67                asr A
+ 013B 67                asr A
+ 013C 67                asr A
+ 013D 67                asr A
+ 013E 2101              and A,1
+ 0140 5409              mov [X+9],A
+ 0142                   .dbline 78
+ 0142           ;       xov = (scancode & 0x40) >> 6;
+ 0142 5201              mov A,[X+1]
+ 0144 2140              and A,64
+ 0146 67                asr A
+ 0147 67                asr A
+ 0148 67                asr A
+ 0149 67                asr A
+ 014A 67                asr A
+ 014B 67                asr A
+ 014C 2103              and A,3
+ 014E 540A              mov [X+10],A
+ 0150                   .dbline 79
+ 0150           ;       ysign = (scancode & 0x20) >> 5;
+ 0150 5201              mov A,[X+1]
+ 0152 2120              and A,32
+ 0154 67                asr A
+ 0155 67                asr A
+ 0156 67                asr A
+ 0157 67                asr A
+ 0158 67                asr A
+ 0159 2107              and A,7
+ 015B 5406              mov [X+6],A
+ 015D                   .dbline 80
+ 015D           ;       xsign = (scancode & 0x10) >> 4;
+ 015D 5201              mov A,[X+1]
+ 015F 2110              and A,16
+ 0161 67                asr A
+ 0162 67                asr A
+ 0163 67                asr A
+ 0164 67                asr A
+ 0165 210F              and A,15
+ 0167 5407              mov [X+7],A
+ 0169                   .dbline 81
+ 0169           ;       mbtn = (scancode & 0x04) >> 2;
+ 0169 5201              mov A,[X+1]
+ 016B 2104              and A,4
+ 016D 5300              mov [__r0],A
+ 016F 6800              asr [__r0]
+ 0171 6800              asr [__r0]
+ 0173 26003F            and [__r0],63
+ 0176 5100              mov A,[__r0]
+ 0178 5408              mov [X+8],A
+ 017A                   .dbline 82
+ 017A           ;       rbtn = (scancode & 0x02) >> 1;
+ 017A 5201              mov A,[X+1]
+ 017C 2102              and A,2
+ 017E 5300              mov [__r0],A
+ 0180 70FB              and F,-5
+ 0182 6E00              rrc [__r0]
+ 0184 5100              mov A,[__r0]
+ 0186 5404              mov [X+4],A
+ 0188                   .dbline 83
+ 0188           ;       lbtn = (scancode & 0x01);
+ 0188 5201              mov A,[X+1]
+ 018A 2101              and A,1
+ 018C 5405              mov [X+5],A
+ 018E           L31:
+ 018E                   .dbline 85
+ 018E           ;       //// Byte 2 - X Movement
+ 018E           ;       while(PS2RxBufOut == PS2RxBufIn); // Spin until we get data
+ 018E           L32:
+ 018E                   .dbline 85
+ 018E 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0191 5100              mov A,[_PS2RxBufOut]
+ 0193 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0196 3A00              cmp A,[_PS2RxBufIn]
+ 0198 AFF5              jz L31
+ 019A                   .dbline 86
+ 019A           ;       scancode = PS2RxBuffer[PS2RxBufOut];
+ 019A 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 019D 5100              mov A,[_PS2RxBufOut]
+ 019F 62D000            mov REG[0xd0],>__r0
+ 01A2 5300              mov [__r1],A
+ 01A4 550000            mov [__r0],0
+ 01A7 060000            add [__r1],<_PS2RxBuffer
+ 01AA 0E0000            adc [__r0],>_PS2RxBuffer
+ 01AD 5100              mov A,[__r0]
+ 01AF 60D4              mov REG[0xd4],A
+ 01B1 3E00              mvi A,[__r1]
+ 01B3 5401              mov [X+1],A
+ 01B5                   .dbline 87
+ 01B5           ;       PS2RxBufOut++;
+ 01B5 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 01B8 7600              inc [_PS2RxBufOut]
+ 01BA                   .dbline 89
+ 01BA           ;       // Wrap around the circular buffer pointer at 16 
+ 01BA           ;       if (PS2RxBufOut & 0x10) PS2RxBufOut = 0;
+ 01BA 470010            tst [_PS2RxBufOut],16
+ 01BD A004              jz L34
+ 01BF                   .dbline 89
+ 01BF 550000            mov [_PS2RxBufOut],0
+ 01C2           L34:
+ 01C2                   .dbline 91
+ 01C2           ;       // Update the X counts
+ 01C2           ;       if (xsign) { // Negative
+ 01C2 3D0700            cmp [X+7],0
+ 01C5 A051              jz L36
+ 01C7                   .dbline 92
+ 01C7           ;               xstep = (~scancode)+1; // Make the 2s-complement negative a positive
+ 01C7                   .dbline 92
+ 01C7 62D000            mov REG[0xd0],>__r0
+ 01CA 5201              mov A,[X+1]
+ 01CC 73                cpl A
+ 01CD 0101              add A,1
+ 01CF 5402              mov [X+2],A
+ 01D1                   .dbline 93
+ 01D1           ;               if (xcount - xstep > 0) xcount -= xstep;
+ 01D1 5202              mov A,[X+2]
+ 01D3 5300              mov [__r1],A
+ 01D5 550000            mov [__r0],0
+ 01D8 62D000            mov REG[0xd0],>L18
+ 01DB 5101              mov A,[L18+1]
+ 01DD 62D000            mov REG[0xd0],>__r0
+ 01E0 1200              sub A,[__r1]
+ 01E2 5300              mov [__r1],A
+ 01E4 62D000            mov REG[0xd0],>L18
+ 01E7 5100              mov A,[L18]
+ 01E9 62D000            mov REG[0xd0],>__r0
+ 01EC 1A00              sbb A,[__r0]
+ 01EE 5300              mov [__r0],A
+ 01F0 5000              mov A,0
+ 01F2 1200              sub A,[__r1]
+ 01F4 5100              mov A,[__r0]
+ 01F6 3180              xor A,-128
+ 01F8 5300              mov [__rX],A
+ 01FA 5080              mov A,(0 ^ 0x80)
+ 01FC 1A00              sbb A,[__rX]
+ 01FE D00D              jnc L38
+ 0200           X4:
+ 0200                   .dbline 93
+ 0200 5202              mov A,[X+2]
+ 0202 62D000            mov REG[0xd0],>L18
+ 0205 1401              sub [L18+1],A
+ 0207 1E0000            sbb [L18],0
+ 020A 8053              xjmp L43
+ 020C           L38:
+ 020C                   .dbline 94
+ 020C           ;               else xcount = 0;
+ 020C 62D000            mov REG[0xd0],>L18
+ 020F 550100            mov [L18+1],0
+ 0212 550000            mov [L18],0
+ 0215                   .dbline 95
+ 0215           ;       }
+ 0215 8048              xjmp L43
+ 0217           L36:
+ 0217                   .dbline 96
+ 0217           ;       else {
+ 0217                   .dbline 97
+ 0217           ;               xstep = scancode;
+ 0217 5201              mov A,[X+1]
+ 0219 5402              mov [X+2],A
+ 021B                   .dbline 98
+ 021B           ;               if (xcount + xstep < 0x01FF) xcount += xstep;
+ 021B 62D000            mov REG[0xd0],>__r0
+ 021E 5202              mov A,[X+2]
+ 0220 5300              mov [__r1],A
+ 0222 550000            mov [__r0],0
+ 0225 62D000            mov REG[0xd0],>L18
+ 0228 5101              mov A,[L18+1]
+ 022A 62D000            mov REG[0xd0],>__r0
+ 022D 0200              add A,[__r1]
+ 022F 5300              mov [__r1],A
+ 0231 62D000            mov REG[0xd0],>L18
+ 0234 5100              mov A,[L18]
+ 0236 62D000            mov REG[0xd0],>__r0
+ 0239 0A00              adc A,[__r0]
+ 023B 5300              mov [__r0],A
+ 023D 5100              mov A,[__r1]
+ 023F 11FF              sub A,-1
+ 0241 5100              mov A,[__r0]
+ 0243 3180              xor A,-128
+ 0245 1981              sbb A,(1 ^ 0x80)
+ 0247 D00D              jnc L40
+ 0249           X5:
+ 0249                   .dbline 98
+ 0249 5202              mov A,[X+2]
+ 024B 62D000            mov REG[0xd0],>L18
+ 024E 0401              add [L18+1],A
+ 0250 0E0000            adc [L18],0
+ 0253 800A              xjmp L43
+ 0255           L40:
+ 0255                   .dbline 99
+ 0255           ;               else xcount = 0x01FF;
+ 0255 62D000            mov REG[0xd0],>L18
+ 0258 5501FF            mov [L18+1],-1
+ 025B 550001            mov [L18],1
+ 025E                   .dbline 100
+ 025E           ;       }
+ 025E           L42:
+ 025E                   .dbline 102
+ 025E           ;       //// Byte 3 - Y Movement
+ 025E           ;       while(PS2RxBufOut == PS2RxBufIn); // Spin until we get data
+ 025E           L43:
+ 025E                   .dbline 102
+ 025E 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0261 5100              mov A,[_PS2RxBufOut]
+ 0263 62D000            mov REG[0xd0],>_PS2RxBufIn
+ 0266 3A00              cmp A,[_PS2RxBufIn]
+ 0268 AFF5              jz L42
+ 026A                   .dbline 103
+ 026A           ;       scancode = PS2RxBuffer[PS2RxBufOut];
+ 026A 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 026D 5100              mov A,[_PS2RxBufOut]
+ 026F 62D000            mov REG[0xd0],>__r0
+ 0272 5300              mov [__r1],A
+ 0274 550000            mov [__r0],0
+ 0277 060000            add [__r1],<_PS2RxBuffer
+ 027A 0E0000            adc [__r0],>_PS2RxBuffer
+ 027D 5100              mov A,[__r0]
+ 027F 60D4              mov REG[0xd4],A
+ 0281 3E00              mvi A,[__r1]
+ 0283 5401              mov [X+1],A
+ 0285                   .dbline 104
+ 0285           ;       PS2RxBufOut++;
+ 0285 62D000            mov REG[0xd0],>_PS2RxBufOut
+ 0288 7600              inc [_PS2RxBufOut]
+ 028A                   .dbline 106
+ 028A           ;       // Wrap around the circular buffer pointer at 16 
+ 028A           ;       if (PS2RxBufOut & 0x10) PS2RxBufOut = 0;
+ 028A 470010            tst [_PS2RxBufOut],16
+ 028D A004              jz L45
+ 028F                   .dbline 106
+ 028F 550000            mov [_PS2RxBufOut],0
+ 0292           L45:
+ 0292                   .dbline 108
+ 0292           ;       // Update the Y counts
+ 0292           ;       if (ysign) { // Negative
+ 0292 3D0600            cmp [X+6],0
+ 0295 A051              jz L47
+ 0297                   .dbline 109
+ 0297           ;               ystep = (~scancode)+1; // Make the 2s-complement negative a positive
+ 0297                   .dbline 109
+ 0297 62D000            mov REG[0xd0],>__r0
+ 029A 5201              mov A,[X+1]
+ 029C 73                cpl A
+ 029D 0101              add A,1
+ 029F 5403              mov [X+3],A
+ 02A1                   .dbline 110
+ 02A1           ;               if (ycount - ystep > 0) ycount -= ystep;
+ 02A1 5203              mov A,[X+3]
+ 02A3 5300              mov [__r1],A
+ 02A5 550000            mov [__r0],0
+ 02A8 62D000            mov REG[0xd0],>L19
+ 02AB 5101              mov A,[L19+1]
+ 02AD 62D000            mov REG[0xd0],>__r0
+ 02B0 1200              sub A,[__r1]
+ 02B2 5300              mov [__r1],A
+ 02B4 62D000            mov REG[0xd0],>L19
+ 02B7 5100              mov A,[L19]
+ 02B9 62D000            mov REG[0xd0],>__r0
+ 02BC 1A00              sbb A,[__r0]
+ 02BE 5300              mov [__r0],A
+ 02C0 5000              mov A,0
+ 02C2 1200              sub A,[__r1]
+ 02C4 5100              mov A,[__r0]
+ 02C6 3180              xor A,-128
+ 02C8 5300              mov [__rX],A
+ 02CA 5080              mov A,(0 ^ 0x80)
+ 02CC 1A00              sbb A,[__rX]
+ 02CE D00D              jnc L49
+ 02D0           X6:
+ 02D0                   .dbline 110
+ 02D0 5203              mov A,[X+3]
+ 02D2 62D000            mov REG[0xd0],>L19
+ 02D5 1401              sub [L19+1],A
+ 02D7 1E0000            sbb [L19],0
+ 02DA 8053              xjmp L48
+ 02DC           L49:
+ 02DC                   .dbline 111
+ 02DC           ;               else ycount = 0;
+ 02DC 62D000            mov REG[0xd0],>L19
+ 02DF 550100            mov [L19+1],0
+ 02E2 550000            mov [L19],0
+ 02E5                   .dbline 112
+ 02E5           ;       }
+ 02E5 8048              xjmp L48
+ 02E7           L47:
+ 02E7                   .dbline 113
+ 02E7           ;       else {
+ 02E7                   .dbline 114
+ 02E7           ;               ystep = scancode;
+ 02E7 5201              mov A,[X+1]
+ 02E9 5403              mov [X+3],A
+ 02EB                   .dbline 115
+ 02EB           ;               if (ycount + ystep < 0x07FF) ycount += ystep;
+ 02EB 62D000            mov REG[0xd0],>__r0
+ 02EE 5203              mov A,[X+3]
+ 02F0 5300              mov [__r1],A
+ 02F2 550000            mov [__r0],0
+ 02F5 62D000            mov REG[0xd0],>L19
+ 02F8 5101              mov A,[L19+1]
+ 02FA 62D000            mov REG[0xd0],>__r0
+ 02FD 0200              add A,[__r1]
+ 02FF 5300              mov [__r1],A
+ 0301 62D000            mov REG[0xd0],>L19
+ 0304 5100              mov A,[L19]
+ 0306 62D000            mov REG[0xd0],>__r0
+ 0309 0A00              adc A,[__r0]
+ 030B 5300              mov [__r0],A
+ 030D 5100              mov A,[__r1]
+ 030F 11FF              sub A,-1
+ 0311 5100              mov A,[__r0]
+ 0313 3180              xor A,-128
+ 0315 1987              sbb A,(7 ^ 0x80)
+ 0317 D00D              jnc L51
+ 0319           X7:
+ 0319                   .dbline 115
+ 0319 5203              mov A,[X+3]
+ 031B 62D000            mov REG[0xd0],>L19
+ 031E 0401              add [L19+1],A
+ 0320 0E0000            adc [L19],0
+ 0323 800A              xjmp L52
+ 0325           L51:
+ 0325                   .dbline 116
+ 0325           ;               else ycount = 0x07FF;
+ 0325 62D000            mov REG[0xd0],>L19
+ 0328 5501FF            mov [L19+1],-1
+ 032B 550007            mov [L19],7
+ 032E           L52:
+ 032E                   .dbline 117
+ 032E           ;       }
+ 032E           L48:
+ 032E                   .dbline 119
+ 032E           ;       //// Print the buttons' status and the X and Y counts to the LCD
+ 032E           ;       LCD_Position(1,0);
+ 032E 10                push X
+ 032F 5700              mov X,0
+ 0331 5001              mov A,1
+ 0333 7C0000            xcall _LCD_Position
+ 0336 20                pop X
+ 0337                   .dbline 120
+ 0337           ;       if (lbtn) LCD_PrCString("L"); else LCD_PrCString(" ");
+ 0337 3D0500            cmp [X+5],0
+ 033A A00F              jz L53
+ 033C                   .dbline 120
+ 033C 10                push X
+ 033D 5010              mov A,>L55
+ 033F 08                push A
+ 0340 5010              mov A,<L55
+ 0342 5C                mov X,A
+ 0343 18                pop A
+ 0344 7C0000            xcall _LCD_PrCString
+ 0347 20                pop X
+ 0348 800D              xjmp L54
+ 034A           L53:
+ 034A                   .dbline 120
+ 034A 10                push X
+ 034B 500E              mov A,>L56
+ 034D 08                push A
+ 034E 500E              mov A,<L56
+ 0350 5C                mov X,A
+ 0351 18                pop A
+ 0352 7C0000            xcall _LCD_PrCString
+ 0355 20                pop X
+ 0356           L54:
+ 0356                   .dbline 121
+ 0356           ;       if (mbtn) LCD_PrCString("M"); else LCD_PrCString(" ");
+ 0356 3D0800            cmp [X+8],0
+ 0359 A00F              jz L57
+ 035B                   .dbline 121
+ 035B 10                push X
+ 035C 500C              mov A,>L59
+ 035E 08                push A
+ 035F 500C              mov A,<L59
+ 0361 5C                mov X,A
+ 0362 18                pop A
+ 0363 7C0000            xcall _LCD_PrCString
+ 0366 20                pop X
+ 0367 800D              xjmp L58
+ 0369           L57:
+ 0369                   .dbline 121
+ 0369 10                push X
+ 036A 500E              mov A,>L56
+ 036C 08                push A
+ 036D 500E              mov A,<L56
+ 036F 5C                mov X,A
+ 0370 18                pop A
+ 0371 7C0000            xcall _LCD_PrCString
+ 0374 20                pop X
+ 0375           L58:
+ 0375                   .dbline 122
+ 0375           ;       if (rbtn) LCD_PrCString("RX:"); else LCD_PrCString(" X:");
+ 0375 3D0400            cmp [X+4],0
+ 0378 A00F              jz L60
+ 037A                   .dbline 122
+ 037A 10                push X
+ 037B 5008              mov A,>L62
+ 037D 08                push A
+ 037E 5008              mov A,<L62
+ 0380 5C                mov X,A
+ 0381 18                pop A
+ 0382 7C0000            xcall _LCD_PrCString
+ 0385 20                pop X
+ 0386 800D              xjmp L61
+ 0388           L60:
+ 0388                   .dbline 122
+ 0388 10                push X
+ 0389 5004              mov A,>L63
+ 038B 08                push A
+ 038C 5004              mov A,<L63
+ 038E 5C                mov X,A
+ 038F 18                pop A
+ 0390 7C0000            xcall _LCD_PrCString
+ 0393 20                pop X
+ 0394           L61:
+ 0394                   .dbline 123
+ 0394           ;       LCD_PrHexInt(xcount);
+ 0394 10                push X
+ 0395 62D000            mov REG[0xd0],>L18
+ 0398 5100              mov A,[L18]
+ 039A 08                push A
+ 039B 5101              mov A,[L18+1]
+ 039D 20                pop X
+ 039E 7C0000            xcall _LCD_PrHexInt
+ 03A1                   .dbline 124
+ 03A1           ;       LCD_PrCString(" Y:");
+ 03A1 5000              mov A,>L64
+ 03A3 08                push A
+ 03A4 5000              mov A,<L64
+ 03A6 5C                mov X,A
+ 03A7 18                pop A
+ 03A8 7C0000            xcall _LCD_PrCString
+ 03AB                   .dbline 125
+ 03AB           ;       LCD_PrHexInt(ycount);
+ 03AB 62D000            mov REG[0xd0],>L19
+ 03AE 5100              mov A,[L19]
+ 03B0 08                push A
+ 03B1 5101              mov A,[L19+1]
+ 03B3 20                pop X
+ 03B4 7C0000            xcall _LCD_PrHexInt
+ 03B7 20                pop X
+ 03B8                   .dbline 127
+ 03B8           ;       //// Control the brightness of the PWM8LED with the Y-axis
+ 03B8           ;       yopos = ypos;
+ 03B8 62D000            mov REG[0xd0],>L21
+ 03BB 5100              mov A,[L21]
+ 03BD 62D000            mov REG[0xd0],>L23
+ 03C0 5300              mov [L23],A
+ 03C2                   .dbline 128
+ 03C2           ;       ypos = (BYTE)(ycount>>4);
+ 03C2 62D000            mov REG[0xd0],>L19
+ 03C5 5101              mov A,[L19+1]
+ 03C7 08                push A
+ 03C8 5100              mov A,[L19]
+ 03CA 62D000            mov REG[0xd0],>__r0
+ 03CD 5300              mov [__r0],A
+ 03CF 18                pop A
+ 03D0 5300              mov [__r1],A
+ 03D2 6800              asr [__r0]
+ 03D4 6E00              rrc [__r1]
+ 03D6 6800              asr [__r0]
+ 03D8 6E00              rrc [__r1]
+ 03DA 6800              asr [__r0]
+ 03DC 6E00              rrc [__r1]
+ 03DE 6800              asr [__r0]
+ 03E0 6E00              rrc [__r1]
+ 03E2 5100              mov A,[__r1]
+ 03E4 62D000            mov REG[0xd0],>L21
+ 03E7 5300              mov [L21],A
+ 03E9                   .dbline 129
+ 03E9           ;       if (ypos != yopos) {
+ 03E9 5100              mov A,[L21]
+ 03EB 62D000            mov REG[0xd0],>L23
+ 03EE 3A00              cmp A,[L23]
+ 03F0 A00B              jz L65
+ 03F2                   .dbline 130
+ 03F2           ;               PWM8LED_WritePulseWidth(ypos);
+ 03F2                   .dbline 130
+ 03F2 10                push X
+ 03F3 62D000            mov REG[0xd0],>L21
+ 03F6 5100              mov A,[L21]
+ 03F8 7C0000            xcall _PWM8LED_WritePulseWidth
+ 03FB 20                pop X
+ 03FC                   .dbline 131
+ 03FC           ;       }
+ 03FC           L65:
+ 03FC                   .dbline 133
+ 03FC           ;       //// Pilot the cursor around the LCD with the X-axis
+ 03FC           ;       xopos = xpos;
+ 03FC 62D000            mov REG[0xd0],>L20
+ 03FF 5100              mov A,[L20]
+ 0401 62D000            mov REG[0xd0],>L22
+ 0404 5300              mov [L22],A
+ 0406                   .dbline 134
+ 0406           ;       xpos = (BYTE)(xcount>>5);
+ 0406 62D000            mov REG[0xd0],>L18
+ 0409 5101              mov A,[L18+1]
+ 040B 08                push A
+ 040C 5100              mov A,[L18]
+ 040E 62D000            mov REG[0xd0],>__r0
+ 0411 5300              mov [__r0],A
+ 0413 18                pop A
+ 0414 5300              mov [__r1],A
+ 0416 6800              asr [__r0]
+ 0418 6E00              rrc [__r1]
+ 041A 6800              asr [__r0]
+ 041C 6E00              rrc [__r1]
+ 041E 6800              asr [__r0]
+ 0420 6E00              rrc [__r1]
+ 0422 6800              asr [__r0]
+ 0424 6E00              rrc [__r1]
+ 0426 6800              asr [__r0]
+ 0428 6E00              rrc [__r1]
+ 042A 5100              mov A,[__r1]
+ 042C 62D000            mov REG[0xd0],>L20
+ 042F 5300              mov [L20],A
+ 0431                   .dbline 135
+ 0431           ;       if (lbtn) {
+ 0431 3D0500            cmp [X+5],0
+ 0434 A0AC              jz L67
+ 0436                   .dbline 136
+ 0436           ;               if (xpos >= xopos) {
+ 0436                   .dbline 136
+ 0436 5100              mov A,[L20]
+ 0438 62D000            mov REG[0xd0],>L22
+ 043B 3A00              cmp A,[L22]
+ 043D C052              jc L69
+ 043F           X8:
+ 043F                   .dbline 137
+ 043F           ;                       for(i=xopos ; i<=xpos ; i++) {
+ 043F                   .dbline 137
+ 043F 62D000            mov REG[0xd0],>L22
+ 0442 5100              mov A,[L22]
+ 0444 5400              mov [X+0],A
+ 0446 8016              xjmp L74
+ 0448           L71:
+ 0448                   .dbline 137
+ 0448                   .dbline 138
+ 0448           ;                               LCD_Position(0,i);
+ 0448 10                push X
+ 0449 5900              mov X,[X+0]
+ 044B 5000              mov A,0
+ 044D 7C0000            xcall _LCD_Position
+ 0450                   .dbline 139
+ 0450           ;                               LCD_WriteData(0xDB); // Square
+ 0450 50DB              mov A,-37
+ 0452 7C0000            xcall _LCD_WriteData
+ 0455                   .dbline 140
+ 0455           ;                               LCD_Control(LCD_CURSOR_SH_LEFT);
+ 0455 5010              mov A,16
+ 0457 7C0000            xcall _LCD_Control
+ 045A 20                pop X
+ 045B                   .dbline 141
+ 045B           ;                       }
+ 045B           L72:
+ 045B                   .dbline 137
+ 045B 7700              inc [X+0]
+ 045D           L74:
+ 045D                   .dbline 137
+ 045D 62D000            mov REG[0xd0],>L20
+ 0460 5100              mov A,[L20]
+ 0462 62D000            mov REG[0xd0],>__r0
+ 0465 5300              mov [__r1],A
+ 0467 550000            mov [__r0],0
+ 046A 5200              mov A,[X+0]
+ 046C 5300              mov [__r3],A
+ 046E 550000            mov [__r2],0
+ 0471 470080            tst [__r3],-128
+ 0474 A004              jz X9
+ 0476 5500FF            mov [__r2],-1
+ 0479           X9:
+ 0479 62D000            mov REG[0xd0],>__r0
+ 047C 5100              mov A,[__r1]
+ 047E 1200              sub A,[__r3]
+ 0480 5100              mov A,[__r2]
+ 0482 3180              xor A,-128
+ 0484 5300              mov [__rX],A
+ 0486 5100              mov A,[__r0]
+ 0488 3180              xor A,-128
+ 048A 1A00              sbb A,[__rX]
+ 048C DFBB              jnc L71
+ 048E           X10:
+ 048E                   .dbline 142
+ 048E           ;               }
+ 048E 805E              xjmp L68
+ 0490           L69:
+ 0490                   .dbline 143
+ 0490           ;               else {
+ 0490                   .dbline 144
+ 0490           ;                       for(i=xopos ; i>=xpos ; i--) {
+ 0490 62D000            mov REG[0xd0],>L22
+ 0493 5100              mov A,[L22]
+ 0495 5400              mov [X+0],A
+ 0497 8016              xjmp L78
+ 0499           L75:
+ 0499                   .dbline 144
+ 0499                   .dbline 145
+ 0499           ;                               LCD_Position(0,i);
+ 0499 10                push X
+ 049A 5900              mov X,[X+0]
+ 049C 5000              mov A,0
+ 049E 7C0000            xcall _LCD_Position
+ 04A1                   .dbline 146
+ 04A1           ;                               LCD_WriteData(0xDB); // Square
+ 04A1 50DB              mov A,-37
+ 04A3 7C0000            xcall _LCD_WriteData
+ 04A6                   .dbline 147
+ 04A6           ;                               LCD_Control(LCD_CURSOR_SH_LEFT);
+ 04A6 5010              mov A,16
+ 04A8 7C0000            xcall _LCD_Control
+ 04AB 20                pop X
+ 04AC                   .dbline 148
+ 04AC           ;                       }
+ 04AC           L76:
+ 04AC                   .dbline 144
+ 04AC 7B00              dec [X+0]
+ 04AE           L78:
+ 04AE                   .dbline 144
+ 04AE 62D000            mov REG[0xd0],>L20
+ 04B1 5100              mov A,[L20]
+ 04B3 62D000            mov REG[0xd0],>__r0
+ 04B6 5300              mov [__r1],A
+ 04B8 550000            mov [__r0],0
+ 04BB 5200              mov A,[X+0]
+ 04BD 5300              mov [__r3],A
+ 04BF 550000            mov [__r2],0
+ 04C2 470080            tst [__r3],-128
+ 04C5 A004              jz X11
+ 04C7 5500FF            mov [__r2],-1
+ 04CA           X11:
+ 04CA 62D000            mov REG[0xd0],>__r0
+ 04CD 5100              mov A,[__r3]
+ 04CF 1200              sub A,[__r1]
+ 04D1 5100              mov A,[__r0]
+ 04D3 3180              xor A,-128
+ 04D5 5300              mov [__rX],A
+ 04D7 5100              mov A,[__r2]
+ 04D9 3180              xor A,-128
+ 04DB 1A00              sbb A,[__rX]
+ 04DD DFBB              jnc L75
+ 04DF           X12:
+ 04DF                   .dbline 149
+ 04DF           ;               }
+ 04DF                   .dbline 150
+ 04DF           ;       }
+ 04DF 800D              xjmp L68
+ 04E1           L67:
+ 04E1                   .dbline 151
+ 04E1           ;       else {
+ 04E1                   .dbline 152
+ 04E1           ;               LCD_Position(0,xpos);
+ 04E1 10                push X
+ 04E2 62D000            mov REG[0xd0],>L20
+ 04E5 5800              mov X,[L20]
+ 04E7 5000              mov A,0
+ 04E9 7C0000            xcall _LCD_Position
+ 04EC 20                pop X
+ 04ED                   .dbline 153
+ 04ED           ;       }
+ 04ED           L68:
+ 04ED                   .dbline 154
+ 04ED           ;       if (rbtn) {
+ 04ED 3D0400            cmp [X+4],0
+ 04F0 A0AF              jz L79
+ 04F2                   .dbline 155
+ 04F2           ;               if (xpos >= xopos) {
+ 04F2                   .dbline 155
+ 04F2 62D000            mov REG[0xd0],>L20
+ 04F5 5100              mov A,[L20]
+ 04F7 62D000            mov REG[0xd0],>L22
+ 04FA 3A00              cmp A,[L22]
+ 04FC C052              jc L81
+ 04FE           X13:
+ 04FE                   .dbline 156
+ 04FE           ;                       for(i=xopos ; i<=xpos ; i++) {
+ 04FE                   .dbline 156
+ 04FE 62D000            mov REG[0xd0],>L22
+ 0501 5100              mov A,[L22]
+ 0503 5400              mov [X+0],A
+ 0505 8016              xjmp L86
+ 0507           L83:
+ 0507                   .dbline 156
+ 0507                   .dbline 157
+ 0507           ;                               LCD_Position(0,i);
+ 0507 10                push X
+ 0508 5900              mov X,[X+0]
+ 050A 5000              mov A,0
+ 050C 7C0000            xcall _LCD_Position
+ 050F                   .dbline 158
+ 050F           ;                               LCD_WriteData(' ');
+ 050F 5020              mov A,32
+ 0511 7C0000            xcall _LCD_WriteData
+ 0514                   .dbline 159
+ 0514           ;                               LCD_Control(LCD_CURSOR_SH_LEFT);
+ 0514 5010              mov A,16
+ 0516 7C0000            xcall _LCD_Control
+ 0519 20                pop X
+ 051A                   .dbline 160
+ 051A           ;                       }
+ 051A           L84:
+ 051A                   .dbline 156
+ 051A 7700              inc [X+0]
+ 051C           L86:
+ 051C                   .dbline 156
+ 051C 62D000            mov REG[0xd0],>L20
+ 051F 5100              mov A,[L20]
+ 0521 62D000            mov REG[0xd0],>__r0
+ 0524 5300              mov [__r1],A
+ 0526 550000            mov [__r0],0
+ 0529 5200              mov A,[X+0]
+ 052B 5300              mov [__r3],A
+ 052D 550000            mov [__r2],0
+ 0530 470080            tst [__r3],-128
+ 0533 A004              jz X14
+ 0535 5500FF            mov [__r2],-1
+ 0538           X14:
+ 0538 62D000            mov REG[0xd0],>__r0
+ 053B 5100              mov A,[__r1]
+ 053D 1200              sub A,[__r3]
+ 053F 5100              mov A,[__r2]
+ 0541 3180              xor A,-128
+ 0543 5300              mov [__rX],A
+ 0545 5100              mov A,[__r0]
+ 0547 3180              xor A,-128
+ 0549 1A00              sbb A,[__rX]
+ 054B DFBB              jnc L83
+ 054D           X15:
+ 054D                   .dbline 161
+ 054D           ;               }
+ 054D 805E              xjmp L80
+ 054F           L81:
+ 054F                   .dbline 162
+ 054F           ;               else {
+ 054F                   .dbline 163
+ 054F           ;                       for(i=xopos ; i>=xpos ; i--) {
+ 054F 62D000            mov REG[0xd0],>L22
+ 0552 5100              mov A,[L22]
+ 0554 5400              mov [X+0],A
+ 0556 8016              xjmp L90
+ 0558           L87:
+ 0558                   .dbline 163
+ 0558                   .dbline 164
+ 0558           ;                               LCD_Position(0,i);
+ 0558 10                push X
+ 0559 5900              mov X,[X+0]
+ 055B 5000              mov A,0
+ 055D 7C0000            xcall _LCD_Position
+ 0560                   .dbline 165
+ 0560           ;                               LCD_WriteData(' ');
+ 0560 5020              mov A,32
+ 0562 7C0000            xcall _LCD_WriteData
+ 0565                   .dbline 166
+ 0565           ;                               LCD_Control(LCD_CURSOR_SH_LEFT);
+ 0565 5010              mov A,16
+ 0567 7C0000            xcall _LCD_Control
+ 056A 20                pop X
+ 056B                   .dbline 167
+ 056B           ;                       }
+ 056B           L88:
+ 056B                   .dbline 163
+ 056B 7B00              dec [X+0]
+ 056D           L90:
+ 056D                   .dbline 163
+ 056D 62D000            mov REG[0xd0],>L20
+ 0570 5100              mov A,[L20]
+ 0572 62D000            mov REG[0xd0],>__r0
+ 0575 5300              mov [__r1],A
+ 0577 550000            mov [__r0],0
+ 057A 5200              mov A,[X+0]
+ 057C 5300              mov [__r3],A
+ 057E 550000            mov [__r2],0
+ 0581 470080            tst [__r3],-128
+ 0584 A004              jz X16
+ 0586 5500FF            mov [__r2],-1
+ 0589           X16:
+ 0589 62D000            mov REG[0xd0],>__r0
+ 058C 5100              mov A,[__r3]
+ 058E 1200              sub A,[__r1]
+ 0590 5100              mov A,[__r0]
+ 0592 3180              xor A,-128
+ 0594 5300              mov [__rX],A
+ 0596 5100              mov A,[__r2]
+ 0598 3180              xor A,-128
+ 059A 1A00              sbb A,[__rX]
+ 059C DFBB              jnc L87
+ 059E           X17:
+ 059E                   .dbline 168
+ 059E           ;               }
+ 059E                   .dbline 169
+ 059E           ;       }
+ 059E 800D              xjmp L80
+ 05A0           L79:
+ 05A0                   .dbline 170
+ 05A0           ;       else {
+ 05A0                   .dbline 171
+ 05A0           ;               LCD_Position(0,xpos);
+ 05A0 10                push X
+ 05A1 62D000            mov REG[0xd0],>L20
+ 05A4 5800              mov X,[L20]
+ 05A6 5000              mov A,0
+ 05A8 7C0000            xcall _LCD_Position
+ 05AB 20                pop X
+ 05AC                   .dbline 172
+ 05AC           ;       }
+ 05AC           L80:
+ 05AC                   .dbline -2
+ 05AC           L17:
+ 05AC 38F5              add SP,-11
+ 05AE 20                pop X
+ 05AF                   .dbline 0 ; func end
+ 05AF 7F                ret
+ 05B0                   .dbsym l xov 10 c
+ 05B0                   .dbsym l yov 9 c
+ 05B0                   .dbsym l mbtn 8 c
+ 05B0                   .dbsym l xsign 7 c
+ 05B0                   .dbsym l ysign 6 c
+ 05B0                   .dbsym l lbtn 5 c
+ 05B0                   .dbsym l rbtn 4 c
+ 05B0                   .dbsym l ystep 3 c
+ 05B0                   .dbsym l xstep 2 c
+ 05B0                   .dbsym l scancode 1 c
+ 05B0                   .dbsym l i 0 C
+ 05B0                   .dbend
+                        .area lit(rom, con, rel, lit)
+ 0000           L64:
+ 0000 20593A00          .byte 32,'Y,58,0
+ 0004           L63:
+ 0004 20583A00          .byte 32,'X,58,0
+ 0008           L62:
+ 0008 52583A00          .byte 'R,'X,58,0
+ 000C           L59:
+ 000C 4D00              .byte 'M,0
+ 000E           L56:
+ 000E 2000              .byte 32,0
+ 0010           L55:
+ 0010 4C00              .byte 'L,0

@@ -1,0 +1,3775 @@
+ 0000                   cpu LMM
+                        .module keyboard.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./keyboard.c
+                        .area lit(rom, con, rel, lit)
+ 0000           _ShiftableScancode::
+ 0000 607E              .byte 96,126
+ 0002 0E                .byte 14
+ 0003 3121              .byte 49,33
+ 0005 16                .byte 22
+ 0006 3240              .byte 50,64
+ 0008 1E                .byte 30
+ 0009 3323              .byte 51,35
+ 000B 26                .byte 38
+ 000C 3424              .byte 52,36
+ 000E 25                .byte 37
+ 000F 3525              .byte 53,37
+ 0011 2E                .byte 46
+ 0012 365E              .byte 54,94
+ 0014 36                .byte 54
+ 0015 3726              .byte 55,38
+ 0017 3D                .byte 61
+ 0018 382A              .byte 56,42
+ 001A 3E                .byte 62
+ 001B 3928              .byte 57,40
+ 001D 46                .byte 'F
+ 001E 3029              .byte 48,41
+ 0020 45                .byte 'E
+ 0021 2D5F              .byte 45,95
+ 0023 4E                .byte 'N
+ 0024 3D2B              .byte 61,43
+ 0026 55                .byte 'U
+ 0027 5B7B              .byte 91,123
+ 0029 54                .byte 'T
+ 002A 5D7D              .byte 93,125
+ 002C 5B                .byte 91
+ 002D 5C7C              .byte 92,124
+ 002F 5D                .byte 93
+ 0030 3B3A              .byte 59,58
+ 0032 4C                .byte 'L
+ 0033 2722              .byte 39,34
+ 0035 52                .byte 'R
+ 0036 2C3C              .byte 44,60
+ 0038 41                .byte 'A
+ 0039 2E3E              .byte 46,62
+ 003B 49                .byte 'I
+ 003C 2F3F              .byte 47,63
+ 003E 4A                .byte 'J
+ 003F 2020              .byte 32,32
+ 0041 29                .byte 41
+ 0042 0909              .byte 9,9
+ 0044 0D                .byte 13
+ 0045 0000              .byte 0,0
+ 0047 00                .byte 0
+ 0048                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0048                   .dbsym e ShiftableScancode _ShiftableScancode A[72:24:3]kc
+ 0048           _AlphabetScancode::
+ 0048 6141              .byte 'a,'A
+ 004A 1C                .byte 28
+ 004B 6242              .byte 'b,'B
+ 004D 32                .byte 50
+ 004E 6343              .byte 'c,'C
+ 0050 21                .byte 33
+ 0051 6444              .byte 'd,'D
+ 0053 23                .byte 35
+ 0054 6545              .byte 'e,'E
+ 0056 24                .byte 36
+ 0057 6646              .byte 'f,'F
+ 0059 2B                .byte 43
+ 005A 6747              .byte 'g,'G
+ 005C 34                .byte 52
+ 005D 6848              .byte 'h,'H
+ 005F 33                .byte 51
+ 0060 6949              .byte 'i,'I
+ 0062 43                .byte 'C
+ 0063 6A4A              .byte 'j,'J
+ 0065 3B                .byte 59
+ 0066 6B4B              .byte 'k,'K
+ 0068 42                .byte 'B
+ 0069 6C4C              .byte 'l,'L
+ 006B 4B                .byte 'K
+ 006C 6D4D              .byte 'm,'M
+ 006E 3A                .byte 58
+ 006F 6E4E              .byte 'n,'N
+ 0071 31                .byte 49
+ 0072 6F4F              .byte 'o,'O
+ 0074 44                .byte 'D
+ 0075 7050              .byte 'p,'P
+ 0077 4D                .byte 'M
+ 0078 7151              .byte 'q,'Q
+ 007A 15                .byte 21
+ 007B 7252              .byte 'r,'R
+ 007D 2D                .byte 45
+ 007E 7353              .byte 's,'S
+ 0080 1B                .byte 27
+ 0081 7454              .byte 't,'T
+ 0083 2C                .byte 44
+ 0084 7555              .byte 'u,'U
+ 0086 3C                .byte 60
+ 0087 7656              .byte 'v,'V
+ 0089 2A                .byte 42
+ 008A 7757              .byte 'w,'W
+ 008C 1D                .byte 29
+ 008D 7858              .byte 'x,'X
+ 008F 22                .byte 34
+ 0090 7959              .byte 'y,'Y
+ 0092 35                .byte 53
+ 0093 7A5A              .byte 'z,'Z
+ 0095 1A                .byte 26
+ 0096 0000              .byte 0,0
+ 0098 00                .byte 0
+ 0099                   .dbsym e AlphabetScancode _AlphabetScancode A[81:27:3]kc
+ 0099           _ControlScancode::
+ 0099 011C              .byte 1,28
+ 009B 0232              .byte 2,50
+ 009D 0321              .byte 3,33
+ 009F 0423              .byte 4,35
+ 00A1 0524              .byte 5,36
+ 00A3 062B              .byte 6,43
+ 00A5 0734              .byte 7,52
+ 00A7 0833              .byte 8,51
+ 00A9 0943              .byte 9,'C
+ 00AB 0A3B              .byte 10,59
+ 00AD 0B42              .byte 11,'B
+ 00AF 0C4B              .byte 12,'K
+ 00B1 0D3A              .byte 13,58
+ 00B3 0E31              .byte 14,49
+ 00B5 0F44              .byte 15,'D
+ 00B7 104D              .byte 16,'M
+ 00B9 1115              .byte 17,21
+ 00BB 122D              .byte 18,45
+ 00BD 131B              .byte 19,27
+ 00BF 142C              .byte 20,44
+ 00C1 153C              .byte 21,60
+ 00C3 162A              .byte 22,42
+ 00C5 171D              .byte 23,29
+ 00C7 1822              .byte 24,34
+ 00C9 1935              .byte 25,53
+ 00CB 1A1A              .byte 26,26
+ 00CD 1B54              .byte 27,'T
+ 00CF 1C5D              .byte 28,93
+ 00D1 1D5B              .byte 29,91
+ 00D3 1E36              .byte 30,54
+ 00D5 1F4E              .byte 31,'N
+ 00D7 0000              .byte 0,0
+ 00D9                   .dbsym e ControlScancode _ControlScancode A[64:32:2]kc
+ 00D9           _KeypadScancode::
+ 00D9 3070              .byte 48,'p
+ 00DB 3169              .byte 49,'i
+ 00DD 3272              .byte 50,'r
+ 00DF 337A              .byte 51,'z
+ 00E1 346B              .byte 52,'k
+ 00E3 3573              .byte 53,'s
+ 00E5 3674              .byte 54,'t
+ 00E7 376C              .byte 55,'l
+ 00E9 3875              .byte 56,'u
+ 00EB 397D              .byte 57,125
+ 00ED 2E71              .byte 46,'q
+ 00EF 0000              .byte 0,0
+ 00F1                   .dbsym e KeypadScancode _KeypadScancode A[24:12:2]kc
+ 00F1           _PianoScancode::
+ 00F1 001A              .word 26
+ 00F3 EEE3              .word 61155
+ 00F5 7771              .word 30577
+ 00F7 0022              .word 34
+ 00F9 D4D3              .word 54483
+ 00FB 6A69              .word 27241
+ 00FD 0021              .word 33
+ 00FF BD9B              .word 48539
+ 0101 5ECD              .word 24269
+ 0103 002A              .word 42
+ 0105 B2F6              .word 45814
+ 0107 597B              .word 22907
+ 0109 0032              .word 50
+ 010B 9F70              .word 40816
+ 010D 4FB7              .word 20407
+ 010F 0031              .word 49
+ 0111 8E0B              .word 36363
+ 0113 4705              .word 18181
+ 0115 003A              .word 58
+ 0117 7E8B              .word 32395
+ 0119 3F45              .word 16197
+ 011B 0041              .word 65
+ 011D 7771              .word 30577
+ 011F 3BB8              .word 15288
+ 0121 001C              .word 28
+ 0123 7771              .word 30577
+ 0125 3BB8              .word 15288
+ 0127 001B              .word 27
+ 0129 6A69              .word 27241
+ 012B 3534              .word 13620
+ 012D 0023              .word 35
+ 012F 5ECD              .word 24269
+ 0131 2F66              .word 12134
+ 0133 002B              .word 43
+ 0135 597B              .word 22907
+ 0137 2CBD              .word 11453
+ 0139 0034              .word 52
+ 013B 4FB7              .word 20407
+ 013D 27DB              .word 10203
+ 013F 0033              .word 51
+ 0141 4705              .word 18181
+ 0143 2382              .word 9090
+ 0145 003B              .word 59
+ 0147 3F45              .word 16197
+ 0149 1FA2              .word 8098
+ 014B 0042              .word 66
+ 014D 3BB8              .word 15288
+ 014F 1DDC              .word 7644
+ 0151 0015              .word 21
+ 0153 3BB8              .word 15288
+ 0155 1DDC              .word 7644
+ 0157 001D              .word 29
+ 0159 3534              .word 13620
+ 015B 1A99              .word 6809
+ 015D 0024              .word 36
+ 015F 2F66              .word 12134
+ 0161 17B2              .word 6066
+ 0163 002D              .word 45
+ 0165 2CBD              .word 11453
+ 0167 165E              .word 5726
+ 0169 002C              .word 44
+ 016B 27DB              .word 10203
+ 016D 13ED              .word 5101
+ 016F 0035              .word 53
+ 0171 2382              .word 9090
+ 0173 11C0              .word 4544
+ 0175 003C              .word 60
+ 0177 1FA2              .word 8098
+ 0179 0FD1              .word 4049
+ 017B 0043              .word 67
+ 017D 1DDC              .word 7644
+ 017F 0EED              .word 3821
+ 0181 0000              .word 0
+ 0183 0000              .word 0
+ 0185 0000              .word 0
+ 0187                   .dbsym e PianoScancode _PianoScancode A[150:25:3]ki
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L2:
+ 0000 00                .byte 0
+                        .area text(rom, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000                   .dbfunc e KeyboardDecodeData _KeyboardDecodeData fc
+ 0000                   .dbsym s state L2 c
+ 0000           ;       codetype -> X+0
+ 0000           ;       scancode -> X-4
+ 0000           _KeyboardDecodeData::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3803              add SP,3
+ 0004                   .dbline 259
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // XXX - Create the comments for this.
+ 0004           ; //
+ 0004           ; // B. Noble - 18 October 2010
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "PSoCGPIOINT.h"
+ 0004           ; #include "ps2.h"
+ 0004           ; #include "keyboard.h"
+ 0004           ; 
+ 0004           ; //// State names used in the KeyboardDecodeData() function
+ 0004           ; #define KBD_START_SEQ 0
+ 0004           ; #define KBD_BREAK_SEQ 1
+ 0004           ; #define KBD_E0_SEQ            2
+ 0004           ; #define       KBD_E0_F0_SEQ   3
+ 0004           ; #define KBD_PAUSE_A           4
+ 0004           ; #define KBD_PAUSE_B           5
+ 0004           ; #define       KBD_PAUSE_C             6
+ 0004           ; #define KBD_PAUSE_D           7
+ 0004           ; 
+ 0004           ; //// All external global variables (identified by names in LeadingCaps)
+ 0004           ; extern BYTE NumLock;
+ 0004           ; extern BYTE CapsLock;
+ 0004           ; extern BYTE ScrollLock;
+ 0004           ; extern BYTE ShiftDown;
+ 0004           ; extern BYTE CtrlDown;
+ 0004           ; extern BYTE AltDown;
+ 0004           ; extern BYTE PianoMode;
+ 0004           ; extern BYTE DeleteDown;
+ 0004           ; extern const unsigned char LEDBrightness[];
+ 0004           ; 
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // PS/2 Keyboard Scan Code Mapping Arrays
+ 0004           ; //
+ 0004           ; // NOTE: by making theses arrays constant (const) the compiler will place
+ 0004           ; // them in the PSoC's EEPROM so we don't waste RAM space on things that
+ 0004           ; // won't be changing.
+ 0004           ; //
+ 0004           ; // B. Noble - 18 October 2010
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // Scan Code to printable ASCII mapping
+ 0004           ; //
+ 0004           ; // Defines an array variable that maps all single-byte scan codes to their
+ 0004           ; // respective ASCII values.
+ 0004           ; //
+ 0004           ; // The 1st column is the the scan code value.
+ 0004           ; // The 2nd column gives the ASCII scan code value with Shift pressed.
+ 0004           ; // The 3rd column gives the ASCII scan code value without Shift pressed.
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; unsigned char const ShiftableScancode[ ][3] = {
+ 0004           ;       '`',    '~',    0x0E,
+ 0004           ;       '1',    '!',    0x16,
+ 0004           ;       '2',    '@',    0x1E,
+ 0004           ;       '3',    '#',    0x26,
+ 0004           ;       '4',    '$',    0x25,
+ 0004           ;       '5',    '%',    0x2E,
+ 0004           ;       '6',    '^',    0x36,
+ 0004           ;       '7',    '&',    0x3D,
+ 0004           ;       '8',    '*',    0x3E,
+ 0004           ;       '9',    '(',    0x46,
+ 0004           ;       '0',    ')',    0x45,
+ 0004           ;       '-',    '_',    0x4E,
+ 0004           ;       '=',    '+',    0X55,
+ 0004           ;       '[',    '{',    0x54,
+ 0004           ;       ']',    '}',    0x5B,
+ 0004           ;       '\\',   '|',    0x5D,
+ 0004           ;       ';',    ':',    0x4C,
+ 0004           ;       '\'',   '\"',   0x52,
+ 0004           ;       ',',    '<',    0x41,
+ 0004           ;       '.',    '>',    0x49,
+ 0004           ;       '/',    '?',    0x4A,
+ 0004           ;       ' ',    ' ',    0x29, // Space
+ 0004           ;       0x09,   0x09,   0x0D, // Tab
+ 0004           ;       0x00,   0x00,   0x00  // Indicates end of this array while searching
+ 0004           ; };
+ 0004           ; 
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // Scan Code to printable alphabet ASCII mapping
+ 0004           ; //
+ 0004           ; // Defines an array variable that maps all single-byte scan codes to their
+ 0004           ; // respective ASCII values.
+ 0004           ; //
+ 0004           ; // The 1st column is the the scan code value.
+ 0004           ; // The 2nd column gives the ASCII scan code value with Shift pressed.
+ 0004           ; // The 3rd column gives the ASCII scan code value without Shift pressed.
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; unsigned char const AlphabetScancode[ ][3] = {
+ 0004           ;       'a',    'A',    0x1C,
+ 0004           ;       'b',    'B',    0x32,
+ 0004           ;       'c',    'C',    0x21,
+ 0004           ;       'd',    'D',    0x23,
+ 0004           ;       'e',    'E',    0x24,
+ 0004           ;       'f',    'F',    0x2B,
+ 0004           ;       'g',    'G',    0x34,
+ 0004           ;       'h',    'H',    0x33,
+ 0004           ;       'i',    'I',    0x43,
+ 0004           ;       'j',    'J',    0x3B,
+ 0004           ;       'k',    'K',    0x42,
+ 0004           ;       'l',    'L',    0x4B,
+ 0004           ;       'm',    'M',    0x3A,
+ 0004           ;       'n',    'N',    0x31,
+ 0004           ;       'o',    'O',    0x44,
+ 0004           ;       'p',    'P',    0x4D,
+ 0004           ;       'q',    'Q',    0x15,
+ 0004           ;       'r',    'R',    0x2D,
+ 0004           ;       's',    'S',    0x1B,
+ 0004           ;       't',    'T',    0x2C,
+ 0004           ;       'u',    'U',    0x3C,
+ 0004           ;       'v',    'V',    0x2A,
+ 0004           ;       'w',    'W',    0x1D,
+ 0004           ;       'x',    'X',    0x22,
+ 0004           ;       'y',    'Y',    0x35,
+ 0004           ;       'z',    'Z',    0x1A,
+ 0004           ;       0x00,   0x00,   0x00  // Indicates end of this array while searching
+ 0004           ; };
+ 0004           ; 
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // Scan Code to control character ASCII mapping
+ 0004           ; //
+ 0004           ; // Defines an array variable that maps all single-byte scan codes to their
+ 0004           ; // respective ASCII values.
+ 0004           ; //
+ 0004           ; // The 1st column is the the scan code value.
+ 0004           ; // The 2nd column gives the ASCII scan code value with Shift pressed.
+ 0004           ; // The 3rd column gives the ASCII scan code value without Shift pressed.
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; unsigned char const ControlScancode[ ][2] = {
+ 0004           ;       0x01,   0x1C, // ^A, SOH
+ 0004           ;       0x02,   0x32, // ^B, STX
+ 0004           ;       0x03,   0x21, // ^C, ETX
+ 0004           ;       0x04,   0x23, // ^D, EOT
+ 0004           ;       0x05,   0x24, // ^E, ENQ
+ 0004           ;       0x06,   0x2B, // ^F, ACK
+ 0004           ;       0x07,   0x34, // ^G, BEL
+ 0004           ;       0x08,   0x33, // ^H, BS
+ 0004           ;       0x09,   0x43, // ^I, HT
+ 0004           ;       0x0A,   0x3B, // ^J, NL
+ 0004           ;       0x0B,   0x42, // ^K, VT
+ 0004           ;       0x0C,   0x4B, // ^L, NP
+ 0004           ;       0x0D,   0x3A, // ^M, CR
+ 0004           ;       0x0E,   0x31, // ^N, SO
+ 0004           ;       0x0F,   0x44, // ^O, SI
+ 0004           ;       0x10,   0x4D, // ^P, DLE
+ 0004           ;       0x11,   0x15, // ^Q, DC1
+ 0004           ;       0x12,   0x2D, // ^R, DC2
+ 0004           ;       0x13,   0x1B, // ^S, DC3
+ 0004           ;       0x14,   0x2C, // ^T, DC4
+ 0004           ;       0x15,   0x3C, // ^U, NAK
+ 0004           ;       0x16,   0x2A, // ^V, SYN
+ 0004           ;       0x17,   0x1D, // ^W, ETB
+ 0004           ;       0x18,   0x22, // ^X, CAN
+ 0004           ;       0x19,   0x35, // ^Y, EM
+ 0004           ;       0x1A,   0x1A, // ^Z, SUB
+ 0004           ;       0x1B,   0x54, // ^[, ESC
+ 0004           ;       0x1C,   0x5D, // ^\, FS
+ 0004           ;       0x1D,   0x5B, // ^], GS
+ 0004           ;       0x1E,   0x36, // ^^, RS
+ 0004           ;       0x1F,   0x4E, // ^_, US
+ 0004           ;       0x00,   0x00  // Indicates end of this array while searching
+ 0004           ; };
+ 0004           ; 
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // Scan Code to control character ASCII mapping
+ 0004           ; //
+ 0004           ; // Defines an array variable that maps all single-byte scan codes to their
+ 0004           ; // respective ASCII values.
+ 0004           ; //
+ 0004           ; // The 1st column is the the scan code value.
+ 0004           ; // The 2nd column gives the ASCII scan code value with Shift pressed.
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; unsigned char const KeypadScancode[ ][2] = {
+ 0004           ;       '0',    0x70,
+ 0004           ;       '1',    0x69,
+ 0004           ;       '2',    0x72,
+ 0004           ;       '3',    0x7A,
+ 0004           ;       '4',    0x6B,
+ 0004           ;       '5',    0x73,
+ 0004           ;       '6',    0x74,
+ 0004           ;       '7',    0x6C,
+ 0004           ;       '8',    0x75,
+ 0004           ;       '9',    0x7D,
+ 0004           ;       '.',    0x71,
+ 0004           ;       0x00,   0x00  // Indicates end of this array while searching
+ 0004           ; };
+ 0004           ; 
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // Scan Code to 3-octave diatonic musical scale.
+ 0004           ; //
+ 0004           ; // Defines an array variable that maps all single-byte scan codes to their
+ 0004           ; // respective period and pulse widths for a 16-bit PWM User Module utilizing
+ 0004           ; // an 8MHz clock .
+ 0004           ; //
+ 0004           ; // The 1st column is the the scan code value.
+ 0004           ; // The 2nd column gives the 16-bit PWM Period.
+ 0004           ; // The 3rd column gives the 16-bit PWM Pulse Width.
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; unsigned int const PianoScancode[ ][3] = {
+ 0004           ;       //// Lower Octave
+ 0004           ;       0x1A,   61155,  30577,  // 'z' C3 Low C
+ 0004           ;       0x22,   54483,  27241,  // 'x' D3
+ 0004           ;       0x21,   48539,  24269,  // 'c' E3
+ 0004           ;       0x2A,   45814,  22907,  // 'v' F3
+ 0004           ;       0x32,   40816,  20407,  // 'b' G3
+ 0004           ;       0x31,   36363,  18181,  // 'n' A3
+ 0004           ;       0x3A,   32395,  16197,  // 'm' B3
+ 0004           ;       0x41,   30577,  15288,  // ',' C4 Middle C
+ 0004           ;       //// Middle Octave
+ 0004           ;       0x1C,   30577,  15288,  // 'a' C4 Middle C
+ 0004           ;       0x1B,   27241,  13620,  // 's' D4
+ 0004           ;       0x23,   24269,  12134,  // 'd' E4
+ 0004           ;       0x2B,   22907,  11453,  // 'f' F4
+ 0004           ;       0x34,   20407,  10203,  // 'g' G4
+ 0004           ;       0x33,   18181,  9090,   // 'h' A4
+ 0004           ;       0x3B,   16197,  8098,   // 'j' B4
+ 0004           ;       0x42,   15288,  7644,   // 'k' C5 Tenor C
+ 0004           ;       //// Tenor Octave
+ 0004           ;       0x15,   15288,  7644,   // 'q' C5 Tenor C
+ 0004           ;       0x1D,   13620,  6809,   // 'w' D5
+ 0004           ;       0x24,   12134,  6066,   // 'e' E5
+ 0004           ;       0x2D,   11453,  5726,   // 'r' F5
+ 0004           ;       0x2C,   10203,  5101,   // 't' G5
+ 0004           ;       0x35,   9090,   4544,   // 'y' A5
+ 0004           ;       0x3C,   8098,   4049,   // 'u' B5
+ 0004           ;       0x43,   7644,   3821,   // 'i' C6 Soprano C
+ 0004           ;       //// End of array
+ 0004           ;       0x00,   0x00,   0x00    // Indicates end of this array while searching
+ 0004           ; };
+ 0004           ; 
+ 0004           ; //-----------------------------------------------------------------------------
+ 0004           ; // Software state machine to decode the PS/2 keyboard scan codes into
+ 0004           ; // meaningful actions. See the state diagram in the lab description.
+ 0004           ; //
+ 0004           ; // XXX - The shift keys have a special response when they are held down
+ 0004           ; //       and one of the "gray" (Insert, Delete, Pg Up, Pg Dn, Home, End, etc.)
+ 0004           ; //       keys are pressed.
+ 0004           ; //       As soon as a gray key is pressed, the shift key pressed gets an E0F0 break
+ 0004           ; //       sequence, followed by the gray key (autorepeated if necessary).
+ 0004           ; //       When the gray key is released, the keyboard generates an E0 followed
+ 0004           ; //       by the scancode for the shift key still down.
+ 0004           ; //       Example: This is what happens when Left Shift then Page Down
+ 0004           ; //       are pressed, followed by Page Down and then Left Shift being released
+ 0004           ; //       12 E0 F0 12 E0 7A E0 F0 7A E0 12 F0 12
+ 0004           ; //       Note: This behavior is only true when Num Lock LED is off.
+ 0004           ; //       When Num Lock LED is on, they Shift Key behaves normally.
+ 0004           ; //
+ 0004           ; // XXX - Document PRNT_SCRN's weirdness: PRNT_SCRN's sequence "E0 12" only occurs if no other key is pressed
+ 0004           ; // PRNT_SCRN's sequence "E0 F0 12" occurs either at the end of the
+ 0004           ; // PRNT_SCRN sequence if there were no other keys pressed -OR- if
+ 0004           ; // another key was pressed while PRNT_SCRN was held down.
+ 0004           ; // PRNT_SCRN's "E0 12" is basically a fake-shift
+ 0004           ; //
+ 0004           ; // Note: This function assumes all keyboard-to-host commands have been handled!
+ 0004           ; //-----------------------------------------------------------------------------
+ 0004           ; BYTE KeyboardDecodeData(BYTE scancode)
+ 0004           ; {
+ 0004                   .dbline 261
+ 0004           ;       static BYTE state = 0;
+ 0004           ;       BYTE codetype = 0;
+ 0004 560000            mov [X+0],0
+ 0007                   .dbline 263
+ 0007           ;       
+ 0007           ;       switch(state) {
+ 0007 62D000            mov REG[0xd0],>L2
+ 000A 5100              mov A,[L2]
+ 000C 5402              mov [X+2],A
+ 000E 560100            mov [X+1],0
+ 0011 3D0100            cmp [X+1],0
+ 0014 B006              jnz X0
+ 0016 3D0200            cmp [X+2],0
+ 0019 A049              jz L6
+ 001B           X0:
+ 001B 3D0100            cmp [X+1],0
+ 001E B006              jnz X1
+ 0020 3D0201            cmp [X+2],1
+ 0023 A06B              jz L13
+ 0025           X1:
+ 0025 3D0100            cmp [X+1],0
+ 0028 B006              jnz X2
+ 002A 3D0202            cmp [X+2],2
+ 002D A06C              jz L14
+ 002F           X2:
+ 002F 3D0100            cmp [X+1],0
+ 0032 B006              jnz X3
+ 0034 3D0203            cmp [X+2],3
+ 0037 A089              jz L20
+ 0039           X3:
+ 0039 3D0100            cmp [X+1],0
+ 003C B006              jnz X4
+ 003E 3D0204            cmp [X+2],4
+ 0041 A099              jz L24
+ 0043           X4:
+ 0043 3D0100            cmp [X+1],0
+ 0046 B006              jnz X5
+ 0048 3D0205            cmp [X+2],5
+ 004B A0B1              jz L29
+ 004D           X5:
+ 004D 3D0100            cmp [X+1],0
+ 0050 B006              jnz X6
+ 0052 3D0206            cmp [X+2],6
+ 0055 A0C9              jz L34
+ 0057           X6:
+ 0057 3D0100            cmp [X+1],0
+ 005A B006              jnz X7
+ 005C 3D0207            cmp [X+2],7
+ 005F A0D4              jz L37
+ 0061           X7:
+ 0061 80ED              xjmp L3
+ 0063           L6:
+ 0063                   .dbline 265
+ 0063           ;       case KBD_START_SEQ:
+ 0063           ;               if (scancode == 0xF0) {
+ 0063 3DFCF0            cmp [X-4],-16
+ 0066 B009              jnz L7
+ 0068                   .dbline 266
+ 0068           ;                       state = KBD_BREAK_SEQ;
+ 0068                   .dbline 266
+ 0068 62D000            mov REG[0xd0],>L2
+ 006B 550001            mov [L2],1
+ 006E                   .dbline 267
+ 006E           ;                       break;
+ 006E 80E0              xjmp L4
+ 0070           L7:
+ 0070                   .dbline 269
+ 0070           ;               }
+ 0070           ;               if (scancode == 0xE0) {
+ 0070 3DFCE0            cmp [X-4],-32
+ 0073 B009              jnz L9
+ 0075                   .dbline 270
+ 0075           ;                       state = KBD_E0_SEQ;
+ 0075                   .dbline 270
+ 0075 62D000            mov REG[0xd0],>L2
+ 0078 550002            mov [L2],2
+ 007B                   .dbline 271
+ 007B           ;                       break;
+ 007B 80D3              xjmp L4
+ 007D           L9:
+ 007D                   .dbline 273
+ 007D           ;               }
+ 007D           ;               if (scancode == 0xE1) {
+ 007D 3DFCE1            cmp [X-4],-31
+ 0080 B009              jnz L11
+ 0082                   .dbline 274
+ 0082           ;                       state = KBD_PAUSE_A;
+ 0082                   .dbline 274
+ 0082 62D000            mov REG[0xd0],>L2
+ 0085 550004            mov [L2],4
+ 0088                   .dbline 275
+ 0088           ;                       break;
+ 0088 80C6              xjmp L4
+ 008A           L11:
+ 008A                   .dbline 277
+ 008A           ;               }
+ 008A           ;               codetype = KEY_MAKE;
+ 008A 560001            mov [X+0],1
+ 008D                   .dbline 278
+ 008D           ;               break;
+ 008D 80C1              xjmp L4
+ 008F           L13:
+ 008F                   .dbline 280
+ 008F           ;       case KBD_BREAK_SEQ:
+ 008F           ;               state = KBD_START_SEQ;
+ 008F 62D000            mov REG[0xd0],>L2
+ 0092 550000            mov [L2],0
+ 0095                   .dbline 281
+ 0095           ;               codetype = KEY_BREAK;
+ 0095 560002            mov [X+0],2
+ 0098                   .dbline 282
+ 0098           ;               break;
+ 0098 80B6              xjmp L4
+ 009A           L14:
+ 009A                   .dbline 284
+ 009A           ;       case KBD_E0_SEQ:
+ 009A           ;               if (scancode == 0xF0) {
+ 009A 3DFCF0            cmp [X-4],-16
+ 009D B009              jnz L15
+ 009F                   .dbline 285
+ 009F           ;                       state = KBD_E0_F0_SEQ;
+ 009F                   .dbline 285
+ 009F 62D000            mov REG[0xd0],>L2
+ 00A2 550003            mov [L2],3
+ 00A5                   .dbline 286
+ 00A5           ;                       break;
+ 00A5 80A9              xjmp L4
+ 00A7           L15:
+ 00A7                   .dbline 288
+ 00A7           ;               }
+ 00A7           ;               state = KBD_START_SEQ;
+ 00A7 62D000            mov REG[0xd0],>L2
+ 00AA 550000            mov [L2],0
+ 00AD                   .dbline 290
+ 00AD           ;               // See if this is a fake-shift MAKE.
+ 00AD           ;               if ((scancode == 0x12)||(scancode == 0x59)) {
+ 00AD 3DFC12            cmp [X-4],18
+ 00B0 A006              jz L19
+ 00B2 3DFC59            cmp [X-4],89
+ 00B5 B006              jnz L17
+ 00B7           L19:
+ 00B7                   .dbline 291
+ 00B7           ;                               codetype = KEY_FAKE_SHIFT|KEY_MAKE;
+ 00B7                   .dbline 291
+ 00B7 560011            mov [X+0],17
+ 00BA                   .dbline 292
+ 00BA           ;                               break;
+ 00BA 8094              xjmp L4
+ 00BC           L17:
+ 00BC                   .dbline 294
+ 00BC           ;               }
+ 00BC           ;               codetype = KEY_E0|KEY_MAKE;
+ 00BC 560005            mov [X+0],5
+ 00BF                   .dbline 295
+ 00BF           ;               break;
+ 00BF 808F              xjmp L4
+ 00C1           L20:
+ 00C1                   .dbline 297
+ 00C1           ;       case KBD_E0_F0_SEQ:
+ 00C1           ;               state = KBD_START_SEQ;
+ 00C1 62D000            mov REG[0xd0],>L2
+ 00C4 550000            mov [L2],0
+ 00C7                   .dbline 299
+ 00C7           ;               // See if this is a fake-shift BREAK.
+ 00C7           ;               if ((scancode == 0x12)||(scancode == 0x59)) {
+ 00C7 3DFC12            cmp [X-4],18
+ 00CA A006              jz L23
+ 00CC 3DFC59            cmp [X-4],89
+ 00CF B006              jnz L21
+ 00D1           L23:
+ 00D1                   .dbline 300
+ 00D1           ;                       codetype = KEY_FAKE_SHIFT|KEY_BREAK;
+ 00D1                   .dbline 300
+ 00D1 560012            mov [X+0],18
+ 00D4                   .dbline 301
+ 00D4           ;                       break;
+ 00D4 807A              xjmp L4
+ 00D6           L21:
+ 00D6                   .dbline 303
+ 00D6           ;               }
+ 00D6           ;               codetype = KEY_E0|KEY_BREAK;
+ 00D6 560006            mov [X+0],6
+ 00D9                   .dbline 304
+ 00D9           ;               break;
+ 00D9 8075              xjmp L4
+ 00DB           L24:
+ 00DB                   .dbline 306
+ 00DB           ;       case KBD_PAUSE_A:
+ 00DB           ;               if (scancode == 0x14) {
+ 00DB 3DFC14            cmp [X-4],20
+ 00DE B009              jnz L25
+ 00E0                   .dbline 307
+ 00E0           ;                       state = KBD_PAUSE_B;
+ 00E0                   .dbline 307
+ 00E0 62D000            mov REG[0xd0],>L2
+ 00E3 550005            mov [L2],5
+ 00E6                   .dbline 308
+ 00E6           ;                       break;
+ 00E6 8068              xjmp L4
+ 00E8           L25:
+ 00E8                   .dbline 310
+ 00E8           ;               }
+ 00E8           ;               if (scancode == 0xF0) {
+ 00E8 3DFCF0            cmp [X-4],-16
+ 00EB B009              jnz L27
+ 00ED                   .dbline 311
+ 00ED           ;                       state = KBD_PAUSE_D;
+ 00ED                   .dbline 311
+ 00ED 62D000            mov REG[0xd0],>L2
+ 00F0 550007            mov [L2],7
+ 00F3                   .dbline 312
+ 00F3           ;                       break;
+ 00F3 805B              xjmp L4
+ 00F5           L27:
+ 00F5                   .dbline 314
+ 00F5           ;               }
+ 00F5           ;               state = KBD_START_SEQ;
+ 00F5 62D000            mov REG[0xd0],>L2
+ 00F8 550000            mov [L2],0
+ 00FB                   .dbline 315
+ 00FB           ;               break;
+ 00FB 8053              xjmp L4
+ 00FD           L29:
+ 00FD                   .dbline 317
+ 00FD           ;       case KBD_PAUSE_B:
+ 00FD           ;               if (scancode == 0x77) {
+ 00FD 3DFC77            cmp [X-4],119
+ 0100 B009              jnz L30
+ 0102                   .dbline 318
+ 0102           ;                       state = KBD_PAUSE_C;
+ 0102                   .dbline 318
+ 0102 62D000            mov REG[0xd0],>L2
+ 0105 550006            mov [L2],6
+ 0108                   .dbline 319
+ 0108           ;                       break;
+ 0108 8046              xjmp L4
+ 010A           L30:
+ 010A                   .dbline 321
+ 010A           ;               }
+ 010A           ;               if (scancode == 0xF0) {
+ 010A 3DFCF0            cmp [X-4],-16
+ 010D B009              jnz L32
+ 010F                   .dbline 322
+ 010F           ;                       state = KBD_PAUSE_D;
+ 010F                   .dbline 322
+ 010F 62D000            mov REG[0xd0],>L2
+ 0112 550007            mov [L2],7
+ 0115                   .dbline 323
+ 0115           ;                       break;
+ 0115 8039              xjmp L4
+ 0117           L32:
+ 0117                   .dbline 325
+ 0117           ;               }
+ 0117           ;               state = KBD_START_SEQ;
+ 0117 62D000            mov REG[0xd0],>L2
+ 011A 550000            mov [L2],0
+ 011D                   .dbline 326
+ 011D           ;               break;
+ 011D 8031              xjmp L4
+ 011F           L34:
+ 011F                   .dbline 328
+ 011F           ;       case KBD_PAUSE_C:
+ 011F           ;               if (scancode == 0xE1) {
+ 011F 3DFCE1            cmp [X-4],-31
+ 0122 B009              jnz L35
+ 0124                   .dbline 329
+ 0124           ;                       state = KBD_PAUSE_A;
+ 0124                   .dbline 329
+ 0124 62D000            mov REG[0xd0],>L2
+ 0127 550004            mov [L2],4
+ 012A                   .dbline 330
+ 012A           ;                       break;
+ 012A 8024              xjmp L4
+ 012C           L35:
+ 012C                   .dbline 332
+ 012C           ;               }
+ 012C           ;               state = KBD_START_SEQ;
+ 012C 62D000            mov REG[0xd0],>L2
+ 012F 550000            mov [L2],0
+ 0132                   .dbline 333
+ 0132           ;               break;
+ 0132 801C              xjmp L4
+ 0134           L37:
+ 0134                   .dbline 335
+ 0134           ;       case KBD_PAUSE_D:
+ 0134           ;               if (scancode == 0x14) {
+ 0134 3DFC14            cmp [X-4],20
+ 0137 B009              jnz L38
+ 0139                   .dbline 336
+ 0139           ;                       state = KBD_PAUSE_B;
+ 0139                   .dbline 336
+ 0139 62D000            mov REG[0xd0],>L2
+ 013C 550005            mov [L2],5
+ 013F                   .dbline 337
+ 013F           ;                       break;
+ 013F 800F              xjmp L4
+ 0141           L38:
+ 0141                   .dbline 339
+ 0141           ;               }
+ 0141           ;               if (scancode == 0x77) {
+ 0141 3DFC77            cmp [X-4],119
+ 0144 B004              jnz L40
+ 0146                   .dbline 340
+ 0146           ;                       codetype = KEY_PAUSE;
+ 0146                   .dbline 340
+ 0146 560008            mov [X+0],8
+ 0149                   .dbline 341
+ 0149           ;               }
+ 0149           L40:
+ 0149                   .dbline 342
+ 0149           ;               state = KBD_START_SEQ;
+ 0149 62D000            mov REG[0xd0],>L2
+ 014C 550000            mov [L2],0
+ 014F                   .dbline 343
+ 014F           ;               break;
+ 014F           L3:
+ 014F           L4:
+ 014F                   .dbline 345
+ 014F           ;       }
+ 014F           ;       return(codetype);
+ 014F 5200              mov A,[X+0]
+ 0151 62D000            mov REG[0xd0],>__r0
+ 0154                   .dbline -2
+ 0154           L1:
+ 0154 38FD              add SP,-3
+ 0156 20                pop X
+ 0157                   .dbline 0 ; func end
+ 0157 7F                ret
+ 0158                   .dbsym l codetype 0 c
+ 0158                   .dbsym l scancode -4 c
+ 0158                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L43:
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 0000              .byte 0,0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L44:
+ 0000 00000000000000000000      .word 0,0,0,0,0
+ 000A 0000              .byte 0,0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L45:
+ 0000 00                .byte 0
+                        .area text(rom, con, rel)
+ 0158                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0158                   .dbfunc e KeyboardTotalPressed _KeyboardTotalPressed fc
+ 0158                   .dbsym s pressed L45 c
+ 0158                   .dbsym s types L44 A[12:12]c
+ 0158                   .dbsym s keys L43 A[12:12]c
+ 0158           ;          found -> X+2
+ 0158           ;              j -> X+1
+ 0158           ;              i -> X+0
+ 0158           ;       codetype -> X-5
+ 0158           ;       scancode -> X-4
+ 0158           _KeyboardTotalPressed::
+ 0158                   .dbline -1
+ 0158 10                push X
+ 0159 4F                mov X,SP
+ 015A 3803              add SP,3
+ 015C                   .dbline 349
+ 015C           ; }
+ 015C           ; 
+ 015C           ; BYTE KeyboardTotalPressed(BYTE scancode, BYTE codetype)
+ 015C           ; {
+ 015C                   .dbline 354
+ 015C           ;       static BYTE keys[12];
+ 015C           ;       static BYTE types[12];
+ 015C           ;       static BYTE pressed = 0;
+ 015C           ;       BYTE i,j;
+ 015C           ;       BYTE found=0;
+ 015C 560200            mov [X+2],0
+ 015F                   .dbline 357
+ 015F           ; 
+ 015F           ;       //// If this is a fake-shift it is not an actual key change.
+ 015F           ;       if (codetype & KEY_FAKE_SHIFT) {
+ 015F 48FB10            tst [X-5],16
+ 0162 A00B              jz L46
+ 0164                   .dbline 358
+ 0164           ;               return(pressed);
+ 0164                   .dbline 358
+ 0164 62D000            mov REG[0xd0],>L45
+ 0167 5100              mov A,[L45]
+ 0169 62D000            mov REG[0xd0],>__r0
+ 016C 81B9              xjmp L42
+ 016E           L46:
+ 016E                   .dbline 361
+ 016E           ;       }
+ 016E           ;       //// If this is the Pause key, it won't change the number of keys held down.
+ 016E           ;       if (codetype & KEY_PAUSE) {
+ 016E 48FB08            tst [X-5],8
+ 0171 A00B              jz L48
+ 0173                   .dbline 362
+ 0173           ;               return(pressed);
+ 0173                   .dbline 362
+ 0173 62D000            mov REG[0xd0],>L45
+ 0176 5100              mov A,[L45]
+ 0178 62D000            mov REG[0xd0],>__r0
+ 017B 81AA              xjmp L42
+ 017D           L48:
+ 017D                   .dbline 365
+ 017D           ;       }
+ 017D           ;       //// If this is a key-make, check if it is on the list and add it if not.
+ 017D           ;       if (codetype & KEY_MAKE) {
+ 017D 48FB01            tst [X-5],1
+ 0180 A0DD              jz L50
+ 0182                   .dbline 366
+ 0182           ;               if (pressed == 0) {
+ 0182                   .dbline 366
+ 0182 62D000            mov REG[0xd0],>L45
+ 0185 3C0000            cmp [L45],0
+ 0188 B042              jnz L52
+ 018A                   .dbline 367
+ 018A           ;                       keys[pressed] = scancode;
+ 018A                   .dbline 367
+ 018A 5100              mov A,[L45]
+ 018C 62D000            mov REG[0xd0],>__r0
+ 018F 5300              mov [__r1],A
+ 0191 550000            mov [__r0],0
+ 0194 060000            add [__r1],<L43
+ 0197 0E0000            adc [__r0],>L43
+ 019A 5100              mov A,[__r0]
+ 019C 60D5              mov REG[0xd5],A
+ 019E 52FC              mov A,[X-4]
+ 01A0 3F00              mvi [__r1],A
+ 01A2                   .dbline 368
+ 01A2           ;                       types[pressed] = codetype & KEY_E0;
+ 01A2 52FB              mov A,[X-5]
+ 01A4 2104              and A,4
+ 01A6 5300              mov [__r0],A
+ 01A8 62D000            mov REG[0xd0],>L45
+ 01AB 5100              mov A,[L45]
+ 01AD 62D000            mov REG[0xd0],>__r0
+ 01B0 5300              mov [__r3],A
+ 01B2 550000            mov [__r2],0
+ 01B5 060000            add [__r3],<L44
+ 01B8 0E0000            adc [__r2],>L44
+ 01BB 5100              mov A,[__r2]
+ 01BD 60D5              mov REG[0xd5],A
+ 01BF 5100              mov A,[__r0]
+ 01C1 3F00              mvi [__r3],A
+ 01C3                   .dbline 369
+ 01C3           ;                       pressed = 1;
+ 01C3 62D000            mov REG[0xd0],>L45
+ 01C6 550001            mov [L45],1
+ 01C9                   .dbline 370
+ 01C9           ;               }
+ 01C9 8094              xjmp L53
+ 01CB           L52:
+ 01CB                   .dbline 371
+ 01CB           ;               else {
+ 01CB                   .dbline 372
+ 01CB           ;                       found = 0;
+ 01CB 560200            mov [X+2],0
+ 01CE                   .dbline 373
+ 01CE           ;                       for (i=0 ; i<pressed ; i++) {
+ 01CE 560000            mov [X+0],0
+ 01D1 803D              xjmp L57
+ 01D3           L54:
+ 01D3                   .dbline 373
+ 01D3                   .dbline 374
+ 01D3           ;                               if (keys[i] == scancode) {
+ 01D3 62D000            mov REG[0xd0],>__r0
+ 01D6 5200              mov A,[X+0]
+ 01D8 5300              mov [__r1],A
+ 01DA 550000            mov [__r0],0
+ 01DD 060000            add [__r1],<L43
+ 01E0 0E0000            adc [__r0],>L43
+ 01E3 5100              mov A,[__r0]
+ 01E5 60D4              mov REG[0xd4],A
+ 01E7 3E00              mvi A,[__r1]
+ 01E9 3BFC              cmp A,[X-4]
+ 01EB B021              jnz L58
+ 01ED                   .dbline 375
+ 01ED           ;                                       if (types[i] == (codetype & KEY_E0)) {
+ 01ED                   .dbline 375
+ 01ED 52FB              mov A,[X-5]
+ 01EF 2104              and A,4
+ 01F1 5300              mov [__r0],A
+ 01F3 5200              mov A,[X+0]
+ 01F5 5300              mov [__r3],A
+ 01F7 550000            mov [__r2],0
+ 01FA 060000            add [__r3],<L44
+ 01FD 0E0000            adc [__r2],>L44
+ 0200 5100              mov A,[__r2]
+ 0202 60D4              mov REG[0xd4],A
+ 0204 3E00              mvi A,[__r3]
+ 0206 3A00              cmp A,[__r0]
+ 0208 B004              jnz L60
+ 020A                   .dbline 376
+ 020A           ;                                               found=1;
+ 020A                   .dbline 376
+ 020A 560201            mov [X+2],1
+ 020D                   .dbline 377
+ 020D           ;                                       }
+ 020D           L60:
+ 020D                   .dbline 378
+ 020D           ;                               }
+ 020D           L58:
+ 020D                   .dbline 379
+ 020D           ;                       }
+ 020D           L55:
+ 020D                   .dbline 373
+ 020D 7700              inc [X+0]
+ 020F           L57:
+ 020F                   .dbline 373
+ 020F 62D000            mov REG[0xd0],>L45
+ 0212 5200              mov A,[X+0]
+ 0214 3A00              cmp A,[L45]
+ 0216 CFBC              jc L54
+ 0218           X8:
+ 0218                   .dbline 380
+ 0218           ;                       if (found==0) {
+ 0218 3D0200            cmp [X+2],0
+ 021B B042              jnz L62
+ 021D                   .dbline 381
+ 021D           ;                               keys[pressed] = scancode;
+ 021D                   .dbline 381
+ 021D 62D000            mov REG[0xd0],>L45
+ 0220 5100              mov A,[L45]
+ 0222 62D000            mov REG[0xd0],>__r0
+ 0225 5300              mov [__r1],A
+ 0227 550000            mov [__r0],0
+ 022A 060000            add [__r1],<L43
+ 022D 0E0000            adc [__r0],>L43
+ 0230 5100              mov A,[__r0]
+ 0232 60D5              mov REG[0xd5],A
+ 0234 52FC              mov A,[X-4]
+ 0236 3F00              mvi [__r1],A
+ 0238                   .dbline 382
+ 0238           ;                               types[pressed] = codetype & KEY_E0;
+ 0238 52FB              mov A,[X-5]
+ 023A 2104              and A,4
+ 023C 5300              mov [__r0],A
+ 023E 62D000            mov REG[0xd0],>L45
+ 0241 5100              mov A,[L45]
+ 0243 62D000            mov REG[0xd0],>__r0
+ 0246 5300              mov [__r3],A
+ 0248 550000            mov [__r2],0
+ 024B 060000            add [__r3],<L44
+ 024E 0E0000            adc [__r2],>L44
+ 0251 5100              mov A,[__r2]
+ 0253 60D5              mov REG[0xd5],A
+ 0255 5100              mov A,[__r0]
+ 0257 3F00              mvi [__r3],A
+ 0259                   .dbline 383
+ 0259           ;                               pressed++;
+ 0259 62D000            mov REG[0xd0],>L45
+ 025C 7600              inc [L45]
+ 025E                   .dbline 384
+ 025E           ;                       }
+ 025E           L62:
+ 025E                   .dbline 385
+ 025E           ;               }
+ 025E           L53:
+ 025E                   .dbline 386
+ 025E           ;       }
+ 025E           L50:
+ 025E                   .dbline 391
+ 025E           ;       //// If this is a key-break:
+ 025E           ;       //// "pressed" should never be zero when we receive a KEY_BREAK
+ 025E           ;       //// but, since some keyboards may have debouncing problems which
+ 025E           ;       //// can generate multiple breaks, we will check anyway.
+ 025E           ;       if (codetype & KEY_BREAK) {
+ 025E 48FB02            tst [X-5],2
+ 0261 A0BC              jz L64
+ 0263                   .dbline 392
+ 0263           ;               if (!pressed) {
+ 0263                   .dbline 392
+ 0263 62D000            mov REG[0xd0],>L45
+ 0266 3C0000            cmp [L45],0
+ 0269 B008              jnz L66
+ 026B                   .dbline 393
+ 026B           ;                       return(0);
+ 026B                   .dbline 393
+ 026B 62D000            mov REG[0xd0],>__r0
+ 026E 5000              mov A,0
+ 0270 80B5              xjmp L42
+ 0272           L66:
+ 0272                   .dbline 396
+ 0272           ;               }
+ 0272           ;               // Remove the key from the list
+ 0272           ;               for (i=0,j=0 ; i<pressed ; i++) {
+ 0272 560000            mov [X+0],0
+ 0275 560100            mov [X+1],0
+ 0278 8095              xjmp L71
+ 027A           L68:
+ 027A                   .dbline 396
+ 027A                   .dbline 398
+ 027A           ;                       // if the key & type matches, skip it
+ 027A           ;                       if (keys[i] == scancode) {
+ 027A 62D000            mov REG[0xd0],>__r0
+ 027D 5200              mov A,[X+0]
+ 027F 5300              mov [__r1],A
+ 0281 550000            mov [__r0],0
+ 0284 060000            add [__r1],<L43
+ 0287 0E0000            adc [__r0],>L43
+ 028A 5100              mov A,[__r0]
+ 028C 60D4              mov REG[0xd4],A
+ 028E 3E00              mvi A,[__r1]
+ 0290 3BFC              cmp A,[X-4]
+ 0292 B020              jnz L72
+ 0294                   .dbline 399
+ 0294           ;                               if (types[i] == (codetype & KEY_E0)) {
+ 0294                   .dbline 399
+ 0294 52FB              mov A,[X-5]
+ 0296 2104              and A,4
+ 0298 5300              mov [__r0],A
+ 029A 5200              mov A,[X+0]
+ 029C 5300              mov [__r3],A
+ 029E 550000            mov [__r2],0
+ 02A1 060000            add [__r3],<L44
+ 02A4 0E0000            adc [__r2],>L44
+ 02A7 5100              mov A,[__r2]
+ 02A9 60D4              mov REG[0xd4],A
+ 02AB 3E00              mvi A,[__r3]
+ 02AD 3A00              cmp A,[__r0]
+ 02AF B003              jnz L74
+ 02B1                   .dbline 400
+ 02B1           ;                                       continue;
+ 02B1                   .dbline 400
+ 02B1 805A              xjmp L69
+ 02B3           L74:
+ 02B3                   .dbline 402
+ 02B3           ;                               }
+ 02B3           ;                       }
+ 02B3           L72:
+ 02B3                   .dbline 403
+ 02B3           ;                       keys[j]=keys[i];
+ 02B3 62D000            mov REG[0xd0],>__r0
+ 02B6 5200              mov A,[X+0]
+ 02B8 5300              mov [__r1],A
+ 02BA 550000            mov [__r0],0
+ 02BD 060000            add [__r1],<L43
+ 02C0 0E0000            adc [__r0],>L43
+ 02C3 5100              mov A,[__r0]
+ 02C5 60D4              mov REG[0xd4],A
+ 02C7 3E00              mvi A,[__r1]
+ 02C9 5300              mov [__r0],A
+ 02CB 5201              mov A,[X+1]
+ 02CD 5300              mov [__r3],A
+ 02CF 550000            mov [__r2],0
+ 02D2 060000            add [__r3],<L43
+ 02D5 0E0000            adc [__r2],>L43
+ 02D8 5100              mov A,[__r2]
+ 02DA 60D5              mov REG[0xd5],A
+ 02DC 5100              mov A,[__r0]
+ 02DE 3F00              mvi [__r3],A
+ 02E0                   .dbline 404
+ 02E0           ;                       types[j]=types[i];
+ 02E0 5200              mov A,[X+0]
+ 02E2 5300              mov [__r1],A
+ 02E4 550000            mov [__r0],0
+ 02E7 060000            add [__r1],<L44
+ 02EA 0E0000            adc [__r0],>L44
+ 02ED 5100              mov A,[__r0]
+ 02EF 60D4              mov REG[0xd4],A
+ 02F1 3E00              mvi A,[__r1]
+ 02F3 5300              mov [__r0],A
+ 02F5 5201              mov A,[X+1]
+ 02F7 5300              mov [__r3],A
+ 02F9 550000            mov [__r2],0
+ 02FC 060000            add [__r3],<L44
+ 02FF 0E0000            adc [__r2],>L44
+ 0302 5100              mov A,[__r2]
+ 0304 60D5              mov REG[0xd5],A
+ 0306 5100              mov A,[__r0]
+ 0308 3F00              mvi [__r3],A
+ 030A                   .dbline 405
+ 030A           ;                       j++;
+ 030A 7701              inc [X+1]
+ 030C                   .dbline 406
+ 030C           ;               }
+ 030C           L69:
+ 030C                   .dbline 396
+ 030C 7700              inc [X+0]
+ 030E           L71:
+ 030E                   .dbline 396
+ 030E 62D000            mov REG[0xd0],>L45
+ 0311 5200              mov A,[X+0]
+ 0313 3A00              cmp A,[L45]
+ 0315 CF64              jc L68
+ 0317           X9:
+ 0317                   .dbline 407
+ 0317           ;               pressed = j;
+ 0317 5201              mov A,[X+1]
+ 0319 62D000            mov REG[0xd0],>L45
+ 031C 5300              mov [L45],A
+ 031E                   .dbline 408
+ 031E           ;       }
+ 031E           L64:
+ 031E                   .dbline 410
+ 031E           ;       ///////////////////////////////////////////////////////////////////////////
+ 031E           ;       return(pressed);
+ 031E 62D000            mov REG[0xd0],>L45
+ 0321 5100              mov A,[L45]
+ 0323 62D000            mov REG[0xd0],>__r0
+ 0326                   .dbline -2
+ 0326           L42:
+ 0326 38FD              add SP,-3
+ 0328 20                pop X
+ 0329                   .dbline 0 ; func end
+ 0329 7F                ret
+ 032A                   .dbsym l found 2 c
+ 032A                   .dbsym l j 1 c
+ 032A                   .dbsym l i 0 c
+ 032A                   .dbsym l codetype -5 c
+ 032A                   .dbsym l scancode -4 c
+ 032A                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L77:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L78:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L79:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L80:
+ 0000 0000              .word 0
+                        .area text(rom, con, rel)
+ 032A                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 032A                   .dbfunc e KeyboardToASCII _KeyboardToASCII fc
+ 032A                   .dbsym s rst L80 I
+ 032A                   .dbsym s print2 L79 I
+ 032A                   .dbsym s count L78 I
+ 032A                   .dbsym s print1 L77 I
+ 032A           ;              i -> X+0
+ 032A           ;       codetype -> X-5
+ 032A           ;       scancode -> X-4
+ 032A           _KeyboardToASCII::
+ 032A                   .dbline -1
+ 032A 10                push X
+ 032B 4F                mov X,SP
+ 032C 3802              add SP,2
+ 032E                   .dbline 414
+ 032E           ; }
+ 032E           ; 
+ 032E           ; char KeyboardToASCII(BYTE scancode, BYTE codetype)
+ 032E           ; {
+ 032E                   .dbline 423
+ 032E           ;       int i;
+ 032E           ;       
+ 032E           ;       static int print1 = 0;                                                                      // we added this
+ 032E           ;       static int count = 0;                                                                                                                                           // we added this
+ 032E           ;       static int print2 = 0;                                                                                                                                      // we added this
+ 032E           ;       static int rst = 0;
+ 032E           ; 
+ 032E           ;       //// Ignore fake-shifts
+ 032E           ;       if (codetype & KEY_FAKE_SHIFT) {
+ 032E 48FB10            tst [X-5],16
+ 0331 A008              jz L81
+ 0333                   .dbline 424
+ 0333           ;               return(0);
+ 0333                   .dbline 424
+ 0333 62D000            mov REG[0xd0],>__r0
+ 0336 5000              mov A,0
+ 0338 847D              xjmp L76
+ 033A           L81:
+ 033A                   .dbline 426
+ 033A           ;       }
+ 033A           ;       if (codetype & KEY_MAKE) {
+ 033A 48FB01            tst [X-5],1
+ 033D A473              jz L83
+ 033F                   .dbline 428
+ 033F           ;               //// Convert any two byte (E0) scancodes to their ASCII equivalent
+ 033F           ;               if (codetype & KEY_E0 && AltDown != 1 && CtrlDown != 1) {
+ 033F                   .dbline 428
+ 033F 48FB04            tst [X-5],4
+ 0342 A044              jz L85
+ 0344 62D000            mov REG[0xd0],>_AltDown
+ 0347 3C0001            cmp [_AltDown],1
+ 034A A03C              jz L85
+ 034C 62D000            mov REG[0xd0],>_CtrlDown
+ 034F 3C0001            cmp [_CtrlDown],1
+ 0352 A034              jz L85
+ 0354                   .dbline 429
+ 0354           ;                       if (scancode == 0x71) {
+ 0354                   .dbline 429
+ 0354 3DFC71            cmp [X-4],113
+ 0357 B008              jnz L87
+ 0359                   .dbline 430
+ 0359           ;                               return(0x08);   // Delete (return backspace)
+ 0359                   .dbline 430
+ 0359 62D000            mov REG[0xd0],>__r0
+ 035C 5008              mov A,8
+ 035E 8457              xjmp L76
+ 0360           L87:
+ 0360                   .dbline 432
+ 0360           ;                       }
+ 0360           ;                       if (scancode == 0x4A) return('/');      // Keypad /
+ 0360 3DFC4A            cmp [X-4],74
+ 0363 B008              jnz L89
+ 0365                   .dbline 432
+ 0365 62D000            mov REG[0xd0],>__r0
+ 0368 502F              mov A,47
+ 036A 844B              xjmp L76
+ 036C           L89:
+ 036C                   .dbline 433
+ 036C           ;                       if (scancode == 0x5A) { // Keypad Enter
+ 036C 3DFC5A            cmp [X-4],90
+ 036F B441              jnz L86
+ 0371                   .dbline 434
+ 0371           ;                               if (CtrlDown) return(0x0A);     // ^Enter (return line-feed)
+ 0371                   .dbline 434
+ 0371 62D000            mov REG[0xd0],>_CtrlDown
+ 0374 3C0000            cmp [_CtrlDown],0
+ 0377 A008              jz L93
+ 0379                   .dbline 434
+ 0379 62D000            mov REG[0xd0],>__r0
+ 037C 500A              mov A,10
+ 037E 8437              xjmp L76
+ 0380           L93:
+ 0380                   .dbline 435
+ 0380           ;                               else return(0x0D); // (return carriage-return)
+ 0380 62D000            mov REG[0xd0],>__r0
+ 0383 500D              mov A,13
+ 0385 8430              xjmp L76
+ 0387           L85:
+ 0387                   .dbline 439
+ 0387           ;                       }
+ 0387           ;               }
+ 0387           ;               //// Convert any single byte scancodes to their ASCII equivalent
+ 0387           ;               else {
+ 0387                   .dbline 441
+ 0387           ;                       //// Check for special case keys
+ 0387           ;                       if (scancode == 0x5A) { // Enter
+ 0387 3DFC5A            cmp [X-4],90
+ 038A B017              jnz L95
+ 038C                   .dbline 442
+ 038C           ;                               if (CtrlDown) return(0x0A);     // ^Enter (return line-feed)
+ 038C                   .dbline 442
+ 038C 62D000            mov REG[0xd0],>_CtrlDown
+ 038F 3C0000            cmp [_CtrlDown],0
+ 0392 A008              jz L97
+ 0394                   .dbline 442
+ 0394 62D000            mov REG[0xd0],>__r0
+ 0397 500A              mov A,10
+ 0399 841C              xjmp L76
+ 039B           L97:
+ 039B                   .dbline 443
+ 039B           ;                               else return(0x0D); // (return carriage-return)
+ 039B 62D000            mov REG[0xd0],>__r0
+ 039E 500D              mov A,13
+ 03A0 8415              xjmp L76
+ 03A2           L95:
+ 03A2                   .dbline 445
+ 03A2           ;                       }
+ 03A2           ;                       if (scancode == 0x76) return(0x1B);     // ESC key returns ASCII ESC
+ 03A2 3DFC76            cmp [X-4],118
+ 03A5 B008              jnz L99
+ 03A7                   .dbline 445
+ 03A7 62D000            mov REG[0xd0],>__r0
+ 03AA 501B              mov A,27
+ 03AC 8409              xjmp L76
+ 03AE           L99:
+ 03AE                   .dbline 446
+ 03AE           ;                       if (scancode == 0x7C) return('*');      // KP *
+ 03AE 3DFC7C            cmp [X-4],124
+ 03B1 B008              jnz L101
+ 03B3                   .dbline 446
+ 03B3 62D000            mov REG[0xd0],>__r0
+ 03B6 502A              mov A,42
+ 03B8 83FD              xjmp L76
+ 03BA           L101:
+ 03BA                   .dbline 447
+ 03BA           ;                       if (scancode == 0x7B) return('-');      // KP -
+ 03BA 3DFC7B            cmp [X-4],123
+ 03BD B008              jnz L103
+ 03BF                   .dbline 447
+ 03BF 62D000            mov REG[0xd0],>__r0
+ 03C2 502D              mov A,45
+ 03C4 83F1              xjmp L76
+ 03C6           L103:
+ 03C6                   .dbline 448
+ 03C6           ;                       if (scancode == 0x79) return('+');      // KP +
+ 03C6 3DFC79            cmp [X-4],121
+ 03C9 B008              jnz L105
+ 03CB                   .dbline 448
+ 03CB 62D000            mov REG[0xd0],>__r0
+ 03CE 502B              mov A,43
+ 03D0 83E5              xjmp L76
+ 03D2           L105:
+ 03D2                   .dbline 449
+ 03D2           ;                       if (scancode == 0x66) return(0x08); // Backspace (return delete)                       ***We added this***
+ 03D2 3DFC66            cmp [X-4],102
+ 03D5 B008              jnz L107
+ 03D7                   .dbline 449
+ 03D7 62D000            mov REG[0xd0],>__r0
+ 03DA 5008              mov A,8
+ 03DC 83D9              xjmp L76
+ 03DE           L107:
+ 03DE                   .dbline 453
+ 03DE           ;                       //// If one of the Control keys is down, return their ASCII value
+ 03DE           ;                       /// 
+ 03DE           ;                       
+ 03DE           ;                       if (CtrlDown) {
+ 03DE 62D000            mov REG[0xd0],>_CtrlDown
+ 03E1 3C0000            cmp [_CtrlDown],0
+ 03E4 A096              jz L109
+ 03E6                   .dbline 454
+ 03E6           ;                               i = 0;
+ 03E6                   .dbline 454
+ 03E6 560100            mov [X+1],0
+ 03E9 560000            mov [X+0],0
+ 03EC 8006              xjmp L112
+ 03EE           L111:
+ 03EE                   .dbline 455
+ 03EE           ;                               while((ControlScancode[i][1] != scancode) && (ControlScancode[i][1] != 0)) {
+ 03EE                   .dbline 456
+ 03EE           ;                                       i++;
+ 03EE 7701              inc [X+1]
+ 03F0 0F0000            adc [X+0],0
+ 03F3                   .dbline 457
+ 03F3           ;                               }
+ 03F3           L112:
+ 03F3                   .dbline 455
+ 03F3 62D000            mov REG[0xd0],>__r0
+ 03F6 5201              mov A,[X+1]
+ 03F8 5300              mov [__r1],A
+ 03FA 5200              mov A,[X+0]
+ 03FC 5300              mov [__r0],A
+ 03FE 6500              asl [__r1]
+ 0400 6B00              rlc [__r0]
+ 0402 5100              mov A,[__r1]
+ 0404 019A              add A,<_ControlScancode+1
+ 0406 5300              mov [__r3],A
+ 0408 5100              mov A,[__r0]
+ 040A 099A              adc A,>_ControlScancode+1
+ 040C 10                push X
+ 040D 5800              mov X,[__r3]
+ 040F 28                romx
+ 0410 20                pop X
+ 0411 3BFC              cmp A,[X-4]
+ 0413 A012              jz L116
+ 0415 06009A            add [__r1],<_ControlScancode+1
+ 0418 0E009A            adc [__r0],>_ControlScancode+1
+ 041B 5100              mov A,[__r0]
+ 041D 10                push X
+ 041E 5800              mov X,[__r1]
+ 0420 28                romx
+ 0421 20                pop X
+ 0422 3900              cmp A,0
+ 0424 BFC9              jnz L111
+ 0426           L116:
+ 0426                   .dbline 458
+ 0426           ;                               if (ControlScancode[i][1] > 0) {
+ 0426 62D000            mov REG[0xd0],>__r0
+ 0429 5201              mov A,[X+1]
+ 042B 5300              mov [__r1],A
+ 042D 5200              mov A,[X+0]
+ 042F 5300              mov [__r0],A
+ 0431 6500              asl [__r1]
+ 0433 6B00              rlc [__r0]
+ 0435 06009A            add [__r1],<_ControlScancode+1
+ 0438 0E009A            adc [__r0],>_ControlScancode+1
+ 043B 5100              mov A,[__r0]
+ 043D 10                push X
+ 043E 5800              mov X,[__r1]
+ 0440 28                romx
+ 0441 20                pop X
+ 0442 5300              mov [__r0],A
+ 0444 5000              mov A,0
+ 0446 3A00              cmp A,[__r0]
+ 0448 D01F              jnc L117
+ 044A           X10:
+ 044A                   .dbline 459
+ 044A           ;                                       return(ControlScancode[i][0]);
+ 044A                   .dbline 459
+ 044A 62D000            mov REG[0xd0],>__r0
+ 044D 5201              mov A,[X+1]
+ 044F 5300              mov [__r1],A
+ 0451 5200              mov A,[X+0]
+ 0453 5300              mov [__r0],A
+ 0455 6500              asl [__r1]
+ 0457 6B00              rlc [__r0]
+ 0459 060099            add [__r1],<_ControlScancode
+ 045C 0E0099            adc [__r0],>_ControlScancode
+ 045F 5100              mov A,[__r0]
+ 0461 10                push X
+ 0462 5800              mov X,[__r1]
+ 0464 28                romx
+ 0465 20                pop X
+ 0466 834F              xjmp L76
+ 0468           L117:
+ 0468                   .dbline 462
+ 0468           ;                               }
+ 0468           ;                               
+ 0468           ;                               if (AltDown && DeleteDown) {
+ 0468 62D000            mov REG[0xd0],>_AltDown
+ 046B 3C0000            cmp [_AltDown],0
+ 046E A00C              jz L120
+ 0470 62D000            mov REG[0xd0],>_DeleteDown
+ 0473 3C0000            cmp [_DeleteDown],0
+ 0476 A004              jz L120
+ 0478                   .dbline 464
+ 0478           ;                                       
+ 0478           ;                                       M8C_Reset;
+ 0478                   .dbline 464
+ 0478 5000                      mov A, 0
+ 047A 00                SSC
+ 047B           
+ 047B                   .dbline 464
+ 047B                   .dbline 466
+ 047B           ;                                       
+ 047B           ;                               }
+ 047B           L120:
+ 047B                   .dbline 473
+ 047B           ;                               
+ 047B           ; //                            if (scancode == 0x11) {
+ 047B           ; //                                    rst = 1;        
+ 047B           ; //                            } else if (rst == 1) {
+ 047B           ; //                                    UART_CPutString("\r\nSoft Reset\r\n");
+ 047B           ; //                            }
+ 047B           ;                       }
+ 047B           L109:
+ 047B                   .dbline 475
+ 047B           ;                       //// If NumLock is on, return any appropriate key pad ASCII values
+ 047B           ;                       if (NumLock) {
+ 047B 62D000            mov REG[0xd0],>_NumLock
+ 047E 3C0000            cmp [_NumLock],0
+ 0481 A083              jz L122
+ 0483                   .dbline 476
+ 0483           ;                               i = 0;
+ 0483                   .dbline 476
+ 0483 560100            mov [X+1],0
+ 0486 560000            mov [X+0],0
+ 0489 8006              xjmp L125
+ 048B           L124:
+ 048B                   .dbline 477
+ 048B           ;                               while((KeypadScancode[i][1] != scancode) && (KeypadScancode[i][1] != 0)) {
+ 048B                   .dbline 478
+ 048B           ;                                       i++;
+ 048B 7701              inc [X+1]
+ 048D 0F0000            adc [X+0],0
+ 0490                   .dbline 479
+ 0490           ;                               }
+ 0490           L125:
+ 0490                   .dbline 477
+ 0490 62D000            mov REG[0xd0],>__r0
+ 0493 5201              mov A,[X+1]
+ 0495 5300              mov [__r1],A
+ 0497 5200              mov A,[X+0]
+ 0499 5300              mov [__r0],A
+ 049B 6500              asl [__r1]
+ 049D 6B00              rlc [__r0]
+ 049F 5100              mov A,[__r1]
+ 04A1 01DA              add A,<_KeypadScancode+1
+ 04A3 5300              mov [__r3],A
+ 04A5 5100              mov A,[__r0]
+ 04A7 09DA              adc A,>_KeypadScancode+1
+ 04A9 10                push X
+ 04AA 5800              mov X,[__r3]
+ 04AC 28                romx
+ 04AD 20                pop X
+ 04AE 3BFC              cmp A,[X-4]
+ 04B0 A012              jz L129
+ 04B2 0600DA            add [__r1],<_KeypadScancode+1
+ 04B5 0E00DA            adc [__r0],>_KeypadScancode+1
+ 04B8 5100              mov A,[__r0]
+ 04BA 10                push X
+ 04BB 5800              mov X,[__r1]
+ 04BD 28                romx
+ 04BE 20                pop X
+ 04BF 3900              cmp A,0
+ 04C1 BFC9              jnz L124
+ 04C3           L129:
+ 04C3                   .dbline 480
+ 04C3           ;                               if (KeypadScancode[i][1] > 0) {
+ 04C3 62D000            mov REG[0xd0],>__r0
+ 04C6 5201              mov A,[X+1]
+ 04C8 5300              mov [__r1],A
+ 04CA 5200              mov A,[X+0]
+ 04CC 5300              mov [__r0],A
+ 04CE 6500              asl [__r1]
+ 04D0 6B00              rlc [__r0]
+ 04D2 0600DA            add [__r1],<_KeypadScancode+1
+ 04D5 0E00DA            adc [__r0],>_KeypadScancode+1
+ 04D8 5100              mov A,[__r0]
+ 04DA 10                push X
+ 04DB 5800              mov X,[__r1]
+ 04DD 28                romx
+ 04DE 20                pop X
+ 04DF 5300              mov [__r0],A
+ 04E1 5000              mov A,0
+ 04E3 3A00              cmp A,[__r0]
+ 04E5 D01F              jnc L130
+ 04E7           X11:
+ 04E7                   .dbline 481
+ 04E7           ;                                       return(KeypadScancode[i][0]);
+ 04E7                   .dbline 481
+ 04E7 62D000            mov REG[0xd0],>__r0
+ 04EA 5201              mov A,[X+1]
+ 04EC 5300              mov [__r1],A
+ 04EE 5200              mov A,[X+0]
+ 04F0 5300              mov [__r0],A
+ 04F2 6500              asl [__r1]
+ 04F4 6B00              rlc [__r0]
+ 04F6 0600D9            add [__r1],<_KeypadScancode
+ 04F9 0E00D9            adc [__r0],>_KeypadScancode
+ 04FC 5100              mov A,[__r0]
+ 04FE 10                push X
+ 04FF 5800              mov X,[__r1]
+ 0501 28                romx
+ 0502 20                pop X
+ 0503 82B2              xjmp L76
+ 0505           L130:
+ 0505                   .dbline 483
+ 0505           ;                               }
+ 0505           ;                       }
+ 0505           L122:
+ 0505                   .dbline 487
+ 0505           ;                       
+ 0505           ;                       /* CODE ADDED BY JEREMY AND DAVE      ************************************/
+ 0505           ;                       /************* DON'T BREAK IT ********************************************/
+ 0505           ;                       if (AltDown) {
+ 0505 62D000            mov REG[0xd0],>_AltDown
+ 0508 3C0000            cmp [_AltDown],0
+ 050B A116              jz L133
+ 050D                   .dbline 491
+ 050D           ;                               
+ 050D           ;                               // FOX PART
+ 050D           ;                               
+ 050D           ;                               if (scancode == 0x16) {
+ 050D                   .dbline 491
+ 050D 3DFC16            cmp [X-4],22
+ 0510 B00C              jnz L135
+ 0512                   .dbline 492
+ 0512           ;                                       print1 = 1;
+ 0512                   .dbline 492
+ 0512 62D000            mov REG[0xd0],>L77
+ 0515 550101            mov [L77+1],1
+ 0518 550000            mov [L77],0
+ 051B                   .dbline 493
+ 051B           ;                               } else if (scancode == 0x1E && print1 == 1) {
+ 051B 805A              xjmp L136
+ 051D           L135:
+ 051D                   .dbline 493
+ 051D 3DFC1E            cmp [X-4],30
+ 0520 B019              jnz L137
+ 0522 62D000            mov REG[0xd0],>L77
+ 0525 3C0000            cmp [L77],0
+ 0528 B011              jnz L137
+ 052A 3C0101            cmp [L77+1],1
+ 052D B00C              jnz L137
+ 052F           X12:
+ 052F                   .dbline 494
+ 052F           ;                                       print1 = 2;
+ 052F                   .dbline 494
+ 052F 62D000            mov REG[0xd0],>L77
+ 0532 550102            mov [L77+1],2
+ 0535 550000            mov [L77],0
+ 0538                   .dbline 495
+ 0538           ;                               } else if (scancode == 0x26 && print1 == 2) {
+ 0538 803D              xjmp L138
+ 053A           L137:
+ 053A                   .dbline 495
+ 053A 3DFC26            cmp [X-4],38
+ 053D B025              jnz L139
+ 053F 62D000            mov REG[0xd0],>L77
+ 0542 3C0000            cmp [L77],0
+ 0545 B01D              jnz L139
+ 0547 3C0102            cmp [L77+1],2
+ 054A B018              jnz L139
+ 054C           X13:
+ 054C                   .dbline 496
+ 054C           ;                                       UART_CPutString("\r\nThe quick brown fox jumps over the lazy dog.\r\n");                                // we added this section
+ 054C                   .dbline 496
+ 054C 10                push X
+ 054D 5011              mov A,>L141
+ 054F 08                push A
+ 0550 5011              mov A,<L141
+ 0552 5C                mov X,A
+ 0553 18                pop A
+ 0554 7C0000            xcall _UART_CPutString
+ 0557 20                pop X
+ 0558                   .dbline 497
+ 0558           ;                                       print1 = 0;
+ 0558 62D000            mov REG[0xd0],>L77
+ 055B 550100            mov [L77+1],0
+ 055E 550000            mov [L77],0
+ 0561                   .dbline 498
+ 0561           ;                               } else if (scancode != 0xF0 && scancode != 0x11) {
+ 0561 8014              xjmp L140
+ 0563           L139:
+ 0563                   .dbline 498
+ 0563 3DFCF0            cmp [X-4],-16
+ 0566 A00F              jz L142
+ 0568 3DFC11            cmp [X-4],17
+ 056B A00A              jz L142
+ 056D                   .dbline 499
+ 056D           ;                                       print1 = 0;
+ 056D                   .dbline 499
+ 056D 62D000            mov REG[0xd0],>L77
+ 0570 550100            mov [L77+1],0
+ 0573 550000            mov [L77],0
+ 0576                   .dbline 500
+ 0576           ;                               }
+ 0576           L142:
+ 0576           L140:
+ 0576           L138:
+ 0576           L136:
+ 0576                   .dbline 503
+ 0576           ;                               
+ 0576           ;                               // PI PART
+ 0576           ;                               if (scancode == 0x26) {
+ 0576 3DFC26            cmp [X-4],38
+ 0579 B00C              jnz L144
+ 057B                   .dbline 504
+ 057B           ;                                       print2 = 1;
+ 057B                   .dbline 504
+ 057B 62D000            mov REG[0xd0],>L79
+ 057E 550101            mov [L79+1],1
+ 0581 550000            mov [L79],0
+ 0584                   .dbline 505
+ 0584           ;                               } else if (scancode == 0x16 && print2 == 1) {
+ 0584 805A              xjmp L145
+ 0586           L144:
+ 0586                   .dbline 505
+ 0586 3DFC16            cmp [X-4],22
+ 0589 B019              jnz L146
+ 058B 62D000            mov REG[0xd0],>L79
+ 058E 3C0000            cmp [L79],0
+ 0591 B011              jnz L146
+ 0593 3C0101            cmp [L79+1],1
+ 0596 B00C              jnz L146
+ 0598           X14:
+ 0598                   .dbline 506
+ 0598           ;                                       print2 =2 ;
+ 0598                   .dbline 506
+ 0598 62D000            mov REG[0xd0],>L79
+ 059B 550102            mov [L79+1],2
+ 059E 550000            mov [L79],0
+ 05A1                   .dbline 507
+ 05A1           ;                               } else if (scancode == 0x25 && print2 == 2) {
+ 05A1 803D              xjmp L147
+ 05A3           L146:
+ 05A3                   .dbline 507
+ 05A3 3DFC25            cmp [X-4],37
+ 05A6 B025              jnz L148
+ 05A8 62D000            mov REG[0xd0],>L79
+ 05AB 3C0000            cmp [L79],0
+ 05AE B01D              jnz L148
+ 05B0 3C0102            cmp [L79+1],2
+ 05B3 B018              jnz L148
+ 05B5           X15:
+ 05B5                   .dbline 508
+ 05B5           ;                                       UART_CPutString("\r\n3.1415926535897932386\r\n");
+ 05B5                   .dbline 508
+ 05B5 10                push X
+ 05B6 50F7              mov A,>L150
+ 05B8 08                push A
+ 05B9 50F7              mov A,<L150
+ 05BB 5C                mov X,A
+ 05BC 18                pop A
+ 05BD 7C0000            xcall _UART_CPutString
+ 05C0 20                pop X
+ 05C1                   .dbline 509
+ 05C1           ;                                       print2 = 0;
+ 05C1 62D000            mov REG[0xd0],>L79
+ 05C4 550100            mov [L79+1],0
+ 05C7 550000            mov [L79],0
+ 05CA                   .dbline 510
+ 05CA           ;                               } else if (scancode != 0xF0 && scancode != 0xF0) {
+ 05CA 8014              xjmp L149
+ 05CC           L148:
+ 05CC                   .dbline 510
+ 05CC 3DFCF0            cmp [X-4],-16
+ 05CF A00F              jz L151
+ 05D1 3DFCF0            cmp [X-4],-16
+ 05D4 A00A              jz L151
+ 05D6                   .dbline 511
+ 05D6           ;                                       print2 = 0;
+ 05D6                   .dbline 511
+ 05D6 62D000            mov REG[0xd0],>L79
+ 05D9 550100            mov [L79+1],0
+ 05DC 550000            mov [L79],0
+ 05DF                   .dbline 512
+ 05DF           ;                               }
+ 05DF           L151:
+ 05DF           L149:
+ 05DF           L147:
+ 05DF           L145:
+ 05DF                   .dbline 515
+ 05DF           ;                               
+ 05DF           ;                               // THREE ZEROS PART
+ 05DF           ;                               if (scancode == 0x45) {
+ 05DF 3DFC45            cmp [X-4],69
+ 05E2 B02A              jnz L153
+ 05E4                   .dbline 516
+ 05E4           ;                                       count++;
+ 05E4                   .dbline 516
+ 05E4 62D000            mov REG[0xd0],>L78
+ 05E7 7601              inc [L78+1]
+ 05E9 0E0000            adc [L78],0
+ 05EC                   .dbline 517
+ 05EC           ;                                       if (count == 3) {
+ 05EC 3C0000            cmp [L78],0
+ 05EF B03E              jnz L134
+ 05F1 3C0103            cmp [L78+1],3
+ 05F4 B039              jnz L134
+ 05F6           X16:
+ 05F6                   .dbline 518
+ 05F6           ;                                               UART_CPutString("\r\nI love/hate ECE381!.\r\n");        
+ 05F6                   .dbline 518
+ 05F6 10                push X
+ 05F7 50DE              mov A,>L157
+ 05F9 08                push A
+ 05FA 50DE              mov A,<L157
+ 05FC 5C                mov X,A
+ 05FD 18                pop A
+ 05FE 7C0000            xcall _UART_CPutString
+ 0601 20                pop X
+ 0602                   .dbline 519
+ 0602           ;                                               count = 0;
+ 0602 62D000            mov REG[0xd0],>L78
+ 0605 550100            mov [L78+1],0
+ 0608 550000            mov [L78],0
+ 060B                   .dbline 520
+ 060B           ;                                       }
+ 060B                   .dbline 521
+ 060B           ;                               } else if (scancode != 0xF0 && scancode != 0x11) {
+ 060B 8022              xjmp L134
+ 060D           L153:
+ 060D                   .dbline 521
+ 060D 3DFCF0            cmp [X-4],-16
+ 0610 A01D              jz L134
+ 0612 3DFC11            cmp [X-4],17
+ 0615 A018              jz L134
+ 0617                   .dbline 522
+ 0617           ;                                       count = 0;
+ 0617                   .dbline 522
+ 0617 62D000            mov REG[0xd0],>L78
+ 061A 550100            mov [L78+1],0
+ 061D 550000            mov [L78],0
+ 0620                   .dbline 523
+ 0620           ;                               }
+ 0620                   .dbline 524
+ 0620           ;                       }
+ 0620 800D              xjmp L134
+ 0622           L133:
+ 0622                   .dbline 531
+ 0622           ;                       
+ 0622           ;                       /* END OF CODE ADDED BY JEREMY AND DAVE **********************************/
+ 0622           ;                       /*************************************************************************/
+ 0622           ;                       
+ 0622           ;                       
+ 0622           ;                       //// Keypad ./DEL returns backspace if NumLock is off
+ 0622           ;                       else {
+ 0622                   .dbline 532
+ 0622           ;                               if (scancode == 0x71) return(0x08);     // KP ./Del (return backspace)
+ 0622 3DFC71            cmp [X-4],113
+ 0625 B008              jnz L160
+ 0627                   .dbline 532
+ 0627 62D000            mov REG[0xd0],>__r0
+ 062A 5008              mov A,8
+ 062C 8189              xjmp L76
+ 062E           L160:
+ 062E                   .dbline 533
+ 062E           ;                       }
+ 062E           L134:
+ 062E                   .dbline 535
+ 062E           ;                       //// Search for all others in their shifted or CapsLock form
+ 062E           ;                       i = 0;
+ 062E 560100            mov [X+1],0
+ 0631 560000            mov [X+0],0
+ 0634 8006              xjmp L163
+ 0636           L162:
+ 0636                   .dbline 536
+ 0636           ;                       while((AlphabetScancode[i][2] != scancode) && (AlphabetScancode[i][2] != 0)) {
+ 0636                   .dbline 537
+ 0636           ;                               i++;
+ 0636 7701              inc [X+1]
+ 0638 0F0000            adc [X+0],0
+ 063B                   .dbline 538
+ 063B           ;                       }
+ 063B           L163:
+ 063B                   .dbline 536
+ 063B 62D000            mov REG[0xd0],>__r0
+ 063E 5200              mov A,[X+0]
+ 0640 08                push A
+ 0641 5201              mov A,[X+1]
+ 0643 08                push A
+ 0644 5000              mov A,0
+ 0646 08                push A
+ 0647 5003              mov A,3
+ 0649 08                push A
+ 064A 7C0000            xcall __mul16
+ 064D 38FC              add SP,-4
+ 064F 5100              mov A,[__rX]
+ 0651 5300              mov [__r1],A
+ 0653 5100              mov A,[__rY]
+ 0655 5300              mov [__r0],A
+ 0657 5100              mov A,[__r1]
+ 0659 014A              add A,<_AlphabetScancode+2
+ 065B 5300              mov [__r3],A
+ 065D 5100              mov A,[__r0]
+ 065F 094A              adc A,>_AlphabetScancode+2
+ 0661 10                push X
+ 0662 5800              mov X,[__r3]
+ 0664 28                romx
+ 0665 20                pop X
+ 0666 3BFC              cmp A,[X-4]
+ 0668 A012              jz L167
+ 066A 06004A            add [__r1],<_AlphabetScancode+2
+ 066D 0E004A            adc [__r0],>_AlphabetScancode+2
+ 0670 5100              mov A,[__r0]
+ 0672 10                push X
+ 0673 5800              mov X,[__r1]
+ 0675 28                romx
+ 0676 20                pop X
+ 0677 3900              cmp A,0
+ 0679 BFBC              jnz L162
+ 067B           L167:
+ 067B                   .dbline 539
+ 067B           ;                       if (AlphabetScancode[i][2] > 0) {
+ 067B 62D000            mov REG[0xd0],>__r0
+ 067E 5200              mov A,[X+0]
+ 0680 08                push A
+ 0681 5201              mov A,[X+1]
+ 0683 08                push A
+ 0684 5000              mov A,0
+ 0686 08                push A
+ 0687 5003              mov A,3
+ 0689 08                push A
+ 068A 7C0000            xcall __mul16
+ 068D 38FC              add SP,-4
+ 068F 5100              mov A,[__rX]
+ 0691 5300              mov [__r1],A
+ 0693 5100              mov A,[__rY]
+ 0695 5300              mov [__r0],A
+ 0697 06004A            add [__r1],<_AlphabetScancode+2
+ 069A 0E004A            adc [__r0],>_AlphabetScancode+2
+ 069D 5100              mov A,[__r0]
+ 069F 10                push X
+ 06A0 5800              mov X,[__r1]
+ 06A2 28                romx
+ 06A3 20                pop X
+ 06A4 5300              mov [__r0],A
+ 06A6 5000              mov A,0
+ 06A8 3A00              cmp A,[__r0]
+ 06AA D04B              jnc L168
+ 06AC           X17:
+ 06AC                   .dbline 540
+ 06AC           ;                               return(AlphabetScancode[i][ShiftDown^CapsLock]);
+ 06AC                   .dbline 540
+ 06AC 62D000            mov REG[0xd0],>_ShiftDown
+ 06AF 5100              mov A,[_ShiftDown]
+ 06B1 62D000            mov REG[0xd0],>__r0
+ 06B4 5300              mov [__r1],A
+ 06B6 550000            mov [__r0],0
+ 06B9 62D000            mov REG[0xd0],>_CapsLock
+ 06BC 5100              mov A,[_CapsLock]
+ 06BE 62D000            mov REG[0xd0],>__r0
+ 06C1 3400              xor [__r1],A
+ 06C3 360000            xor [__r0],0
+ 06C6 5200              mov A,[X+0]
+ 06C8 08                push A
+ 06C9 5201              mov A,[X+1]
+ 06CB 08                push A
+ 06CC 5000              mov A,0
+ 06CE 08                push A
+ 06CF 5003              mov A,3
+ 06D1 08                push A
+ 06D2 7C0000            xcall __mul16
+ 06D5 38FC              add SP,-4
+ 06D7 5100              mov A,[__rX]
+ 06D9 5300              mov [__r3],A
+ 06DB 5100              mov A,[__rY]
+ 06DD 5300              mov [__r2],A
+ 06DF 060048            add [__r3],<_AlphabetScancode
+ 06E2 0E0048            adc [__r2],>_AlphabetScancode
+ 06E5 5100              mov A,[__r3]
+ 06E7 0400              add [__r1],A
+ 06E9 5100              mov A,[__r2]
+ 06EB 0C00              adc [__r0],A
+ 06ED 5100              mov A,[__r0]
+ 06EF 10                push X
+ 06F0 5800              mov X,[__r1]
+ 06F2 28                romx
+ 06F3 20                pop X
+ 06F4 80C1              xjmp L76
+ 06F6           L168:
+ 06F6                   .dbline 542
+ 06F6           ;                       }
+ 06F6           ;                       else {
+ 06F6                   .dbline 543
+ 06F6           ;                               i = 0;
+ 06F6 560100            mov [X+1],0
+ 06F9 560000            mov [X+0],0
+ 06FC 8006              xjmp L172
+ 06FE           L171:
+ 06FE                   .dbline 544
+ 06FE           ;                               while((ShiftableScancode[i][2] != scancode) && (ShiftableScancode[i][2] != 0)) {
+ 06FE                   .dbline 545
+ 06FE           ;                                       i++;
+ 06FE 7701              inc [X+1]
+ 0700 0F0000            adc [X+0],0
+ 0703                   .dbline 546
+ 0703           ;                               }
+ 0703           L172:
+ 0703                   .dbline 544
+ 0703 62D000            mov REG[0xd0],>__r0
+ 0706 5200              mov A,[X+0]
+ 0708 08                push A
+ 0709 5201              mov A,[X+1]
+ 070B 08                push A
+ 070C 5000              mov A,0
+ 070E 08                push A
+ 070F 5003              mov A,3
+ 0711 08                push A
+ 0712 7C0000            xcall __mul16
+ 0715 38FC              add SP,-4
+ 0717 5100              mov A,[__rX]
+ 0719 5300              mov [__r1],A
+ 071B 5100              mov A,[__rY]
+ 071D 5300              mov [__r0],A
+ 071F 5100              mov A,[__r1]
+ 0721 0102              add A,<_ShiftableScancode+2
+ 0723 5300              mov [__r3],A
+ 0725 5100              mov A,[__r0]
+ 0727 0902              adc A,>_ShiftableScancode+2
+ 0729 10                push X
+ 072A 5800              mov X,[__r3]
+ 072C 28                romx
+ 072D 20                pop X
+ 072E 3BFC              cmp A,[X-4]
+ 0730 A012              jz L176
+ 0732 060002            add [__r1],<_ShiftableScancode+2
+ 0735 0E0002            adc [__r0],>_ShiftableScancode+2
+ 0738 5100              mov A,[__r0]
+ 073A 10                push X
+ 073B 5800              mov X,[__r1]
+ 073D 28                romx
+ 073E 20                pop X
+ 073F 3900              cmp A,0
+ 0741 BFBC              jnz L171
+ 0743           L176:
+ 0743                   .dbline 547
+ 0743           ;                               if (ShiftableScancode[i][2] > 0) {
+ 0743 62D000            mov REG[0xd0],>__r0
+ 0746 5200              mov A,[X+0]
+ 0748 08                push A
+ 0749 5201              mov A,[X+1]
+ 074B 08                push A
+ 074C 5000              mov A,0
+ 074E 08                push A
+ 074F 5003              mov A,3
+ 0751 08                push A
+ 0752 7C0000            xcall __mul16
+ 0755 38FC              add SP,-4
+ 0757 5100              mov A,[__rX]
+ 0759 5300              mov [__r1],A
+ 075B 5100              mov A,[__rY]
+ 075D 5300              mov [__r0],A
+ 075F 060002            add [__r1],<_ShiftableScancode+2
+ 0762 0E0002            adc [__r0],>_ShiftableScancode+2
+ 0765 5100              mov A,[__r0]
+ 0767 10                push X
+ 0768 5800              mov X,[__r1]
+ 076A 28                romx
+ 076B 20                pop X
+ 076C 5300              mov [__r0],A
+ 076E 5000              mov A,0
+ 0770 3A00              cmp A,[__r0]
+ 0772 D03E              jnc L177
+ 0774           X18:
+ 0774                   .dbline 548
+ 0774           ;                                       return(ShiftableScancode[i][ShiftDown]);
+ 0774                   .dbline 548
+ 0774 62D000            mov REG[0xd0],>_ShiftDown
+ 0777 5100              mov A,[_ShiftDown]
+ 0779 62D000            mov REG[0xd0],>__r0
+ 077C 5300              mov [__r1],A
+ 077E 550000            mov [__r0],0
+ 0781 5200              mov A,[X+0]
+ 0783 08                push A
+ 0784 5201              mov A,[X+1]
+ 0786 08                push A
+ 0787 5000              mov A,0
+ 0789 08                push A
+ 078A 5003              mov A,3
+ 078C 08                push A
+ 078D 7C0000            xcall __mul16
+ 0790 38FC              add SP,-4
+ 0792 5100              mov A,[__rX]
+ 0794 5300              mov [__r3],A
+ 0796 5100              mov A,[__rY]
+ 0798 5300              mov [__r2],A
+ 079A 060000            add [__r3],<_ShiftableScancode
+ 079D 0E0000            adc [__r2],>_ShiftableScancode
+ 07A0 5100              mov A,[__r3]
+ 07A2 0400              add [__r1],A
+ 07A4 5100              mov A,[__r2]
+ 07A6 0C00              adc [__r0],A
+ 07A8 5100              mov A,[__r0]
+ 07AA 10                push X
+ 07AB 5800              mov X,[__r1]
+ 07AD 28                romx
+ 07AE 20                pop X
+ 07AF 8006              xjmp L76
+ 07B1           L177:
+ 07B1                   .dbline 550
+ 07B1           ;                               }
+ 07B1           ;                       }
+ 07B1                   .dbline 551
+ 07B1           ;               }
+ 07B1           L86:
+ 07B1                   .dbline 552
+ 07B1           ;       }
+ 07B1           L83:
+ 07B1                   .dbline 554
+ 07B1           ;       //// No ASCII match returns zero
+ 07B1           ;       return(0);
+ 07B1 62D000            mov REG[0xd0],>__r0
+ 07B4 5000              mov A,0
+ 07B6                   .dbline -2
+ 07B6           L76:
+ 07B6 38FE              add SP,-2
+ 07B8 20                pop X
+ 07B9                   .dbline 0 ; func end
+ 07B9 7F                ret
+ 07BA                   .dbsym l i 0 I
+ 07BA                   .dbsym l codetype -5 c
+ 07BA                   .dbsym l scancode -4 c
+ 07BA                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L181:
+ 0000 7F                .byte 127
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L182:
+ 0000 01                .byte 1
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L183:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L184:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L185:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L186:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L187:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L188:
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L189:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L190:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L191:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L192:
+ 0000 0000              .byte 0,0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L193:
+ 0000 0000              .byte 0,0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L194:
+ 0000 0000              .byte 0,0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L195:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L196:
+ 0000 0000              .word 0
+                        .area data(ram, con, rel)
+ 0000                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 0000           L197:
+ 0000 0000              .word 0
+                        .area text(rom, con, rel)
+ 07BA                   .dbfile Z:\DOCUME~1\ECE_381\PS2BIT~1\PS2BIT~1\keyboard.c
+ 07BA                   .dbfunc e KeyboardAction _KeyboardAction fV
+ 07BA                   .dbsym s o L197 I
+ 07BA                   .dbsym s n L196 I
+ 07BA                   .dbsym s m L195 I
+ 07BA                   .dbsym s highs L194 A[2:2]c
+ 07BA                   .dbsym s mids L193 A[2:2]c
+ 07BA                   .dbsym s lows L192 A[2:2]c
+ 07BA                   .dbsym s keycountlow L191 I
+ 07BA                   .dbsym s keycountmid L190 I
+ 07BA                   .dbsym s keycounthigh L189 I
+ 07BA                   .dbsym s delstatus L188 c
+ 07BA                   .dbsym s ctrlaltdelete L187 c
+ 07BA                   .dbsym s altstatus L186 c
+ 07BA                   .dbsym s ctrlstatus L185 c
+ 07BA                   .dbsym s shiftstatus L184 c
+ 07BA                   .dbsym s statusLEDs L183 c
+ 07BA                   .dbsym s pwm_on L182 c
+ 07BA                   .dbsym s brightindex L181 c
+ 07BA           ;         status -> X+2
+ 07BA           ;              i -> X+0
+ 07BA           ;    keyspressed -> X-6
+ 07BA           ;       codetype -> X-5
+ 07BA           ;       scancode -> X-4
+ 07BA           _KeyboardAction::
+ 07BA                   .dbline -1
+ 07BA 10                push X
+ 07BB 4F                mov X,SP
+ 07BC 3805              add SP,5
+ 07BE                   .dbline 558
+ 07BE           ; }
+ 07BE           ; 
+ 07BE           ; void KeyboardAction(BYTE scancode, BYTE codetype, BYTE keyspressed)
+ 07BE           ; {
+ 07BE                   .dbline 583
+ 07BE           ;       //// Keyboard variables below
+ 07BE           ;       BYTE status;
+ 07BE           ;       int i;
+ 07BE           ;       static BYTE brightindex = 127;  // PWM LED brightness index
+ 07BE           ;       static BYTE pwm_on = 1;         // PWM User Module on or off
+ 07BE           ;       static BYTE statusLEDs=0;
+ 07BE           ;       static BYTE shiftstatus = 0;
+ 07BE           ;       static BYTE ctrlstatus = 0;
+ 07BE           ;       static BYTE altstatus = 0;
+ 07BE           ;       static BYTE ctrlaltdelete = 0;
+ 07BE           ;       static BYTE delstatus = 0;
+ 07BE           ;       
+ 07BE           ;       static int keycounthigh = 0;                                                                                                                                    // we added this
+ 07BE           ;       static int keycountmid = 0;                                                                                                                             // we added this
+ 07BE           ;       static int keycountlow = 0;                                                                                                                             // we added this
+ 07BE           ;       static BYTE lows[] = {0x0, 0x0};                                                                                                                                                // we added this
+ 07BE           ;       static BYTE mids[] = {0x0, 0x0};                                                                                                                                                // we added this
+ 07BE           ;       static BYTE highs[] = {0x0, 0x0};                                                                                                                                               // we added this
+ 07BE           ;       static int m = 0;
+ 07BE           ;       static int n = 0;
+ 07BE           ;       static int o = 0;
+ 07BE           ;       
+ 07BE           ; 
+ 07BE           ;       //// Ignore fake-shifts (unless you care about them)
+ 07BE           ;       if (codetype & KEY_FAKE_SHIFT) {
+ 07BE 48FB10            tst [X-5],16
+ 07C1 A003              jz L198
+ 07C3                   .dbline 584
+ 07C3           ;               return;
+ 07C3                   .dbline 584
+ 07C3 8791              xjmp L180
+ 07C5           L198:
+ 07C5                   .dbline 587
+ 07C5           ;       }
+ 07C5           ;       //// Every other code type is a key change
+ 07C5           ;       if (codetype) {
+ 07C5 3DFB00            cmp [X-5],0
+ 07C8 A78C              jz L180
+ 07CA                   .dbline 589
+ 07CA           ;               //// If the Pause key is pressed, switch to Piano mode
+ 07CA           ;               if (codetype == KEY_PAUSE) {
+ 07CA                   .dbline 589
+ 07CA 3DFB08            cmp [X-5],8
+ 07CD B035              jnz L202
+ 07CF                   .dbline 590
+ 07CF           ;                       PianoMode ^= 0x01;
+ 07CF                   .dbline 590
+ 07CF 62D000            mov REG[0xd0],>_PianoMode
+ 07D2 5100              mov A,[_PianoMode]
+ 07D4 3101              xor A,1
+ 07D6 5300              mov [_PianoMode],A
+ 07D8                   .dbline 591
+ 07D8           ;                       if (PianoMode) {
+ 07D8 3C0000            cmp [_PianoMode],0
+ 07DB A019              jz L204
+ 07DD                   .dbline 592
+ 07DD           ;                               UART_CPutString("\r\nPiano mode on.\r\n");
+ 07DD                   .dbline 592
+ 07DD 10                push X
+ 07DE 50CB              mov A,>L206
+ 07E0 08                push A
+ 07E1 50CB              mov A,<L206
+ 07E3 5C                mov X,A
+ 07E4 18                pop A
+ 07E5 7C0000            xcall _UART_CPutString
+ 07E8                   .dbline 593
+ 07E8           ;                               UART_CPutString("\tPress [ZXCVBNM,], [ASDFGHJK], or [QWERTYUI].\r\n");
+ 07E8 509B              mov A,>L207
+ 07EA 08                push A
+ 07EB 509B              mov A,<L207
+ 07ED 5C                mov X,A
+ 07EE 18                pop A
+ 07EF 7C0000            xcall _UART_CPutString
+ 07F2 20                pop X
+ 07F3                   .dbline 594
+ 07F3           ;                       }
+ 07F3 8761              xjmp L180
+ 07F5           L204:
+ 07F5                   .dbline 596
+ 07F5           ;                       else
+ 07F5           ;                               UART_CPutString("\r\nPiano mode off.\r\n");
+ 07F5 10                push X
+ 07F6 5087              mov A,>L208
+ 07F8 08                push A
+ 07F9 5087              mov A,<L208
+ 07FB 5C                mov X,A
+ 07FC 18                pop A
+ 07FD 7C0000            xcall _UART_CPutString
+ 0800 20                pop X
+ 0801                   .dbline 597
+ 0801           ;                       return;
+ 0801 8753              xjmp L180
+ 0803           L202:
+ 0803                   .dbline 600
+ 0803           ;               }
+ 0803           ;               //// Things to do when one of the E0 keys is pressed
+ 0803           ;               if ((codetype & KEY_E0)&&(codetype & KEY_MAKE)) {
+ 0803 48FB04            tst [X-5],4
+ 0806 A099              jz L209
+ 0808 48FB01            tst [X-5],1
+ 080B A094              jz L209
+ 080D                   .dbline 601
+ 080D           ;                       switch(scancode) {
+ 080D                   .dbline 601
+ 080D 52FC              mov A,[X-4]
+ 080F 5404              mov [X+4],A
+ 0811 560300            mov [X+3],0
+ 0814 5204              mov A,[X+4]
+ 0816 1171              sub A,113
+ 0818 62D000            mov REG[0xd0],>__r0
+ 081B 5300              mov [__rY],A
+ 081D 5203              mov A,[X+3]
+ 081F 3180              xor A,-128
+ 0821 1980              sbb A,(0 ^ 0x80)
+ 0823 2A00              or A,[__rY]
+ 0825 A06C              jz L221
+ 0827 D017              jnc L223
+ 0829           X19:
+ 0829           L222:
+ 0829 3D0300            cmp [X+3],0
+ 082C B006              jnz X20
+ 082E 3D0411            cmp [X+4],17
+ 0831 A052              jz L220
+ 0833           X20:
+ 0833 3D0300            cmp [X+3],0
+ 0836 B006              jnz X21
+ 0838 3D0414            cmp [X+4],20
+ 083B A03A              jz L219
+ 083D           X21:
+ 083D 8717              xjmp L180
+ 083F           L223:
+ 083F 3D0300            cmp [X+3],0
+ 0842 B006              jnz X22
+ 0844 3D047C            cmp [X+4],124
+ 0847 A003              jz L214
+ 0849           X22:
+ 0849 870B              xjmp L180
+ 084B           L214:
+ 084B                   .dbline 604
+ 084B           ;                       case 0x7C:      // E0 7C - PRNT SCRN
+ 084B           ;                               // If we successfully send and receive an echo, toggle the PWM LED
+ 084B           ;                               if (!PS2_Send_Command_Process_Response(0xEE)) {
+ 084B 50EE              mov A,-18
+ 084D 08                push A
+ 084E 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0851 38FF              add SP,-1
+ 0853 3900              cmp A,0
+ 0855 B6FF              jnz L180
+ 0857                   .dbline 605
+ 0857           ;                                       if (pwm_on) {
+ 0857                   .dbline 605
+ 0857 62D000            mov REG[0xd0],>L182
+ 085A 3C0000            cmp [L182],0
+ 085D A00B              jz L217
+ 085F                   .dbline 606
+ 085F           ;                                               pwm_on = 0;
+ 085F                   .dbline 606
+ 085F 550000            mov [L182],0
+ 0862                   .dbline 607
+ 0862           ;                                               PWM8LED_Stop();
+ 0862 10                push X
+ 0863 7C0000            xcall _PWM8LED_Stop
+ 0866 20                pop X
+ 0867                   .dbline 608
+ 0867           ;                                       }
+ 0867 86ED              xjmp L180
+ 0869           L217:
+ 0869                   .dbline 609
+ 0869           ;                                       else {
+ 0869                   .dbline 610
+ 0869           ;                                               pwm_on = 1;
+ 0869 62D000            mov REG[0xd0],>L182
+ 086C 550001            mov [L182],1
+ 086F                   .dbline 611
+ 086F           ;                                               PWM8LED_Start();
+ 086F 10                push X
+ 0870 7C0000            xcall _PWM8LED_Start
+ 0873 20                pop X
+ 0874                   .dbline 612
+ 0874           ;                                       }
+ 0874                   .dbline 613
+ 0874           ;                               }
+ 0874                   .dbline 614
+ 0874           ;                               break;
+ 0874 86E0              xjmp L180
+ 0876           L219:
+ 0876                   .dbline 616
+ 0876           ;                       case 0x14:      // E0 14 - Right Control
+ 0876           ;                               ctrlstatus |= 0x01;
+ 0876 62D000            mov REG[0xd0],>L185
+ 0879 2E0001            or [L185],1
+ 087C                   .dbline 617
+ 087C           ;                               CtrlDown = 1;
+ 087C 62D000            mov REG[0xd0],>_CtrlDown
+ 087F 550001            mov [_CtrlDown],1
+ 0882                   .dbline 618
+ 0882           ;                               break;
+ 0882 86D2              xjmp L180
+ 0884           L220:
+ 0884                   .dbline 620
+ 0884           ;                       case 0x11:      // E0 11 - Right Alt
+ 0884           ;                               altstatus |= 0x01;
+ 0884 62D000            mov REG[0xd0],>L186
+ 0887 2E0001            or [L186],1
+ 088A                   .dbline 621
+ 088A           ;                               AltDown = 1;
+ 088A 62D000            mov REG[0xd0],>_AltDown
+ 088D 550001            mov [_AltDown],1
+ 0890                   .dbline 622
+ 0890           ;                               break;
+ 0890 86C4              xjmp L180
+ 0892           L221:
+ 0892                   .dbline 624
+ 0892           ;                       case 0x71:  // E0 71 - Delete 
+ 0892           ;                               delstatus |= 0x01;
+ 0892 62D000            mov REG[0xd0],>L188
+ 0895 2E0001            or [L188],1
+ 0898                   .dbline 626
+ 0898           ;                                       //UART_CPutString("\r\nDELETE DELETE DELETE\r\n");
+ 0898           ;                               DeleteDown = 1;
+ 0898 62D000            mov REG[0xd0],>_DeleteDown
+ 089B 550001            mov [_DeleteDown],1
+ 089E                   .dbline 627
+ 089E           ;                               break;
+ 089E                   .dbline 631
+ 089E           ;                       //// Any scan codes not handled specially in the above case statements are
+ 089E           ;                       //// handled here:
+ 089E           ;                       default:
+ 089E           ;                               break;
+ 089E                   .dbline 633
+ 089E           ;                       }
+ 089E           ;                       return;
+ 089E 86B6              xjmp L180
+ 08A0           L209:
+ 08A0                   .dbline 637
+ 08A0           ;               }
+ 08A0           ;               //
+ 08A0           ;               //// Things to do when one of the E0 keys is released
+ 08A0           ;               if ((codetype & KEY_E0)&&(codetype & KEY_BREAK)) {
+ 08A0 48FB04            tst [X-5],4
+ 08A3 A072              jz L224
+ 08A5 48FB02            tst [X-5],2
+ 08A8 A06D              jz L224
+ 08AA                   .dbline 638
+ 08AA           ;                       switch(scancode) {
+ 08AA                   .dbline 638
+ 08AA 52FC              mov A,[X-4]
+ 08AC 5404              mov [X+4],A
+ 08AE 560300            mov [X+3],0
+ 08B1 5204              mov A,[X+4]
+ 08B3 1171              sub A,113
+ 08B5 62D000            mov REG[0xd0],>__r0
+ 08B8 5300              mov [__rY],A
+ 08BA 5203              mov A,[X+3]
+ 08BC 3180              xor A,-128
+ 08BE 1980              sbb A,(0 ^ 0x80)
+ 08C0 2A00              or A,[__rY]
+ 08C2 A04B              jz L236
+ 08C4 D017              jnc L238
+ 08C6           X23:
+ 08C6           L237:
+ 08C6 3D0300            cmp [X+3],0
+ 08C9 B006              jnz X24
+ 08CB 3D0411            cmp [X+4],17
+ 08CE A02C              jz L233
+ 08D0           X24:
+ 08D0 3D0300            cmp [X+3],0
+ 08D3 B006              jnz X25
+ 08D5 3D0414            cmp [X+4],20
+ 08D8 A00F              jz L230
+ 08DA           X25:
+ 08DA 867A              xjmp L180
+ 08DC           L238:
+ 08DC 3D0300            cmp [X+3],0
+ 08DF B006              jnz X26
+ 08E1 3D047C            cmp [X+4],124
+ 08E4 A670              jz L180
+ 08E6           X26:
+ 08E6 866E              xjmp L180
+ 08E8           L230:
+ 08E8                   .dbline 642
+ 08E8           ;                       case 0x7C:      // E0 F0 7C - PRNT SCRN
+ 08E8           ;                               break;
+ 08E8           ;                       case 0x14:      // E0 F0 14 - Right Control
+ 08E8           ;                               ctrlstatus &= ~0x01;
+ 08E8 62D000            mov REG[0xd0],>L185
+ 08EB 2600FE            and [L185],-2
+ 08EE                   .dbline 643
+ 08EE           ;                               if (!ctrlstatus) CtrlDown = 0;
+ 08EE 3C0000            cmp [L185],0
+ 08F1 B663              jnz L180
+ 08F3                   .dbline 643
+ 08F3 62D000            mov REG[0xd0],>_CtrlDown
+ 08F6 550000            mov [_CtrlDown],0
+ 08F9                   .dbline 644
+ 08F9           ;                               break;
+ 08F9 865B              xjmp L180
+ 08FB           L233:
+ 08FB                   .dbline 646
+ 08FB           ;                       case 0x11:      // E0 F0 11 - Right Alt
+ 08FB           ;                               altstatus &= ~0x01;
+ 08FB 62D000            mov REG[0xd0],>L186
+ 08FE 2600FE            and [L186],-2
+ 0901                   .dbline 647
+ 0901           ;                               if (!altstatus) AltDown = 0;
+ 0901 3C0000            cmp [L186],0
+ 0904 B650              jnz L180
+ 0906                   .dbline 647
+ 0906 62D000            mov REG[0xd0],>_AltDown
+ 0909 550000            mov [_AltDown],0
+ 090C                   .dbline 648
+ 090C           ;                               break;
+ 090C 8648              xjmp L180
+ 090E           L236:
+ 090E                   .dbline 650
+ 090E           ;                       case 0x71:
+ 090E           ;                               DeleteDown = 0;
+ 090E 62D000            mov REG[0xd0],>_DeleteDown
+ 0911 550000            mov [_DeleteDown],0
+ 0914                   .dbline 652
+ 0914           ;                                       //UART_CPutString("\r\nSTOP DELETING \r\n");
+ 0914           ;                               break;
+ 0914                   .dbline 657
+ 0914           ;                                       
+ 0914           ;                       //// Any scan codes not handled specially in the above case statements are
+ 0914           ;                       //// handled here:
+ 0914           ;                       default:
+ 0914           ;                               break;
+ 0914                   .dbline 659
+ 0914           ;                       }
+ 0914           ;                       return;
+ 0914 8640              xjmp L180
+ 0916           L224:
+ 0916                   .dbline 663
+ 0916           ;               }
+ 0916           ;               //
+ 0916           ;               //// Things to do when one of the single byte "make" scan code keys is pressed
+ 0916           ;               if (codetype & KEY_MAKE) {
+ 0916 48FB01            tst [X-5],1
+ 0919 A50C              jz L239
+ 091B                   .dbline 664
+ 091B           ;                       switch(scancode) {
+ 091B                   .dbline 664
+ 091B 52FC              mov A,[X-4]
+ 091D 5404              mov [X+4],A
+ 091F 560300            mov [X+3],0
+ 0922 3D0300            cmp [X+3],0
+ 0925 B006              jnz X27
+ 0927 3D0458            cmp [X+4],88
+ 092A A105              jz L255
+ 092C           X27:
+ 092C 5204              mov A,[X+4]
+ 092E 1159              sub A,89
+ 0930 62D000            mov REG[0xd0],>__r0
+ 0933 5300              mov [__rY],A
+ 0935 5203              mov A,[X+3]
+ 0937 3180              xor A,-128
+ 0939 1980              sbb A,(0 ^ 0x80)
+ 093B 2A00              or A,[__rY]
+ 093D A064              jz L244
+ 093F D041              jnc L298
+ 0941           X28:
+ 0941           L297:
+ 0941 3D0300            cmp [X+3],0
+ 0944 B006              jnz X29
+ 0946 3D0405            cmp [X+4],5
+ 0949 A192              jz L269
+ 094B           X29:
+ 094B 3D0300            cmp [X+3],0
+ 094E B006              jnz X30
+ 0950 3D0406            cmp [X+4],6
+ 0953 A1B8              jz L274
+ 0955           X30:
+ 0955 5204              mov A,[X+4]
+ 0957 1105              sub A,5
+ 0959 5203              mov A,[X+3]
+ 095B 3180              xor A,-128
+ 095D 1980              sbb A,(0 ^ 0x80)
+ 095F C1DA              jc L241
+ 0961           X31:
+ 0961           L299:
+ 0961 3D0300            cmp [X+3],0
+ 0964 B006              jnz X32
+ 0966 3D0411            cmp [X+4],17
+ 0969 A062              jz L247
+ 096B           X32:
+ 096B 3D0300            cmp [X+3],0
+ 096E B006              jnz X33
+ 0970 3D0412            cmp [X+4],18
+ 0973 A03C              jz L245
+ 0975           X33:
+ 0975 3D0300            cmp [X+3],0
+ 0978 B006              jnz X34
+ 097A 3D0414            cmp [X+4],20
+ 097D A040              jz L246
+ 097F           X34:
+ 097F 81BA              xjmp L241
+ 0981           L298:
+ 0981 5204              mov A,[X+4]
+ 0983 1177              sub A,119
+ 0985 62D000            mov REG[0xd0],>__r0
+ 0988 5300              mov [__rY],A
+ 098A 5203              mov A,[X+3]
+ 098C 3180              xor A,-128
+ 098E 1980              sbb A,(0 ^ 0x80)
+ 0990 C1A9              jc L241
+ 0992 2A00              or A,[__rY]
+ 0994 A045              jz L248
+ 0996           X35:
+ 0996           L300:
+ 0996 3D0300            cmp [X+3],0
+ 0999 B006              jnz X36
+ 099B 3D047E            cmp [X+4],126
+ 099E A0E7              jz L262
+ 09A0           X36:
+ 09A0 8199              xjmp L241
+ 09A2           L244:
+ 09A2                   .dbline 666
+ 09A2           ;                       case 0x59:      // Right Shift
+ 09A2           ;                               shiftstatus |= 0x01;
+ 09A2 62D000            mov REG[0xd0],>L184
+ 09A5 2E0001            or [L184],1
+ 09A8                   .dbline 667
+ 09A8           ;                               ShiftDown = 1;
+ 09A8 62D000            mov REG[0xd0],>_ShiftDown
+ 09AB 550001            mov [_ShiftDown],1
+ 09AE                   .dbline 668
+ 09AE           ;                               break;
+ 09AE 85A6              xjmp L180
+ 09B0           L245:
+ 09B0                   .dbline 670
+ 09B0           ;                       case 0x12:      // Left Shift
+ 09B0           ;                               shiftstatus |= 0x02;
+ 09B0 62D000            mov REG[0xd0],>L184
+ 09B3 2E0002            or [L184],2
+ 09B6                   .dbline 671
+ 09B6           ;                               ShiftDown = 1;
+ 09B6 62D000            mov REG[0xd0],>_ShiftDown
+ 09B9 550001            mov [_ShiftDown],1
+ 09BC                   .dbline 672
+ 09BC           ;                               break;
+ 09BC 8598              xjmp L180
+ 09BE           L246:
+ 09BE                   .dbline 674
+ 09BE           ;                       case 0x14:      // Left Control
+ 09BE           ;                               ctrlstatus |= 0x02;
+ 09BE 62D000            mov REG[0xd0],>L185
+ 09C1 2E0002            or [L185],2
+ 09C4                   .dbline 675
+ 09C4           ;                               CtrlDown = 1;
+ 09C4 62D000            mov REG[0xd0],>_CtrlDown
+ 09C7 550001            mov [_CtrlDown],1
+ 09CA                   .dbline 676
+ 09CA           ;                               break;
+ 09CA 858A              xjmp L180
+ 09CC           L247:
+ 09CC                   .dbline 678
+ 09CC           ;                       case 0x11:      // Left Alt
+ 09CC           ;                               altstatus |= 0x02;
+ 09CC 62D000            mov REG[0xd0],>L186
+ 09CF 2E0002            or [L186],2
+ 09D2                   .dbline 679
+ 09D2           ;                               AltDown = 1;
+ 09D2 62D000            mov REG[0xd0],>_AltDown
+ 09D5 550001            mov [_AltDown],1
+ 09D8                   .dbline 680
+ 09D8           ;                               break;
+ 09D8 857C              xjmp L180
+ 09DA           L248:
+ 09DA                   .dbline 682
+ 09DA           ;                       case 0x77:      // Num Lock
+ 09DA           ;                               NumLock ^= 0x01;
+ 09DA 62D000            mov REG[0xd0],>_NumLock
+ 09DD 5100              mov A,[_NumLock]
+ 09DF 3101              xor A,1
+ 09E1 5300              mov [_NumLock],A
+ 09E3                   .dbline 683
+ 09E3           ;                               if (NumLock) {
+ 09E3 3C0000            cmp [_NumLock],0
+ 09E6 A025              jz L249
+ 09E8                   .dbline 684
+ 09E8           ;                                       status = PS2_Send_Command_Process_Response(0xED);
+ 09E8                   .dbline 684
+ 09E8 50ED              mov A,-19
+ 09EA 08                push A
+ 09EB 7C0000            xcall _PS2_Send_Command_Process_Response
+ 09EE 38FF              add SP,-1
+ 09F0 5402              mov [X+2],A
+ 09F2                   .dbline 685
+ 09F2           ;                                       if (!status) {
+ 09F2 3D0200            cmp [X+2],0
+ 09F5 B55F              jnz L180
+ 09F7                   .dbline 686
+ 09F7           ;                                               statusLEDs |= 0x02;
+ 09F7                   .dbline 686
+ 09F7 62D000            mov REG[0xd0],>L183
+ 09FA 2E0002            or [L183],2
+ 09FD                   .dbline 687
+ 09FD           ;                                               status = PS2_Send_Command_Process_Response(statusLEDs);
+ 09FD 5100              mov A,[L183]
+ 09FF 08                push A
+ 0A00 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A03 38FF              add SP,-1
+ 0A05 62D000            mov REG[0xd0],>__r0
+ 0A08 5402              mov [X+2],A
+ 0A0A                   .dbline 688
+ 0A0A           ;                                       }
+ 0A0A                   .dbline 689
+ 0A0A           ;                               }
+ 0A0A 854A              xjmp L180
+ 0A0C           L249:
+ 0A0C                   .dbline 690
+ 0A0C           ;                               else {
+ 0A0C                   .dbline 691
+ 0A0C           ;                                       status = PS2_Send_Command_Process_Response(0xED);
+ 0A0C 50ED              mov A,-19
+ 0A0E 08                push A
+ 0A0F 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A12 38FF              add SP,-1
+ 0A14 5402              mov [X+2],A
+ 0A16                   .dbline 692
+ 0A16           ;                                       if (!status) {
+ 0A16 3D0200            cmp [X+2],0
+ 0A19 B53B              jnz L180
+ 0A1B                   .dbline 693
+ 0A1B           ;                                               statusLEDs &= ~0x02;
+ 0A1B                   .dbline 693
+ 0A1B 62D000            mov REG[0xd0],>L183
+ 0A1E 2600FD            and [L183],-3
+ 0A21                   .dbline 694
+ 0A21           ;                                               status = PS2_Send_Command_Process_Response(statusLEDs);
+ 0A21 5100              mov A,[L183]
+ 0A23 08                push A
+ 0A24 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A27 38FF              add SP,-1
+ 0A29 62D000            mov REG[0xd0],>__r0
+ 0A2C 5402              mov [X+2],A
+ 0A2E                   .dbline 695
+ 0A2E           ;                                       }
+ 0A2E                   .dbline 696
+ 0A2E           ;                               }
+ 0A2E                   .dbline 697
+ 0A2E           ;                               break;
+ 0A2E 8526              xjmp L180
+ 0A30           L255:
+ 0A30                   .dbline 700
+ 0A30           ;                       case 0x58:      // Caps Lock
+ 0A30           ;                               //// Send to the keyboard
+ 0A30           ;                               CapsLock ^= 0x01;
+ 0A30 62D000            mov REG[0xd0],>_CapsLock
+ 0A33 5100              mov A,[_CapsLock]
+ 0A35 3101              xor A,1
+ 0A37 5300              mov [_CapsLock],A
+ 0A39                   .dbline 701
+ 0A39           ;                               if (CapsLock) {
+ 0A39 3C0000            cmp [_CapsLock],0
+ 0A3C A025              jz L256
+ 0A3E                   .dbline 702
+ 0A3E           ;                                       status = PS2_Send_Command_Process_Response(0xED);
+ 0A3E                   .dbline 702
+ 0A3E 50ED              mov A,-19
+ 0A40 08                push A
+ 0A41 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A44 38FF              add SP,-1
+ 0A46 5402              mov [X+2],A
+ 0A48                   .dbline 703
+ 0A48           ;                                       if (!status) {
+ 0A48 3D0200            cmp [X+2],0
+ 0A4B B509              jnz L180
+ 0A4D                   .dbline 704
+ 0A4D           ;                                               statusLEDs |= 0x04;
+ 0A4D                   .dbline 704
+ 0A4D 62D000            mov REG[0xd0],>L183
+ 0A50 2E0004            or [L183],4
+ 0A53                   .dbline 705
+ 0A53           ;                                               status = PS2_Send_Command_Process_Response(statusLEDs);
+ 0A53 5100              mov A,[L183]
+ 0A55 08                push A
+ 0A56 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A59 38FF              add SP,-1
+ 0A5B 62D000            mov REG[0xd0],>__r0
+ 0A5E 5402              mov [X+2],A
+ 0A60                   .dbline 706
+ 0A60           ;                                       }
+ 0A60                   .dbline 707
+ 0A60           ;                               }
+ 0A60 84F4              xjmp L180
+ 0A62           L256:
+ 0A62                   .dbline 708
+ 0A62           ;                               else {
+ 0A62                   .dbline 709
+ 0A62           ;                                       status = PS2_Send_Command_Process_Response(0xED);
+ 0A62 50ED              mov A,-19
+ 0A64 08                push A
+ 0A65 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A68 38FF              add SP,-1
+ 0A6A 5402              mov [X+2],A
+ 0A6C                   .dbline 710
+ 0A6C           ;                                       if (!status) {
+ 0A6C 3D0200            cmp [X+2],0
+ 0A6F B4E5              jnz L180
+ 0A71                   .dbline 711
+ 0A71           ;                                               statusLEDs &= ~0x04;
+ 0A71                   .dbline 711
+ 0A71 62D000            mov REG[0xd0],>L183
+ 0A74 2600FB            and [L183],-5
+ 0A77                   .dbline 712
+ 0A77           ;                                               status = PS2_Send_Command_Process_Response(statusLEDs);
+ 0A77 5100              mov A,[L183]
+ 0A79 08                push A
+ 0A7A 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A7D 38FF              add SP,-1
+ 0A7F 62D000            mov REG[0xd0],>__r0
+ 0A82 5402              mov [X+2],A
+ 0A84                   .dbline 713
+ 0A84           ;                                       }
+ 0A84                   .dbline 714
+ 0A84           ;                               }
+ 0A84                   .dbline 715
+ 0A84           ;                               break;
+ 0A84 84D0              xjmp L180
+ 0A86           L262:
+ 0A86                   .dbline 718
+ 0A86           ;                       case 0x7E:      // Scroll Lock
+ 0A86           ;                               //// Send to the keyboard
+ 0A86           ;                               ScrollLock ^= 0x01;
+ 0A86 62D000            mov REG[0xd0],>_ScrollLock
+ 0A89 5100              mov A,[_ScrollLock]
+ 0A8B 3101              xor A,1
+ 0A8D 5300              mov [_ScrollLock],A
+ 0A8F                   .dbline 719
+ 0A8F           ;                               if (ScrollLock) {
+ 0A8F 3C0000            cmp [_ScrollLock],0
+ 0A92 A025              jz L263
+ 0A94                   .dbline 720
+ 0A94           ;                                       status = PS2_Send_Command_Process_Response(0xED);
+ 0A94                   .dbline 720
+ 0A94 50ED              mov A,-19
+ 0A96 08                push A
+ 0A97 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0A9A 38FF              add SP,-1
+ 0A9C 5402              mov [X+2],A
+ 0A9E                   .dbline 721
+ 0A9E           ;                                       if (!status) {
+ 0A9E 3D0200            cmp [X+2],0
+ 0AA1 B4B3              jnz L180
+ 0AA3                   .dbline 722
+ 0AA3           ;                                               statusLEDs |= 0x01;
+ 0AA3                   .dbline 722
+ 0AA3 62D000            mov REG[0xd0],>L183
+ 0AA6 2E0001            or [L183],1
+ 0AA9                   .dbline 723
+ 0AA9           ;                                               status = PS2_Send_Command_Process_Response(statusLEDs);
+ 0AA9 5100              mov A,[L183]
+ 0AAB 08                push A
+ 0AAC 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0AAF 38FF              add SP,-1
+ 0AB1 62D000            mov REG[0xd0],>__r0
+ 0AB4 5402              mov [X+2],A
+ 0AB6                   .dbline 724
+ 0AB6           ;                                       }
+ 0AB6                   .dbline 725
+ 0AB6           ;                               }
+ 0AB6 849E              xjmp L180
+ 0AB8           L263:
+ 0AB8                   .dbline 726
+ 0AB8           ;                               else {
+ 0AB8                   .dbline 727
+ 0AB8           ;                                       status = PS2_Send_Command_Process_Response(0xED);
+ 0AB8 50ED              mov A,-19
+ 0ABA 08                push A
+ 0ABB 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0ABE 38FF              add SP,-1
+ 0AC0 5402              mov [X+2],A
+ 0AC2                   .dbline 728
+ 0AC2           ;                                       if (!status) {
+ 0AC2 3D0200            cmp [X+2],0
+ 0AC5 B48F              jnz L180
+ 0AC7                   .dbline 729
+ 0AC7           ;                                               statusLEDs &= ~0x01;
+ 0AC7                   .dbline 729
+ 0AC7 62D000            mov REG[0xd0],>L183
+ 0ACA 2600FE            and [L183],-2
+ 0ACD                   .dbline 730
+ 0ACD           ;                                               status = PS2_Send_Command_Process_Response(statusLEDs);
+ 0ACD 5100              mov A,[L183]
+ 0ACF 08                push A
+ 0AD0 7C0000            xcall _PS2_Send_Command_Process_Response
+ 0AD3 38FF              add SP,-1
+ 0AD5 62D000            mov REG[0xd0],>__r0
+ 0AD8 5402              mov [X+2],A
+ 0ADA                   .dbline 731
+ 0ADA           ;                                       }
+ 0ADA                   .dbline 732
+ 0ADA           ;                               }
+ 0ADA                   .dbline 733
+ 0ADA           ;                               break;
+ 0ADA 847A              xjmp L180
+ 0ADC           L269:
+ 0ADC                   .dbline 735
+ 0ADC           ;                       case 0x05:      // F1 - Dim the LED
+ 0ADC           ;                               if (brightindex > 31) {
+ 0ADC 62D000            mov REG[0xd0],>L181
+ 0ADF 501F              mov A,31
+ 0AE1 3A00              cmp A,[L181]
+ 0AE3 D013              jnc L270
+ 0AE5           X37:
+ 0AE5                   .dbline 736
+ 0AE5           ;                                       brightindex -= 32;
+ 0AE5                   .dbline 736
+ 0AE5 62D000            mov REG[0xd0],>L181
+ 0AE8 5100              mov A,[L181]
+ 0AEA 1120              sub A,32
+ 0AEC 5300              mov [L181],A
+ 0AEE                   .dbline 737
+ 0AEE           ;                                       PWM8LED_WritePulseWidth(brightindex);
+ 0AEE 10                push X
+ 0AEF 5100              mov A,[L181]
+ 0AF1 7C0000            xcall _PWM8LED_WritePulseWidth
+ 0AF4 20                pop X
+ 0AF5                   .dbline 738
+ 0AF5           ;                               }
+ 0AF5 845F              xjmp L180
+ 0AF7           L270:
+ 0AF7                   .dbline 739
+ 0AF7           ;                               else if (brightindex == 31){
+ 0AF7 62D000            mov REG[0xd0],>L181
+ 0AFA 3C001F            cmp [L181],31
+ 0AFD B457              jnz L180
+ 0AFF                   .dbline 740
+ 0AFF           ;                                       brightindex -= 31;
+ 0AFF                   .dbline 740
+ 0AFF 5100              mov A,[L181]
+ 0B01 111F              sub A,31
+ 0B03 5300              mov [L181],A
+ 0B05                   .dbline 741
+ 0B05           ;                                       PWM8LED_Stop();
+ 0B05 10                push X
+ 0B06 7C0000            xcall _PWM8LED_Stop
+ 0B09 20                pop X
+ 0B0A                   .dbline 742
+ 0B0A           ;                               }
+ 0B0A                   .dbline 743
+ 0B0A           ;                               break;
+ 0B0A 844A              xjmp L180
+ 0B0C           L274:
+ 0B0C                   .dbline 745
+ 0B0C           ;                       case 0x06:      // F2 - Brighten the LED
+ 0B0C           ;                               if (brightindex == 0) {
+ 0B0C 62D000            mov REG[0xd0],>L181
+ 0B0F 3C0000            cmp [L181],0
+ 0B12 B010              jnz L275
+ 0B14                   .dbline 746
+ 0B14           ;                                       brightindex += 31;
+ 0B14                   .dbline 746
+ 0B14 06001F            add [L181],31
+ 0B17                   .dbline 747
+ 0B17           ;                                       PWM8LED_WritePulseWidth(brightindex);
+ 0B17 10                push X
+ 0B18 5100              mov A,[L181]
+ 0B1A 7C0000            xcall _PWM8LED_WritePulseWidth
+ 0B1D                   .dbline 748
+ 0B1D           ;                                       PWM8LED_Start();
+ 0B1D 7C0000            xcall _PWM8LED_Start
+ 0B20 20                pop X
+ 0B21                   .dbline 749
+ 0B21           ;                               }
+ 0B21 8433              xjmp L180
+ 0B23           L275:
+ 0B23                   .dbline 750
+ 0B23           ;                               else if (brightindex < 255) {
+ 0B23 62D000            mov REG[0xd0],>L181
+ 0B26 3C00FF            cmp [L181],-1
+ 0B29 D42B              jnc L180
+ 0B2B           X38:
+ 0B2B                   .dbline 751
+ 0B2B           ;                                       brightindex += 32;
+ 0B2B                   .dbline 751
+ 0B2B 62D000            mov REG[0xd0],>L181
+ 0B2E 060020            add [L181],32
+ 0B31                   .dbline 752
+ 0B31           ;                                       PWM8LED_WritePulseWidth(brightindex);
+ 0B31 10                push X
+ 0B32 5100              mov A,[L181]
+ 0B34 7C0000            xcall _PWM8LED_WritePulseWidth
+ 0B37 20                pop X
+ 0B38                   .dbline 753
+ 0B38           ;                               }
+ 0B38                   .dbline 754
+ 0B38           ;                               break;
+ 0B38 841C              xjmp L180
+ 0B3A           L241:
+ 0B3A                   .dbline 758
+ 0B3A           ;                       //// Any single-byte scan codes not handled specially in the above switch statement
+ 0B3A           ;                       //// are handled here:
+ 0B3A           ;                       default:
+ 0B3A           ;                               if (PianoMode) {
+ 0B3A 62D000            mov REG[0xd0],>_PianoMode
+ 0B3D 3C0000            cmp [_PianoMode],0
+ 0B40 A414              jz L180
+ 0B42                   .dbline 759
+ 0B42           ;                                       i = 0;
+ 0B42                   .dbline 759
+ 0B42 560100            mov [X+1],0
+ 0B45 560000            mov [X+0],0
+ 0B48 8006              xjmp L282
+ 0B4A           L281:
+ 0B4A                   .dbline 760
+ 0B4A           ;                                       while((PianoScancode[i][0] != scancode) && (PianoScancode[i][0] != 0)) {
+ 0B4A                   .dbline 761
+ 0B4A           ;                                               i++;
+ 0B4A 7701              inc [X+1]
+ 0B4C 0F0000            adc [X+0],0
+ 0B4F                   .dbline 762
+ 0B4F           ;                                       }
+ 0B4F           L282:
+ 0B4F                   .dbline 760
+ 0B4F 62D000            mov REG[0xd0],>__r0
+ 0B52 5200              mov A,[X+0]
+ 0B54 08                push A
+ 0B55 5201              mov A,[X+1]
+ 0B57 08                push A
+ 0B58 5000              mov A,0
+ 0B5A 08                push A
+ 0B5B 5006              mov A,6
+ 0B5D 08                push A
+ 0B5E 7C0000            xcall __mul16
+ 0B61 38FC              add SP,-4
+ 0B63 5100              mov A,[__rX]
+ 0B65 5300              mov [__r1],A
+ 0B67 5100              mov A,[__rY]
+ 0B69 5300              mov [__r0],A
+ 0B6B 0600F1            add [__r1],<_PianoScancode
+ 0B6E 0E00F1            adc [__r0],>_PianoScancode
+ 0B71 5100              mov A,[__r0]
+ 0B73 10                push X
+ 0B74 5800              mov X,[__r1]
+ 0B76 08                push A
+ 0B77 28                romx
+ 0B78 5300              mov [__r0],A
+ 0B7A 18                pop A
+ 0B7B 75                inc X
+ 0B7C 0900              adc A,0
+ 0B7E 28                romx
+ 0B7F 5300              mov [__r1],A
+ 0B81 20                pop X
+ 0B82 52FC              mov A,[X-4]
+ 0B84 5300              mov [__r3],A
+ 0B86 550000            mov [__r2],0
+ 0B89 5100              mov A,[__r0]
+ 0B8B 3A00              cmp A,[__r2]
+ 0B8D B007              jnz X39
+ 0B8F 5100              mov A,[__r1]
+ 0B91 3A00              cmp A,[__r3]
+ 0B93 A00E              jz L284
+ 0B95           X39:
+ 0B95 62D000            mov REG[0xd0],>__r0
+ 0B98 3C0000            cmp [__r0],0
+ 0B9B BFAE              jnz L281
+ 0B9D 3C0000            cmp [__r1],0
+ 0BA0 BFA9              jnz L281
+ 0BA2           X40:
+ 0BA2           L284:
+ 0BA2                   .dbline 773
+ 0BA2           ;                                       
+ 0BA2           ;                                       
+ 0BA2           ; //                                    if (PianoScancode[i][0] > 0) {
+ 0BA2           ; //                                            PWMPiano1_WritePeriod(PianoScancode[i][1]);
+ 0BA2           ; //                                            PWMPiano1_WritePulseWidth(PianoScancode[i][2]);
+ 0BA2           ; //                                            PWMPiano1_Start();
+ 0BA2           ; //                                    }
+ 0BA2           ;                                               
+ 0BA2           ;                                       
+ 0BA2           ;                                       
+ 0BA2           ;                                       if (PianoScancode[i][0] > 0 && i <= 7) {
+ 0BA2 62D000            mov REG[0xd0],>__r0
+ 0BA5 5200              mov A,[X+0]
+ 0BA7 08                push A
+ 0BA8 5201              mov A,[X+1]
+ 0BAA 08                push A
+ 0BAB 5000              mov A,0
+ 0BAD 08                push A
+ 0BAE 5006              mov A,6
+ 0BB0 08                push A
+ 0BB1 7C0000            xcall __mul16
+ 0BB4 38FC              add SP,-4
+ 0BB6 5100              mov A,[__rX]
+ 0BB8 5300              mov [__r1],A
+ 0BBA 5100              mov A,[__rY]
+ 0BBC 5300              mov [__r0],A
+ 0BBE 0600F1            add [__r1],<_PianoScancode
+ 0BC1 0E00F1            adc [__r0],>_PianoScancode
+ 0BC4 5100              mov A,[__r0]
+ 0BC6 10                push X
+ 0BC7 5800              mov X,[__r1]
+ 0BC9 08                push A
+ 0BCA 28                romx
+ 0BCB 5300              mov [__r0],A
+ 0BCD 18                pop A
+ 0BCE 75                inc X
+ 0BCF 0900              adc A,0
+ 0BD1 28                romx
+ 0BD2 20                pop X
+ 0BD3 3C0000            cmp [__r0],0
+ 0BD6 B005              jnz X41
+ 0BD8 3900              cmp A,0
+ 0BDA A091              jz L285
+ 0BDC           X41:
+ 0BDC 5007              mov A,7
+ 0BDE 1301              sub A,[X+1]
+ 0BE0 5200              mov A,[X+0]
+ 0BE2 3180              xor A,-128
+ 0BE4 62D000            mov REG[0xd0],>__r0
+ 0BE7 5300              mov [__rX],A
+ 0BE9 5080              mov A,(0 ^ 0x80)
+ 0BEB 1A00              sbb A,[__rX]
+ 0BED C07E              jc L285
+ 0BEF           X42:
+ 0BEF                   .dbline 774
+ 0BEF           ;                                               PWMPiano1_WritePeriod(PianoScancode[i][1]);
+ 0BEF                   .dbline 774
+ 0BEF 62D000            mov REG[0xd0],>__r0
+ 0BF2 5200              mov A,[X+0]
+ 0BF4 08                push A
+ 0BF5 5201              mov A,[X+1]
+ 0BF7 08                push A
+ 0BF8 5000              mov A,0
+ 0BFA 08                push A
+ 0BFB 5006              mov A,6
+ 0BFD 08                push A
+ 0BFE 7C0000            xcall __mul16
+ 0C01 38FC              add SP,-4
+ 0C03 5100              mov A,[__rX]
+ 0C05 5300              mov [__r1],A
+ 0C07 5100              mov A,[__rY]
+ 0C09 5300              mov [__r0],A
+ 0C0B 0600F3            add [__r1],<_PianoScancode+2
+ 0C0E 0E00F3            adc [__r0],>_PianoScancode+2
+ 0C11 5100              mov A,[__r0]
+ 0C13 10                push X
+ 0C14 5800              mov X,[__r1]
+ 0C16 08                push A
+ 0C17 28                romx
+ 0C18 5300              mov [__r0],A
+ 0C1A 18                pop A
+ 0C1B 75                inc X
+ 0C1C 0900              adc A,0
+ 0C1E 28                romx
+ 0C1F 5300              mov [__r1],A
+ 0C21 5100              mov A,[__r0]
+ 0C23 08                push A
+ 0C24 5100              mov A,[__r1]
+ 0C26 20                pop X
+ 0C27 7C0000            xcall _PWMPiano1_WritePeriod
+ 0C2A 20                pop X
+ 0C2B                   .dbline 775
+ 0C2B           ;                                               PWMPiano1_WritePulseWidth(PianoScancode[i][2]);
+ 0C2B 62D000            mov REG[0xd0],>__r0
+ 0C2E 5200              mov A,[X+0]
+ 0C30 08                push A
+ 0C31 5201              mov A,[X+1]
+ 0C33 08                push A
+ 0C34 5000              mov A,0
+ 0C36 08                push A
+ 0C37 5006              mov A,6
+ 0C39 08                push A
+ 0C3A 7C0000            xcall __mul16
+ 0C3D 38FC              add SP,-4
+ 0C3F 5100              mov A,[__rX]
+ 0C41 5300              mov [__r1],A
+ 0C43 5100              mov A,[__rY]
+ 0C45 5300              mov [__r0],A
+ 0C47 0600F5            add [__r1],<_PianoScancode+4
+ 0C4A 0E00F5            adc [__r0],>_PianoScancode+4
+ 0C4D 5100              mov A,[__r0]
+ 0C4F 10                push X
+ 0C50 5800              mov X,[__r1]
+ 0C52 08                push A
+ 0C53 28                romx
+ 0C54 5300              mov [__r0],A
+ 0C56 18                pop A
+ 0C57 75                inc X
+ 0C58 0900              adc A,0
+ 0C5A 28                romx
+ 0C5B 5300              mov [__r1],A
+ 0C5D 5100              mov A,[__r0]
+ 0C5F 08                push A
+ 0C60 5100              mov A,[__r1]
+ 0C62 20                pop X
+ 0C63 7C0000            xcall _PWMPiano1_WritePulseWidth
+ 0C66                   .dbline 776
+ 0C66           ;                                               PWMPiano1_Start();
+ 0C66 7C0000            xcall _PWMPiano1_Start
+ 0C69 20                pop X
+ 0C6A                   .dbline 777
+ 0C6A           ;                                       } else if (PianoScancode[i][0] > 0 && i > 7 && i <= 15) {
+ 0C6A 82EA              xjmp L180
+ 0C6C           L285:
+ 0C6C                   .dbline 777
+ 0C6C 62D000            mov REG[0xd0],>__r0
+ 0C6F 5200              mov A,[X+0]
+ 0C71 08                push A
+ 0C72 5201              mov A,[X+1]
+ 0C74 08                push A
+ 0C75 5000              mov A,0
+ 0C77 08                push A
+ 0C78 5006              mov A,6
+ 0C7A 08                push A
+ 0C7B 7C0000            xcall __mul16
+ 0C7E 38FC              add SP,-4
+ 0C80 5100              mov A,[__rX]
+ 0C82 5300              mov [__r1],A
+ 0C84 5100              mov A,[__rY]
+ 0C86 5300              mov [__r0],A
+ 0C88 0600F1            add [__r1],<_PianoScancode
+ 0C8B 0E00F1            adc [__r0],>_PianoScancode
+ 0C8E 5100              mov A,[__r0]
+ 0C90 10                push X
+ 0C91 5800              mov X,[__r1]
+ 0C93 08                push A
+ 0C94 28                romx
+ 0C95 5300              mov [__r0],A
+ 0C97 18                pop A
+ 0C98 75                inc X
+ 0C99 0900              adc A,0
+ 0C9B 28                romx
+ 0C9C 20                pop X
+ 0C9D 3C0000            cmp [__r0],0
+ 0CA0 B005              jnz X43
+ 0CA2 3900              cmp A,0
+ 0CA4 A0A4              jz L289
+ 0CA6           X43:
+ 0CA6 5007              mov A,7
+ 0CA8 1301              sub A,[X+1]
+ 0CAA 5200              mov A,[X+0]
+ 0CAC 3180              xor A,-128
+ 0CAE 62D000            mov REG[0xd0],>__r0
+ 0CB1 5300              mov [__rX],A
+ 0CB3 5080              mov A,(0 ^ 0x80)
+ 0CB5 1A00              sbb A,[__rX]
+ 0CB7 D091              jnc L289
+ 0CB9           X44:
+ 0CB9 500F              mov A,15
+ 0CBB 1301              sub A,[X+1]
+ 0CBD 5200              mov A,[X+0]
+ 0CBF 3180              xor A,-128
+ 0CC1 62D000            mov REG[0xd0],>__r0
+ 0CC4 5300              mov [__rX],A
+ 0CC6 5080              mov A,(0 ^ 0x80)
+ 0CC8 1A00              sbb A,[__rX]
+ 0CCA C07E              jc L289
+ 0CCC           X45:
+ 0CCC                   .dbline 778
+ 0CCC           ;                                               PWMPiano2_WritePeriod(PianoScancode[i][1]);
+ 0CCC                   .dbline 778
+ 0CCC 62D000            mov REG[0xd0],>__r0
+ 0CCF 5200              mov A,[X+0]
+ 0CD1 08                push A
+ 0CD2 5201              mov A,[X+1]
+ 0CD4 08                push A
+ 0CD5 5000              mov A,0
+ 0CD7 08                push A
+ 0CD8 5006              mov A,6
+ 0CDA 08                push A
+ 0CDB 7C0000            xcall __mul16
+ 0CDE 38FC              add SP,-4
+ 0CE0 5100              mov A,[__rX]
+ 0CE2 5300              mov [__r1],A
+ 0CE4 5100              mov A,[__rY]
+ 0CE6 5300              mov [__r0],A
+ 0CE8 0600F3            add [__r1],<_PianoScancode+2
+ 0CEB 0E00F3            adc [__r0],>_PianoScancode+2
+ 0CEE 5100              mov A,[__r0]
+ 0CF0 10                push X
+ 0CF1 5800              mov X,[__r1]
+ 0CF3 08                push A
+ 0CF4 28                romx
+ 0CF5 5300              mov [__r0],A
+ 0CF7 18                pop A
+ 0CF8 75                inc X
+ 0CF9 0900              adc A,0
+ 0CFB 28                romx
+ 0CFC 5300              mov [__r1],A
+ 0CFE 5100              mov A,[__r0]
+ 0D00 08                push A
+ 0D01 5100              mov A,[__r1]
+ 0D03 20                pop X
+ 0D04 7C0000            xcall _PWMPiano2_WritePeriod
+ 0D07 20                pop X
+ 0D08                   .dbline 779
+ 0D08           ;                                               PWMPiano2_WritePulseWidth(PianoScancode[i][2]);
+ 0D08 62D000            mov REG[0xd0],>__r0
+ 0D0B 5200              mov A,[X+0]
+ 0D0D 08                push A
+ 0D0E 5201              mov A,[X+1]
+ 0D10 08                push A
+ 0D11 5000              mov A,0
+ 0D13 08                push A
+ 0D14 5006              mov A,6
+ 0D16 08                push A
+ 0D17 7C0000            xcall __mul16
+ 0D1A 38FC              add SP,-4
+ 0D1C 5100              mov A,[__rX]
+ 0D1E 5300              mov [__r1],A
+ 0D20 5100              mov A,[__rY]
+ 0D22 5300              mov [__r0],A
+ 0D24 0600F5            add [__r1],<_PianoScancode+4
+ 0D27 0E00F5            adc [__r0],>_PianoScancode+4
+ 0D2A 5100              mov A,[__r0]
+ 0D2C 10                push X
+ 0D2D 5800              mov X,[__r1]
+ 0D2F 08                push A
+ 0D30 28                romx
+ 0D31 5300              mov [__r0],A
+ 0D33 18                pop A
+ 0D34 75                inc X
+ 0D35 0900              adc A,0
+ 0D37 28                romx
+ 0D38 5300              mov [__r1],A
+ 0D3A 5100              mov A,[__r0]
+ 0D3C 08                push A
+ 0D3D 5100              mov A,[__r1]
+ 0D3F 20                pop X
+ 0D40 7C0000            xcall _PWMPiano2_WritePulseWidth
+ 0D43                   .dbline 780
+ 0D43           ;                                               PWMPiano2_Start();
+ 0D43 7C0000            xcall _PWMPiano2_Start
+ 0D46 20                pop X
+ 0D47                   .dbline 781
+ 0D47           ;                                       } else if (PianoScancode[i][0] > 0 && i > 15 && i <= 23) {
+ 0D47 820D              xjmp L180
+ 0D49           L289:
+ 0D49                   .dbline 781
+ 0D49 62D000            mov REG[0xd0],>__r0
+ 0D4C 5200              mov A,[X+0]
+ 0D4E 08                push A
+ 0D4F 5201              mov A,[X+1]
+ 0D51 08                push A
+ 0D52 5000              mov A,0
+ 0D54 08                push A
+ 0D55 5006              mov A,6
+ 0D57 08                push A
+ 0D58 7C0000            xcall __mul16
+ 0D5B 38FC              add SP,-4
+ 0D5D 5100              mov A,[__rX]
+ 0D5F 5300              mov [__r1],A
+ 0D61 5100              mov A,[__rY]
+ 0D63 5300              mov [__r0],A
+ 0D65 0600F1            add [__r1],<_PianoScancode
+ 0D68 0E00F1            adc [__r0],>_PianoScancode
+ 0D6B 5100              mov A,[__r0]
+ 0D6D 10                push X
+ 0D6E 5800              mov X,[__r1]
+ 0D70 08                push A
+ 0D71 28                romx
+ 0D72 5300              mov [__r0],A
+ 0D74 18                pop A
+ 0D75 75                inc X
+ 0D76 0900              adc A,0
+ 0D78 28                romx
+ 0D79 20                pop X
+ 0D7A 3C0000            cmp [__r0],0
+ 0D7D B005              jnz X46
+ 0D7F 3900              cmp A,0
+ 0D81 A1D3              jz L180
+ 0D83           X46:
+ 0D83 500F              mov A,15
+ 0D85 1301              sub A,[X+1]
+ 0D87 5200              mov A,[X+0]
+ 0D89 3180              xor A,-128
+ 0D8B 62D000            mov REG[0xd0],>__r0
+ 0D8E 5300              mov [__rX],A
+ 0D90 5080              mov A,(0 ^ 0x80)
+ 0D92 1A00              sbb A,[__rX]
+ 0D94 D1C0              jnc L180
+ 0D96           X47:
+ 0D96 5017              mov A,23
+ 0D98 1301              sub A,[X+1]
+ 0D9A 5200              mov A,[X+0]
+ 0D9C 3180              xor A,-128
+ 0D9E 62D000            mov REG[0xd0],>__r0
+ 0DA1 5300              mov [__rX],A
+ 0DA3 5080              mov A,(0 ^ 0x80)
+ 0DA5 1A00              sbb A,[__rX]
+ 0DA7 C1AD              jc L180
+ 0DA9           X48:
+ 0DA9                   .dbline 782
+ 0DA9           ;                                               PWMPiano3_WritePeriod(PianoScancode[i][1]);
+ 0DA9                   .dbline 782
+ 0DA9 62D000            mov REG[0xd0],>__r0
+ 0DAC 5200              mov A,[X+0]
+ 0DAE 08                push A
+ 0DAF 5201              mov A,[X+1]
+ 0DB1 08                push A
+ 0DB2 5000              mov A,0
+ 0DB4 08                push A
+ 0DB5 5006              mov A,6
+ 0DB7 08                push A
+ 0DB8 7C0000            xcall __mul16
+ 0DBB 38FC              add SP,-4
+ 0DBD 5100              mov A,[__rX]
+ 0DBF 5300              mov [__r1],A
+ 0DC1 5100              mov A,[__rY]
+ 0DC3 5300              mov [__r0],A
+ 0DC5 0600F3            add [__r1],<_PianoScancode+2
+ 0DC8 0E00F3            adc [__r0],>_PianoScancode+2
+ 0DCB 5100              mov A,[__r0]
+ 0DCD 10                push X
+ 0DCE 5800              mov X,[__r1]
+ 0DD0 08                push A
+ 0DD1 28                romx
+ 0DD2 5300              mov [__r0],A
+ 0DD4 18                pop A
+ 0DD5 75                inc X
+ 0DD6 0900              adc A,0
+ 0DD8 28                romx
+ 0DD9 5300              mov [__r1],A
+ 0DDB 5100              mov A,[__r0]
+ 0DDD 08                push A
+ 0DDE 5100              mov A,[__r1]
+ 0DE0 20                pop X
+ 0DE1 7C0000            xcall _PWMPiano3_WritePeriod
+ 0DE4 20                pop X
+ 0DE5                   .dbline 783
+ 0DE5           ;                                               PWMPiano3_WritePulseWidth(PianoScancode[i][2]);
+ 0DE5 62D000            mov REG[0xd0],>__r0
+ 0DE8 5200              mov A,[X+0]
+ 0DEA 08                push A
+ 0DEB 5201              mov A,[X+1]
+ 0DED 08                push A
+ 0DEE 5000              mov A,0
+ 0DF0 08                push A
+ 0DF1 5006              mov A,6
+ 0DF3 08                push A
+ 0DF4 7C0000            xcall __mul16
+ 0DF7 38FC              add SP,-4
+ 0DF9 5100              mov A,[__rX]
+ 0DFB 5300              mov [__r1],A
+ 0DFD 5100              mov A,[__rY]
+ 0DFF 5300              mov [__r0],A
+ 0E01 0600F5            add [__r1],<_PianoScancode+4
+ 0E04 0E00F5            adc [__r0],>_PianoScancode+4
+ 0E07 5100              mov A,[__r0]
+ 0E09 10                push X
+ 0E0A 5800              mov X,[__r1]
+ 0E0C 08                push A
+ 0E0D 28                romx
+ 0E0E 5300              mov [__r0],A
+ 0E10 18                pop A
+ 0E11 75                inc X
+ 0E12 0900              adc A,0
+ 0E14 28                romx
+ 0E15 5300              mov [__r1],A
+ 0E17 5100              mov A,[__r0]
+ 0E19 08                push A
+ 0E1A 5100              mov A,[__r1]
+ 0E1C 20                pop X
+ 0E1D 7C0000            xcall _PWMPiano3_WritePulseWidth
+ 0E20                   .dbline 784
+ 0E20           ;                                               PWMPiano3_Start();
+ 0E20 7C0000            xcall _PWMPiano3_Start
+ 0E23 20                pop X
+ 0E24                   .dbline 785
+ 0E24           ;                                       } 
+ 0E24                   .dbline 786
+ 0E24           ;                               }
+ 0E24                   .dbline 787
+ 0E24           ;                       }
+ 0E24                   .dbline 788
+ 0E24           ;                       return;
+ 0E24 8130              xjmp L180
+ 0E26           L239:
+ 0E26                   .dbline 791
+ 0E26           ;               }
+ 0E26           ;               //// Things to do when one of the single byte "make" scan code keys is released
+ 0E26           ;               if (codetype & KEY_BREAK) {
+ 0E26 48FB02            tst [X-5],2
+ 0E29 A12B              jz L180
+ 0E2B                   .dbline 792
+ 0E2B           ;                       switch(scancode) {
+ 0E2B                   .dbline 792
+ 0E2B 52FC              mov A,[X-4]
+ 0E2D 5404              mov [X+4],A
+ 0E2F 560300            mov [X+3],0
+ 0E32 3D0300            cmp [X+3],0
+ 0E35 B006              jnz X49
+ 0E37 3D0411            cmp [X+4],17
+ 0E3A A064              jz L315
+ 0E3C           X49:
+ 0E3C 3D0300            cmp [X+3],0
+ 0E3F B006              jnz X50
+ 0E41 3D0412            cmp [X+4],18
+ 0E44 A036              jz L309
+ 0E46           X50:
+ 0E46 3D0300            cmp [X+3],0
+ 0E49 B006              jnz X51
+ 0E4B 3D0414            cmp [X+4],20
+ 0E4E A03D              jz L312
+ 0E50           X51:
+ 0E50 5204              mov A,[X+4]
+ 0E52 1111              sub A,17
+ 0E54 5203              mov A,[X+3]
+ 0E56 3180              xor A,-128
+ 0E58 1980              sbb A,(0 ^ 0x80)
+ 0E5A C057              jc L303
+ 0E5C           X52:
+ 0E5C           L345:
+ 0E5C 3D0300            cmp [X+3],0
+ 0E5F B006              jnz X53
+ 0E61 3D0459            cmp [X+4],89
+ 0E64 A003              jz L306
+ 0E66           X53:
+ 0E66 804B              xjmp L303
+ 0E68           L306:
+ 0E68                   .dbline 794
+ 0E68           ;                       case 0x59:      // Right Shift
+ 0E68           ;                               shiftstatus &= ~0x01;
+ 0E68 62D000            mov REG[0xd0],>L184
+ 0E6B 2600FE            and [L184],-2
+ 0E6E                   .dbline 795
+ 0E6E           ;                               if (!shiftstatus) ShiftDown = 0;
+ 0E6E 3C0000            cmp [L184],0
+ 0E71 B0E3              jnz L180
+ 0E73                   .dbline 795
+ 0E73 62D000            mov REG[0xd0],>_ShiftDown
+ 0E76 550000            mov [_ShiftDown],0
+ 0E79                   .dbline 796
+ 0E79           ;                               break;
+ 0E79 80DB              xjmp L180
+ 0E7B           L309:
+ 0E7B                   .dbline 798
+ 0E7B           ;                       case 0x12:      // Left Shift
+ 0E7B           ;                               shiftstatus &= ~0x02;
+ 0E7B 62D000            mov REG[0xd0],>L184
+ 0E7E 2600FD            and [L184],-3
+ 0E81                   .dbline 799
+ 0E81           ;                               if (!shiftstatus) ShiftDown = 0;
+ 0E81 3C0000            cmp [L184],0
+ 0E84 B007              jnz L310
+ 0E86                   .dbline 799
+ 0E86 62D000            mov REG[0xd0],>_ShiftDown
+ 0E89 550000            mov [_ShiftDown],0
+ 0E8C           L310:
+ 0E8C           L312:
+ 0E8C                   .dbline 801
+ 0E8C           ;                       case 0x14:      // Left Control
+ 0E8C           ;                               ctrlstatus &= ~0x02;
+ 0E8C 62D000            mov REG[0xd0],>L185
+ 0E8F 2600FD            and [L185],-3
+ 0E92                   .dbline 802
+ 0E92           ;                               if (!ctrlstatus) CtrlDown = 0;
+ 0E92 3C0000            cmp [L185],0
+ 0E95 B0BF              jnz L180
+ 0E97                   .dbline 802
+ 0E97 62D000            mov REG[0xd0],>_CtrlDown
+ 0E9A 550000            mov [_CtrlDown],0
+ 0E9D                   .dbline 803
+ 0E9D           ;                               break;
+ 0E9D 80B7              xjmp L180
+ 0E9F           L315:
+ 0E9F                   .dbline 805
+ 0E9F           ;                       case 0x11:      // Left Alt
+ 0E9F           ;                               altstatus &= ~0x02;
+ 0E9F 62D000            mov REG[0xd0],>L186
+ 0EA2 2600FD            and [L186],-3
+ 0EA5                   .dbline 806
+ 0EA5           ;                               if (!altstatus) AltDown = 0;
+ 0EA5 3C0000            cmp [L186],0
+ 0EA8 B0AC              jnz L180
+ 0EAA                   .dbline 806
+ 0EAA 62D000            mov REG[0xd0],>_AltDown
+ 0EAD 550000            mov [_AltDown],0
+ 0EB0                   .dbline 807
+ 0EB0           ;                               break;
+ 0EB0 80A4              xjmp L180
+ 0EB2           L303:
+ 0EB2                   .dbline 811
+ 0EB2           ;                       //// Any single-byte scan codes not handled specially in the above switch statement
+ 0EB2           ;                       //// are handled here:
+ 0EB2           ;                       default:
+ 0EB2           ;                               if (scancode == 0x1A || scancode == 0x22 || scancode == 0x21 || scancode == 0x2A ||
+ 0EB2 3DFC1A            cmp [X-4],26
+ 0EB5 A02C              jz L326
+ 0EB7 3DFC22            cmp [X-4],34
+ 0EBA A027              jz L326
+ 0EBC 3DFC21            cmp [X-4],33
+ 0EBF A022              jz L326
+ 0EC1 3DFC2A            cmp [X-4],42
+ 0EC4 A01D              jz L326
+ 0EC6 3DFC32            cmp [X-4],50
+ 0EC9 A018              jz L326
+ 0ECB 3DFC31            cmp [X-4],49
+ 0ECE A013              jz L326
+ 0ED0 3DFC3A            cmp [X-4],58
+ 0ED3 A00E              jz L326
+ 0ED5 3DFC41            cmp [X-4],65
+ 0ED8 B010              jnz L318
+ 0EDA 62D000            mov REG[0xd0],>_PianoMode
+ 0EDD 3C0000            cmp [_PianoMode],0
+ 0EE0 A008              jz L318
+ 0EE2           L326:
+ 0EE2                   .dbline 814
+ 0EE2           ;                                       scancode == 0x32 || scancode == 0x31 || scancode == 0x3A || scancode == 0x41 && PianoMode) 
+ 0EE2           ;                               {
+ 0EE2           ;                                               PWMPiano1_Stop();
+ 0EE2                   .dbline 814
+ 0EE2 10                push X
+ 0EE3 7C0000            xcall _PWMPiano1_Stop
+ 0EE6 20                pop X
+ 0EE7                   .dbline 815
+ 0EE7           ;                               } else if (scancode == 0x1C || scancode == 0x1B || scancode == 0x23 || scancode == 0x2B ||
+ 0EE7 806D              xjmp L180
+ 0EE9           L318:
+ 0EE9                   .dbline 815
+ 0EE9 3DFC1C            cmp [X-4],28
+ 0EEC A02C              jz L335
+ 0EEE 3DFC1B            cmp [X-4],27
+ 0EF1 A027              jz L335
+ 0EF3 3DFC23            cmp [X-4],35
+ 0EF6 A022              jz L335
+ 0EF8 3DFC2B            cmp [X-4],43
+ 0EFB A01D              jz L335
+ 0EFD 3DFC34            cmp [X-4],52
+ 0F00 A018              jz L335
+ 0F02 3DFC33            cmp [X-4],51
+ 0F05 A013              jz L335
+ 0F07 3DFC3B            cmp [X-4],59
+ 0F0A A00E              jz L335
+ 0F0C 3DFC42            cmp [X-4],66
+ 0F0F B010              jnz L327
+ 0F11 62D000            mov REG[0xd0],>_PianoMode
+ 0F14 3C0000            cmp [_PianoMode],0
+ 0F17 A008              jz L327
+ 0F19           L335:
+ 0F19                   .dbline 818
+ 0F19           ;                                       scancode == 0x34 || scancode == 0x33 || scancode == 0x3B || scancode == 0x42 && PianoMode) 
+ 0F19           ;                               {
+ 0F19           ;                                               PWMPiano2_Stop();
+ 0F19                   .dbline 818
+ 0F19 10                push X
+ 0F1A 7C0000            xcall _PWMPiano2_Stop
+ 0F1D 20                pop X
+ 0F1E                   .dbline 819
+ 0F1E           ;                               } else if (scancode == 0x15 || scancode == 0x1D || scancode == 0x24 || scancode == 0x2D ||
+ 0F1E 8036              xjmp L180
+ 0F20           L327:
+ 0F20                   .dbline 819
+ 0F20 3DFC15            cmp [X-4],21
+ 0F23 A02C              jz L344
+ 0F25 3DFC1D            cmp [X-4],29
+ 0F28 A027              jz L344
+ 0F2A 3DFC24            cmp [X-4],36
+ 0F2D A022              jz L344
+ 0F2F 3DFC2D            cmp [X-4],45
+ 0F32 A01D              jz L344
+ 0F34 3DFC2C            cmp [X-4],44
+ 0F37 A018              jz L344
+ 0F39 3DFC35            cmp [X-4],53
+ 0F3C A013              jz L344
+ 0F3E 3DFC3C            cmp [X-4],60
+ 0F41 A00E              jz L344
+ 0F43 3DFC43            cmp [X-4],67
+ 0F46 B00E              jnz L180
+ 0F48 62D000            mov REG[0xd0],>_PianoMode
+ 0F4B 3C0000            cmp [_PianoMode],0
+ 0F4E A006              jz L180
+ 0F50           L344:
+ 0F50                   .dbline 822
+ 0F50           ;                                       scancode == 0x2C || scancode == 0x35 || scancode == 0x3C || scancode == 0x43 && PianoMode) 
+ 0F50           ;                               {
+ 0F50           ;                                               PWMPiano3_Stop();
+ 0F50                   .dbline 822
+ 0F50 10                push X
+ 0F51 7C0000            xcall _PWMPiano3_Stop
+ 0F54 20                pop X
+ 0F55                   .dbline 823
+ 0F55           ;                               }
+ 0F55                   .dbline 831
+ 0F55           ;                               
+ 0F55           ; //                            
+ 0F55           ; //                            if (PianoMode && (!keyspressed)) {
+ 0F55           ; //                                    PWMPiano1_Stop();
+ 0F55           ; //                                    PWMPiano2_Stop();
+ 0F55           ; //                                    PWMPiano3_Stop();
+ 0F55           ; //                            }
+ 0F55           ;                       }
+ 0F55                   .dbline 832
+ 0F55           ;               }
+ 0F55                   .dbline 833
+ 0F55           ;       }
+ 0F55                   .dbline 834
+ 0F55           ;       return;
+ 0F55                   .dbline -2
+ 0F55           L180:
+ 0F55 38FB              add SP,-5
+ 0F57 20                pop X
+ 0F58                   .dbline 0 ; func end
+ 0F58 7F                ret
+ 0F59                   .dbsym l status 2 c
+ 0F59                   .dbsym l i 0 I
+ 0F59                   .dbsym l keyspressed -6 c
+ 0F59                   .dbsym l codetype -5 c
+ 0F59                   .dbsym l scancode -4 c
+ 0F59                   .dbend
+                        .area lit(rom, con, rel, lit)
+ 0187           L208:
+ 0187 0D0A5069616E6F206D6F6465206F6666  .byte 13,10,'P,'i,'a,'n,'o,32,'m,'o,'d,'e,32,'o,'f,'f
+ 0197 2E0D0A00          .byte 46,13,10,0
+ 019B           L207:
+ 019B 095072657373205B5A584356424E4D2C  .byte 9,'P,'r,'e,'s,'s,32,91,'Z,'X,'C,'V,'B,'N,'M,44
+ 01AB 5D2C205B4153444647484A4B5D2C206F  .byte 93,44,32,91,'A,'S,'D,'F,'G,'H,'J,'K,93,44,32,'o
+ 01BB 72205B51574552545955495D2E0D0A00  .byte 'r,32,91,'Q,'W,'E,'R,'T,'Y,'U,'I,93,46,13,10,0
+ 01CB           L206:
+ 01CB 0D0A5069616E6F206D6F6465206F6E2E  .byte 13,10,'P,'i,'a,'n,'o,32,'m,'o,'d,'e,32,'o,'n,46
+ 01DB 0D0A00            .byte 13,10,0
+ 01DE           L157:
+ 01DE 0D0A49206C6F76652F68617465204543  .byte 13,10,'I,32,'l,'o,'v,'e,47,'h,'a,'t,'e,32,'E,'C
+ 01EE 45333831212E0D0A00        .byte 'E,51,56,49,33,46,13,10,0
+ 01F7           L150:
+ 01F7 0D0A332E313431353932363533353839  .byte 13,10,51,46,49,52,49,53,57,50,54,53,51,53,56,57
+ 0207 373933323338360D0A00      .byte 55,57,51,50,51,56,54,13,10,0
+ 0211           L141:
+ 0211 0D0A54686520717569636B2062726F77  .byte 13,10,'T,'h,'e,32,'q,'u,'i,'c,'k,32,'b,'r,'o,'w
+ 0221 6E20666F78206A756D7073206F766572  .byte 'n,32,'f,'o,'x,32,'j,'u,'m,'p,'s,32,'o,'v,'e,'r
+ 0231 20746865206C617A7920646F672E0D0A  .byte 32,'t,'h,'e,32,'l,'a,'z,'y,32,'d,'o,'g,46,13,10
+ 0241 00                .byte 0

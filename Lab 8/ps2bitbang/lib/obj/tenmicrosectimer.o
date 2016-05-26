@@ -1,0 +1,140 @@
+XH
+H 3 areas 2E global symbols
+M tenmicrosectimer.asm
+A text size 0 flags 0
+dbfile lib/tenmicrosectimer.asm
+dbfunc 0 ? 0 I
+dbfile TenMicroSecTimer.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/TenMicroSecTimer.inc
+dbfunc 0 ? 0 I
+dbfile lib/tenmicrosectimer.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/tenmicrosectimer.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A ps2bitbang_RAM size 0 flags 20
+A UserModules size 60 flags 0
+dbfile lib/tenmicrosectimer.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 66 3
+dbline 2 4
+dbline 82 7
+dbline 2 8
+dbline 9E B
+dbline 2 C
+dbline BA F
+dbline D5 10
+dbline D6 12
+dbline D7 13
+dbline D9 15
+dbline F5 16
+dbline F6 18
+dbline F7 19
+dbline F9 1B
+dbline 114 1C
+dbline 115 1E
+dbline 116 1F
+dbline 118 21
+dbline 14C 22
+dbline 14D 23
+dbline 14E 25
+dbline 14F 27
+dbline 150 28
+dbline 151 2A
+dbline 152 2B
+dbline 153 2D
+dbline 154 2E
+dbline 156 30
+dbline 157 32
+dbline 158 34
+dbline 159 36
+dbline 15A 38
+dbline 15B 3A
+dbline 15C 3D
+dbline 15D 3F
+dbline 15F 41
+dbline 2 43
+dbline 2 45
+dbline 162 48
+dbline 163 49
+dbline 164 4B
+dbline 165 4C
+dbline 166 4E
+dbline 167 4F
+dbline 168 51
+dbline 169 52
+dbline 3 53
+dbline 4 55
+dbline 16B 57
+dbline 194 58
+dbline 197 5A
+dbline 198 5C
+dbline 199 5D
+dbline 19B 5F
+S _TenMicroSecTimer_Start Def0008
+S TenMicroSecTimer_WritePeriod Def0010
+S TenMicroSecTimer_EnableInt Def0000
+S _wTenMicroSecTimer_ReadTimerSaveCV Def0022
+S _TenMicroSecTimer_wReadTimerSaveCV Def0022
+S _wTenMicroSecTimer_CaptureCounter Def0058
+S $sb$TenMicroSecTimer_WritePeriod Def0010
+S $se$TenMicroSecTimer_WritePeriod Def0016
+S $sb$TenMicroSecTimer_EnableInt Def0000
+S $se$TenMicroSecTimer_EnableInt Def0004
+S TenMicroSecTimer_Stop Def000C
+S wTenMicroSecTimer_ReadCompareValue Def001C
+S TenMicroSecTimer_wReadCompareValue Def001C
+S $sb$TenMicroSecTimer_Stop Def000C
+S $se$TenMicroSecTimer_Stop Def0010
+S _TenMicroSecTimer_WritePeriod Def0010
+S TenMicroSecTimer_WriteCompareValue Def0016
+S _TenMicroSecTimer_EnableInt Def0000
+S wTenMicroSecTimer_ReadCounter Def0022
+S $sb$TenMicroSecTimer_wReadCompareValue Def001C
+S $se$TenMicroSecTimer_wReadCompareValue Def0022
+S TenMicroSecTimer_DisableInt Def0004
+S $sb$TenMicroSecTimer_WriteCompareValue Def0016
+S $se$TenMicroSecTimer_WriteCompareValue Def001C
+S wTenMicroSecTimer_ReadTimer Def0058
+S TenMicroSecTimer_wReadTimer Def0058
+S $sb$TenMicroSecTimer_DisableInt Def0004
+S $se$TenMicroSecTimer_DisableInt Def0008
+S _TenMicroSecTimer_Stop Def000C
+S TenMicroSecTimer_Start Def0008
+S $sb$TenMicroSecTimer_wReadTimer Def0058
+S $se$TenMicroSecTimer_wReadTimer Def0060
+S _wTenMicroSecTimer_ReadCompareValue Def001C
+S _TenMicroSecTimer_wReadCompareValue Def001C
+S wTenMicroSecTimer_ReadTimerSaveCV Def0022
+S TenMicroSecTimer_wReadTimerSaveCV Def0022
+S $sb$TenMicroSecTimer_Start Def0008
+S wTenMicroSecTimer_CaptureCounter Def0058
+S $se$TenMicroSecTimer_Start Def000C
+S _TenMicroSecTimer_WriteCompareValue Def0016
+S _wTenMicroSecTimer_ReadCounter Def0022
+S $sb$TenMicroSecTimer_wReadTimerSaveCV Def0022
+S $se$TenMicroSecTimer_wReadTimerSaveCV Def0058
+S _TenMicroSecTimer_DisableInt Def0004
+S _wTenMicroSecTimer_ReadTimer Def0058
+S _TenMicroSecTimer_wReadTimer Def0058
+T 00 00 43 E1 80 7F 41 E1 7F 7F 43 3B 01 7F 41 3B
+R 00 00 00 02
+T 00 0E FE 7F 60 39 5B 60 3D 7F 60 3A 5B 60 3E 7F
+R 00 00 00 02
+T 00 1C 5D 3E 5C 5D 3A 7F 4F 38 03 5D 3B 08 5D 3A
+R 00 00 00 02
+T 00 2A 08 5D 3E 08 5D 38 5D 3E 54 01 5D 3A 54 02
+R 00 00 00 02
+T 00 38 50 00 49 F7 01 A0 03 50 01 54 00 70 FE 41
+R 00 00 00 02
+T 00 46 3B FE 18 60 3E 18 60 3A 18 60 3B 18 20 70
+R 00 00 00 02
+T 00 54 3F 71 C0 7E 5D 38 5D 3E 5C 5D 3A 7F
+R 00 00 00 02

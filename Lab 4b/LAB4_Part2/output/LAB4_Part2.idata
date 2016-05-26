@@ -1,0 +1,15 @@
+flash 18F3 SRAM    3:
+ 00 15 bytes
+flash 18F7 SRAM   1D:
+ <size at next line>  3F 80
+  [size:] 2 bytes
+flash 18FC SRAM   1F:
+ 00 9 bytes
+flash 1900 SRAM   28:
+ <size at next line>   8
+  [size:] 1 bytes
+flash 1904 SRAM   29:
+ 00 15 bytes
+flash 1908 SRAM   38:
+ <size at next line>   1  0  0  0
+  [size:] 4 bytes

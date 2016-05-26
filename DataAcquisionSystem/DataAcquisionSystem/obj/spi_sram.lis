@@ -1,0 +1,1149 @@
+ 0000                   cpu LMM
+                        .module spi_sram.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./spi_sram.c
+ 0000                   .dbfile C:\Users\TANGY_~1\DOCUME~1\ECE381~1\DATAAC~1\DATAAC~1\spi_sram.c
+ 0000                   .dbfunc e SPIRAM_WriteStatusRegister _SPIRAM_WriteStatusRegister fc
+ 0000           ;              b -> X+0
+ 0000           ;          value -> X-4
+ 0000           _SPIRAM_WriteStatusRegister::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3801              add SP,1
+ 0004                   .dbline 13
+ 0004           ; //*****************************************************************************
+ 0004           ; //* Read/Write/Control Functions for the Microchip 23K256 32kB SPI RAM
+ 0004           ; //*
+ 0004           ; //* bnoble@siue.edu 20140320
+ 0004           ; //*****************************************************************************
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "spi_sram.h"
+ 0004           ; 
+ 0004           ; // Write byte "value" to SRAM Status Register
+ 0004           ; BYTE SPIRAM_WriteStatusRegister(BYTE value)
+ 0004           ; {
+ 0004                   .dbline 18
+ 0004           ;       BYTE b;
+ 0004           ; 
+ 0004           ;       // If bits 5 through 1 aren't zero, return an error as per
+ 0004           ;       // Section 2.5 in the 23K256 datasheet
+ 0004           ;       if (value & 0b00111110)
+ 0004 48FC3E            tst [X-4],62
+ 0007 A008              jz L2
+ 0009                   .dbline 19
+ 0009           ;               return(1);
+ 0009 62D000            mov REG[0xd0],>__r0
+ 000C 5001              mov A,1
+ 000E 8072              xjmp L1
+ 0010           L2:
+ 0010                   .dbline 21
+ 0010           ;       // Mode SPIRAM_SEQUENTIAL_MODE|SPIRAM_PAGE_MODE are invalid.
+ 0010           ;       if ((value & 0b11000000) == 0b11000000)
+ 0010 62D000            mov REG[0xd0],>__r0
+ 0013 52FC              mov A,[X-4]
+ 0015 21C0              and A,-64
+ 0017 39C0              cmp A,-64
+ 0019 B005              jnz L7
+ 001B                   .dbline 22
+ 001B           ;               return(1);
+ 001B 5001              mov A,1
+ 001D 8063              xjmp L1
+ 001F           L6:
+ 001F                   .dbline 24
+ 001F           ;       // Make sure the TX buffer is empty (it should be but let's be proper)
+ 001F           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 001F           L7:
+ 001F                   .dbline 24
+ 001F 10                push X
+ 0020 7C0000            xcall _SPIM_bReadStatus
+ 0023 20                pop X
+ 0024 62D000            mov REG[0xd0],>__r0
+ 0027 5300              mov [__r0],A
+ 0029 470010            tst [__r0],16
+ 002C AFF2              jz L6
+ 002E                   .dbline 26
+ 002E           ;       // SPI transfers begin by bringing CS LOW
+ 002E           ;       nCS_LOW;
+ 002E                   .dbline 26
+ 002E 4104FB            and REG[0x4],-5
+ 0031                   .dbline 26
+ 0031                   .dbline 26
+ 0031                   .dbline 28
+ 0031           ;       // Send the Status Register Write command
+ 0031           ;       SPIM_SendTxData(SPIRAM_WRITE_STATUS_REG);
+ 0031 10                push X
+ 0032 5001              mov A,1
+ 0034 7C0000            xcall _SPIM_SendTxData
+ 0037 20                pop X
+ 0038           L9:
+ 0038                   .dbline 31
+ 0038           ;       // It will be almost immediately loaded into the TX shift register, freeing
+ 0038           ;       // up the TX buffer, and the SPIM module will start transmission.
+ 0038           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0038           L10:
+ 0038                   .dbline 31
+ 0038 10                push X
+ 0039 7C0000            xcall _SPIM_bReadStatus
+ 003C 20                pop X
+ 003D 62D000            mov REG[0xd0],>__r0
+ 0040 5300              mov [__r0],A
+ 0042 470010            tst [__r0],16
+ 0045 AFF2              jz L9
+ 0047                   .dbline 34
+ 0047           ;       // Prime the TX buffer for the next byte by loading it with the new status
+ 0047           ;       // register byte while the first byte is still transmitting.
+ 0047           ;       SPIM_SendTxData(value);
+ 0047 10                push X
+ 0048 52FC              mov A,[X-4]
+ 004A 7C0000            xcall _SPIM_SendTxData
+ 004D 20                pop X
+ 004E           L12:
+ 004E                   .dbline 36
+ 004E           ;       // Wait for the first TX/RX cycle to finish. We don't care what we read.
+ 004E           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 004E           L13:
+ 004E                   .dbline 36
+ 004E 10                push X
+ 004F 7C0000            xcall _SPIM_bReadStatus
+ 0052 20                pop X
+ 0053 62D000            mov REG[0xd0],>__r0
+ 0056 5300              mov [__r0],A
+ 0058 470020            tst [__r0],32
+ 005B AFF2              jz L12
+ 005D                   .dbline 38
+ 005D           ;       // Reading the data clears the RX_BUFFER_FULL flag, even if we don't want it.
+ 005D           ;       SPIM_bReadRxData(); // ignore byte from SPIRAM_WRITE_STATUS_REG TX
+ 005D 10                push X
+ 005E 7C0000            xcall _SPIM_bReadRxData
+ 0061 20                pop X
+ 0062 62D000            mov REG[0xd0],>__r0
+ 0065           L15:
+ 0065                   .dbline 41
+ 0065           ;       // Wait for the second TX/RX cycle to finish so that we know that the entire
+ 0065           ;       // two byte transaction is finished.
+ 0065           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 0065           L16:
+ 0065                   .dbline 41
+ 0065 10                push X
+ 0066 7C0000            xcall _SPIM_bReadStatus
+ 0069 20                pop X
+ 006A 62D000            mov REG[0xd0],>__r0
+ 006D 5300              mov [__r0],A
+ 006F 470020            tst [__r0],32
+ 0072 AFF2              jz L15
+ 0074                   .dbline 42
+ 0074           ;       SPIM_bReadRxData(); // We don't care about this read either
+ 0074 10                push X
+ 0075 7C0000            xcall _SPIM_bReadRxData
+ 0078 20                pop X
+ 0079 62D000            mov REG[0xd0],>__r0
+ 007C                   .dbline 44
+ 007C           ;       // SPI transfers end by bringing CS LOW
+ 007C           ;       nCS_HIGH;
+ 007C                   .dbline 44
+ 007C 430404            or REG[0x4],4
+ 007F                   .dbline 44
+ 007F                   .dbline 44
+ 007F                   .dbline 45
+ 007F           ;       return(0);
+ 007F 5000              mov A,0
+ 0081                   .dbline -2
+ 0081           L1:
+ 0081 38FF              add SP,-1
+ 0083 20                pop X
+ 0084                   .dbline 0 ; func end
+ 0084 7F                ret
+ 0085                   .dbsym l b 0 c
+ 0085                   .dbsym l value -4 c
+ 0085                   .dbend
+ 0085                   .dbfunc e SPIRAM_ReadStatusRegister _SPIRAM_ReadStatusRegister fc
+ 0085           ;              b -> X+1
+ 0085           ;        statReg -> X+0
+ 0085           _SPIRAM_ReadStatusRegister::
+ 0085                   .dbline -1
+ 0085 10                push X
+ 0086 4F                mov X,SP
+ 0087 3802              add SP,2
+ 0089                   .dbline 50
+ 0089           ; }
+ 0089           ; 
+ 0089           ; // Read SRAM Status Register and return the result.
+ 0089           ; BYTE SPIRAM_ReadStatusRegister(void)
+ 0089           ; {
+ 0089           L19:
+ 0089                   .dbline 55
+ 0089           ;       BYTE statReg;
+ 0089           ;       BYTE b;
+ 0089           ; 
+ 0089           ;       // Make sure the TX buffer is empty before starting
+ 0089           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0089           L20:
+ 0089                   .dbline 55
+ 0089 10                push X
+ 008A 7C0000            xcall _SPIM_bReadStatus
+ 008D 20                pop X
+ 008E 62D000            mov REG[0xd0],>__r0
+ 0091 5300              mov [__r0],A
+ 0093 470010            tst [__r0],16
+ 0096 AFF2              jz L19
+ 0098                   .dbline 56
+ 0098           ;       nCS_LOW;
+ 0098                   .dbline 56
+ 0098 4104FB            and REG[0x4],-5
+ 009B                   .dbline 56
+ 009B                   .dbline 56
+ 009B                   .dbline 58
+ 009B           ;       // Send the Read Status Register command
+ 009B           ;       SPIM_SendTxData(SPIRAM_READ_STATUS_REG);
+ 009B 10                push X
+ 009C 5005              mov A,5
+ 009E 7C0000            xcall _SPIM_SendTxData
+ 00A1 20                pop X
+ 00A2           L22:
+ 00A2                   .dbline 59
+ 00A2           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 00A2           L23:
+ 00A2                   .dbline 59
+ 00A2 10                push X
+ 00A3 7C0000            xcall _SPIM_bReadStatus
+ 00A6 20                pop X
+ 00A7 62D000            mov REG[0xd0],>__r0
+ 00AA 5300              mov [__r0],A
+ 00AC 470010            tst [__r0],16
+ 00AF AFF2              jz L22
+ 00B1                   .dbline 61
+ 00B1           ;       // Send a dummy byte in order to initiate a TX/RX transfer
+ 00B1           ;       SPIM_SendTxData(SPIRAM_DUMMY_BYTE);
+ 00B1 10                push X
+ 00B2 5000              mov A,0
+ 00B4 7C0000            xcall _SPIM_SendTxData
+ 00B7 20                pop X
+ 00B8           L25:
+ 00B8                   .dbline 63
+ 00B8           ;       // Wait for the first RX byte to arrive and ignore it; it is meaningless.
+ 00B8           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 00B8           L26:
+ 00B8                   .dbline 63
+ 00B8 10                push X
+ 00B9 7C0000            xcall _SPIM_bReadStatus
+ 00BC 20                pop X
+ 00BD 62D000            mov REG[0xd0],>__r0
+ 00C0 5300              mov [__r0],A
+ 00C2 470020            tst [__r0],32
+ 00C5 AFF2              jz L25
+ 00C7                   .dbline 64
+ 00C7           ;       SPIM_bReadRxData();
+ 00C7 10                push X
+ 00C8 7C0000            xcall _SPIM_bReadRxData
+ 00CB 20                pop X
+ 00CC 62D000            mov REG[0xd0],>__r0
+ 00CF           L28:
+ 00CF                   .dbline 66
+ 00CF           ;       // Wait for the second RX byte to arrive; it contains the status reg value.
+ 00CF           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 00CF           L29:
+ 00CF                   .dbline 66
+ 00CF 10                push X
+ 00D0 7C0000            xcall _SPIM_bReadStatus
+ 00D3 20                pop X
+ 00D4 62D000            mov REG[0xd0],>__r0
+ 00D7 5300              mov [__r0],A
+ 00D9 470020            tst [__r0],32
+ 00DC AFF2              jz L28
+ 00DE                   .dbline 67
+ 00DE           ;       statReg = SPIM_bReadRxData();
+ 00DE 10                push X
+ 00DF 7C0000            xcall _SPIM_bReadRxData
+ 00E2 20                pop X
+ 00E3 62D000            mov REG[0xd0],>__r0
+ 00E6 5400              mov [X+0],A
+ 00E8                   .dbline 68
+ 00E8           ;       nCS_HIGH;
+ 00E8                   .dbline 68
+ 00E8 430404            or REG[0x4],4
+ 00EB                   .dbline 68
+ 00EB                   .dbline 68
+ 00EB                   .dbline 69
+ 00EB           ;       return(statReg);
+ 00EB 5200              mov A,[X+0]
+ 00ED                   .dbline -2
+ 00ED           L18:
+ 00ED 38FE              add SP,-2
+ 00EF 20                pop X
+ 00F0                   .dbline 0 ; func end
+ 00F0 7F                ret
+ 00F1                   .dbsym l b 1 c
+ 00F1                   .dbsym l statReg 0 c
+ 00F1                   .dbend
+ 00F1                   .dbfunc e SPIRAM_WriteByte _SPIRAM_WriteByte fV
+ 00F1           ;         loAddr -> X+1
+ 00F1           ;         hiAddr -> X+0
+ 00F1           ;            out -> X-6
+ 00F1           ;           addr -> X-5
+ 00F1           _SPIRAM_WriteByte::
+ 00F1                   .dbline -1
+ 00F1 10                push X
+ 00F2 4F                mov X,SP
+ 00F3 3802              add SP,2
+ 00F5                   .dbline 76
+ 00F5           ;       
+ 00F5           ; }
+ 00F5           ; 
+ 00F5           ; // Write byte "out" to SRAM address "addr"
+ 00F5           ; // NOTE: This function assumes the SRAM has already been put in Byte Mode.
+ 00F5           ; void SPIRAM_WriteByte(WORD addr, BYTE out)
+ 00F5           ; {
+ 00F5                   .dbline 81
+ 00F5           ;       BYTE hiAddr;
+ 00F5           ;       BYTE loAddr;
+ 00F5           ;       
+ 00F5           ;       // Break the SRAM word address into two bytes
+ 00F5           ;       hiAddr = (BYTE)((addr >> 8) & 0x00ff);
+ 00F5 62D000            mov REG[0xd0],>__r0
+ 00F8 52FB              mov A,[X-5]
+ 00FA 5400              mov [X+0],A
+ 00FC                   .dbline 82
+ 00FC           ;       loAddr = (BYTE)(addr & 0x00ff);
+ 00FC 52FC              mov A,[X-4]
+ 00FE 5401              mov [X+1],A
+ 0100                   .dbline 83
+ 0100           ;       M8C_DisableGInt;
+ 0100 70FE                      and F, FEh
+ 0102           
+ 0102           L32:
+ 0102                   .dbline 86
+ 0102           ;       // Place your SPI code here
+ 0102           ;       
+ 0102           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0102           L33:
+ 0102                   .dbline 86
+ 0102 10                push X
+ 0103 7C0000            xcall _SPIM_bReadStatus
+ 0106 20                pop X
+ 0107 62D000            mov REG[0xd0],>__r0
+ 010A 5300              mov [__r0],A
+ 010C 470010            tst [__r0],16
+ 010F AFF2              jz L32
+ 0111                   .dbline 88
+ 0111           ;       
+ 0111           ;       nCS_LOW;
+ 0111                   .dbline 88
+ 0111 4104FB            and REG[0x4],-5
+ 0114                   .dbline 88
+ 0114                   .dbline 88
+ 0114                   .dbline 89
+ 0114           ;       SPIM_SendTxData(SPIRAM_WRITE);
+ 0114 10                push X
+ 0115 5002              mov A,2
+ 0117 7C0000            xcall _SPIM_SendTxData
+ 011A 20                pop X
+ 011B           L35:
+ 011B                   .dbline 91
+ 011B           ;       
+ 011B           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 011B           L36:
+ 011B                   .dbline 91
+ 011B 10                push X
+ 011C 7C0000            xcall _SPIM_bReadStatus
+ 011F 20                pop X
+ 0120 62D000            mov REG[0xd0],>__r0
+ 0123 5300              mov [__r0],A
+ 0125 470010            tst [__r0],16
+ 0128 AFF2              jz L35
+ 012A                   .dbline 92
+ 012A           ;       SPIM_SendTxData(hiAddr);
+ 012A 10                push X
+ 012B 5200              mov A,[X+0]
+ 012D 7C0000            xcall _SPIM_SendTxData
+ 0130 20                pop X
+ 0131           L38:
+ 0131                   .dbline 94
+ 0131           ; 
+ 0131           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0131           L39:
+ 0131                   .dbline 94
+ 0131 10                push X
+ 0132 7C0000            xcall _SPIM_bReadStatus
+ 0135 20                pop X
+ 0136 62D000            mov REG[0xd0],>__r0
+ 0139 5300              mov [__r0],A
+ 013B 470010            tst [__r0],16
+ 013E AFF2              jz L38
+ 0140                   .dbline 95
+ 0140           ;       SPIM_SendTxData(loAddr);
+ 0140 10                push X
+ 0141 5201              mov A,[X+1]
+ 0143 7C0000            xcall _SPIM_SendTxData
+ 0146 20                pop X
+ 0147           L41:
+ 0147                   .dbline 97
+ 0147           ;       
+ 0147           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0147           L42:
+ 0147                   .dbline 97
+ 0147 10                push X
+ 0148 7C0000            xcall _SPIM_bReadStatus
+ 014B 20                pop X
+ 014C 62D000            mov REG[0xd0],>__r0
+ 014F 5300              mov [__r0],A
+ 0151 470010            tst [__r0],16
+ 0154 AFF2              jz L41
+ 0156                   .dbline 98
+ 0156           ;       SPIM_SendTxData(out);
+ 0156 10                push X
+ 0157 52FA              mov A,[X-6]
+ 0159 7C0000            xcall _SPIM_SendTxData
+ 015C 20                pop X
+ 015D           L44:
+ 015D                   .dbline 100
+ 015D           ;               
+ 015D           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 015D           L45:
+ 015D                   .dbline 100
+ 015D 10                push X
+ 015E 7C0000            xcall _SPIM_bReadStatus
+ 0161 20                pop X
+ 0162 62D000            mov REG[0xd0],>__r0
+ 0165 5300              mov [__r0],A
+ 0167 470020            tst [__r0],32
+ 016A AFF2              jz L44
+ 016C                   .dbline 101
+ 016C           ;       SPIM_bReadRxData();
+ 016C 10                push X
+ 016D 7C0000            xcall _SPIM_bReadRxData
+ 0170 20                pop X
+ 0171 62D000            mov REG[0xd0],>__r0
+ 0174           L47:
+ 0174                   .dbline 103
+ 0174           ;       
+ 0174           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 0174           L48:
+ 0174                   .dbline 103
+ 0174 10                push X
+ 0175 7C0000            xcall _SPIM_bReadStatus
+ 0178 20                pop X
+ 0179 62D000            mov REG[0xd0],>__r0
+ 017C 5300              mov [__r0],A
+ 017E 470020            tst [__r0],32
+ 0181 AFF2              jz L47
+ 0183                   .dbline 104
+ 0183           ;       SPIM_bReadRxData();
+ 0183 10                push X
+ 0184 7C0000            xcall _SPIM_bReadRxData
+ 0187 20                pop X
+ 0188 62D000            mov REG[0xd0],>__r0
+ 018B                   .dbline 106
+ 018B           ;       
+ 018B           ;       nCS_HIGH;
+ 018B                   .dbline 106
+ 018B 430404            or REG[0x4],4
+ 018E                   .dbline 106
+ 018E                   .dbline 106
+ 018E                   .dbline 108
+ 018E           ;       
+ 018E           ;       M8C_EnableGInt;
+ 018E 7101                      or  F, 01h
+ 0190           
+ 0190                   .dbline -2
+ 0190           L31:
+ 0190 38FE              add SP,-2
+ 0192 20                pop X
+ 0193                   .dbline 0 ; func end
+ 0193 7F                ret
+ 0194                   .dbsym l loAddr 1 c
+ 0194                   .dbsym l hiAddr 0 c
+ 0194                   .dbsym l out -6 c
+ 0194                   .dbsym l addr -5 i
+ 0194                   .dbend
+ 0194                   .dbfunc e SPIRAM_ReadByte _SPIRAM_ReadByte fc
+ 0194           ;             in -> X+2
+ 0194           ;         loAddr -> X+1
+ 0194           ;         hiAddr -> X+0
+ 0194           ;           addr -> X-5
+ 0194           _SPIRAM_ReadByte::
+ 0194                   .dbline -1
+ 0194 10                push X
+ 0195 4F                mov X,SP
+ 0196 3803              add SP,3
+ 0198                   .dbline 114
+ 0198           ; }
+ 0198           ; 
+ 0198           ; // Read and return byte at SRAM address "addr"
+ 0198           ; // NOTE: This function assumes the SRAM has already been put in Byte Mode.
+ 0198           ; BYTE SPIRAM_ReadByte(WORD addr)
+ 0198           ; {
+ 0198                   .dbline 120
+ 0198           ;       BYTE hiAddr;
+ 0198           ;       BYTE loAddr;
+ 0198           ;       BYTE in;
+ 0198           ; 
+ 0198           ;       // Break the SRAM word address into two bytes
+ 0198           ;       hiAddr = (BYTE)((addr >> 8) & 0x00ff);
+ 0198 62D000            mov REG[0xd0],>__r0
+ 019B 52FB              mov A,[X-5]
+ 019D 5400              mov [X+0],A
+ 019F                   .dbline 121
+ 019F           ;       loAddr = (BYTE)(addr & 0x00ff);
+ 019F 52FC              mov A,[X-4]
+ 01A1 5401              mov [X+1],A
+ 01A3                   .dbline 122
+ 01A3           ;       M8C_DisableGInt;
+ 01A3 70FE                      and F, FEh
+ 01A5           
+ 01A5           L51:
+ 01A5                   .dbline 124
+ 01A5           ;       // Place your SPI code here
+ 01A5           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 01A5           L52:
+ 01A5                   .dbline 124
+ 01A5 10                push X
+ 01A6 7C0000            xcall _SPIM_bReadStatus
+ 01A9 20                pop X
+ 01AA 62D000            mov REG[0xd0],>__r0
+ 01AD 5300              mov [__r0],A
+ 01AF 470010            tst [__r0],16
+ 01B2 AFF2              jz L51
+ 01B4                   .dbline 126
+ 01B4           ;               
+ 01B4           ;       nCS_LOW;
+ 01B4                   .dbline 126
+ 01B4 4104FB            and REG[0x4],-5
+ 01B7                   .dbline 126
+ 01B7                   .dbline 126
+ 01B7                   .dbline 127
+ 01B7           ;       SPIM_SendTxData(SPIRAM_READ);
+ 01B7 10                push X
+ 01B8 5003              mov A,3
+ 01BA 7C0000            xcall _SPIM_SendTxData
+ 01BD 20                pop X
+ 01BE           L54:
+ 01BE                   .dbline 129
+ 01BE           ;       
+ 01BE           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 01BE           L55:
+ 01BE                   .dbline 129
+ 01BE 10                push X
+ 01BF 7C0000            xcall _SPIM_bReadStatus
+ 01C2 20                pop X
+ 01C3 62D000            mov REG[0xd0],>__r0
+ 01C6 5300              mov [__r0],A
+ 01C8 470010            tst [__r0],16
+ 01CB AFF2              jz L54
+ 01CD                   .dbline 130
+ 01CD           ;       SPIM_SendTxData(hiAddr);
+ 01CD 10                push X
+ 01CE 5200              mov A,[X+0]
+ 01D0 7C0000            xcall _SPIM_SendTxData
+ 01D3 20                pop X
+ 01D4           L57:
+ 01D4                   .dbline 132
+ 01D4           ;       
+ 01D4           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 01D4           L58:
+ 01D4                   .dbline 132
+ 01D4 10                push X
+ 01D5 7C0000            xcall _SPIM_bReadStatus
+ 01D8 20                pop X
+ 01D9 62D000            mov REG[0xd0],>__r0
+ 01DC 5300              mov [__r0],A
+ 01DE 470010            tst [__r0],16
+ 01E1 AFF2              jz L57
+ 01E3                   .dbline 133
+ 01E3           ;       SPIM_SendTxData(loAddr);
+ 01E3 10                push X
+ 01E4 5201              mov A,[X+1]
+ 01E6 7C0000            xcall _SPIM_SendTxData
+ 01E9 20                pop X
+ 01EA           L60:
+ 01EA                   .dbline 135
+ 01EA           ;       
+ 01EA           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 01EA           L61:
+ 01EA                   .dbline 135
+ 01EA 10                push X
+ 01EB 7C0000            xcall _SPIM_bReadStatus
+ 01EE 20                pop X
+ 01EF 62D000            mov REG[0xd0],>__r0
+ 01F2 5300              mov [__r0],A
+ 01F4 470010            tst [__r0],16
+ 01F7 AFF2              jz L60
+ 01F9                   .dbline 136
+ 01F9           ;       SPIM_SendTxData(SPIRAM_DUMMY_BYTE);
+ 01F9 10                push X
+ 01FA 5000              mov A,0
+ 01FC 7C0000            xcall _SPIM_SendTxData
+ 01FF 20                pop X
+ 0200           L63:
+ 0200                   .dbline 138
+ 0200           ;       
+ 0200           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 0200           L64:
+ 0200                   .dbline 138
+ 0200 10                push X
+ 0201 7C0000            xcall _SPIM_bReadStatus
+ 0204 20                pop X
+ 0205 62D000            mov REG[0xd0],>__r0
+ 0208 5300              mov [__r0],A
+ 020A 470020            tst [__r0],32
+ 020D AFF2              jz L63
+ 020F                   .dbline 139
+ 020F           ;       SPIM_bReadRxData();
+ 020F 10                push X
+ 0210 7C0000            xcall _SPIM_bReadRxData
+ 0213 20                pop X
+ 0214 62D000            mov REG[0xd0],>__r0
+ 0217           L66:
+ 0217                   .dbline 141
+ 0217           ;       
+ 0217           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 0217           L67:
+ 0217                   .dbline 141
+ 0217 10                push X
+ 0218 7C0000            xcall _SPIM_bReadStatus
+ 021B 20                pop X
+ 021C 62D000            mov REG[0xd0],>__r0
+ 021F 5300              mov [__r0],A
+ 0221 470020            tst [__r0],32
+ 0224 AFF2              jz L66
+ 0226                   .dbline 142
+ 0226           ;       in = SPIM_bReadRxData();
+ 0226 10                push X
+ 0227 7C0000            xcall _SPIM_bReadRxData
+ 022A 20                pop X
+ 022B 62D000            mov REG[0xd0],>__r0
+ 022E 5402              mov [X+2],A
+ 0230                   .dbline 144
+ 0230           ;       
+ 0230           ;       nCS_HIGH;
+ 0230                   .dbline 144
+ 0230 430404            or REG[0x4],4
+ 0233                   .dbline 144
+ 0233                   .dbline 144
+ 0233                   .dbline 146
+ 0233           ; 
+ 0233           ;       M8C_EnableGInt;
+ 0233 7101                      or  F, 01h
+ 0235           
+ 0235                   .dbline 147
+ 0235           ;       return(in);
+ 0235 5202              mov A,[X+2]
+ 0237                   .dbline -2
+ 0237           L50:
+ 0237 38FD              add SP,-3
+ 0239 20                pop X
+ 023A                   .dbline 0 ; func end
+ 023A 7F                ret
+ 023B                   .dbsym l in 2 c
+ 023B                   .dbsym l loAddr 1 c
+ 023B                   .dbsym l hiAddr 0 c
+ 023B                   .dbsym l addr -5 i
+ 023B                   .dbend
+ 023B                   .dbfunc e SPIRAM_WriteArray _SPIRAM_WriteArray fV
+ 023B           ;              b -> X+4
+ 023B           ;         loAddr -> X+3
+ 023B           ;         hiAddr -> X+2
+ 023B           ;              i -> X+0
+ 023B           ;          count -> X-8
+ 023B           ;            out -> X-7
+ 023B           ;           addr -> X-5
+ 023B           _SPIRAM_WriteArray::
+ 023B                   .dbline -1
+ 023B 10                push X
+ 023C 4F                mov X,SP
+ 023D 3805              add SP,5
+ 023F                   .dbline 156
+ 023F           ; }
+ 023F           ; 
+ 023F           ; // Write "count" bytes starting at address "addr" from array "out".
+ 023F           ; // The M8C is limited to 256 byte pages. This limits the maximum
+ 023F           ; // array size to 256 bytes, which means that "count" is only useful
+ 023F           ; // as a BYTE.
+ 023F           ; // NOTE: This function assumes the SRAM has already been put in Sequential Mode
+ 023F           ; void SPIRAM_WriteArray(WORD addr, BYTE *out, BYTE count)
+ 023F           ; {
+ 023F                   .dbline 164
+ 023F           ;       BYTE hiAddr;
+ 023F           ;       BYTE loAddr;
+ 023F           ;       BYTE b;
+ 023F           ;       int i;
+ 023F           ;       
+ 023F           ;       // If some clown tries to write 0 bytes, just return.
+ 023F           ;       // XXX - Always beware of clowns!
+ 023F           ;       if (!count)
+ 023F 3DF800            cmp [X-8],0
+ 0242 B003              jnz L70
+ 0244                   .dbline 165
+ 0244           ;               return;
+ 0244 80FC              xjmp L69
+ 0246           L70:
+ 0246                   .dbline 167
+ 0246           ;       // Break the SRAM word address into two bytes
+ 0246           ;       hiAddr = (BYTE)((addr >> 8) & 0x00ff);
+ 0246 62D000            mov REG[0xd0],>__r0
+ 0249 52FB              mov A,[X-5]
+ 024B 5402              mov [X+2],A
+ 024D                   .dbline 168
+ 024D           ;       loAddr = (BYTE)(addr & 0x00ff);
+ 024D 52FC              mov A,[X-4]
+ 024F 5403              mov [X+3],A
+ 0251                   .dbline 169
+ 0251           ;       M8C_DisableGInt;
+ 0251 70FE                      and F, FEh
+ 0253           
+ 0253           L72:
+ 0253                   .dbline 172
+ 0253           ;       // Place your SPI code here
+ 0253           ;       
+ 0253           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0253           L73:
+ 0253                   .dbline 172
+ 0253 10                push X
+ 0254 7C0000            xcall _SPIM_bReadStatus
+ 0257 20                pop X
+ 0258 62D000            mov REG[0xd0],>__r0
+ 025B 5300              mov [__r0],A
+ 025D 470010            tst [__r0],16
+ 0260 AFF2              jz L72
+ 0262                   .dbline 173
+ 0262           ;       nCS_LOW;
+ 0262                   .dbline 173
+ 0262 4104FB            and REG[0x4],-5
+ 0265                   .dbline 173
+ 0265                   .dbline 173
+ 0265                   .dbline 174
+ 0265           ;       SPIM_SendTxData(SPIRAM_WRITE);
+ 0265 10                push X
+ 0266 5002              mov A,2
+ 0268 7C0000            xcall _SPIM_SendTxData
+ 026B 20                pop X
+ 026C           L75:
+ 026C                   .dbline 176
+ 026C           ; 
+ 026C           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 026C           L76:
+ 026C                   .dbline 176
+ 026C 10                push X
+ 026D 7C0000            xcall _SPIM_bReadStatus
+ 0270 20                pop X
+ 0271 62D000            mov REG[0xd0],>__r0
+ 0274 5300              mov [__r0],A
+ 0276 470010            tst [__r0],16
+ 0279 AFF2              jz L75
+ 027B                   .dbline 177
+ 027B           ;       SPIM_SendTxData(hiAddr);
+ 027B 10                push X
+ 027C 5202              mov A,[X+2]
+ 027E 7C0000            xcall _SPIM_SendTxData
+ 0281 20                pop X
+ 0282           L78:
+ 0282                   .dbline 179
+ 0282           ; 
+ 0282           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 0282           L79:
+ 0282                   .dbline 179
+ 0282 10                push X
+ 0283 7C0000            xcall _SPIM_bReadStatus
+ 0286 20                pop X
+ 0287 62D000            mov REG[0xd0],>__r0
+ 028A 5300              mov [__r0],A
+ 028C 470020            tst [__r0],32
+ 028F AFF2              jz L78
+ 0291                   .dbline 180
+ 0291           ;       SPIM_bReadRxData();
+ 0291 10                push X
+ 0292 7C0000            xcall _SPIM_bReadRxData
+ 0295 20                pop X
+ 0296 62D000            mov REG[0xd0],>__r0
+ 0299           L81:
+ 0299                   .dbline 183
+ 0299           ;       
+ 0299           ;       
+ 0299           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0299           L82:
+ 0299                   .dbline 183
+ 0299 10                push X
+ 029A 7C0000            xcall _SPIM_bReadStatus
+ 029D 20                pop X
+ 029E 62D000            mov REG[0xd0],>__r0
+ 02A1 5300              mov [__r0],A
+ 02A3 470010            tst [__r0],16
+ 02A6 AFF2              jz L81
+ 02A8                   .dbline 184
+ 02A8           ;       SPIM_SendTxData(loAddr);
+ 02A8 10                push X
+ 02A9 5203              mov A,[X+3]
+ 02AB 7C0000            xcall _SPIM_SendTxData
+ 02AE 20                pop X
+ 02AF           L84:
+ 02AF                   .dbline 186
+ 02AF           ; 
+ 02AF           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 02AF           L85:
+ 02AF                   .dbline 186
+ 02AF 10                push X
+ 02B0 7C0000            xcall _SPIM_bReadStatus
+ 02B3 20                pop X
+ 02B4 62D000            mov REG[0xd0],>__r0
+ 02B7 5300              mov [__r0],A
+ 02B9 470020            tst [__r0],32
+ 02BC AFF2              jz L84
+ 02BE                   .dbline 187
+ 02BE           ;       SPIM_bReadRxData();
+ 02BE 10                push X
+ 02BF 7C0000            xcall _SPIM_bReadRxData
+ 02C2 20                pop X
+ 02C3 62D000            mov REG[0xd0],>__r0
+ 02C6                   .dbline 189
+ 02C6           ; 
+ 02C6           ;       for (i = 0; i < count; i++ ){
+ 02C6 560100            mov [X+1],0
+ 02C9 560000            mov [X+0],0
+ 02CC 803F              xjmp L90
+ 02CE           L91:
+ 02CE                   .dbline 191
+ 02CE           ;                       
+ 02CE           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 02CE           L92:
+ 02CE                   .dbline 191
+ 02CE 10                push X
+ 02CF 7C0000            xcall _SPIM_bReadStatus
+ 02D2 20                pop X
+ 02D3 62D000            mov REG[0xd0],>__r0
+ 02D6 5300              mov [__r0],A
+ 02D8 470010            tst [__r0],16
+ 02DB AFF2              jz L91
+ 02DD                   .dbline 192
+ 02DD           ;       SPIM_SendTxData(out[i]);
+ 02DD 5201              mov A,[X+1]
+ 02DF 03FA              add A,[X-6]
+ 02E1 5300              mov [__r1],A
+ 02E3 5200              mov A,[X+0]
+ 02E5 0BF9              adc A,[X-7]
+ 02E7 60D4              mov REG[0xd4],A
+ 02E9 3E00              mvi A,[__r1]
+ 02EB 10                push X
+ 02EC 7C0000            xcall _SPIM_SendTxData
+ 02EF 20                pop X
+ 02F0           L94:
+ 02F0                   .dbline 194
+ 02F0           ;       
+ 02F0           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 02F0           L95:
+ 02F0                   .dbline 194
+ 02F0 10                push X
+ 02F1 7C0000            xcall _SPIM_bReadStatus
+ 02F4 20                pop X
+ 02F5 62D000            mov REG[0xd0],>__r0
+ 02F8 5300              mov [__r0],A
+ 02FA 470020            tst [__r0],32
+ 02FD AFF2              jz L94
+ 02FF                   .dbline 195
+ 02FF           ;       SPIM_bReadRxData();
+ 02FF 10                push X
+ 0300 7C0000            xcall _SPIM_bReadRxData
+ 0303 20                pop X
+ 0304 62D000            mov REG[0xd0],>__r0
+ 0307                   .dbline 196
+ 0307           ;       }
+ 0307           L88:
+ 0307                   .dbline 189
+ 0307 7701              inc [X+1]
+ 0309 0F0000            adc [X+0],0
+ 030C           L90:
+ 030C                   .dbline 189
+ 030C 62D000            mov REG[0xd0],>__r0
+ 030F 52F8              mov A,[X-8]
+ 0311 5300              mov [__r1],A
+ 0313 5201              mov A,[X+1]
+ 0315 1200              sub A,[__r1]
+ 0317 5000              mov A,0
+ 0319 3180              xor A,-128
+ 031B 5300              mov [__rX],A
+ 031D 5200              mov A,[X+0]
+ 031F 3180              xor A,-128
+ 0321 1A00              sbb A,[__rX]
+ 0323 CFAA              jc L92
+ 0325           X0:
+ 0325           L97:
+ 0325                   .dbline 198
+ 0325           ; 
+ 0325           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 0325           L98:
+ 0325                   .dbline 198
+ 0325 10                push X
+ 0326 7C0000            xcall _SPIM_bReadStatus
+ 0329 20                pop X
+ 032A 62D000            mov REG[0xd0],>__r0
+ 032D 5300              mov [__r0],A
+ 032F 470020            tst [__r0],32
+ 0332 AFF2              jz L97
+ 0334                   .dbline 199
+ 0334           ;       SPIM_bReadRxData();
+ 0334 10                push X
+ 0335 7C0000            xcall _SPIM_bReadRxData
+ 0338 20                pop X
+ 0339 62D000            mov REG[0xd0],>__r0
+ 033C                   .dbline 201
+ 033C           ;               
+ 033C           ;       nCS_HIGH;
+ 033C                   .dbline 201
+ 033C 430404            or REG[0x4],4
+ 033F                   .dbline 201
+ 033F                   .dbline 201
+ 033F                   .dbline 203
+ 033F           ; 
+ 033F           ;       M8C_EnableGInt;
+ 033F 7101                      or  F, 01h
+ 0341           
+ 0341                   .dbline -2
+ 0341           L69:
+ 0341 38FB              add SP,-5
+ 0343 20                pop X
+ 0344                   .dbline 0 ; func end
+ 0344 7F                ret
+ 0345                   .dbsym l b 4 c
+ 0345                   .dbsym l loAddr 3 c
+ 0345                   .dbsym l hiAddr 2 c
+ 0345                   .dbsym l i 0 I
+ 0345                   .dbsym l count -8 c
+ 0345                   .dbsym l out -7 pc
+ 0345                   .dbsym l addr -5 i
+ 0345                   .dbend
+ 0345                   .dbfunc e SPIRAM_ReadArray _SPIRAM_ReadArray fV
+ 0345           ;              b -> X+4
+ 0345           ;         loAddr -> X+3
+ 0345           ;         hiAddr -> X+2
+ 0345           ;              i -> X+0
+ 0345           ;          count -> X-8
+ 0345           ;             in -> X-7
+ 0345           ;           addr -> X-5
+ 0345           _SPIRAM_ReadArray::
+ 0345                   .dbline -1
+ 0345 10                push X
+ 0346 4F                mov X,SP
+ 0347 3805              add SP,5
+ 0349                   .dbline 212
+ 0349           ; }
+ 0349           ; 
+ 0349           ; // Read "count" bytes starting at address "addr" into array "in"
+ 0349           ; // The M8C is limited to 256 byte pages. This limits the maximum
+ 0349           ; // array size to 256 bytes, which means that "count" is only useful
+ 0349           ; // as a BYTE.
+ 0349           ; // NOTE: This function assumes the SRAM has already been put in Sequential Mode
+ 0349           ; void SPIRAM_ReadArray(WORD addr, BYTE *in, BYTE count)
+ 0349           ; {
+ 0349                   .dbline 219
+ 0349           ;       BYTE hiAddr;
+ 0349           ;       BYTE loAddr;
+ 0349           ;       BYTE b;
+ 0349           ;       int i;
+ 0349           ;       // If some clown tries to write 0 bytes, just return.
+ 0349           ;       // XXX - Always beware of clowns!
+ 0349           ;       if (!count)
+ 0349 3DF800            cmp [X-8],0
+ 034C B003              jnz L101
+ 034E                   .dbline 220
+ 034E           ;               return;
+ 034E 80D4              xjmp L100
+ 0350           L101:
+ 0350                   .dbline 222
+ 0350           ;       // Break the SRAM word address into two bytes
+ 0350           ;       hiAddr = (BYTE)((addr >> 8) & 0x00ff);
+ 0350 62D000            mov REG[0xd0],>__r0
+ 0353 52FB              mov A,[X-5]
+ 0355 5402              mov [X+2],A
+ 0357                   .dbline 223
+ 0357           ;       loAddr = (BYTE)(addr & 0x00ff);
+ 0357 52FC              mov A,[X-4]
+ 0359 5403              mov [X+3],A
+ 035B                   .dbline 224
+ 035B           ;       M8C_DisableGInt;
+ 035B 70FE                      and F, FEh
+ 035D           
+ 035D           L103:
+ 035D                   .dbline 226
+ 035D           ;       
+ 035D           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));       
+ 035D           L104:
+ 035D                   .dbline 226
+ 035D 10                push X
+ 035E 7C0000            xcall _SPIM_bReadStatus
+ 0361 20                pop X
+ 0362 62D000            mov REG[0xd0],>__r0
+ 0365 5300              mov [__r0],A
+ 0367 470010            tst [__r0],16
+ 036A AFF2              jz L103
+ 036C                   .dbline 227
+ 036C           ;       nCS_LOW;
+ 036C                   .dbline 227
+ 036C 4104FB            and REG[0x4],-5
+ 036F                   .dbline 227
+ 036F                   .dbline 227
+ 036F                   .dbline 228
+ 036F           ;       SPIM_SendTxData(SPIRAM_READ);
+ 036F 10                push X
+ 0370 5003              mov A,3
+ 0372 7C0000            xcall _SPIM_SendTxData
+ 0375 20                pop X
+ 0376           L106:
+ 0376                   .dbline 230
+ 0376           ;       
+ 0376           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 0376           L107:
+ 0376                   .dbline 230
+ 0376 10                push X
+ 0377 7C0000            xcall _SPIM_bReadStatus
+ 037A 20                pop X
+ 037B 62D000            mov REG[0xd0],>__r0
+ 037E 5300              mov [__r0],A
+ 0380 470010            tst [__r0],16
+ 0383 AFF2              jz L106
+ 0385                   .dbline 231
+ 0385           ;       SPIM_SendTxData(hiAddr);
+ 0385 10                push X
+ 0386 5202              mov A,[X+2]
+ 0388 7C0000            xcall _SPIM_SendTxData
+ 038B 20                pop X
+ 038C           L109:
+ 038C                   .dbline 233
+ 038C           ; 
+ 038C           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));
+ 038C           L110:
+ 038C                   .dbline 233
+ 038C 10                push X
+ 038D 7C0000            xcall _SPIM_bReadStatus
+ 0390 20                pop X
+ 0391 62D000            mov REG[0xd0],>__r0
+ 0394 5300              mov [__r0],A
+ 0396 470010            tst [__r0],16
+ 0399 AFF2              jz L109
+ 039B                   .dbline 234
+ 039B           ;       SPIM_SendTxData(loAddr);
+ 039B 10                push X
+ 039C 5203              mov A,[X+3]
+ 039E 7C0000            xcall _SPIM_SendTxData
+ 03A1 20                pop X
+ 03A2           L112:
+ 03A2                   .dbline 236
+ 03A2           ;       
+ 03A2           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY));       
+ 03A2           L113:
+ 03A2                   .dbline 236
+ 03A2 10                push X
+ 03A3 7C0000            xcall _SPIM_bReadStatus
+ 03A6 20                pop X
+ 03A7 62D000            mov REG[0xd0],>__r0
+ 03AA 5300              mov [__r0],A
+ 03AC 470010            tst [__r0],16
+ 03AF AFF2              jz L112
+ 03B1                   .dbline 237
+ 03B1           ;     SPIM_SendTxData(SPIRAM_DUMMY_BYTE);
+ 03B1 10                push X
+ 03B2 5000              mov A,0
+ 03B4 7C0000            xcall _SPIM_SendTxData
+ 03B7 20                pop X
+ 03B8           L115:
+ 03B8                   .dbline 239
+ 03B8           ;       
+ 03B8           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 03B8           L116:
+ 03B8                   .dbline 239
+ 03B8 10                push X
+ 03B9 7C0000            xcall _SPIM_bReadStatus
+ 03BC 20                pop X
+ 03BD 62D000            mov REG[0xd0],>__r0
+ 03C0 5300              mov [__r0],A
+ 03C2 470020            tst [__r0],32
+ 03C5 AFF2              jz L115
+ 03C7                   .dbline 240
+ 03C7           ;       SPIM_bReadRxData();             
+ 03C7 10                push X
+ 03C8 7C0000            xcall _SPIM_bReadRxData
+ 03CB 20                pop X
+ 03CC 62D000            mov REG[0xd0],>__r0
+ 03CF           L118:
+ 03CF                   .dbline 242
+ 03CF           ;       
+ 03CF           ;       while(!(SPIM_bReadStatus() & SPIM_SPIM_SPI_COMPLETE));
+ 03CF           L119:
+ 03CF                   .dbline 242
+ 03CF 10                push X
+ 03D0 7C0000            xcall _SPIM_bReadStatus
+ 03D3 20                pop X
+ 03D4 62D000            mov REG[0xd0],>__r0
+ 03D7 5300              mov [__r0],A
+ 03D9 470020            tst [__r0],32
+ 03DC AFF2              jz L118
+ 03DE                   .dbline 244
+ 03DE           ;       
+ 03DE           ;       for (i = 0; i < count; i++ ){
+ 03DE 560100            mov [X+1],0
+ 03E1 560000            mov [X+0],0
+ 03E4 8020              xjmp L124
+ 03E6           L121:
+ 03E6                   .dbline 244
+ 03E6                   .dbline 245
+ 03E6           ;       in[i] = SPIM_bReadRxData();
+ 03E6 10                push X
+ 03E7 7C0000            xcall _SPIM_bReadRxData
+ 03EA 20                pop X
+ 03EB 62D000            mov REG[0xd0],>__r0
+ 03EE 5300              mov [__r0],A
+ 03F0 5201              mov A,[X+1]
+ 03F2 03FA              add A,[X-6]
+ 03F4 5300              mov [__r3],A
+ 03F6 5200              mov A,[X+0]
+ 03F8 0BF9              adc A,[X-7]
+ 03FA 60D5              mov REG[0xd5],A
+ 03FC 5100              mov A,[__r0]
+ 03FE 3F00              mvi [__r3],A
+ 0400                   .dbline 246
+ 0400           ;       }
+ 0400           L122:
+ 0400                   .dbline 244
+ 0400 7701              inc [X+1]
+ 0402 0F0000            adc [X+0],0
+ 0405           L124:
+ 0405                   .dbline 244
+ 0405 62D000            mov REG[0xd0],>__r0
+ 0408 52F8              mov A,[X-8]
+ 040A 5300              mov [__r1],A
+ 040C 5201              mov A,[X+1]
+ 040E 1200              sub A,[__r1]
+ 0410 5000              mov A,0
+ 0412 3180              xor A,-128
+ 0414 5300              mov [__rX],A
+ 0416 5200              mov A,[X+0]
+ 0418 3180              xor A,-128
+ 041A 1A00              sbb A,[__rX]
+ 041C CFC9              jc L121
+ 041E           X1:
+ 041E                   .dbline 248
+ 041E           ; 
+ 041E           ;       nCS_HIGH;
+ 041E                   .dbline 248
+ 041E 430404            or REG[0x4],4
+ 0421                   .dbline 248
+ 0421                   .dbline 248
+ 0421                   .dbline 250
+ 0421           ;       
+ 0421           ;       M8C_EnableGInt;
+ 0421 7101                      or  F, 01h
+ 0423           
+ 0423                   .dbline -2
+ 0423           L100:
+ 0423 38FB              add SP,-5
+ 0425 20                pop X
+ 0426                   .dbline 0 ; func end
+ 0426 7F                ret
+ 0427                   .dbsym l b 4 c
+ 0427                   .dbsym l loAddr 3 c
+ 0427                   .dbsym l hiAddr 2 c
+ 0427                   .dbsym l i 0 I
+ 0427                   .dbsym l count -8 c
+ 0427                   .dbsym l in -7 pc
+ 0427                   .dbsym l addr -5 i
+ 0427                   .dbend

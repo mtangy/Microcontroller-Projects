@@ -1,0 +1,52 @@
+XH
+H 3 areas 10 global symbols
+M ps2digbuf.asm
+A text size 0 flags 0
+dbfile lib/ps2digbuf.asm
+dbfunc 0 ? 0 I
+dbfile PS2DigBuf.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PS2DigBuf.inc
+dbfunc 0 ? 0 I
+dbfile lib/ps2digbuf.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/ps2digbuf.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A bss size 0 flags 20
+A UserModules size 10 flags 0
+dbfile lib/ps2digbuf.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 4D 3
+dbline 2 4
+dbline 68 7
+dbline 2 8
+dbline 82 B
+dbline 2 C
+dbline 9C F
+S PS2DigBuf_Stop Def000C
+S $sb$PS2DigBuf_Stop Def000C
+S $se$PS2DigBuf_Stop Def0010
+S _PS2DigBuf_EnableInt Def0000
+S PS2DigBuf_DisableInt Def0004
+S $sb$PS2DigBuf_DisableInt Def0004
+S $se$PS2DigBuf_DisableInt Def0008
+S _PS2DigBuf_Stop Def000C
+S PS2DigBuf_Start Def0008
+S $sb$PS2DigBuf_Start Def0008
+S $se$PS2DigBuf_Start Def000C
+S _PS2DigBuf_DisableInt Def0004
+S _PS2DigBuf_Start Def0008
+S PS2DigBuf_EnableInt Def0000
+S $sb$PS2DigBuf_EnableInt Def0000
+S $se$PS2DigBuf_EnableInt Def0004
+T 00 00 43 E1 10 7F 41 E1 EF 7F 43 33 01 7F 41 33
+R 00 00 00 02
+T 00 0E FE 7F
+R 00 00 00 02
