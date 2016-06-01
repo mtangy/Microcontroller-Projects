@@ -1,5 +1,5 @@
 # Microcontroller-Projects
-Various projects from Microcontrollers course 
+Various projects from my Microcontrollers course for Cypress's PSoC microcontroller.
 
 All projects in this repository are inttended for the PSoC 1 microcontroller. To use, projects must be opened and compiled through 
 PSoC Designer which can be found on Cypress's website (http://www.cypress.com/products/psoc-designer). After compiling, the resulting HEX
